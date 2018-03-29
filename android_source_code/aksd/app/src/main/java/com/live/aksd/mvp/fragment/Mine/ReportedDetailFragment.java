@@ -171,6 +171,13 @@ public class ReportedDetailFragment extends BaseFragment<IReportedDetailView, Re
             adapter.add(data.getReported_img3());
         }
         adapter.notifyDataSetChanged();
+	
+		//sfsm zhoushilei: [修改内容] add code @{
+        if (adapter.getAllData().size()==0){
+            recyclerView.setVisibility(View.GONE);
+            tv.setVisibility(View.GONE);
+        }
+		// @}
 
     }
 
