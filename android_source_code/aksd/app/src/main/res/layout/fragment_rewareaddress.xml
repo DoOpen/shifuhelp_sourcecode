@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical">
+
+    <include layout="@layout/top_back_title_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_adress"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="140dp"
+                android:src="@drawable/zwdz" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_adress"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="当前没有收获地址"
+                android:textColor="@color/tx_4"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+
+
+        <com.jude.easyrecyclerview.EasyRecyclerView
+            android:id="@+id/address_list_receive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp" />
+
+
+        <Button
+            android:id="@+id/add_new_address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark"
+            android:text="新增收货地址"
+            android:textColor="@color/white_bg"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>

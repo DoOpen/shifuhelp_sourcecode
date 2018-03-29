@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp">
+
+            <RadioGroup
+                android:id="@+id/rg"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/specifications_fill_bg"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbDJ"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/jd_left"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="待接单"
+                    android:textColor="@color/tab_text_colo2"
+                    android:textSize="13sp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/rbYJ"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/jd_center"
+                    android:button="@null"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="已接单"
+                    android:textColor="@color/tab_text_colo2"
+                    android:textSize="13sp"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/rbYT"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/jd_right"
+                    android:button="@null"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="已退单"
+                    android:textColor="@color/tab_text_colo2"
+                    android:textSize="13sp" />
+            </RadioGroup>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragmentContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp" />
+</LinearLayout>

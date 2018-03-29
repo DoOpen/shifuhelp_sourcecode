@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\shifuhelp\\boxing-impl\\build\\intermediates\\res\\merged\\debug\\menu\\activity_boxing_image_viewer.xml",
+        "source": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\shifuhelp\\boxing-impl\\src\\main\\res\\menu\\activity_boxing_image_viewer.xml"
+    },
+    {
+        "merged": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\aksd\\boxing-impl\\build\\intermediates\\res\\merged\\debug\\menu\\activity_boxing_image_viewer.xml",
+        "source": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\aksd\\boxing-impl\\src\\main\\res\\menu\\activity_boxing_image_viewer.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\shifuhelp\\boxing-impl\\build\\intermediates\\res\\merged\\debug\\menu\\activity_boxing_image_viewer.xml",
+        "source": "D:\\AndroidStudioProject\\shifuhelp\\boxing-impl\\src\\main\\res\\menu\\activity_boxing_image_viewer.xml"
+    }
+]

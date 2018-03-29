@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/line">
+    <include layout="@layout/top_back_title_bar" />
+
+
+
+
+        <LinearLayout
+            android:id="@+id/ll_server_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/address_manager_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="18dp"
+                    android:textColor="@color/gray_30"
+                    android:textSize="15sp"
+                    android:text="启明"
+                    />
+
+                <TextView
+                    android:id="@+id/address_manager_item_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="17dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="18dp"
+                    android:textColor="@color/gray_30"
+                    android:textSize="15sp"
+                    android:text="15271531560"
+                    />
+
+                <TextView
+                    android:id="@+id/address_manager_item_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/address_manager_item_name"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginLeft="@dimen/x36"
+                    android:maxLines="1"
+                    android:textColor="@color/tx_4"
+                    android:text="上海市浦东新区三林镇长清路507号"
+                    />
+
+            </RelativeLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="21dp"
+                android:background="@color/line"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/address_manager_item_editor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/x21"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:drawableLeft="@drawable/bianji"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/gray_30"
+                    android:drawablePadding="7dp"
+                    android:text="编辑"/>
+
+                <TextView
+                    android:id="@+id/address_manager_item_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/x21"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawableLeft="@drawable/deleat"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/gray_30"
+                    android:drawablePadding="7dp"
+                    android:text="删除"
+                    android:visibility="gone"
+                    />
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_adress"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dp"
+            android:src="@drawable/zwdz" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/img_adress"
+            android:text="当前没有服务地址"
+            android:textColor="@color/tx_4"
+            android:textSize="17sp" />
+
+
+
+        <Button
+            android:id="@+id/add_new_address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark"
+            android:text="添加"
+            android:textColor="@color/white_bg"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/white_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/order_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="售后编号：SH201704251144926"
+            android:textColor="@color/tx_4" />
+
+        <TextView
+            android:id="@+id/order_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="退款中"
+            android:textColor="@color/tx_1" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_5" />
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/goods_img"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo" />
+
+
+        <TextView
+            android:id="@+id/goods_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="8dp"
+            android:maxLines="2"
+            android:layout_toRightOf="@+id/goods_img"
+            android:text="1.5米不锈钢防爆花洒软管 淋浴软管"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp" />
+
+        <TextView
+
+            android:id="@+id/goods_norm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/goods_name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/goods_img"
+            android:text="规格：DN15"
+            android:textColor="@color/colorTextG3" />
+
+        <TextView
+            android:id="@+id/goods_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/goods_norm"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/goods_img"
+            android:text="¥189"
+            android:textColor="@color/tx_1"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/goods_norm"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="5dp"
+            android:text="x1"
+            android:textColor="@color/gray_30"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/goods_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/order_total_price"
+            android:text="共计一件商品 合计："
+            android:textColor="@color/colorTextG3" />
+
+        <TextView
+
+            android:id="@+id/order_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="10"
+            android:textColor="@color/tx_1" />
+
+        <TextView
+
+            android:id="@+id/tv_fare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="（运费:￥10.0）"
+            android:visibility="gone"
+            android:textColor="@color/colorTextG3" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/order_state_btn3"
+                android:layout_width="73dp"
+                android:layout_height="33dp"
+                android:background="@drawable/border_green"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="查看详情"
+                android:layout_marginRight="18dp"
+                android:textColor="@color/tx_1" />
+
+    </RelativeLayout>
+
+</LinearLayout>

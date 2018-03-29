@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/setbar_gray"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="13sp"
+        android:text="2017-08-05"
+        android:textColor="@color/tx_4" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:elevation="1dp"
+        android:background="@drawable/bg_white">
+
+        <TextView
+            android:id="@+id/tvState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="派送中"
+            android:textColor="@color/tx_1"
+            android:textSize="14sp" />
+
+
+        <ImageView
+            android:id="@+id/tvImg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_below="@+id/tvState"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/tvState"
+            android:layout_toRightOf="@+id/tvImg"
+            android:text="铜质弯头 铜质水管弯头 铜质弯头 铜质水管弯头"
+            android:textColor="@color/gray_30"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvOrderNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_below="@+id/tvName"
+            android:layout_toRightOf="@+id/tvImg"
+            android:text="运单号：201609131347456"
+            android:textColor="@color/gray_200" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/tvImg"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

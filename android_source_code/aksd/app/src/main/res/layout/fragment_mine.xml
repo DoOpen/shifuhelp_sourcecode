@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/translucentScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/ivHeader"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@color/white_bg">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="165dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/bg" />
+
+                <ImageView
+                    android:id="@+id/settting"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="32dp"
+                    android:src="@drawable/shezhi" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="31dp"
+                    android:text="个人"
+                    android:textColor="@color/white_80"
+                    android:textSize="19sp" />
+
+                <ImageView
+                    android:id="@+id/message"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="32dp"
+
+                    android:src="@drawable/xiaoxi" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivAvatar"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="84dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivAvatar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="赵信"
+                    android:textColor="@color/gray_30"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvWorkType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvName"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:text="水电工 维修工"
+                    android:textColor="@color/gray_20" />
+
+                <Button
+                    android:id="@+id/sign"
+                    android:layout_width="73dp"
+                    android:layout_height="28dp"
+                    android:layout_below="@+id/tvWorkType"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/follow_login_btn_bg"
+                    android:clickable="true"
+                    android:text="签到"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/sign_ok"
+                    android:layout_width="73dp"
+                    android:layout_height="28dp"
+                    android:layout_below="@+id/tvWorkType"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/follow_login_btn_bg_pressed"
+                    android:clickable="true"
+                    android:text="已签到"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/history_order"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/lishigongdan"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="历史工单"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/serve_address"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/fwdz"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="我的地址"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/my_wallet"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/qianbao"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="我的钱包"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/my_reported"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/wdbb"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="我的报备"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:background="@color/white_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/skills_identified"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/jinengrenzheng"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="技能认定"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/school"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/peixunxueyuan"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="培训学院"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+
+                <!-- <RelativeLayout style="@style/user_login_header_order2">
+
+                     <TextView
+                         android:id="@+id/my_scores"
+                         android:layout_width="fill_parent"
+                         android:layout_height="fill_parent"
+                         android:layout_alignParentStart="true"
+                         android:layout_alignParentTop="true"
+                         android:layout_gravity="center"
+                         android:background="?android:attr/selectableItemBackground"
+                         android:clickable="true"
+                         android:drawableTop="@drawable/jifen"
+                         android:gravity="center"
+                         android:paddingBottom="5dp"
+                         android:paddingTop="10dp"
+                         android:text="我的积分"
+                         android:textColor="@color/gray_30"
+                         android:textSize="14sp" />
+                 </RelativeLayout>
+                 <RelativeLayout style="@style/user_login_header_order2">
+
+                     <TextView
+                         android:id="@+id/coupon"
+                         android:layout_width="fill_parent"
+                         android:layout_height="fill_parent"
+                         android:layout_gravity="center"
+                         android:background="?android:attr/selectableItemBackground"
+                         android:clickable="true"
+                         android:drawableTop="@drawable/yhq"
+                         android:gravity="center"
+                         android:paddingBottom="5dp"
+                         android:paddingTop="10dp"
+                         android:text="优惠卷"
+                         android:textColor="@color/gray_30"
+                         android:textSize="14sp" />
+                 </RelativeLayout>
+ -->
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/my_certificate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/zhengshu"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="我的证书"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/cost_standards"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/feiyong"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="费用标准"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:background="@color/white_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/contact_serve"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/kefu"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="联系客服"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/share_sofeware"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/share"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="软件分享"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:id="@+id/software_related"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableTop="@drawable/ruanjian"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="软件相关"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/user_login_header_order2">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/gray_30"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_tousu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:text="投诉热线：021-123456"
+                android:textColor="@color/gray_20" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="26dp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

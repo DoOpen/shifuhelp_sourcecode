@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/translate_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/bg_white"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="22dp"
+            android:text="恭喜您！签到成功！"
+            android:textColor="@color/gray_30"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/scores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tittle"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="35dp"
+            android:text="+5"
+            android:textColor="@color/gray_30"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/scores"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="积分"
+            android:textColor="@color/gray_30"
+
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_ok"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/dingdan_bg"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white_80"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</LinearLayout>
+
+

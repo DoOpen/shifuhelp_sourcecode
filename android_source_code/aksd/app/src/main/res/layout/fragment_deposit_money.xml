@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parentview"
+    android:orientation="vertical">
+
+    <include layout="@layout/top_back_title_bar" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:background="@drawable/bg_baozhengjin">
+
+        <ImageView
+            android:id="@+id/baozhengjin"
+            android:layout_width="54dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="26dp"
+            android:src="@drawable/icon_bzj" />
+
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/baozhengjin"
+            android:text="2000"
+            android:textColor="@color/tx_3"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/yuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="58dp"
+            android:layout_toRightOf="@+id/money"
+            android:text="元"
+            android:textColor="@color/tx_3"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="110dp"
+            android:layout_height="28dp"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/login"
+            android:layout_centerVertical="true"
+            android:text="缴纳保证金"
+            android:textColor="@color/pure_white"
+             />
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

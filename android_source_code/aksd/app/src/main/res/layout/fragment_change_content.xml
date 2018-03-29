@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/class_name"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:background="@color/pure_white"
+        android:gravity="center"
+        android:text="@string/change_conten"
+        android:textColor="@color/gray_30"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/cha"
+        app:layout_constraintBottom_toBottomOf="@+id/class_name"
+        app:layout_constraintRight_toRightOf="@+id/class_name"
+        app:layout_constraintTop_toTopOf="@+id/class_name" />
+
+    <TextView
+        android:id="@+id/tvMthod"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="@string/detail_method"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/class_name" />
+
+    <TextView
+        android:id="@+id/tvArea"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="@string/et_area"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMthod" />
+
+    <TextView
+        android:id="@+id/tvrequest"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="@string/detail_request"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvArea" />
+
+
+    <EditText
+        android:id="@+id/etMthod"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="100dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMthod"
+        app:layout_constraintLeft_toLeftOf="@+id/tvMthod"
+        app:layout_constraintRight_toRightOf="@+id/tvMthod"
+        app:layout_constraintTop_toTopOf="@+id/tvMthod" />
+
+    <EditText
+        android:id="@+id/etArea"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="140dp"
+        android:background="@null"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/tvArea"
+        app:layout_constraintLeft_toLeftOf="@+id/tvArea"
+        app:layout_constraintRight_toRightOf="@+id/tvArea"
+        app:layout_constraintTop_toTopOf="@+id/tvArea" />
+
+    <EditText
+        android:id="@+id/etrequest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="100dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/tvrequest"
+        app:layout_constraintLeft_toLeftOf="@+id/tvrequest"
+        app:layout_constraintRight_toRightOf="@+id/tvrequest"
+        app:layout_constraintTop_toTopOf="@+id/tvrequest" />
+
+
+    <TextView
+        android:id="@+id/ok"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/commit"
+        android:textColor="@color/pure_white"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvrequest" />
+</android.support.constraint.ConstraintLayout>

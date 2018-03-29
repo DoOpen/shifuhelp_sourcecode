@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_7"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white_80"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/alipay"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:gravity="center"
+            android:text="支付宝"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/line"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alipay" />
+
+
+        <TextView
+            android:id="@+id/wechat"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:gravity="center"
+            android:text="微信"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line1" />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/line"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wechat" />
+
+        <TextView
+            android:id="@+id/bank"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:gravity="center"
+            android:text="银行卡"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="取消"
+            android:textColor="@color/white_bg"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank"
+           />
+
+        <TextView
+            android:id="@+id/btn_alipy"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:background="@drawable/login"
+            android:text="重新绑定"
+            android:textColor="@color/pure_white"
+            app:layout_constraintBottom_toTopOf="@+id/line1"
+            app:layout_constraintRight_toRightOf="@+id/alipay"
+            app:layout_constraintTop_toTopOf="@+id/alipay" />
+        <TextView
+            android:id="@+id/btn_wechat"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:background="@drawable/login"
+            android:text="重新绑定"
+            android:textColor="@color/pure_white"
+            app:layout_constraintBottom_toTopOf="@+id/line2"
+            app:layout_constraintRight_toRightOf="@+id/wechat"
+            app:layout_constraintTop_toTopOf="@+id/wechat" />
+
+        <TextView
+            android:id="@+id/btn_bank"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:background="@drawable/login"
+            android:text="重新绑定"
+            android:textColor="@color/pure_white"
+            app:layout_constraintBottom_toTopOf="@+id/cancel"
+            app:layout_constraintRight_toRightOf="@+id/bank"
+            app:layout_constraintTop_toTopOf="@+id/bank" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</RelativeLayout>

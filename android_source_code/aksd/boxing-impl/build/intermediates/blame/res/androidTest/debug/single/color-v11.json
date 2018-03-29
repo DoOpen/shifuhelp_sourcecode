@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\aksd\\boxing-impl\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "D:\\Users\\liuxiaoxiang\\.android\\build-cache\\cc4f408c57d97366ea1aefeeb441cdb0675afa1f\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\shifuhelp\\boxing-impl\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\b147a5b68f248024b63b1bf7b2808a8608097617\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\shifuhelp\\boxing-impl\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "D:\\Users\\liuxiaoxiang\\.android\\build-cache\\cc4f408c57d97366ea1aefeeb441cdb0675afa1f\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\aksd\\boxing-impl\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "D:\\Users\\liuxiaoxiang\\.android\\build-cache\\cc4f408c57d97366ea1aefeeb441cdb0675afa1f\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\shifuhelp\\boxing-impl\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "D:\\Users\\liuxiaoxiang\\.android\\build-cache\\cc4f408c57d97366ea1aefeeb441cdb0675afa1f\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\shifuhelp\\boxing-impl\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\b147a5b68f248024b63b1bf7b2808a8608097617\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    }
+]

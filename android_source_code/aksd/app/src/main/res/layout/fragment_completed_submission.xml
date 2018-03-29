@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white_bg"
+        android:orientation="vertical">
+
+        <include layout="@layout/line_h" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:visibility="gone"
+                android:background="@drawable/ic_zhibojian_shu_back_pressed" />
+
+            <TextView
+                android:id="@+id/tv_addoredit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|end"
+                android:text="选择服务类别"
+                android:textColor="@color/tx_l"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="21dp"
+                android:layout_marginRight="19dp"
+                android:background="@drawable/cha" />
+        </RelativeLayout>
+
+        <include layout="@layout/line_h" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="9dp"
+            android:text="服务内容"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:id="@+id/tv_orderContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="水电维修，水维修，进水系统，水管改造"
+                android:textColor="@color/gray_30"
+                android:layout_alignBaseline="@+id/price"
+                android:layout_alignBottom="@+id/price"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_orderContent"
+                android:background="@color/white"
+                android:text="(1438元/平米)"
+                android:textColor="@color/red" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="17dp"
+                android:gravity="center_vertical"
+                android:text="实际服务总费用："
+                android:textColor="@color/gray_30"
+                android:textSize="15sp" />
+            <EditText
+                android:id="@+id/et_price"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:layout_toRightOf="@+id/total_price"
+                android:hint="填写价格（元）"
+                android:textColor="@color/gray_30"
+                android:textSize="15sp" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="12dp"
+            android:text="上传完工图片"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp" />
+
+
+        <com.jude.easyrecyclerview.EasyRecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="9dp"
+            android:paddingTop="5dp">
+
+        </com.jude.easyrecyclerview.EasyRecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingLeft="18dp"
+            android:text="*最多上传3张图片（必传）"
+            android:textColor="@color/tx_1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="12dp"
+            android:text="备注"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_markInformation"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+
+            android:layout_marginBottom="9dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_shengqingtuidan"
+            android:gravity="top"
+            android:hint="在这里添加您需要备注的信息"
+            android:paddingLeft="16dp"
+            android:paddingTop="15dp"
+            android:textColor="@color/gray_30"
+            android:textColorHint="@color/gray_200"
+
+            />
+
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark"
+            android:text="确定提交"
+            android:textColor="@color/white_bg"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progress_reproted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+</RelativeLayout>

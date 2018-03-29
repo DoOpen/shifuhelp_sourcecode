@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical">
+
+    <include layout="@layout/top_back_title_bar" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="14dp"
+        android:text="退货给卖家"
+        android:textColor="@color/gray_30"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="9dp"
+        android:text="请填写退货信息：请确保退货物流与运单号的信息准确无误，以保障商家可以正常收到退回商品！6天23小时后未填写提交，该申请将自动关闭！"
+        android:textColor="@color/nightColorPrimaryLight" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="物流公司"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="（必填）"
+            android:textColor="@color/tx_1"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginTop="9dp"
+        android:background="@color/white_bg">
+
+        <EditText
+            android:id="@+id/logistics_company"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="选择物流公司"
+            android:paddingLeft="22dp" />
+
+        <ImageView
+            android:id="@+id/zhankai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:background="@drawable/zhankai" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="物流单号"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="（必填）"
+            android:textColor="@color/tx_1"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/logistics_no"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginTop="9dp"
+        android:background="@color/white_bg"
+        android:hint="输入物流单号"
+        android:maxLines="1"
+        android:inputType="number"
+        android:paddingLeft="22dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="联系电话"
+            android:textColor="@color/gray_30"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="（必填）"
+            android:textColor="@color/tx_1"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginTop="9dp"
+        android:background="@color/white_bg"
+        android:inputType="number"
+        android:maxLength="11"
+        android:hint="输入联系电话"
+        android:paddingLeft="22dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="14dp"
+        android:text="退货人姓名"
+        android:maxLines="1"
+        android:textColor="@color/gray_30"
+        android:textSize="15sp" />
+
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginTop="9dp"
+        android:background="@color/white_bg"
+        android:hint="输入退货人姓名"
+        android:paddingLeft="22dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/tx_1"
+            android:text="提交"
+            android:textColor="@color/white_bg"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include6"
+        layout="@layout/top_back_title_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include6" />
+
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/setbar_zb"
+        android:drawableRight="@drawable/shouji"
+        android:hint="请输入手机号"
+
+        android:inputType="number"
+        android:maxLength="11"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img" />
+
+    <EditText
+        android:id="@+id/etPwdOne"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/setbar_zb"
+        android:hint="密码(6—16位)"
+
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPhone" />
+
+
+    <CheckBox
+        android:id="@+id/ckOne"
+        android:layout_width="27dp"
+        android:layout_height="23dp"
+        android:layout_marginRight="16dp"
+        android:button="@drawable/eye"
+        app:layout_constraintBottom_toBottomOf="@+id/etPwdOne"
+        app:layout_constraintRight_toRightOf="@+id/etPwdOne"
+        app:layout_constraintTop_toTopOf="@+id/etPwdOne" />
+
+
+    <EditText
+        android:id="@+id/etPwdTwo"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/setbar_zb"
+        android:hint="请再次输入密码"
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:paddingLeft="16dp"
+        android:textSize="14dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPwdOne" />
+
+    <CheckBox
+        android:id="@+id/ckTwo"
+        android:layout_width="27dp"
+        android:layout_height="23dp"
+        android:layout_marginRight="16dp"
+        android:button="@drawable/eye"
+        app:layout_constraintBottom_toBottomOf="@+id/etPwdTwo"
+        app:layout_constraintRight_toRightOf="@+id/etPwdTwo"
+        app:layout_constraintTop_toTopOf="@+id/etPwdTwo" />
+
+
+    <EditText
+        android:id="@+id/etCode"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/setbar_zb"
+        android:hint="验证码"
+        android:inputType="number"
+        android:maxLength="6"
+        android:paddingLeft="16dp"
+        android:textSize="14dp"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tvGetCode"
+        app:layout_constraintTop_toBottomOf="@+id/etPwdTwo" />
+
+
+    <TextView
+        android:id="@+id/tvGetCode"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/setbar_zz"
+        android:gravity="center"
+        android:text="获取验证码"
+        android:textColor="#DB9370"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/etCode"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etCode" />
+
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/login"
+
+        android:paddingLeft="16dp"
+        android:text="@string/register_now"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCode" />
+
+
+    <TextView
+        android:id="@+id/tvRed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:drawableLeft="@drawable/xz_h"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:text="@string/red_agree"
+        android:textSize="13sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+
+    <TextView
+        android:id="@+id/tvProtocol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="@string/register"
+        android:textColor="@color/tx_2"
+        android:textSize="13sp"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRed"
+        app:layout_constraintLeft_toRightOf="@+id/tvRed"
+        app:layout_constraintTop_toTopOf="@+id/tvRed"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:text="@string/company"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
+
+

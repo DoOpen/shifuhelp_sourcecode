@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/parentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include5"
+        layout="@layout/top_back_title_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include5">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/orderState"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:background="@color/bg_4"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="@string/wait_order"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvChange"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@string/change"
+                android:paddingRight="16dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintRight_toRightOf="@+id/orderState"
+                app:layout_constraintTop_toTopOf="@+id/orderState"
+                app:layout_constraintBottom_toBottomOf="@+id/orderState" />
+
+            <View
+                android:id="@+id/bgOne"
+                android:layout_width="0dp"
+                android:layout_height="350dp"
+                android:background="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/orderState" />
+
+            <TextView
+                android:id="@id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="@+id/bgOne"
+                app:layout_constraintRight_toRightOf="@+id/bgOne"
+                app:layout_constraintTop_toTopOf="@+id/bgOne" />
+
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="@+id/bgOne"
+                app:layout_constraintRight_toRightOf="@+id/bgOne"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@+id/bgOne"
+                app:layout_constraintRight_toRightOf="@+id/bgOne"
+                app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="@+id/bgOne"
+                app:layout_constraintRight_toRightOf="@+id/bgOne"
+                app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+
+            <TextView
+                android:id="@+id/tvMethod"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@+id/bgOne"
+                app:layout_constraintRight_toRightOf="@+id/bgOne"
+                app:layout_constraintTop_toBottomOf="@+id/tvContent" />
+
+            <TextView
+                android:id="@+id/tvArea"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@+id/bgOne"
+                app:layout_constraintRight_toRightOf="@+id/bgOne"
+                app:layout_constraintTop_toBottomOf="@+id/tvMethod" />
+
+            <TextView
+                android:id="@+id/tvRequest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/work_request"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@+id/bgOne"
+                app:layout_constraintRight_toRightOf="@+id/bgOne"
+                app:layout_constraintTop_toBottomOf="@+id/tvArea" />
+
+            <TextView
+                android:id="@+id/tvNote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/no_note_detail"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@+id/bgOne"
+                app:layout_constraintRight_toRightOf="@+id/bgOne"
+                app:layout_constraintTop_toBottomOf="@+id/tvRequest" />
+
+
+            <TextView
+                android:id="@+id/releaseTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNote" />
+
+
+            <TextView
+                android:id="@+id/hopeStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/releaseTime" />
+
+            <TextView
+                android:id="@+id/hopeEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hopeStartTime" />
+
+
+            <TextView
+                android:id="@+id/tvAcceptTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hopeEndTime" />
+
+
+            <TextView
+                android:id="@+id/tvComeTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAcceptTime" />
+
+            <TextView
+                android:id="@+id/tvSubmitTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvComeTime" />
+
+            <TextView
+                android:id="@+id/tvPassTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSubmitTime" />
+
+
+            <TextView
+                android:id="@+id/tvMap"
+                android:layout_width="0dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:drawableRight="@drawable/tiaozhuan"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@string/map"
+                android:textColor="@color/gray_30"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bgOne" />
+
+            <View
+                android:id="@+id/bgTwo"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMap" />
+
+            <TextView
+                android:id="@+id/tvActualService"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/actual_service"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="@+id/bgTwo"
+                app:layout_constraintRight_toRightOf="@+id/bgTwo"
+                app:layout_constraintTop_toTopOf="@+id/bgTwo" />
+
+            <TextView
+                android:id="@+id/tvOtherService"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/other_service"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintLeft_toLeftOf="@+id/bgTwo"
+                app:layout_constraintRight_toRightOf="@+id/bgTwo"
+                app:layout_constraintTop_toBottomOf="@+id/tvActualService" />
+
+            <TextView
+                android:id="@+id/tvImgTittle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/img_complete"
+                android:textColor="@color/tx_4"
+                android:textSize="13sp"
+                android:visibility="gone"
+                android:paddingLeft="16dp"
+                app:layout_constraintLeft_toLeftOf="@+id/bgTwo"
+                app:layout_constraintTop_toBottomOf="@+id/tvOtherService" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintRight_toRightOf="@+id/bgTwo"
+                app:layout_constraintLeft_toRightOf="@+id/tvImgTittle"
+                app:layout_constraintTop_toTopOf="@+id/tvImgTittle" />
+
+
+            <View
+                android:id="@+id/bgRefund"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bgTwo" />
+
+
+            <TextView
+                android:id="@+id/tvRefundTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/refund_reason"
+                android:textColor="@color/gray_30"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="@+id/bgRefund"
+                app:layout_constraintTop_toTopOf="@+id/bgRefund" />
+
+            <TextView
+                android:id="@+id/tvRefundContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="@+id/bgRefund"
+                app:layout_constraintRight_toRightOf="@+id/bgRefund"
+                app:layout_constraintTop_toBottomOf="@+id/tvRefundTittle" />
+
+            <View
+                android:id="@+id/bgThree"
+                android:layout_width="0dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bgRefund" />
+
+            <TextView
+                android:id="@+id/tv_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/checking"
+                android:textColor="@color/tx_1"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/bgThree"
+                app:layout_constraintLeft_toLeftOf="@+id/bgThree"
+                app:layout_constraintTop_toTopOf="@+id/bgThree" />
+
+
+            <TextView
+                android:id="@+id/tvOne"
+                android:layout_width="74dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="16dp"
+                android:layout_toLeftOf="@+id/btn_two"
+                android:background="@drawable/border_green"
+                android:gravity="center"
+                android:text="@string/completed"
+                android:textColor="@color/tx_1"
+                app:layout_constraintBottom_toBottomOf="@+id/bgThree"
+                app:layout_constraintRight_toLeftOf="@+id/tvTwo"
+                app:layout_constraintTop_toTopOf="@+id/bgThree"
+                android:layout_marginEnd="16dp" />
+
+
+            <TextView
+                android:id="@+id/tvTwo"
+                android:layout_width="74dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="16dp"
+                android:layout_toLeftOf="@+id/btn_three"
+                android:background="@drawable/border_green"
+                android:gravity="center"
+                android:text="@string/apply_refund"
+                android:textColor="@color/tx_1"
+                app:layout_constraintBottom_toBottomOf="@+id/bgThree"
+                app:layout_constraintRight_toLeftOf="@+id/tvThree"
+                app:layout_constraintTop_toTopOf="@+id/bgThree"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/tvThree"
+                android:layout_width="74dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/border_green"
+                android:gravity="center"
+                android:text="@string/cutomer_server"
+                android:textColor="@color/tx_1"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/bgThree"
+                app:layout_constraintRight_toRightOf="@+id/bgThree"
+                app:layout_constraintTop_toTopOf="@+id/bgThree" />
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/line"
+                android:padding="16dp"
+                android:text="@string/order_note"
+                android:textColor="@color/tx_4"
+                android:textSize="13sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bgThree" />
+
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

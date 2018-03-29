@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\shifuhelp\\boxing-impl\\build\\intermediates\\res\\merged\\debug\\xml\\boxing_file_provider.xml",
+        "source": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\shifuhelp\\boxing\\build\\intermediates\\bundles\\default\\res\\xml\\boxing_file_provider.xml"
+    },
+    {
+        "merged": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\aksd\\boxing-impl\\build\\intermediates\\res\\merged\\debug\\xml\\boxing_file_provider.xml",
+        "source": "D:\\Users\\liuxiaoxiang\\Library\\AndroidStudioProjects\\aksd\\boxing\\build\\intermediates\\bundles\\default\\res\\xml\\boxing_file_provider.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\shifuhelp\\boxing-impl\\build\\intermediates\\res\\merged\\debug\\xml\\boxing_file_provider.xml",
+        "source": "D:\\AndroidStudioProject\\shifuhelp\\boxing\\build\\intermediates\\bundles\\default\\res\\xml\\boxing_file_provider.xml"
+    }
+]

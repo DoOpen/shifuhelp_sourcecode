@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  Copyright (C) 2017 Bilibili
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~          http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bilibili.boxing_impl.test" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="25" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <instrumentation
+        android:name="android.support.test.runner.AndroidJUnitRunner"
+        android:functionalTest="false"
+        android:handleProfiling="false"
+        android:label="Tests for com.bilibili.boxing_impl.test"
+        android:targetPackage="com.bilibili.boxing_impl.test" />
+
+    <application android:label="@string/boxing_app_name" >
+        <activity android:name="com.bilibili.boxing_impl.view.TestBlankActivity" />
+
+        <uses-library android:name="android.test.runner" />
+
+        <activity
+            android:name="com.bilibili.boxing_impl.ui.BoxingActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.bilibili.boxing_impl.ui.BoxingViewActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.bilibili.boxing_impl.ui.BoxingBottomSheetActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

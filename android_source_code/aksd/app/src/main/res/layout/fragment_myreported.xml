@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical">
+    <include layout="@layout/top_back_title_bar" />
+
+    <TextView
+        android:id="@+id/reported_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_4"
+        android:gravity="center_vertical"
+        android:paddingBottom="9dp"
+        android:paddingLeft="28dp"
+        android:paddingTop="10dp"
+        android:text="共报备0条"
+        android:textColor="@color/white_bg"
+        android:textSize="15sp" />
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/my_reported_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_empty="@layout/layout_empty"
+        app:layout_error="@layout/layout_error"
+        app:layout_progress="@layout/progress_bar"></com.jude.easyrecyclerview.EasyRecyclerView>
+
+</LinearLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+<include layout="@layout/top_back_title_bar"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="49dp"
+    android:orientation="horizontal">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/zx_home_tabLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/bg_2"
+        app:tabIndicatorHeight="2dp"
+        app:tabMinWidth="60dp"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/bg_2"
+        app:tabTextAppearance="@style/TabLayoutTextAppearance"
+        app:tabTextColor="@color/black" />
+
+
+</LinearLayout>
+
+<android.support.v4.view.ViewPager
+    android:id="@+id/zx_home_viewPager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+
+</LinearLayout>

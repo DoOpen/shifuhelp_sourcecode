@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <View
+        android:id="@+id/viewBg"
+        android:layout_width="0dp"
+        android:layout_height="98dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:elevation="1dp"
+        android:background="@drawable/bg_white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="1dp" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:text="姓名：张良"
+        android:elevation="1dp"
+        android:textColor="@color/gray_30"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvTime"
+        app:layout_constraintLeft_toLeftOf="@+id/viewBg"
+        app:layout_constraintTop_toTopOf="@+id/viewBg"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="时间：2016-08-20 13:30:35"
+        android:textColor="@color/gray_20"
+        android:textSize="12sp"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBg"
+        app:layout_constraintLeft_toLeftOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/tvState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/tiaozhuan"
+        android:text="报备成功"
+        android:elevation="1dp"
+        android:textColor="@color/gray_30"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBg"
+        app:layout_constraintRight_toRightOf="@+id/viewBg"
+        app:layout_constraintTop_toTopOf="@+id/viewBg" />
+
+
+</android.support.constraint.ConstraintLayout>

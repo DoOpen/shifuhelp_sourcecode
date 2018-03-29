@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line"
+    android:orientation="vertical">
+
+    <include layout="@layout/top_back_title_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="物流状态："
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/zhuang_tai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="已签收"
+                android:textColor="@color/green" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/wu_liu_gong_si"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="物流公司：顺丰速递 "
+            android:layout_marginTop="8dp"
+            android:textColor="@color/gray_30" />
+
+
+        <TextView
+            android:id="@+id/ding_dan_bian_hao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单编号：201607201753"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/gray_30" />
+
+
+        <TextView
+            android:id="@+id/yun_dan_bian_hao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="运单编号：3311230184347"
+            android:textColor="@color/gray_30"
+            android:layout_marginBottom="8dp"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/logistics_info_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white_bg" />
+
+
+</LinearLayout>

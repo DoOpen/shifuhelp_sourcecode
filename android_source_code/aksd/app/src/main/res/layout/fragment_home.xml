@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!-- 标题 -->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="0dp"
+            android:drawableTop="@drawable/dingwei"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLength="3"
+            android:textColor="@color/pure_white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tvSearch" />
+
+
+        <TextView
+            android:id="@+id/tvSearch"
+            android:layout_width="0dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/bg_whiten"
+            android:drawableLeft="@drawable/sousuo3x"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:text="@string/search_goods"
+            android:textColor="@color/gray_200"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvLocation"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tvSign"
+            app:layout_constraintTop_toTopOf="@+id/tvLocation" />
+
+
+        <TextView
+            android:id="@+id/tvSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="24dp"
+            android:drawableTop="@drawable/qiandao"
+            android:gravity="center_vertical"
+            android:text="@string/sign"
+            android:textColor="@color/pure_white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/line">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.bigkoo.convenientbanner.ConvenientBanner
+                    android:id="@+id/convenientBanner"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:minHeight="100dp"
+                    app:canLoop="true"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tvCategroy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/star_show"
+                    android:textColor="@color/tx_l"
+                    android:textSize="@dimen/y34"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/convenientBanner" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="2dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/tx_l"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCategroy"
+                    app:layout_constraintRight_toLeftOf="@+id/tvCategroy"
+                    app:layout_constraintTop_toTopOf="@+id/tvCategroy" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/tx_l"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCategroy"
+                    app:layout_constraintLeft_toRightOf="@+id/tvCategroy"
+                    app:layout_constraintTop_toTopOf="@+id/tvCategroy" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:scrollbars="none"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCategroy" />
+
+
+                <TextView
+                    android:id="@+id/tvQD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/can_order"
+                    android:textColor="@color/tx_l"
+                    android:textSize="@dimen/y34"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="@dimen/x4"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/tx_l"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvQD"
+                    app:layout_constraintRight_toLeftOf="@+id/tvQD"
+                    app:layout_constraintTop_toTopOf="@+id/tvQD" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="@dimen/x4"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/tx_l"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvQD"
+                    app:layout_constraintLeft_toRightOf="@+id/tvQD"
+                    app:layout_constraintTop_toTopOf="@+id/tvQD" />
+
+
+                <View
+                    android:id="@+id/vGrab"
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/ripple_bg"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvQD" />
+
+
+                <TextView
+                    android:id="@+id/tvContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/gray_30"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/vGrab"
+                    app:layout_constraintRight_toLeftOf="@+id/line"
+                    app:layout_constraintTop_toTopOf="@+id/vGrab" />
+
+
+                <TextView
+                    android:id="@+id/tvNote"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:drawableLeft="@drawable/beizhu"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="@string/no_note"
+                    android:textColor="@color/gray_20"
+                    android:textSize="13sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/vGrab"
+                    app:layout_constraintRight_toLeftOf="@+id/line"
+                    app:layout_constraintTop_toBottomOf="@+id/tvContent" />
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/dz"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textColor="@color/gray_20"
+                    android:textSize="13sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/vGrab"
+                    app:layout_constraintRight_toLeftOf="@+id/line"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNote" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="1dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="120dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gray_20"
+                    app:layout_constraintBottom_toBottomOf="@+id/vGrab"
+                    app:layout_constraintRight_toRightOf="@+id/vGrab"
+                    app:layout_constraintTop_toTopOf="@+id/vGrab" />
+
+
+                <TextView
+                    android:id="@+id/tvGrab"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/yuan"
+                    android:gravity="center"
+                    android:text="@string/qiangdan"
+                    android:textColor="@color/tx_1"
+                    android:textSize="17sp"
+                    app:layout_constraintLeft_toRightOf="@+id/line"
+                    app:layout_constraintRight_toRightOf="@+id/vGrab"
+                    app:layout_constraintTop_toTopOf="@+id/vGrab" />
+
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/tx_1"
+                    android:textSize="11sp"
+                    app:layout_constraintLeft_toRightOf="@+id/line"
+                    app:layout_constraintRight_toRightOf="@+id/vGrab"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGrab" />
+
+                <TextView
+                    android:id="@+id/tvNull"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ripple_bg"
+                    android:drawableTop="@drawable/wudingdan"
+                    android:gravity="center"
+                    android:text="@string/no_qiangdan"
+                    android:textColor="@color/gray_200"
+                    app:layout_constraintBottom_toBottomOf="@+id/vGrab"
+                    app:layout_constraintLeft_toLeftOf="@+id/vGrab"
+                    app:layout_constraintRight_toRightOf="@+id/vGrab"
+                    app:layout_constraintTop_toTopOf="@+id/vGrab" />
+
+                <TextView
+                    android:id="@+id/tvBB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/reproted"
+                    android:textColor="@color/tx_l"
+                    android:textSize="@dimen/y34"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vGrab" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="2dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/tx_l"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvBB"
+                    app:layout_constraintRight_toLeftOf="@+id/tvBB"
+                    app:layout_constraintTop_toTopOf="@+id/tvBB" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/tx_l"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvBB"
+                    app:layout_constraintLeft_toRightOf="@+id/tvBB"
+                    app:layout_constraintTop_toTopOf="@+id/tvBB" />
+
+
+                <ImageView
+                    android:id="@+id/ivReported"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/bb_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvBB" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

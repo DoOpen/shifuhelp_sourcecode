@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/all_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include4"
+        layout="@layout/top_back_title_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/rl_info"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white_80"
+        android:drawableLeft="@drawable/grzl"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/tiaozhuan"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/person_mesage"
+        android:textColor="@color/gray_30"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include4" />
+
+
+    <TextView
+        android:id="@+id/rl_changepwd"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white_80"
+        android:drawableLeft="@drawable/xgmm"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/tiaozhuan"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/change_pwd"
+        android:textColor="@color/gray_30"
+        android:textSize="14sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_info" />
+
+
+    <TextView
+        android:id="@+id/rl_clean"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white_80"
+        android:drawableLeft="@drawable/qchc"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="@string/clean_cache"
+        android:textColor="@color/gray_30"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_changepwd" />
+
+    <TextView
+        android:id="@+id/cache_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:text="0M"
+        android:textColor="@color/gray_30"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rl_clean"
+        app:layout_constraintRight_toRightOf="@+id/rl_clean"
+        app:layout_constraintTop_toTopOf="@+id/rl_clean" />
+
+
+    <TextView
+        android:id="@+id/rl_aboutUs"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white_80"
+        android:drawableLeft="@drawable/about_us"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/tiaozhuan"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/about_us"
+        android:textColor="@color/gray_30"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_clean" />
+
+    <TextView
+        android:id="@+id/rl_agreement"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white_80"
+        android:drawableLeft="@drawable/xgxy"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/tiaozhuan"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/rl_agreement"
+        android:textColor="@color/gray_30"
+        android:textSize="14sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_aboutUs" />
+
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/login"
+        android:text="@string/exit"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

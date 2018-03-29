@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_youhuiquan">
+
+
+        <TextView
+            android:id="@+id/coupon_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="生鲜优惠券"
+            android:textColor="@color/gray_30"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/coupon_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="21dp"
+            android:layout_marginTop="22dp"
+            android:text="¥50"
+            android:textColor="@color/bg_2"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:id="@+id/coupon_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="21dp"
+            android:layout_marginTop="49dp"
+            android:text="可跨店铺使用"
+            android:textColor="@color/gray_20" />
+
+
+        <TextView
+            android:id="@+id/coupon_full_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="12dp"
+            android:text="满200减50"
+            android:textColor="@color/gray_30" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="21dp"
+            android:text="有效期：2017.5.19 ~ 2017.6.19"
+            android:textColor="@color/gray_30" />
+
+
+        <ImageView
+            android:id="@+id/coupon_state"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/yiguoqi"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

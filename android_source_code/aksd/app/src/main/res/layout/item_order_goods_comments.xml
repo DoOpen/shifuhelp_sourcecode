@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="75dp"
+            android:scaleType="centerCrop"
+            android:layout_height="75dp"
+            android:layout_marginStart="15dp"/>
+
+        <TextView
+            android:id="@+id/pf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/img"
+            android:text="评分" />
+
+        <RatingBar
+            android:id="@+id/ratingbar"
+            style="@style/mRatingBary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pf"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/img"
+            android:numStars="5"
+            android:progressTint="@android:color/holo_orange_dark"
+            android:rating="3"
+            android:stepSize="1" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_bbs_details">
+
+        <EditText
+            android:layout_marginBottom="40dp"
+            android:id="@+id/et_goods_content"
+            android:hint="请填写评价内容"
+            android:layout_margin="15dp"
+            android:background="@null"
+            android:textSize="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginBottom="25dp"
+            android:id="@+id/go_to_gallery"
+            android:layout_marginTop="@dimen/boxing_item_spacing"
+            android:layout_marginLeft="@dimen/boxing_activity_horizontal_margin"
+            android:layout_marginRight="@dimen/boxing_activity_horizontal_margin"
+            android:src="@drawable/tuikuang_shch3x"
+            android:layout_width="81dp"
+            android:layout_height="81dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/media_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/boxing_item_spacing"
+            android:layout_marginLeft="@dimen/boxing_activity_horizontal_margin"
+            android:layout_marginRight="@dimen/boxing_activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/boxing_activity_horizontal_margin"
+            android:clickable="true"/>
+    </LinearLayout>
+
+</LinearLayout>
