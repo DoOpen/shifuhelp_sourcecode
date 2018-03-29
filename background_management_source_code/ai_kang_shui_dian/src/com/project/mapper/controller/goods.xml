@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dao.controller.GoodsDaoC" >
+	<select id="getGoodsSpecificationDetail" parameterType="goodsSpecificationBean" resultType="goodsSpecificationBean">
+		select * from goods_relation_specification where specification_id=#{specification_id} and is_delete=0
+	</select>
+	<insert id="insertGoodsSpecification" parameterType="goodsSpecificationBean">
+		insert into goods_relation_specification
+		(
+			goods_id,specification_state,specification_sku,specification_ids,specification_names,specification_sales,
+			specification_stock,specification_img,specification_price,create_time,update_time
+		)
+		values
+		(
+			#{goods_id},#{specification_state},#{specification_sku},#{specification_ids},#{specification_names},
+			#{specification_sales},#{specification_stock},#{specification_img},#{specification_price},now(),now()
+		)
+	</insert>
+	<update id="updateGoodsSpecification" parameterType="goodsSpecificationBean">
+		update goods_relation_specification
+		<set>
+			update_time=now(),
+			is_delete=0,
+			<if test=" goods_id !=null and goods_id !=''">
+				goods_id=#{goods_id},
+			</if>
+			<if test=" specification_state !=null and specification_state !=''">
+				specification_state=#{specification_state},
+			</if>
+			<if test=" specification_sku !=null and specification_sku!=''">
+				specification_sku=#{specification_sku},
+			</if>
+			<if test=" specification_ids !=null and specification_ids !=''">
+				specification_ids=#{specification_ids},
+			</if>
+			<if test=" specification_names !=null and specification_names !=''">
+				specification_names=#{specification_names},
+			</if>
+			<if test=" specification_sales !=null">
+				specification_sales=#{specification_sales},
+			</if>
+			<if test=" specification_stock !=null">
+				specification_stock=#{specification_stock},
+			</if>
+			<if test=" specification_img !=null and specification_img !=''">
+				specification_img=#{specification_img},
+			</if>
+			<if test=" specification_price !=null and specification_price !=''">
+				specification_price=#{specification_price},
+			</if>
+		</set>
+		where specification_id=#{specification_id}
+	</update>
+	<update id="deleteGoodsSpecification" parameterType="goodsSpecificationBean">
+		update goods_relation_specification set is_delete=1,update_time=now() where 1=1
+		<if test=" goods_id !=null and goods_id !=''">
+			and goods_id=#{goods_id}
+		</if>
+		<if test=" specification_id !=null">
+			and specification_id=#{specification_id}
+		</if>
+	</update>
+	<select id="getGoodsSpecificationList" parameterType="goodsSpecificationBean" resultType="goodsSpecificationBean">
+		select * from goods_relation_specification where is_delete=0
+		<if test=" goods_id !=null">
+			and goods_id=#{goods_id}
+		</if>
+		order by create_time asc
+	</select>
+	<select id="getParentSpecification" parameterType="specificationBean" resultType="specificationBean">
+		select * from goods_specification where specification_id=#{parent_id} and is_delete=0
+	</select>
+	<select id="getSpecificationListByIds" parameterType="string" resultType="specificationBean">
+		select * from goods_specification where is_delete=0 and find_in_set(specification_id,#{specificationIds}) order by sort asc,create_time asc
+	</select>
+	<select id="getGoodsImgList" parameterType="goodsImgBean" resultType="goodsImgBean">
+		select * from goods_img where is_delete=0
+		<if test=" goods_id !=null">
+			and goods_id=#{goods_id}
+		</if>
+		order by sort asc,create_time asc
+	</select>
+	<update id="deleteGoodsImg" parameterType="goodsImgBean">
+		update goods_img set is_delete=1,update_time=now() where 1=1
+		<if test=" img_id !=null">
+			and img_id=#{img_id}
+		</if>
+		<if test=" goods_id !=null">
+			and goods_id=#{goods_id}
+		</if>
+	</update>
+	<insert id="insertGoodsImg" parameterType="goodsImgBean">
+		insert into goods_img
+		(
+			goods_id,img_url,sort,create_time,update_time
+		)
+		values
+		(
+			#{goods_id},#{img_url},#{sort},now(),now()
+		)
+	</insert>
+	<update id="updateGoodsImg" parameterType="goodsImgBean">
+		update goods_img
+		<set>
+			is_delete=0,
+			update_time=now(),
+			<if test=" goods_id !=null">
+				goods_id=#{goods_id},
+			</if>
+			<if test=" img_url !=null and img_url !=''">
+				img_url=#{img_url},
+			</if>
+			<if test=" sort !=null and sort !=''">
+				sort=#{sort},
+			</if>
+		</set>
+		where img_id=#{img_id}
+	</update>
+	<select id="getGoodsClassList" parameterType="goodsClassBean" resultType="goodsClassBean">
+		select * from goods_class where is_delete=0
+		<if test=" parent_id !=null">
+			and parent_id=#{parent_id}
+		</if>
+		<if test=" class_name !=null and class_name !=''">
+			and class_name like concat('%',#{class_name},'%')
+		</if>
+		order by sort asc,create_time asc
+	</select>
+	<select id="getGoodsClassDetail" parameterType="goodsClassBean" resultType="goodsClassBean">
+		select * from goods_class where class_id=#{class_id} and is_delete=0
+	</select>
+	<update id="deleteGoodsClass" parameterType="goodsClassBean">
+		update goods_class set is_delete=1 where class_id=#{class_id}
+	</update>
+	<insert id="insertGoodsClass" parameterType="goodsClassBean">
+		insert into goods_class
+		(
+			class_name,class_desc,class_img,class_url,parent_id,class_uuid,parent_uuid,create_time,update_time,sort,is_recommend
+		)
+		values
+		(
+			#{class_name},#{class_desc},#{class_img},#{class_url},#{parent_id},#{class_uuid},#{parent_uuid},now(),now(),#{sort},#{is_recommend}
+		)
+	</insert>
+	<update id="updateGoodsClass" parameterType="goodsClassBean">
+		update goods_class
+		<set>
+			update_time=now(),
+			<if test=" class_name !=null and class_name !='' ">
+				class_name=#{class_name},
+			</if>
+			<if test=" class_desc !=null and class_desc !='' ">
+				class_desc=#{class_desc},
+			</if>
+			<if test=" class_img !=null and class_img !='' ">
+				class_img=#{class_img},
+			</if>
+			<if test=" class_url !=null and class_url !='' ">
+				class_url=#{class_url},
+			</if>
+			<if test=" sort !=null and sort !='' ">
+				sort=#{sort},
+			</if>
+			<if test=" is_recommend !=null and is_recommend !=''">
+				is_recommend=#{is_recommend},
+			</if>
+		</set>
+		where class_id=#{class_id}
+	</update>
+	
+	<select id="getGoodsList" parameterType="goodsBean" resultType="goodsBean">
+		select a.*,b.class_name from goods as a inner join goods_class as b on a.class_id=b.class_id and a.is_delete=0 and b.is_delete=0 where 1=1 
+		<if test=" goods_name !=null and goods_name !=''">
+			and goods_name like concat('%',#{goods_name},'%')
+		</if>
+		<if test=" send_range !=null and send_range !=''">
+			and send_range=#{send_range}
+		</if>
+		<if test=" show_type !=null and show_type !=''">
+			and find_in_set(a.show_type,#{show_type})
+		</if>
+		<if test=" buy_type !=null and buy_type !=''">
+			and buy_type=#{buy_type}
+		</if>
+		<if test=" goods_name !=null and goods_name !=''">
+			and goods_name like concat('%',#{goods_name},'%')
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and create_time&lt;#{end_time}
+		</if>
+		order by create_time desc
+	</select>
+	<select id="getGoodsDetail" parameterType="goodsBean" resultType="goodsBean">
+		select * from goods where goods_id=#{goods_id} and is_delete=0
+	</select>
+	<update id="deleteGoods" parameterType="goodsBean">
+		update goods set is_delete=1 where goods_id=#{goods_id}
+	</update>
+	<insert id="insertGoods" parameterType="goodsBean" useGeneratedKeys="true" keyProperty="goods_id">
+		insert into goods
+		(
+			class_id,class_uuid,goods_num,goods_name,goods_img,goods_min_price,goods_max_price,goods_now_price,goods_desc,
+			goods_url,total_sales,goods_stock,goods_state,create_time,update_time,
+			express_price,show_type,buy_type
+		)
+		values
+		(
+			#{class_id},#{class_uuid},#{goods_num},#{goods_name},#{goods_img},#{goods_min_price},
+			#{goods_max_price},#{goods_now_price},#{goods_desc},#{goods_url},#{total_sales},
+			#{goods_stock},#{goods_state},now(),now(),#{express_price},#{show_type},#{buy_type}
+		)
+	</insert>
+	<update id="updateGoods" parameterType="goodsBean">
+		update goods
+		<set>
+			update_time=now(),
+			<if test=" class_id !=null">
+				class_id=#{class_id},
+			</if>
+			<if test=" class_uuid !=null and class_uuid !='' ">
+				class_uuid=#{class_uuid},
+			</if>
+			<if test=" goods_num !=null and goods_num !='' ">
+				goods_num=#{goods_num},
+			</if>
+			<if test=" goods_name !=null and goods_name !='' ">
+				goods_name=#{goods_name},
+			</if>
+			<if test=" goods_img !=null and goods_img !='' ">
+				goods_img=#{goods_img},
+			</if>
+			<if test=" goods_min_price !=null and goods_min_price !='' ">
+				goods_min_price=#{goods_min_price},
+			</if>
+			<if test=" goods_max_price !=null and goods_max_price !='' ">
+				goods_max_price=#{goods_max_price},
+			</if>
+			<if test=" goods_now_price !=null and goods_now_price !='' ">
+				goods_now_price=#{goods_now_price},
+			</if>
+			<if test=" goods_desc !=null and goods_desc !='' ">
+				goods_desc=#{goods_desc},
+			</if>
+			<if test=" goods_url !=null and goods_url !='' ">
+				goods_url=#{goods_url},
+			</if>
+			<if test=" actual_sales !=null">
+				actual_sales=#{actual_sales},
+			</if>
+			<if test=" total_sales !=null">
+				total_sales=#{total_sales},
+			</if>
+			<if test=" month_sales !=null ">
+				month_sales=#{month_sales},
+			</if>
+			<if test=" day_sales !=null">
+				day_sales=#{day_sales},
+			</if>
+			<if test=" goods_stock !=null">
+				goods_stock=#{goods_stock},
+			</if>
+			<if test=" goods_state !=null and goods_state !='' ">
+				goods_state=#{goods_state},
+			</if>
+			<if test=" start_time !=null and start_time !='' ">
+				start_time=#{start_time},
+			</if>
+			<if test=" end_time !=null and end_time !='' ">
+				end_time=#{end_time},
+			</if>
+			<if test=" express_price !=null and express_price !='' ">
+				express_price=#{express_price},
+			</if>
+			<if test=" free_express_price !=null and free_express_price !='' ">
+				free_express_price=#{free_express_price},
+			</if>
+			<if test=" show_type !=null and show_type !='' ">
+				show_type=#{show_type},
+			</if>
+			<if test=" buy_type !=null and buy_type !='' ">
+				buy_type=#{buy_type},
+			</if>
+		</set>
+		where goods_id=#{goods_id}
+	</update>
+	
+	<select id="getSpecificationList" parameterType="specificationBean" resultType="specificationBean">
+		select * from goods_specification where is_delete=0
+		<if test=" parent_id !=null and parent_id !=''">
+			and parent_id=#{parent_id}
+		</if>
+		order by sort asc,create_time desc
+	</select>
+	<select id="getSpecificationDetail" parameterType="specificationBean" resultType="specificationBean">
+		select * from goods_specification where specification_id=#{specification_id} and is_delete=0
+	</select>
+	<update id="deleteSpecification" parameterType="specificationBean">
+		update goods_specification set is_delete=1 where specification_id=#{specification_id}
+	</update>
+	<insert id="insertSpecification" parameterType="specificationBean">
+		insert into goods_specification
+		(
+			specification_name,parent_id,sort,create_time,update_time
+		)
+		values
+		(
+			#{specification_name},#{parent_id},#{sort},now(),now()
+		)
+	</insert>
+	<update id="updateSpecification" parameterType="specificationBean">
+		update goods_specification
+		<set>
+			update_time=now(),
+			<if test=" specification_name !=null and specification_name !='' ">
+				specification_name=#{specification_name},
+			</if>
+			<if test=" parent_id !=null and parent_id !='' ">
+				parent_id=#{parent_id},
+			</if>
+			<if test=" sort !=null and sort !='' ">
+				sort=#{sort},
+			</if>
+		</set>
+		where specification_id=#{specification_id}
+	</update>
+</mapper>

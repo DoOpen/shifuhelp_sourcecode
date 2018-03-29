@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.interfaces.MemberDaoI">
+	<update id="updateMemberBalance" parameterType="memberBean">
+		update member
+		<set>
+			<if test=" member_extract_money !=null">
+				member_extract_money=#{member_extract_money},
+			</if>
+			<if test=" member_freeze_money !=null">
+				member_freeze_money=#{member_freeze_money},
+			</if>
+			<if test=" member_integral !=null">
+				member_integral=#{member_integral},
+			</if>
+		</set>
+		where member_id=#{member_id}
+	</update>
+	<insert id="insertBalanceHistory" parameterType="balanceHistoryBean">
+		insert into balance_history
+		(
+			member_id,title,order_no,price,create_time,type
+		)
+		values
+		(
+			#{member_id},#{title},#{order_no},#{price},now(),#{type}
+		)
+	</insert>
+	<insert id="insertPingHistory" parameterType="pingHistoryBean">
+		insert into ping_history
+		(
+			order_no,order_id,ping_type,create_time,price,member_id,channel
+		)
+		values
+		(
+			#{order_no},#{order_id},#{ping_type},now(),#{price},#{member_id},#{channel}
+		)
+	</insert>
+	<select id="getWorkTypeList" resultType="workTypeBean">
+		select * from work_type where is_delete=0 order by create_time asc
+	</select>
+	<insert id="insertMemberMsg" parameterType="memberMsgBean">
+		insert into member_msg
+		(
+			member_id,msg_desc,msg_type,order_id,order_no,create_time
+		)
+		values
+		(
+			#{member_id},#{msg_desc},#{msg_type},#{order_id},#{order_no},now()
+		)
+	</insert>
+	<update id="deleteReported" parameterType="memberReportedBean">
+		update reported set is_delete=1 where reported_id=#{reported_id}
+	</update>
+	<select id="getIntegralGetRecord" parameterType="memberBean" resultType="memberIntegralBean">
+		select * from member_integral where member_id=#{member_id} and is_delete='0' and state=#{member_state} order by create_time desc
+	</select>
+	<select id="getReportedDetail" parameterType="memberReportedBean" resultType="memberReportedBean">
+		select * from reported where is_delete=0 and reported_id=#{reported_id}
+	</select>
+	<select id="getMemberGoodsRate" parameterType="memberBean" resultType="string">
+		SELECT (SELECT COUNT(a.order_id) FROM work_order AS a WHERE a.order_service_attitude=5 AND a.order_service_aging=5 
+		AND a.order_service_quality=5 AND a.order_is_delete=0 AND a.order_member_id=#{member_id})/(SELECT COUNT(b.order_id) 
+		FROM work_order AS b WHERE b.order_is_delete=0 AND b.order_service_attitude IS NOT NULL and b.order_member_id=#{member_id}) AS member_good_rate
+	</select>
+	<update id="deleteMemberMsg" parameterType="messageBean" >
+		update member_msg
+		set is_delete='1'
+		where msg_id=#{msg_id}
+	</update>
+	<select id="getMemberMsgList" parameterType="messageBean" resultType="messageBean">
+		select * from member_msg
+		where member_id=#{member_id} and is_delete='0'
+		<if test="msg_type !=null and msg_type !='' ">
+			and msg_type=#{msg_type}
+		</if>
+		<if test="is_read !=null and is_read !='' ">
+			and is_read=#{is_read}
+		</if>
+		order by create_time desc
+	</select>
+	<select id="getStarMemberList" resultType="memberBean">
+		SELECT * FROM member WHERE member_is_star=1 AND member_is_delete=0 and is_disable=0 and member_state=1
+	</select>
+	<insert id="insertReported" parameterType="memberReportedBean">
+		insert into reported
+		(
+			member_id,reported_name,reported_phone,province,city,district,detail,is_delete,reported_img1,
+			reported_img2,reported_img3,create_time,update_time
+		)
+		values
+		(
+			#{member_id},#{reported_name},#{reported_phone},#{province},#{city},#{district},#{detail},
+			#{is_delete},#{reported_img1},#{reported_img2},#{reported_img3},#{create_time},#{update_time}
+		)
+	</insert>
+	<update id="updateReported" parameterType="memberReportedBean">
+		update reported
+		<set>
+			update_time=now(),
+			<if test=" reported_name !=null and reported_name !=''">
+				reported_name=#{reported_name},
+			</if>
+			<if test=" reported_phone !=null and reported_phone !=''">
+				reported_phone=#{reported_phone},
+			</if>
+			<if test=" country !=null and country !=''">
+				country=#{country},
+			</if>
+			<if test=" province !=null and province !=''">
+				province=#{province},
+			</if>
+			<if test=" city !=null and city !=''">
+				city=#{city},
+			</if>
+			<if test=" district !=null and district !=''">
+				district=#{district},
+			</if>
+			<if test=" detail !=null and detail !=''">
+				detail=#{detail},
+			</if>
+			<if test=" reported_img1 !=null and reported_img1 !=''">
+				reported_img1=#{reported_img1},
+			</if>
+			<if test=" reported_img2 !=null and reported_img2 !=''">
+				reported_img2=#{reported_img2},
+			</if>
+			<if test=" reported_img3 !=null and reported_img3 !=''">
+				reported_img3=#{reported_img3},
+			</if>
+		</set>
+		where reported_id=#{reported_id}
+	</update>
+	<select id="getReportedList" parameterType="memberReportedBean" resultType="memberReportedBean">
+		select * from reported where member_id=#{member_id}
+		<if test="reported_state !=null and reported_state !='' ">
+			and FIND_IN_SET(reported_state,#{reported_state})
+		</if>
+		 and is_delete=0 order by create_time desc
+	</select>
+	<select id="getReportedByPhone" parameterType="memberReportedBean" resultType="memberReportedBean">
+		select * from reported where reported_phone=#{reported_phone} and is_delete=0
+	</select>
+	<select id="getMemberDetail" parameterType="memberBean" resultType="memberBean">
+		SELECT * FROM member WHERE member_is_delete=0
+		<if test=" member_account !=null and member_account !='' ">
+			and member_account=#{member_account}
+		</if>
+		<if test=" member_phone !=null and member_phone !='' ">
+			and member_phone=#{member_phone}
+		</if>
+		<if test=" member_id !=null and member_id !='' ">
+			and member_id=#{member_id}
+		</if>
+		<if test=" member_type !=null and member_type !='' ">
+			and member_type=#{member_type}
+		</if>
+		limit 1
+	</select>
+	<select id="validationToken" parameterType="memberBean" resultType="memberBean">
+		select * from member
+		where member_id=#{member_id} and member_token=#{member_token} and member_is_delete=0
+	</select>
+	<update id="updateMemberToken" parameterType="memberBean">
+		update member set member_token=#{member_token}
+		where member_account=#{member_account}
+	</update>
+	<select id="memberLogin" parameterType="memberBean" resultType="memberBean">
+		select * from member where
+		member_account=#{member_account} and member_password=#{member_password} and member_is_delete='0'
+	</select>
+	<select id="wxPubMemberLogin" parameterType="memberBean" resultType="memberBean">
+		select * from member where member_open_id=#{member_open_id} and member_is_delete='0'
+	</select>
+	<update id="wxPubMemberUpdate" parameterType="memberBean">
+		update member
+		set member_token=uuid(),member_nick_name=#{member_nick_name},member_head_image=#{member_head_image}
+		where member_open_id=#{member_open_id} and is_delete='0'
+	</update>
+	<insert id="wxPubMemberRegister" parameterType="memberBean">
+		insert into member
+		(member_open_id,member_token,member_nick_name,member_head_image,
+		member_qrcode_img,member_create_time,member_update_time)
+		values
+		(#{member_open_id},#{member_token},#{member_nick_name},#{member_head_image},
+		#{member_qrcode_img},now(),now())
+	</insert>
+	<update id="updateMemberDetail" parameterType="memberBean">
+		update member
+		<set>
+			<if test=' member_account != null and member_account != "" '>
+				member_account=#{member_account},
+			</if>
+			<if test=' member_good_rate != null and member_good_rate != "" '>
+				member_good_rate=#{member_good_rate},
+			</if>
+			<if test=' member_password != null and member_password != "" '>
+				member_password=#{member_password},
+			</if>
+			<if test=' member_token != null and member_token != "" '>
+				member_token=#{member_token},
+			</if>
+			<if test=' member_real_name != null and member_real_name != "" '>
+				member_real_name=#{member_real_name},
+			</if>
+			<if test=' member_nick_name != null and member_nick_name != "" '>
+				member_nick_name=#{member_nick_name},
+			</if>
+			<if test=' member_phone != null and member_phone != "" '>
+				member_phone=#{member_phone},
+			</if>
+			<if test=' member_type != null and member_type != "" '>
+				member_type=#{member_type},
+			</if>
+			<if test=' member_create_time != null and member_create_time != "" '>
+				member_create_time=#{member_create_time},
+			</if>
+			<if test=' member_update_time != null and member_update_time != "" '>
+				member_update_time=#{member_update_time},
+			</if>
+			<if test=' member_is_delete != null and member_is_delete != "" '>
+				member_is_delete=#{member_is_delete},
+			</if>
+			<if test=' member_head_image != null and member_head_image != "" '>
+				member_head_image=#{member_head_image},
+				last_update_head_img_time=now(),
+			</if>
+			<if test=' member_sex != null and member_sex != "" '>
+				member_sex=#{member_sex},
+			</if>
+			<if test=' member_age != null and member_age != "" '>
+				member_age=#{member_age},
+			</if>
+			<if test=' member_work_type != null and member_work_type != "" '>
+				member_work_type=#{member_work_type},
+			</if>
+			<if test=' member_work_age != null and member_work_age != "" '>
+				member_work_age=#{member_work_age},
+			</if>
+			<if test=' member_state != null and member_state != "" '>
+				member_state=#{member_state},
+			</if>
+			<if test=' member_integral != null and member_integral != "" '>
+				member_integral=#{member_integral},
+			</if>
+			<if test=' member_bank_name != null and member_bank_name != "" '>
+				member_bank_name=#{member_bank_name},
+			</if>
+			<if test=' member_bank_open_name != null and member_bank_open_name != "" '>
+				member_bank_open_name=#{member_bank_open_name},
+			</if>
+			<if test=' member_bank__user_name != null and member_bank__user_name != "" '>
+				member_bank__user_name=#{member_bank__user_name},
+			</if>
+			<if test=' member_bank_code != null and member_bank_code != "" '>
+				member_bank_code=#{member_bank_code},
+			</if>
+			<if test=' member_bank_phone != null and member_bank_phone != "" '>
+				member_bank_phone=#{member_bank_phone},
+			</if>
+			<if test=' member_certificate != null and member_certificate != "" '>
+				member_certificate=#{member_certificate},
+			</if>
+			<if test=' member_freeze_money != null and member_freeze_money != "" '>
+				member_freeze_money=#{member_freeze_money},
+			</if>
+			<if test=' member_extract_money != null and member_extract_money != "" '>
+				member_extract_money=#{member_extract_money},
+			</if>
+			<if test=' member_deposit_money != null and member_deposit_money != "" '>
+				member_deposit_money=#{member_deposit_money},
+			</if>
+			<if test=' member_alipay != null and member_alipay != "" '>
+				member_alipay=#{member_alipay},
+			</if>
+			<if test=' member_alipay_real_name != null and member_alipay_real_name != "" '>
+				member_alipay_real_name=#{member_alipay_real_name},
+			</if>
+			<if test=' member_we_chat != null and member_we_chat != "" '>
+				member_we_chat=#{member_we_chat},
+			</if>
+			<if test=' member_we_chat_real_name != null and member_we_chat_real_name != "" '>
+				member_we_chat_real_name=#{member_we_chat_real_name},
+			</if>
+			<if test=' member_open_id != null and member_open_id != "" '>
+				member_open_id=#{member_open_id},
+			</if>
+			<if test=' member_service_name != null and member_service_name != "" '>
+				member_service_name=#{member_service_name},
+			</if>
+			<if test=' member_service_phone != null and member_service_phone != "" '>
+				member_service_phone=#{member_service_phone},
+			</if>
+			<if test=' member_service_country != null and member_service_country != "" '>
+				member_service_country=#{member_service_country},
+			</if>
+			<if test=' member_service_province != null and member_service_province != "" '>
+				member_service_province=#{member_service_province},
+			</if>
+			<if test=' member_service_city != null and member_service_city != "" '>
+				member_service_city=#{member_service_city},
+			</if>
+			<if test=' member_service_district != null and member_service_district != "" '>
+				member_service_district=#{member_service_district},
+			</if>
+			<if test=' member_service_detail != null and member_service_detail != "" '>
+				member_service_detail=#{member_service_detail},
+			</if>
+			<if test=' member_service_longitude != null and member_service_longitude != "" '>
+				member_service_longitude=#{member_service_longitude},
+			</if>
+			<if test=' member_service_latitude != null and member_service_latitude != "" '>
+				member_service_latitude=#{member_service_latitude},
+			</if>
+			<if test=' member_pay_password != null and member_pay_password != "" '>
+				member_pay_password=#{member_pay_password},
+			</if>
+			<if test=' member_qrcode_img != null and member_qrcode_img != "" '>
+				member_qrcode_img=#{member_qrcode_img},
+			</if>
+			<if test=' id_number != null and id_number != "" '>
+				id_number=#{id_number},
+			</if>
+			<if test=' id_number != null and id_number != "" '>
+				id_number=#{id_number},
+			</if>
+			<if test=' special_skill != null and special_skill != "" '>
+				special_skill=#{special_skill},
+			</if>
+			<if test=' recommend_phone != null and recommend_phone != "" '>
+				recommend_phone=#{recommend_phone},
+			</if>
+			<if test=' member_is_star != null and member_is_star != "" '>
+				member_is_star=#{member_is_star},
+			</if>
+			<if test=' member_service_number != null and member_service_number != "" '>
+				member_service_number=#{member_service_number},
+			</if>
+			<if test=' assessment_star1 != null and assessment_star1 != "" '>
+				assessment_star1=#{assessment_star1},
+			</if>
+			<if test=' assessment_star2 != null and assessment_star2 != "" '>
+				assessment_star2=#{assessment_star2},
+			</if>
+			<if test=' assessment_star3 != null and assessment_star3 != "" '>
+				assessment_star3=#{assessment_star3},
+			</if>
+		</set>
+		where member_id=#{member_id}
+	</update>
+	<insert id="memberRegister" parameterType="memberBean" keyProperty="member_id" useGeneratedKeys="true">
+		INSERT INTO member(
+			member_account,member_password,member_token,member_phone,id_number,special_skill,recommend_phone,member_create_time,
+			member_update_time,member_type,member_nick_name,star_worker_info,member_certificate,member_integral
+		)
+		VALUES
+		(
+			#{member_account},#{member_password},#{member_token},#{member_phone},#{id_number},#{special_skill},#{recommend_phone},#{member_create_time},
+			#{member_update_time},#{member_type},#{member_nick_name},#{star_worker_info},#{member_certificate},#{member_integral}
+		)
+	</insert>
+	<update id="memberForgetPassword" parameterType="memberBean" >
+		update member
+		set member_password=#{member_password},member_update_time=#{member_update_time}
+		where member_account=#{member_account}
+	</update>
+	<update id="submitAudit">
+		UPDATE member SET member_state=0 where member_id=#{member_id}
+	</update>
+	<insert id="insertMemberIntegral" parameterType="memberIntegralBean">
+		insert into member_integral
+		(member_id,integral_value,integral_type,create_time,relation_id)
+		values
+		(#{member_id},#{integral_value},#{integral_type},now(),#{relation_id})
+	</insert>
+	<select id="getWithdrawalList" parameterType="withdrawalBean" resultType="withdrawalBean">
+		select * from member_withdrawal
+		where member_id=#{member_id}
+		<if test=" withdrawal_state !=null and withdrawal_state !=''">
+			and withdrawal_state=#{withdrawal_state}
+		</if>
+		order by create_time desc
+	</select>
+	<select id="getLastApplyCash" parameterType="withdrawalBean" resultType="withdrawalBean">
+		select * from member_withdrawal
+		order by create_time desc limit 0,1
+	</select>
+	<insert id="applyWithdrawal" parameterType="withdrawalBean">
+		insert into member_withdrawal
+		(
+			member_id,withdrawal_price,bank_name,bank_open_name,bank_user_name,bank_open_mobile,withdrawal_no,withdrawal_way,create_time,update_time
+		)
+		values
+		(
+			#{member_id},#{withdrawal_price},#{bank_name},#{bank_open_name},#{bank_user_name},#{bank_open_mobile},#{withdrawal_no},#{withdrawal_way},now(),now()
+		)
+	</insert>
+	<insert id="addAdvice" parameterType="adviceBean">
+		insert into advice
+		(
+			advice_content,member_id,create_time,update_time,is_delete
+		)
+		values
+		(
+			#{advice_content},#{member_id},#{create_time},#{update_time},#{is_delete}	
+		)
+	</insert>
+</mapper>

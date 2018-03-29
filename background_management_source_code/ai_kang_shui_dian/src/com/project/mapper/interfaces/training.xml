@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.interfaces.TrainingDaoI">
+	<select id="getTrainingList" parameterType="trainingClassBean" resultType="trainingBean">
+		select * from training where class_id=#{class_id} and is_delete=0 order by create_time desc
+	</select>
+	<select id="getTraining" parameterType="trainingBean" resultType="trainingBean">
+		select * from training where training_id=#{training_id} and is_delete=0
+	</select>
+	<select id="getTrainingClassList" resultType="trainingClassBean">
+		select * from training_class where is_delete=0
+	</select>
+</mapper>

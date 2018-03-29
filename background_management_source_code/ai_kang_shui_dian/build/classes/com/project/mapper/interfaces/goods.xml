@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.interfaces.GoodsDaoI">
+	<resultMap id="goodsClassParent" type="goodsClassBean">
+		<result column="class_id" property="class_id" />
+		<result column="class_name" property="class_name" />
+		<result column="class_desc" property="class_desc" />
+		<result column="class_img" property="class_img" />
+		<result column="class_url" property="class_url" />
+		<result column="parent_id" property="parent_id" />
+		<result column="class_uuid" property="class_uuid" />
+		<result column="parent_uuid" property="parent_uuid" />
+		<result column="sort" property="sort" />
+		<result column="create_time" property="create_time" />
+		<result column="update_time" property="update_time" />
+		<result column="is_delete" property="is_delete" />
+		<result column="is_recommend" property="is_recommend" />
+		<association property="goodsClassBeans" resultMap="goodsClassChild" />
+	</resultMap>
+	<resultMap id="goodsClassChild" type="goodsClassBean">
+		<result column="class_id2" property="class_id" />
+		<result column="class_name2" property="class_name" />
+		<result column="class_desc2" property="class_desc" />
+		<result column="class_img2" property="class_img" />
+		<result column="class_url2" property="class_url" />
+		<result column="parent_id2" property="parent_id" />
+		<result column="class_uuid2" property="class_uuid" />
+		<result column="parent_uuid2" property="parent_uuid" />
+		<result column="sort2" property="sort" />
+		<result column="create_time2" property="create_time" />
+		<result column="update_time2" property="update_time" />
+		<result column="is_delete2" property="is_delete" />
+		<result column="is_recommend2" property="is_recommend" />
+	</resultMap>
+	<select id="getHotGoodsListByClass" parameterType="goodsBean" resultType="goodsBean">
+		select * from goods where class_id=#{class_id} and is_delete=0
+		<if test=" send_range !=null and send_range !='' ">
+			and send_range=#{send_range}
+		</if>
+		<if test=' show_type != null and show_type != "" '>
+			and show_type=#{show_type}
+		</if>
+		<if test=' buy_type != null and buy_type != "" '>
+			and buy_type=#{buy_type}
+		</if>
+		and goods_state=1 order by total_sales desc limit 4
+	</select>
+	<select id="getGoodsClassList" parameterType="goodsClassBean" resultType="goodsClassBean">
+		select * from goods_class where is_delete=0
+		<if test=" parent_id !=null">
+			and parent_id=#{parent_id}
+		</if>
+		order by create_time asc
+	</select>
+	<select id="getAssessmentList" parameterType="assessmentBean" resultType="assessmentBean">
+		select a.*,b.member_head_image,b.member_nick_name from order_assessment as a inner join member as b on
+		a.member_id=b.member_id
+		and a.is_delete=0 and b.member_is_delete=0
+		where 1=1 and a.goods_id=#{goods_id}
+		order by a.create_time desc
+	</select>
+	<select id="getHotSearchList" parameterType="hotSearchBean" resultType="hotSearchBean">
+		select * from hot_search order by
+		search_num desc,create_time asc
+	</select>
+	<insert id="insertHotSearch" parameterType="hotSearchBean">
+		INSERT INTO hot_search
+		(
+		search_name,search_num,create_time
+		)
+		VALUES
+		(
+		#{search_name},1,NOW()
+		)
+		ON DUPLICATE KEY UPDATE search_num=VALUES(search_num)+search_num
+	</insert>
+	<update id="updateGoodsDetail" parameterType="goodsBean">
+		update goods
+		set goods_id=goods_id
+		<if test=' actual_sales != null and actual_sales != "" '>
+			,actual_sales=#{actual_sales}
+		</if>
+
+		<if test=' total_sales != null and total_sales != "" '>
+			,total_sales=#{total_sales}
+		</if>
+		<if test=' goods_stock != null and goods_stock != "" '>
+			,goods_stock=#{goods_stock}
+		</if>
+		<if test=' goods_star1 != null and goods_star1 != "" '>
+			,goods_star1=#{goods_star1}
+		</if>
+		<if test=' goods_star2 != null and goods_star2 != "" '>
+			,goods_star2=#{goods_star2}
+		</if>
+		<if test=' goods_star3 != null and goods_star3 != "" '>
+			,goods_star3=#{goods_star3}
+		</if>
+		<if test=' assessment_count != null and assessment_count != "" '>
+			,assessment_count=#{assessment_count}
+		</if>
+		where goods_id=#{goods_id}
+	</update>
+	<select id="getGoodsDetail" parameterType="goodsBean" resultType="goodsBean">
+		SELECT
+		a.*,b.collection_id FROM goods AS a
+		LEFT
+		JOIN member_collection AS b
+		ON a.goods_id=b.goods_id AND
+		b.is_delete=0
+		AND
+		b.member_id=#{member_id}
+		WHERE a.goods_id=#{goods_id} AND a.is_delete=0
+	</select>
+	<select id="getGoodsImgs" parameterType="goodsImgBean" resultType="goodsImgBean">
+		select * from goods_img
+		where
+		goods_id=#{goods_id} and
+		is_delete='0'
+	</select>
+	<select id="getGoodsSpecificationParent" parameterType="goodsSpecificationBean" resultType="specificationBean">
+		select c.* from
+		goods_relation_specification as a
+		inner
+		join
+		goods_specification as b
+		on
+		FIND_IN_SET(b.specification_id,a.specification_ids) and
+		b.is_delete='0'
+		inner join goods_specification as c
+		on
+		b.parent_id=c.specification_id and c.is_delete='0'
+		where
+		a.is_delete='0' and a.goods_id=#{goods_id}
+		group by
+		c.specification_id
+	</select>
+	<select id="getGoodsSpecificationChild" parameterType="goodsSpecificationBean" resultType="specificationBean">
+		select b.* from
+		goods_relation_specification as a
+		inner
+		join goods_specification as b
+		on
+		FIND_IN_SET(b.specification_id,a.specification_ids)
+		and b.is_delete='0'
+		and b.parent_id=#{parent_id}
+		where
+		a.is_delete='0' and
+		a.goods_id=#{goods_id}
+		group by b.specification_id
+	</select>
+	<select id="getGoodsSpecificationBeans" parameterType="goodsSpecificationBean" resultType="goodsSpecificationBean">
+		SELECT * FROM
+		goods_relation_specification WHERE
+		goods_id=#{goods_id} and is_delete='0'
+	</select>
+	<select id="getGoodsSpecificationDetail" parameterType="goodsSpecificationBean" resultType="goodsSpecificationBean">
+		SELECT
+		a.* FROM goods_relation_specification as a
+		inner join goods as d
+		on a.goods_id=d.goods_id and a.is_delete=0 and d.is_delete='0'
+		where 1=1
+		<if test=' specification_ids != null and specification_ids != "" '>
+			and a.specification_ids=#{specification_ids}
+		</if>
+		<if test=' specification_id != null and specification_id != "" '>
+			and a.specification_id=#{specification_id}
+		</if>
+		<if test=' goods_id != null and goods_id != "" '>
+			and a.goods_id=#{goods_id}
+		</if>
+	</select>
+	<update id="updateGoodsSpecificationDetail" parameterType="goodsSpecificationBean">
+		update goods_relation_specification
+		set
+		specification_id=specification_id
+		<if test=' specification_stock != null and specification_stock != "" '>
+			,specification_stock=#{specification_stock}
+		</if>
+		<if test=' specification_sales != null and specification_sales != "" '>
+			,specification_sales=#{specification_sales}
+		</if>
+		where specification_id=#{specification_id}
+	</update>
+	<select id="getGoodsList" parameterType="goodsBean" resultType="goodsBean">
+		select
+		a.* from goods as a
+		inner join goods_class as b
+		on a.class_id=b.class_id and b.is_delete='0'
+		where a.is_delete='0' and a.goods_state='1'
+		<if test=" send_range != null and send_range !=''">
+			and a.send_range=#{send_range}
+		</if>
+		<if test=' goods_name != null and goods_name != "" '>
+			and a.goods_name like concat('%',#{goods_name},'%')
+		</if>
+		<if test=' show_type != null and show_type != "" '>
+			and find_in_set(a.show_type,#{show_type})
+		</if>
+		<if test=' buy_type != null and buy_type != "" '>
+			and a.buy_type=#{buy_type}
+		</if>
+		<if test=' class_uuid != null and class_uuid != "" '>
+			and a.class_uuid like CONCAT('%',#{class_uuid},'%')
+		</if>
+		<if test=' class_id != null'>
+			and a.class_id=#{class_id}
+		</if>
+		<if test=' goods_ids != null and goods_ids != "" '>
+			and FIND_IN_SET(a.goods_id,#{goods_ids})
+		</if>
+		<if test=' order != null and order != "" '>
+			<if test=' order =="sales"'>
+				order by total_sales desc
+			</if>
+			<if test=' order =="price"'>
+				order by goods_min_price asc
+			</if>
+			<if test=' order =="assessment"'>
+				order by goods_star_total desc
+			</if>
+		</if>
+	</select>
+	<select id="getGoodsClassListCache" resultMap="goodsClassParent">
+		SELECT a.class_id,a.class_name,a.class_desc,a.class_img,a.class_url,a.parent_id,a.class_uuid,a.parent_uuid,a.sort,a.create_time,
+		a.update_time,a.is_delete,a.is_recommend,b.class_id AS class_id2,b.class_name AS class_name2,b.class_desc AS class_desc2,
+		b.class_img AS class_img2,b.class_url AS class_url2,b.parent_id AS parent_id2,b.class_uuid AS class_uuid2,
+		b.parent_uuid AS parent_uuid2,b.sort AS sort2,b.create_time AS create_time2,b.update_time AS update_time2,
+		b.is_delete
+		AS is_delete2,b.is_recommend AS is_recommend2
+		FROM goods_class AS a
+		LEFT JOIN goods_class AS b
+		ON b.parent_id=a.class_id AND b.is_delete=0
+		WHERE a.parent_id=-1 AND a.is_delete=0
+		ORDER BY sort ASC,sort2 ASC,create_time ASC,create_time2 ASC
+	</select>
+	<select id="getRecommendGoodsList" resultType="goodsBean">
+		select goods_id,goods_name,goods_img,goods_min_price,total_sales from goods 
+		where is_delete=0 and goods_state=1 order by total_sales desc
+	</select>
+</mapper>

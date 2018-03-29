@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.interfaces.AddressDaoI">
+	<resultMap id="cityBeans" type="cityBean"> 
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="code" property="code"/>
+		<result column="parent_id" property="parent_id"/>
+		<result column="is_delete" property="is_delete"/>
+		<result column="create_time" property="create_time"/>
+		<result column="update_time" property="update_time"/>
+        <association property="cityBeans"  resultMap="cityBeans2"/>
+    </resultMap>
+    <resultMap id="cityBeans2" type="cityBean">
+    	<result column="id2" property="id"/>
+		<result column="name2" property="name"/>
+		<result column="code2" property="code"/>
+		<result column="parent_id2" property="parent_id"/>
+		<result column="is_delete2" property="is_delete"/>
+		<result column="create_time2" property="create_time"/>
+		<result column="update_time2" property="update_time"/>
+    </resultMap>
+    <resultMap id="cityBeans3" type="cityBean">
+    	<result column="id3" property="id"/>
+		<result column="name3" property="name"/>
+		<result column="code3" property="code"/>
+		<result column="parent_id3" property="parent_id"/>
+		<result column="is_delete3" property="is_delete"/>
+		<result column="create_time3" property="create_time"/>
+		<result column="update_time3" property="update_time"/>
+    </resultMap>
+	<select id="getCityListCache" parameterType="cityBean" resultMap="cityBeans">
+		select a.id,a.name,a.parent_id,a.code,a.is_delete,a.create_time,a.update_time,
+		b.id as id2,b.name as name2,b.parent_id as parent_id2,b.code as code2,b.is_delete as is_delete2,b.create_time as create_time2,b.update_time as update_time2,
+		c.id as id3,c.name as name3,c.parent_id as parent_id3,c.code as code3,c.is_delete as is_delete3,c.create_time as create_time3,c.update_time as update_time3
+		from city as a
+		left join city as b 
+		on b.parent_id=a.id and b.is_delete=0
+		left join city as c
+		on c.parent_id=b.id and c.is_delete=0
+		where a.parent_id=-1 and a.is_delete=0
+	</select>
+
+	<insert id="insertAddress" parameterType="addressBean" keyProperty="address_id" useGeneratedKeys="true">
+		insert into member_address
+		(member_id,address_mobile,address_name,address_province,address_city,
+		address_district,address_detail,address_longitude,address_latitude,create_time,update_time,
+		is_default,address_zip_code,address_flag)
+		VALUES
+		(#{member_id},#{address_mobile},#{address_name},#{address_province},#{address_city},
+		#{address_district},#{address_detail},#{address_longitude},#{address_latitude},now(),now(),
+		#{is_default},#{address_zip_code},#{address_flag})
+	</insert>
+
+	<update id="updateAddress" parameterType="addressBean">
+		update member_address
+		<set>
+			update_time=now(),
+			<if test=" address_flag !=null and address_flag !=''">
+				address_flag=#{address_flag},
+			</if>
+			<if test=" address_mobile !=null and address_mobile !=''">
+				address_mobile=#{address_mobile},
+			</if>
+			<if test=" address_name !=null and address_name !=''">
+				address_name=#{address_name},
+			</if>
+			<if test=" address_province !=null and address_province !=''">
+				address_province=#{address_province},
+			</if>
+			<if test=" address_city !=null and address_city !=''">
+				address_city=#{address_city},
+			</if>
+			<if test=" address_district !=null and address_district !=''">
+				address_district=#{address_district},
+			</if>
+			<if test=" address_detail !=null and address_detail !=''">
+				address_detail=#{address_detail},
+			</if>
+			<if test=" address_zip_code !=null and address_zip_code !=''">
+				address_zip_code=#{address_zip_code},
+			</if>
+			<if test=" address_longitude !=null and address_longitude !=''">
+				address_longitude=#{address_longitude},
+			</if>
+			<if test=" address_latitude !=null and address_latitude !=''">
+				address_latitude=#{address_latitude},
+			</if>
+			<if test=" is_default !=null and is_default !=''">
+				is_default=#{is_default},
+			</if>
+		</set>
+		where member_id=#{member_id} and address_id=#{address_id} and is_delete='0'
+	</update>
+	
+	<select id="getMemberAddressList" parameterType="addressBean" resultType="addressBean">
+		select * from member_address where member_id=#{member_id} and is_delete=0
+		order by is_default desc,create_time asc
+	</select>
+	
+	<update id="deleteAddress" parameterType="addressBean">
+		update member_address set is_delete=1
+		where address_id=#{address_id}
+	</update>
+	
+	<update id="setDefaultAddress" parameterType="addressBean">
+		update member_address set is_default=(case when address_id=#{address_id} then '1' else '0' end)
+		where member_id=#{member_id} and is_delete='0'
+	</update>
+	
+	<select id="getDefaultAddress" parameterType="addressBean" resultType="addressBean">
+		select * from member_address where member_id=#{member_id} and is_default=1 and is_delete=0 
+	</select>
+	
+	<select id="getAddressDetail" parameterType="addressBean" resultType="addressBean">
+		select * from member_address where address_id=#{address_id}  and is_delete=0 
+	</select>
+</mapper>

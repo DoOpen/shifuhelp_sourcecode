@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.interfaces.SettingDaoI">
+	<select id="getAppVersionDetail" parameterType="appVersionBean" resultType="appVersionBean">
+		select * from app_version where version_type=#{version_type}
+	</select>
+	<select id="getMsgType" parameterType="msgTypeBean" resultType="msgTypeBean">
+		select * from msg_type
+		where is_delete='0' and msg_type=#{msg_type} and msg_state='1'
+	</select>
+	<select id="getHtmlDetail" parameterType="htmlBean" resultType="htmlBean">
+		select * from system_html where is_delete=0 
+		<if test=" html_id !=null and html_id !=''">
+			and html_id=#{html_id}
+		</if>
+		<if test=" html_name !=null and html_name !=''">
+			and html_name=#{html_name}
+		</if>
+		limit 1
+	</select>
+	<select id="getHtmlStyleDetail" parameterType="htmlStyleBean" resultType="htmlStyleBean">
+		select * from html_style where is_delete=0 and style_type=#{style_type} limit 1
+	</select>
+	<insert id="insertAdvice" parameterType="adviceBean" useGeneratedKeys="true" keyProperty="advice_id">
+		insert into advice
+		(advice_title,advice_desc,member_id,create_time,advice_type,advice_name,advice_mobile,advice_assessment)
+		values
+		(#{advice_title},#{advice_desc},#{member_id},now(),'1',#{advice_name},#{advice_mobile},#{advice_assessment})
+	</insert>
+	
+	<insert id="insertAdviceImg" parameterType="adviceImgBean">
+		insert into advice_img
+		(advice_id,advice_img,create_time)
+		values
+		(#{advice_id},#{advice_img},now())
+	</insert>
+	
+	<select id="getPingSetting" resultType="pingSettingBean">
+		select * from ping_setting
+	</select>
+
+	<select id="getPercentDetail" parameterType="percentBean" resultType="percentBean">
+		select * from percent
+		where percent_type=#{percent_type} and is_delete='0'
+	</select>
+	<select id="getWXSetting" parameterType="wxSettingBean" resultType="wxSettingBean">
+		select * from system_weixin limit 1
+	</select>
+	
+	<select id="getSystemPlatform" parameterType="platformBean" resultType="platformBean">
+		select * from system_platform
+		where 1=1
+		<if test=" platform_type !=null and platform_type !=''">
+			and platform_type=#{platform_type}
+		</if>
+		limit 1
+	</select>
+
+	<select id="getBannerList" parameterType="bannerBean" resultType="bannerBean">
+		select a.* from banner as a
+		where a.is_delete='0' 
+		<if test=" banner_position !=null and banner_position !=''">
+			and banner_position=#{banner_position}
+		</if>
+		order by sort asc,create_time asc
+	</select>
+	
+	<select id="getVerificationSetting" parameterType="verificationBean" resultType="verificationBean">
+		select * from verification_setting limit 1
+	</select>
+	<select id="getCodeBeanByMobile" resultType="codeBean">
+		select * from verification_code where mobile=#{mobile} and code_type=#{code_type} 
+		and effective_time>#{create_time} and is_delete='0'
+		LIMIT 0,1
+	</select>
+	<select id="getCodeBeanByMobileAndCode" resultType="codeBean">
+		select * from verification_code where mobile=#{mobile} and code=#{code} 
+		and code_type=#{code_type} and effective_time>now() and is_delete='0'
+		LIMIT 0,1
+	</select>
+	
+	<insert id="insertCode" parameterType="codeBean">
+		insert into verification_code 
+		(mobile,code,code_type,code_desc,create_time,effective_time)
+		values(#{mobile},#{code},#{code_type},#{code_desc},#{create_time},#{effective_time})
+	</insert>
+	<update id="deleteCode" parameterType="codeBean">
+		update verification_code set is_delete='1' where code_id=#{code_id}
+	</update>
+	
+	<update id="deleteCodeByMobileAndCode" parameterType="codeBean">
+		update verification_code set is_delete='1' where mobile=#{mobile} and code=#{code}
+	</update>
+	<select id="getSystemSettingDetail" parameterType="settingBean" resultType="settingBean">
+		select * from system_setting where is_delete=0
+		<if test=" setting_id !=null">
+			and setting_id=#{setting_id}
+		</if>
+		<if test=" setting_name !=null and setting_name !=''">
+			and setting_name=#{setting_name}
+		</if>
+		limit 1
+	</select>
+</mapper>

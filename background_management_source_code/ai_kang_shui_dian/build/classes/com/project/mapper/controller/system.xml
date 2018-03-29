@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dao.controller.SystemDaoC">
+	<resultMap type="systemModuleBean" id="parentModuleBeans">
+		<result column="module_id" property="module_id"/>
+		<result column="module_name" property="module_name"/>
+		<result column="module_url" property="module_url"/>
+		<result column="parent_id" property="parent_id"/>
+		<result column="sort" property="sort"/>
+		<result column="is_delete" property="is_delete"/>
+		<result column="create_time" property="create_time"/>
+        <association property="systemModuleBeans"  resultMap="childModuleBeans"/>
+	</resultMap>
+	<resultMap type="systemModuleBean" id="childModuleBeans">
+		<result column="module_id1" property="module_id"/>
+		<result column="module_name1" property="module_name"/>
+		<result column="module_url1" property="module_url"/>
+		<result column="parent_id1" property="parent_id"/>
+		<result column="sort1" property="sort"/>
+		<result column="is_delete1" property="is_delete"/>
+		<result column="create_time1" property="create_time"/>
+	</resultMap>
+	<select id="getSystemModuleListByRole" parameterType="systemRoleBean" resultMap="parentModuleBeans">
+		select a.module_id,a.module_name,a.module_url,a.parent_id,a.sort,a.is_delete,a.create_time,
+		b.module_id as module_id1,b.module_name as module_name1,b.module_url as module_url1,b.parent_id as parent_id1,
+		b.sort as sort1,b.is_delete as is_delete1,b.create_time as create_time1
+		from system_module as a inner join system_module as b on a.module_id=b.parent_id and a.is_delete=0 and b.is_delete=0
+		and find_in_set(a.module_id,#{module_ids}) and find_in_set(b.module_id,#{module_ids})
+		order by a.sort asc,b.sort asc,b.create_time asc
+	</select>
+	<select id="getSystemAccountDetail" parameterType="systemAccountBean" resultType="systemAccountBean">
+		select a.*,b.role_name from system_account as a left join system_role as b on a.role_id=b.role_id where a.is_delete=0
+		<if test="account_id !=null">
+			and account_id=#{account_id}
+		</if>
+		<if test="system_account !=null">
+			and system_account=#{system_account}
+		</if>
+		<if test=" relation_id !=null">
+			and relation_id=#{relation_id}
+		</if>
+	</select>
+	<update id="deleteSystemAccount" parameterType="systemAccountBean">
+		update system_account set is_delete=1 where account_id=#{account_id}
+	</update>
+	<insert id="insertSystemAccount" parameterType="systemAccountBean">
+		insert into system_account
+		(
+			system_name,system_account,system_img,system_password,system_type,role_id,is_disable,create_time,update_time,district
+		)
+		values
+		(
+			#{system_name},#{system_account},#{system_img},#{system_password},#{system_type},#{role_id},#{is_disable},now(),now(),#{district}
+		)
+	</insert>
+	<select id="getSystemAccountList" parameterType="systemAccountBean" resultType="systemAccountBean">
+		select a.*,b.role_name from system_account as a left join system_role as b on a.role_id=b.role_id where a.is_delete=0 
+		<if test=" system_name !=null and system_name !=''">
+			and system_name like concat('%',#{system_name},'%')
+		</if>
+		<if test=" system_account !=null and system_account !=''">
+			and system_account like concat('%',#{system_account},'%')
+		</if>
+		<if test=" system_type !=null and system_type !=''">
+			and system_type=#{system_type}
+		</if>
+		<if test=" role_id !=null">
+			and a.role_id=#{role_id}
+		</if>
+		<if test=" is_disable !=null and is_disable !=''">
+			and is_disable=#{is_disable}
+		</if>
+		order by create_time desc
+	</select>
+	<update id="updateSystemAccount" parameterType="systemAccountBean">
+		update system_account
+		<set>
+			update_time=now(),district=#{district},
+			<if test=" system_name !=null and system_name !=''">
+				system_name=#{system_name},
+			</if>
+			<if test=" system_img !=null and system_img !=''">
+				system_img=#{system_img},
+			</if>
+			<if test=" system_password !=null and system_password !=''">
+				system_password=#{system_password},
+			</if>
+			<if test=" system_type !=null and system_type !=''">
+				system_type=#{system_type},
+			</if>
+			<if test=" role_id !=null and role_id !=''">
+				role_id=#{role_id},
+			</if>
+			<if test=" is_disable !=null and is_disable !=''">
+				is_disable=#{is_disable},
+			</if>
+		</set>
+		where account_id=#{account_id}
+	</update>
+	<select id="getSystemModuleList" parameterType="systemModuleBean" resultType="systemModuleBean">
+		SELECT * FROM system_module WHERE is_delete=0
+		<if test=" parent_id !=null and parent_id !='' ">
+			and parent_id=#{parent_id}
+		</if>
+		order by sort asc,create_time asc
+	</select>
+	<insert id="insertSystemModule" parameterType="systemModuleBean">
+		insert into system_module
+		(
+			module_name,module_url,parent_id,sort,create_time
+		)
+		values
+		(
+			#{module_name},#{module_url},#{parent_id},#{sort},now()
+		)
+	</insert>
+	<update id="deleteSystemModule" parameterType="systemModuleBean">
+		update system_module set is_delete=1 where module_id=#{module_id}
+	</update>
+	<update id="updateSystemModule" parameterType="systemModuleBean">
+		update system_module
+		<set>
+			<if test=" module_name !=null and module_name !='' ">
+				module_name=#{module_name},
+			</if>
+			<if test=" module_url !=null and module_url !='' ">
+				module_url=#{module_url},
+			</if>
+			<if test=" sort !=null and sort !='' ">
+				sort=#{sort},
+			</if>
+		</set>
+		where module_id=#{module_id}
+	</update>
+	<select id="getSystemModuleDetail" parameterType="systemModuleBean" resultType="systemModuleBean">
+		select * from system_module where module_id=#{module_id} and is_delete=0
+	</select>
+	<select id="validationToken" parameterType="systemAccountBean" resultType="systemAccountBean">
+		select * from system_account where
+		account_id=#{account_login_id} and system_token=#{system_token} and is_delete=0 and is_disable=0
+	</select>
+	<select id="systemAccountLogin" parameterType="systemAccountBean" resultType="systemAccountBean">
+		select a.*,b.role_name from system_account as a inner join system_role as b on a.role_id=b.role_id
+		where system_account=#{system_account} and system_password=#{system_password} and a.is_delete=0
+	</select>
+	<update id="updateToken" parameterType="systemAccountBean">
+		update system_account set system_token=#{system_token} where account_id=#{account_id}
+	</update>
+	<select id="getPingSetting" resultType="pingSettingBean">
+		select * from ping_setting limit 1
+	</select>
+	<insert id="insertSystemRole" parameterType="systemRoleBean">
+		insert into system_role
+		(
+			role_name,create_time,module_ids
+		)
+		values
+		(
+			#{role_name},now(),#{module_ids}
+		)
+	</insert>
+	<update id="deleteSystemRole" parameterType="systemRoleBean">
+		update system_role set is_delete=1 where role_id=#{role_id}
+	</update>
+	<update id="updateSystemRole" parameterType="systemRoleBean">
+		update system_role 
+		<set>
+			<if test=" role_name !=null and role_name !='' ">
+				role_name=#{role_name},
+			</if>
+			<if test=" module_ids !=null and module_ids !='' ">
+				module_ids=#{module_ids},
+			</if>
+		</set>
+		where role_id=#{role_id}
+	</update>
+	<select id="getSystemRoleDetail" parameterType="systemRoleBean" resultType="systemRoleBean">
+		select * from system_role where role_id=#{role_id} and is_delete=0
+	</select>
+	<select id="getSystemRoleList" parameterType="systemRoleBean" resultType="systemRoleBean">
+		select * from system_role where is_delete=0 order by create_time asc
+	</select>
+</mapper>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.interfaces.WorkOrderDaoI">
+	<select id="getWorkOrderStateCount" parameterType="memberBean" resultType="map">
+		<if test="member_type ==0">
+		SELECT (CASE
+		WHEN SUM(CASE WHEN order_state IN (0) THEN
+		1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE WHEN
+		order_state IN (0) THEN 1 ELSE
+		0 END) END )AS
+		member_subscribe_wait_audit,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (3,4,5,6,7,12) THEN 1
+		ELSE 0 END) IS NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (3,4,5,6,7,12)
+		THEN 1 ELSE 0 END) END )AS member_wait_service,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (8,9) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (8,9) THEN 1 ELSE 0
+		END) END )AS member_complete,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (2,10,11) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (2,10,11) THEN 1 ELSE 0
+		END) END )AS member_release,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (16) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (16) THEN 1 ELSE 0
+		END) END )AS member_wait_pay
+		FROM
+		work_order
+		WHERE order_member_id=#{member_id} and order_is_delete=0
+		</if>
+		<if test="member_type==1">
+		SELECT (CASE WHEN SUM(CASE WHEN
+		order_state IN (11) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (11) THEN 1 ELSE 0
+		END) END )AS worker_wait_accept,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (3,4,5,6,7,8,9,12) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (3,4,5,6,7,8,9,12) THEN 1 ELSE 0
+		END) END )AS worker_accept,
+		(SELECT COUNT(*) FROM refund_work_order WHERE order_accept_id=#{member_id}  AND order_is_delete=0) AS worker_cancle,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (3) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (3) THEN 1 ELSE 0
+		END) END )AS worker_not_service,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (5) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (5) THEN 1 ELSE 0
+		END) END )AS worker_servicing,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (4,6,7,12) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (4,6,7,12) THEN 1 ELSE 0
+		END) END )AS worker_wait_audit,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (8,9) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (8,9) THEN 1 ELSE 0
+		END) END )AS worker_complete
+		FROM
+		work_order
+		WHERE order_accept_id=#{member_id} AND order_is_delete=0
+		</if>
+	</select>
+	<select id="getServiceClassById" parameterType="serviceClassBean" resultType="serviceClassBean">
+		select * from service_class where class_is_delete='0' and class_id=#{class_id}
+	</select>
+	<select id="getParentServiceClass" parameterType="serviceClassBean" resultType="serviceClassBean">
+		SELECT * FROM service_class WHERE class_id=#{class_parent_id}
+	</select>
+	<select id="getOrderStateList" resultType="string">
+		SELECT DISTINCT order_state FROM work_order
+	</select>
+	<select id="getWorkOrderByDistance" parameterType="memberBean" resultType="workOrderBean">
+		SELECT *,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{member_service_longitude}*PI()/180-a.order_address_longitude*PI()/180)/2),2)
+		+COS(#{member_service_longitude}*PI()/180)*COS(a.order_address_latitude*PI()/180)*POW(SIN((#{member_service_latitude}*PI()/180-a.order_address_latitude*PI()/180)/2),2)))*1000) AS distance
+		FROM work_order AS a 
+		HAVING a.order_state=2 
+		AND distance IS NOT NULL
+		AND distance &lt; 100000
+		ORDER BY a.order_update_time DESC LIMIT 0,1
+	</select>
+	<insert id="createWorkOrder" parameterType="workOrderBean" keyProperty="order_id" useGeneratedKeys="true">
+		INSERT INTO work_order
+		(
+			order_member_id,order_name,order_phone,order_address_country,order_address_province,order_address_city
+			,order_address_district,order_address_detail,order_address_longitude,order_address_latitude,order_subscribe_content,order_subscribe_note,order_subscribe_img1
+			,order_subscribe_img2,order_subscribe_img3,order_hope_service_time,order_create_time,order_update_time,order_class_id,work_area,hope_complete_time
+			,work_requirements,recommend_phone,work_way,order_final_price,service_class_price,order_type,order_state
+		)
+		VALUES
+		(
+			#{order_member_id},#{order_name},#{order_phone},#{order_address_country},#{order_address_province},#{order_address_city},
+			#{order_address_district},#{order_address_detail},#{order_address_longitude},#{order_address_latitude},#{order_subscribe_content},#{order_subscribe_note},#{order_subscribe_img1},
+			#{order_subscribe_img2},#{order_subscribe_img3},#{order_hope_service_time},#{order_create_time},#{order_update_time},
+			#{order_class_id},#{work_area},#{hope_complete_time},#{work_requirements},#{recommend_phone},#{work_way},#{order_final_price},#{service_class_price},#{order_type},#{order_state}
+		)
+	</insert>
+	<select id="getOrderListByState" parameterType="workOrderBean" resultType="workOrderBean">
+		select * from work_order where FIND_IN_SET(order_state,#{stateList}) and order_is_delete=0
+		 <if test="order_member_id !=null and order_member_id !=''">
+		 	and order_member_id=#{order_member_id}
+		 	order by order_create_time desc
+		 </if>
+		 <if test="order_accept_id !=null and order_accept_id !=''">
+		 	and order_accept_id=#{order_accept_id}
+		 	order by order_accept_time desc
+		 </if>
+	</select>
+	<select id="getRefundOrderList" parameterType="workOrderBean" resultType="workOrderBean">
+		select * from refund_work_order where order_is_delete=0 and order_accept_id=#{order_accept_id} order by order_accept_time desc
+	</select>
+	<insert id="createRefundWorkOrder" parameterType="workOrderBean" keyProperty="order_id" useGeneratedKeys="true">
+		INSERT INTO refund_work_order
+		(
+			order_member_id,order_name,order_phone,order_address_country,order_address_province,order_address_city
+			,order_address_district,order_address_detail,order_address_longitude,order_address_latitude,order_subscribe_content,order_subscribe_note,order_subscribe_img1
+			,order_subscribe_img2,order_subscribe_img3,order_hope_service_time,order_create_time,order_update_time,order_class_id,work_area,hope_complete_time
+			,work_requirements,recommend_phone,work_way,order_final_price,service_class_price,order_type
+		)
+		VALUES
+		(
+			#{order_member_id},#{order_name},#{order_phone},#{order_address_country},#{order_address_province},#{order_address_city},
+			#{order_address_district},#{order_address_detail},#{order_address_longitude},#{order_address_latitude},#{order_subscribe_content},#{order_subscribe_note},#{order_subscribe_img1},
+			#{order_subscribe_img2},#{order_subscribe_img3},#{order_hope_service_time},#{order_create_time},#{order_update_time},
+			#{order_class_id},#{work_area},#{hope_complete_time},#{work_requirements},#{recommend_phone},#{work_way},#{order_final_price},#{service_class_price},#{order_type}
+		)
+	</insert>
+	<update id="updateWorkOrder">
+		update work_order
+		<set>
+			order_update_time=now(),
+			<if test="order_member_id !=null and order_member_id !=''">
+				order_member_id=#{order_member_id},
+			</if>
+			<if test="deposit_price !=null">
+				deposit_price=#{deposit_price},
+			</if>
+			<if test="order_name !=null and order_name !=''">
+				order_name=#{order_name},
+			</if>
+			<if test="order_phone !=null and order_phone !=''">
+				order_phone=#{order_phone},
+			</if>
+			<if test="order_address_country !=null and order_address_country !=''">
+				order_address_country=#{order_address_country},
+			</if>
+			<if test="order_address_province !=null and order_address_province !=''">
+				order_address_province=#{order_address_province},
+			</if>
+			<if test="order_address_city !=null and order_address_city !=''">
+				order_address_city=#{order_address_city},
+			</if>
+			<if test="order_address_district !=null and order_address_district !=''">
+				order_address_district=#{order_address_district},
+			</if>
+			<if test="order_address_detail !=null and order_address_detail !=''">
+				order_address_detail=#{order_address_detail},
+			</if>
+			<if test="order_address_longitude !=null and order_address_longitude !=''">
+				order_address_longitude=#{order_address_longitude},
+			</if>
+			<if test="order_address_latitude !=null and order_address_latitude !=''">
+				order_address_latitude=#{order_address_latitude},
+			</if>
+			<if test="order_subscribe_content !=null and order_subscribe_content !=''">
+				order_subscribe_content=#{order_subscribe_content},
+			</if>
+			<if test="order_subscribe_note !=null and order_subscribe_note !=''">
+				order_subscribe_note=#{order_subscribe_note},
+			</if>
+			<if test="order_subscribe_img1 !=null and order_subscribe_img1 !=''">
+				order_subscribe_img1=#{order_subscribe_img1},
+			</if>
+			<if test="order_subscribe_img2 !=null and order_subscribe_img2 !=''">
+				order_subscribe_img2=#{order_subscribe_img2},
+			</if>
+			<if test="order_subscribe_img3 !=null and order_subscribe_img3 !=''">
+				order_subscribe_img3=#{order_subscribe_img3},
+			</if>
+			<if test="order_hope_service_time !=null and order_hope_service_time !=''">
+				order_hope_service_time=#{order_hope_service_time},
+			</if>
+			<if test="order_create_time !=null and order_create_time !=''">
+				order_create_time=#{order_create_time},
+			</if>
+			<if test="order_update_time !=null and order_update_time !=''">
+				order_update_time=#{order_update_time},
+			</if>
+			<if test="order_audit_pass_time !=null and order_audit_pass_time !=''">
+				order_audit_pass_time=#{order_audit_pass_time},
+			</if>
+			<if test="order_state !=null and order_state !=''">
+				order_state=#{order_state},
+			</if>
+			<if test="order_accept_id !=null and order_accept_id !=''">
+				order_accept_id=#{order_accept_id},
+			</if>
+			<if test="order_accept_time !=null and order_accept_time !=''">
+				order_accept_time=#{order_accept_time},
+			</if>
+			<if test="order_cancle_why !=null and order_cancle_why !=''">
+				order_cancle_why=#{order_cancle_why},
+			</if>
+			<if test="order_cancle_time !=null and order_cancle_time !=''">
+				order_cancle_time=#{order_cancle_time},
+			</if>
+			<if test="order_cancle_pass_time !=null and order_cancle_pass_time !=''">
+				order_cancle_pass_time=#{order_cancle_pass_time},
+			</if>
+			<if test="order_reality_content !=null and order_reality_content !=''">
+				order_reality_content=#{order_reality_content},
+			</if>
+			<if test="order_complete_img1 !=null and order_complete_img1 !=''">
+				order_complete_img1=#{order_complete_img1},
+			</if>
+			<if test="order_complete_img2 !=null and order_complete_img2 !=''">
+				order_complete_img2=#{order_complete_img2},
+			</if>
+			<if test="order_complete_img3 !=null and order_complete_img3 !=''">
+				order_complete_img3=#{order_complete_img3},
+			</if>
+			<if test="order_complete_note !=null and order_complete_note !=''">
+				order_complete_note=#{order_complete_note},
+			</if>
+			<if test="order_service_time !=null and order_service_time !=''">
+				order_service_time=#{order_service_time},
+			</if>
+			<if test="order_complete_time !=null and order_complete_time !=''">
+				order_complete_time=#{order_complete_time},
+			</if>
+			<if test="order_complete_pass_time !=null and order_complete_pass_time !=''">
+				order_complete_pass_time=#{order_complete_pass_time},
+			</if>
+			<if test="order_is_delete !=null and order_is_delete !=''">
+				order_is_delete=#{order_is_delete},
+			</if>
+			<if test="order_class_id !=null and order_class_id !=''">
+				order_class_id=#{order_class_id},
+			</if>
+			<if test="order_price !=null and order_price !=''">
+				order_price=#{order_price},
+			</if>
+			<if test="order_is_cancle !=null and order_is_cancle !=''">
+				order_is_cancle=#{order_is_cancle},
+			</if>
+			<if test="order_service_attitude !=null and order_service_attitude !=''">
+				order_service_attitude=#{order_service_attitude},
+			</if>
+			<if test="order_service_aging !=null and order_service_aging !=''">
+				order_service_aging=#{order_service_aging},
+			</if>
+			<if test="order_service_quality !=null and order_service_quality !=''">
+				order_service_quality=#{order_service_quality},
+			</if>
+			<if test="order_evaluate_content !=null and order_evaluate_content !=''">
+				order_evaluate_content=#{order_evaluate_content},
+			</if>
+			<if test="complaints_content !=null and complaints_content !=''">
+				complaints_content=#{complaints_content},
+			</if>
+			<if test="complaints_time !=null and complaints_time !=''">
+				complaints_time=#{complaints_time},
+			</if>
+			<if test="is_complaints !=null and is_complaints !=''">
+				is_complaints=#{is_complaints},
+			</if>
+			<if test="work_area !=null and work_area !=''">
+				work_area=#{work_area},
+			</if>
+			<if test="work_requirements !=null and work_requirements !=''">
+				work_requirements=#{work_requirements},
+			</if>
+			<if test="work_way !=null and work_way !=''">
+				work_way=#{work_way},
+			</if>
+			<if test=" others_service_content !=null and others_service_content !=''">
+				others_service_content=#{others_service_content},
+			</if>
+			<if test=" others_price !=null and others_price !=''">
+				others_price=#{others_price},
+			</if>
+			<if test=" order_final_price !=null and order_final_price !=''">
+				order_final_price=#{order_final_price},
+			</if>
+		</set>
+		where order_id=#{order_id}
+	</update>
+	<select id="getWorkOrderDetail" parameterType="workOrderBean" resultType="workOrderBean">
+		select * from work_order where order_id=#{order_id}
+	</select>
+	<select id="getRefundWorkOrderDetail" parameterType="workOrderBean" resultType="workOrderBean">
+		select * from refund_work_order where order_id=#{order_id}
+	</select>
+	<select id="getServiceClassList" parameterType="serviceClassBean" resultType="serviceClassBean">
+		SELECT a.*,(SELECT CASE WHEN COUNT(*)>0 THEN "0" ELSE "1" END FROM service_class 
+		WHERE class_parent_id=a.class_id  AND class_is_delete='0') AS is_end
+			  FROM service_class AS a
+		WHERE a.class_parent_id=#{class_parent_id} AND a.class_is_delete='0' AND class_state='1'
+		ORDER BY a.class_sort ASC
+	</select>
+</mapper>

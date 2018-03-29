@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dao.controller.MemberDaoC" >
+	<insert id="insertMemberIntegral" parameterType="memberIntegralBean">
+		insert into member_integral
+		(member_id,integral_value,integral_type,create_time,relation_id)
+		values
+		(#{member_id},#{integral_value},#{integral_type},now(),#{relation_id})
+	</insert>
+	<select id="getReportedList" parameterType="memberReportedBean" resultType="memberReportedBean">
+		select a.*,b.member_account,b.member_real_name from reported as a left join member as b on a.member_id=b.member_id where a.is_delete=0
+		and b.member_is_delete=0
+		<if test=" reported_state !=null and reported_state !=''">
+			and a.reported_state=#{reported_state}
+		</if>
+		<if test=" member_account !=null and member_account !=''">
+			and b.member_account like concat('%',#{member_account},'%')
+		</if>
+		<if test=" member_real_name !=null and member_real_name !=''">
+			and b.member_real_name like concat('%',#{member_real_name},'%')
+		</if>
+		<if test=" reported_name !=null and reported_name !=''">
+			and a.reported_name like concat('%',#{reported_name},'%')
+		</if>
+		<if test=" reported_phone !=null and reported_phone !=''">
+			and a.reported_phone like concat('%',#{reported_phone},'%')
+		</if>
+		order by a.create_time desc
+	</select>
+	<update id="updateReported" parameterType="memberReportedBean">
+		update reported
+		<set>
+			<if test=" reported_state !=null and reported_state !=''">
+				reported_state=#{reported_state},
+			</if>
+			<if test=" refuse_note !=null and refuse_note !=''">
+				refuse_note=#{refuse_note},
+			</if>
+		</set>
+		where reported_id=#{reported_id}
+	</update>
+	<select id="getReportedDetail" parameterType="memberReportedBean" resultType="memberReportedBean">
+		select * from reported where is_delete=0 and reported_id=#{reported_id}
+	</select>
+	<insert id="insertMemberMsg" parameterType="memberBean" >
+		insert into member_msg
+		(member_id,msg_title,msg_desc,
+		msg_type,order_id,order_no,
+		create_time,update_time)
+		values
+		(#{member_id},#{msg_title},#{msg_desc},
+		#{msg_type},#{order_id},#{order_no},
+		now(),now())
+	</insert>
+	<insert id="insertBalanceHistory" parameterType="balanceHistoryBean">
+		insert into balance_history
+		(
+			member_id,title,order_no,price,create_time,type
+		)
+		values
+		(
+			#{member_id},#{title},#{order_no},#{price},now(),#{type}
+		)
+	</insert>
+	<update id="updateMemberBalance" parameterType="memberBean">
+		update member
+		<set>
+			<if test=" member_freeze_money !=null">
+				member_freeze_money=#{member_freeze_money},
+			</if>
+			<if test=" member_extract_money !=null">
+				member_extract_money=#{member_extract_money},
+			</if>
+			<if test=" member_deposit_money !=null">
+				member_deposit_money=#{member_deposit_money},
+			</if>
+			<if test=" member_integral !=null">
+				member_integral=#{member_integral},
+			</if>
+		</set>
+		where member_id=#{member_id}
+	</update>
+	<select id="getWithdrawalList" parameterType="withdrawalBean" resultType="withdrawalBean">
+		select a.*,b.member_account,b.member_real_name,b.member_extract_money from member_withdrawal as a inner join member as b on a.member_id=b.member_id and a.is_delete=0
+		and b.member_is_delete=0 where 1=1
+		<if test=" member_account !=null and member_account !=''">
+			and b.member_account like concat('%',#{member_account},'%')
+		</if>
+		<if test=" member_real_name !=null and member_real_name !=''">
+			and b.member_real_name like concat('%',#{member_real_name},'%')
+		</if>
+		<if test=" withdrawal_state !=null and withdrawal_state !=''">
+			and withdrawal_state =#{withdrawal_state}
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and create_time&lt;#{end_time}
+		</if>
+		order by create_time desc 
+	</select>
+	<select id="exportWithdrawalExcel" parameterType="withdrawalBean" resultType="withdrawalBean">
+		select a.*,b.member_account,b.member_real_name,b.member_extract_money from member_withdrawal as a inner join member as b on a.member_id=b.member_id and a.is_delete=0
+		and b.member_is_delete=0 where 1=1
+		<if test=" member_account !=null and member_account !=''">
+			and b.member_account like concat('%',#{member_account},'%')
+		</if>
+		<if test=" member_real_name !=null and member_real_name !=''">
+			and b.member_real_name like concat('%',#{member_real_name},'%')
+		</if>
+		<if test=" withdrawal_state !=null and withdrawal_state !=''">
+			and withdrawal_state =#{withdrawal_state}
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and create_time&lt;#{end_time}
+		</if>
+		order by create_time desc 
+	</select>
+	<update id="updateWithdrawal" parameterType="withdrawalBean">
+		update member_withdrawal
+		<set>
+			update_time=now(),
+			<if test=" withdrawal_state !=null and withdrawal_state !=''">
+				<if test=" withdrawal_state =='end'">
+					pay_time=now(),
+				</if>
+				withdrawal_state=#{withdrawal_state},
+			</if>
+			<if test=" refuse_note !=null and refuse_note !=''">
+				refuse_note=#{refuse_note},
+			</if>
+			<if test=" order_no !=null and order_no !=''">
+				order_no=#{order_no},
+			</if>
+		</set>
+		where withdrawal_id=#{withdrawal_id}
+	</update>
+	<select id="getWithdrawalDetail" parameterType="withdrawalBean" resultType="withdrawalBean">
+		select a.*,b.member_account,b.member_real_name,b.member_extract_money from member_withdrawal as a inner join member as b on a.member_id=b.member_id and a.is_delete=0
+		and b.member_is_delete=0 where a.withdrawal_id=#{withdrawal_id}
+	</select>
+	<select id="getCouponDetail" parameterType="couponBean" resultType="couponBean">
+		select * from coupon where coupon_id=#{coupon_id} and is_delete=0
+	</select>
+	<select id="getCouponList" parameterType="couponBean" resultType="couponBean">
+		select * from coupon where is_delete=0
+		<if test=" coupon_id !=null">
+			and coupon_id like concat('%',#{coupon_id},'%')
+		</if>
+		<if test=" coupon_name !=null and coupon_name !=''">
+			and coupon_name like concat('%',#{coupon_name},'%')
+		</if>
+		<if test=" coupon_type !=null and coupon_type !=''">
+			and coupon_type=#{coupon_type}
+		</if>
+		<if test=" coupon_postion !=null and coupon_postion !=''">
+			and coupon_postion=#{coupon_postion}
+		</if>
+		order by create_time desc
+	</select>
+	<update id="deleteCoupon" parameterType="couponBean">
+		update coupon set is_delete=1 where coupon_id=#{coupon_id}
+	</update>
+	<update id="updateCoupon" parameterType="couponBean">
+		update coupon
+		<set>
+			<if test=" coupon_name !=null and coupon_name !=''">
+				coupon_name=#{coupon_name},
+			</if>
+			<if test=" coupon_price !=null">
+				coupon_price=#{coupon_price},
+			</if>
+			<if test=" coupon_full_price !=null">
+				coupon_full_price=#{coupon_full_price},
+			</if>
+			<if test=" coupon_desc !=null and coupon_desc !=''">
+				coupon_desc=#{coupon_desc},
+			</if>
+			<if test=" start_time !=null and start_time !=''">
+				start_time=#{start_time},
+			</if>
+			<if test=" end_time !=null and end_time !=''">
+				end_time=#{end_time},
+			</if>
+			<if test=" coupon_type !=null and coupon_type !=''">
+				coupon_type=#{coupon_type},
+			</if>
+			<if test=" coupon_img !=null and coupon_img !=''">
+				coupon_img=#{coupon_img},
+			</if>
+			<if test=" valid_day !=null">
+				valid_day=#{valid_day},
+			</if>
+			<if test=" coupon_postion !=null and coupon_postion !=''">
+				coupon_postion=#{coupon_postion},
+			</if>
+			<if test=" goods_id !=null">
+				goods_id=#{goods_id},
+			</if>
+			<if test=" class_id !=null">
+				class_id=#{class_id},
+			</if>
+			<if test=" class_uuid !=null and class_uuid !=''">
+				class_uuid=#{class_uuid},
+			</if>
+		</set>
+		where coupon_id=#{coupon_id}
+	</update>
+	<insert id="insertCoupon" parameterType="couponBean">
+		insert into coupon
+		(
+			coupon_name,coupon_price,coupon_full_price,coupon_desc,start_time,end_time,coupon_type,create_time,coupon_img,
+			coupon_postion,goods_id,class_id,class_uuid,valid_day
+		)
+		values
+		(
+			#{coupon_name},#{coupon_price},#{coupon_full_price},#{coupon_desc},#{start_time},#{end_time},#{coupon_type},
+			now(),#{coupon_img},#{coupon_postion},#{goods_id},#{class_id},#{class_uuid},#{valid_day}
+		)
+	</insert>
+	<insert id="allocationCoupon" parameterType="couponBean">
+		insert into member_coupon
+		(
+			member_id,coupon_id,create_time,start_time,end_time
+		)
+		values
+		(
+			#{member_id},#{coupon_id},now(),#{start_time},#{end_time}
+		)
+	</insert>
+	<insert id="allocationAllMemberCoupon" parameterType="couponBean">
+		insert into member_coupon
+		(
+		member_id,coupon_id,create_time,get_way,start_time,end_time
+		)
+		select member_id,#{coupon_id},now(),"allocation",#{start_time},#{end_time} from member where is_delete=0
+		AND member_id NOT IN(SELECT member_id FROM member_coupon WHERE is_delete=0)
+	</insert>
+	<select id="getCouponByCouponIdAndMemberId" parameterType="couponBean" resultType="couponBean">
+		select * from member_coupon where member_id=#{member_id} and coupon_id=#{coupon_id} and is_delete=0 limit 0
+	</select>
+	<select id="getMemberAddressList" parameterType="addressBean" resultType="addressBean">
+		select * from member_address where member_id=#{member_id} and is_delete=0 order by create_time asc
+	</select>
+	<select id="getMemberDetail" parameterType="memberBean" resultType="memberBean">
+		select * from member where member_is_delete=0
+		<if test=" member_id !=null ">
+			 and member_id=#{member_id} 
+		</if>
+		<if test=" member_account !=null and member_account !=''">
+			 and member_account=#{member_account} 
+		</if>
+		<if test=" member_phone !=null and member_phone !=''">
+			 and member_phone=#{member_phone} 
+		</if>
+		limit 1
+	</select>
+	<select id="getMemberList" parameterType="memberBean" resultType="memberBean">
+		select * from member where member_is_delete=0
+		<if test=" member_id !=null and member_id !=''">
+			and member_id like concat('%',#{member_id},'%')
+		</if>
+		<if test=" member_account !=null and member_account !=''">
+			and member_account like concat('%',#{member_account},'%')
+		</if>
+		<if test=" member_real_name !=null and member_real_name !=''">
+			and member_real_name like concat('%',#{member_real_name},'%')
+		</if>
+		<if test=" member_nick_name !=null and member_nick_name !=''">
+			and member_nick_name like concat('%',#{member_nick_name},'%')
+		</if>
+		<if test=" member_state !=null and member_state !=''">
+			and member_state=#{member_state}
+		</if>
+		<if test=" is_disable !=null and is_disable !=''">
+			and is_disable=#{is_disable}
+		</if>
+		<if test=" member_type !=null and member_type !=''">
+			and member_type=#{member_type}
+		</if>
+		<if test=" member_is_star !=null and member_is_star !=''">
+			and member_is_star=#{member_is_star}
+		</if>
+		order by member_create_time desc
+	</select>
+	<update id="deleteMember" parameterType="memberBean">
+		update member set is_delete=1 where member_id=#{member_id}
+	</update>
+	<update id="updateMember" parameterType="memberBean">
+		update member
+		<set>
+			member_update_time=now(),
+			<if test=" member_real_name !=null and member_real_name !=''">
+				member_real_name=#{member_real_name},
+			</if>
+			<if test=" member_nick_name !=null and member_nick_name !=''">
+				member_nick_name=#{member_nick_name},
+			</if>
+			<if test=" member_phone !=null and member_phone !=''">
+				member_phone=#{member_phone},
+			</if>
+			<if test=" member_head_image !=null and member_head_image !=''">
+				member_head_image=#{member_head_image},
+			</if>
+			<if test=" member_sex !=null and member_sex !=''">
+				member_sex=#{member_sex},
+			</if>
+			<if test=" member_age !=null and member_age !=''">
+				member_age=#{member_age},
+			</if>
+			<if test=" is_disable !=null and is_disable !=''">
+				is_disable=#{is_disable},
+			</if>
+			<if test=" disable_note !=null and disable_note !=''">
+				disable_note=#{disable_note},
+			</if>
+			<if test=" custome_refuse_note !=null and custome_refuse_note !=''">
+				custome_refuse_note=#{custome_refuse_note},
+			</if>
+			<if test=" member_service_province !=null and member_service_province !=''">
+				member_service_province=#{member_service_province},
+			</if>
+			<if test=" member_service_city !=null and member_service_city !=''">
+				member_service_city=#{member_service_city},
+			</if>
+			<if test=" member_service_district !=null and member_service_district !=''">
+				member_service_district=#{member_service_district},
+			</if>
+			<if test=" member_service_detail !=null and member_service_detail !=''">
+				member_service_detail=#{member_service_detail},
+			</if>
+			<if test=" member_service_name !=null and member_service_name !=''">
+				member_service_name=#{member_service_name},
+			</if>
+			<if test=" member_service_phone !=null and member_service_phone !=''">
+				member_service_phone=#{member_service_phone},
+			</if>
+			<if test=" member_is_star !=null and member_is_star !=''">
+				member_is_star=#{member_is_star},
+			</if>
+			<if test=" member_certificate !=null and member_certificate !=''">
+				member_certificate=#{member_certificate},
+			</if>
+			<if test=" star_worker_info !=null and star_worker_info !=''">
+				star_worker_info=#{star_worker_info},
+			</if>
+			<if test=" audit_pass_time !=null and audit_pass_time !=''">
+				audit_pass_time=#{audit_pass_time},
+			</if>
+			<if test=" member_state !=null and member_state !=''">
+				member_state=#{member_state},
+			</if>
+			<if test=" process_show !=null and process_show !=''">
+				process_show=#{process_show},
+			</if>
+		</set>
+		where member_id=#{member_id}
+	</update>
+	<insert id="insertWorkType" parameterType="workTypeBean">
+		insert into work_type
+		(
+			type_name,sort,create_time
+		)
+		values
+		(
+			#{type_name},#{sort},now()
+		)
+	</insert>
+	<update id="deleteWorkType" parameterType="workTypeBean">
+		update work_type set is_delete=1 where type_id=#{type_id}
+	</update>
+	<update id="updateWorkType" parameterType="workTypeBean">
+		update work_type
+		<set>
+			<if test=" type_name !=null and type_name !=''">
+				type_name=#{type_name},
+			</if>
+			<if test=" sort !=null and sort !=''">
+				sort=#{sort},
+			</if>
+		</set>
+		where type_id=#{type_id}
+	</update>
+	<select id="getWorkTypeDetail" parameterType="workTypeBean" resultType="workTypeBean">
+		select * from work_type where type_id=#{type_id} and is_delete=0
+	</select>
+	<select id="getWorkTypeList" parameterType="workTypeBean" resultType="workTypeBean">
+		select * from work_type where is_delete=0
+		<if test=" type_name !=null and type_name !='' ">
+			and type_name=#{type_name}
+		</if>
+		order by sort asc,create_time asc
+	</select>
+</mapper>

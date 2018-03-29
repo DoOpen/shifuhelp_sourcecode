@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dao.controller.OrderDaoC" >
+	<select id="getOrderGoodsDetail" parameterType="orderGoodsBean" resultType="orderGoodsBean">
+		select * from order_goods
+		where order_goods_id=#{order_goods_id} and is_delete='0'
+	</select>
+	<insert id="insertLogistics" parameterType="logisticsBean">
+		insert into logistics
+		(
+			logistics_name,logistics_code,sort,create_time,update_time
+		)
+		values
+		(
+			#{logistics_name},#{logistics_code},#{sort},now(),now()
+		)
+	</insert>
+	<update id="deleteLogistics" parameterType="logisticsBean">
+		update logistics set is_delete=1 where logistics_id=#{logistics_id}
+	</update>
+	<update id="updateLogistics" parameterType="logisticsBean">
+		update logistics
+		<set>
+			update_time=now(),
+			<if test=" logistics_name !=null and logistics_name !=''">
+				logistics_name=#{logistics_name},
+			</if>
+			<if test=" logistics_code !=null and logistics_code !=''">
+				logistics_code=#{logistics_code},
+			</if>
+			<if test=" sort !=null and sort !=''">
+				sort=#{sort},
+			</if>
+		</set>
+		where logistics_id=#{logistics_id}
+	</update>
+	<select id="getLogisticsDetail" parameterType="logisticsBean" resultType="logisticsBean">
+		select * from logistics where is_delete=0 and logistics_id=#{logistics_id}
+	</select>
+	<select id="getLogisticsList" parameterType="logisticsBean" resultType="logisticsBean">
+		select * from logistics where is_delete=0
+		<if test=" logistics_name !=null and logistics_name !=''">
+			and logistics_name like concat('%',#{logistics_name},'%')
+		</if>
+		<if test=" logistics_code !=null and logistics_code !=''">
+			and logistics_code like concat('%',#{logistics_code},'%')
+		</if>
+		order by sort asc,create_time desc
+	</select>
+	<select id="getFinanceStatistics" parameterType="orderBean" resultType="map">
+		SELECT 
+		COUNT(*) AS all_count,
+		(
+		CASE WHEN SUM(CASE WHEN order_state = 'cancel' THEN 1 ELSE 0 END) IS NULL 
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'cancel' THEN 1 ELSE 0 END) END) AS cancel_count, 
+				
+		(
+		CASE WHEN SUM(CASE WHEN order_state = 'cancel' THEN order_actual_price ELSE 0 END) IS NULL 
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'cancel' THEN order_actual_price ELSE 0 END) END) AS cancel_price,
+		
+		(CASE WHEN 
+		SUM(CASE WHEN order_state = 'wait_pay' THEN 1 ELSE 0 END) IS NULL 
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'wait_pay' THEN 1 ELSE 0 END) END) AS wait_pay_count, 
+		
+		(
+		CASE WHEN SUM(CASE WHEN order_state = 'wait_pay' THEN order_actual_price ELSE 0 END) IS NULL 
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'wait_pay' THEN order_actual_price ELSE 0 END) END) AS wait_pay_price,
+				
+		(CASE WHEN SUM(CASE WHEN order_state = 'wait_send' THEN 1 ELSE 0 END) IS NULL 
+		THEN 0 ELSE
+		SUM(CASE WHEN order_state = 'wait_send' THEN 1 ELSE 0 END) END) AS wait_send_count, 
+		
+		(CASE WHEN SUM(CASE WHEN order_state = 'wait_send' THEN order_actual_price ELSE 0 END) IS NULL 
+		THEN 0 ELSE
+		SUM(CASE WHEN order_state = 'wait_send' THEN order_actual_price ELSE 0 END) END) AS wait_send_price, 
+		
+		
+		(CASE WHEN SUM(CASE WHEN order_state = 'wait_receive' THEN 1 ELSE 0 END) IS NULL 
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'wait_receive' THEN 1 ELSE 0 END) END) AS wait_receive_count, 
+		
+		(CASE WHEN SUM(CASE WHEN order_state = 'wait_receive' THEN order_actual_price ELSE 0 END) IS NULL 
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'wait_receive' THEN order_actual_price ELSE 0 END) END) AS wait_receive_price, 
+				
+		(CASE WHEN SUM(CASE WHEN order_state = 'wait_assessment' THEN 1 ELSE 0 END) IS NULL
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'wait_assessment' THEN 1 ELSE 0 END) END) AS wait_assessment_count, 
+		
+		(CASE WHEN SUM(CASE WHEN order_state = 'wait_assessment' THEN 1 ELSE 0 END) IS NULL
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'wait_assessment' THEN order_actual_price ELSE 0 END) END) AS wait_assessment_price, 
+			
+		(CASE WHEN SUM(CASE WHEN order_state = 'end' THEN 1 ELSE 0 END) IS NULL 
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'end' THEN 1 ELSE 0 END) END ) AS end_count,
+		
+		(CASE WHEN SUM(CASE WHEN order_state = 'end' THEN order_actual_price ELSE 0 END) IS NULL 
+		THEN 0 ELSE 
+		SUM(CASE WHEN order_state = 'end' THEN order_actual_price ELSE 0 END) END ) AS end_price,
+		
+		(
+			select CASE WHEN SUM(CASE WHEN refund_state!='end' THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+			SUM(CASE WHEN refund_state!='end' THEN 1 ELSE 0 END) END
+			 FROM order_refund WHERE is_delete='0'
+			<if test=" search_type=='day'">
+				and to_days(order_refund.update_time) =to_days(now())
+			</if>
+			<if test=" search_type=='week'">
+				and YEARWEEK(date_format(order_refund.update_time,'%Y-%m-%d')) = YEARWEEK(now()) 
+			</if>
+			<if test=" search_type=='mouth'">
+				and DATE_FORMAT(order_refund.update_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' ) 
+			</if>
+			<if test=" search_type=='year'">
+				and YEAR(order_refund.update_time) = YEAR( NOW( ) )
+			</if>
+			<if test=" start_time !=null and start_time !=''">
+				and order_refund.update_time&gt;#{start_time}
+			</if>
+			<if test=" end_time !=null and end_time !=''">
+				and order_refund.update_time&lt;#{end_time}
+			</if>
+		)AS apply_refund_count,
+		(
+			SELECT 
+			CASE WHEN SUM(CASE WHEN refund_state!='end' THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+			SUM(CASE WHEN refund_state!='end' THEN refund_price ELSE 0 END) END
+			 FROM order_refund WHERE is_delete='0'
+			<if test=" search_type=='day'">
+				and to_days(order_refund.update_time) =to_days(now())
+			</if>
+			<if test=" search_type=='week'">
+				and YEARWEEK(date_format(order_refund.update_time,'%Y-%m-%d')) = YEARWEEK(now()) 
+			</if>
+			<if test=" search_type=='mouth'">
+				and DATE_FORMAT(order_refund.update_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' ) 
+			</if>
+			<if test=" search_type=='year'">
+				and YEAR(order_refund.update_time) = YEAR( NOW( ) )
+			</if>
+			<if test=" start_time !=null and start_time !=''">
+				and order_refund.update_time&gt;#{start_time}
+			</if>
+			<if test=" end_time !=null and end_time !=''">
+				and order_refund.update_time&lt;#{end_time}
+			</if>
+		)AS apply_refund_price,
+		
+		(
+			SELECT 
+			CASE WHEN SUM(CASE WHEN refund_state='end' THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+			SUM(CASE WHEN refund_state='end' THEN 1 ELSE 0 END) END
+			 FROM order_refund WHERE is_delete='0'
+			<if test=" search_type=='day'">
+				and to_days(order_refund.update_time) =to_days(now())
+			</if>
+			<if test=" search_type=='week'">
+				and YEARWEEK(date_format(order_refund.update_time,'%Y-%m-%d')) = YEARWEEK(now()) 
+			</if>
+			<if test=" search_type=='mouth'">
+				and DATE_FORMAT(order_refund.update_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' ) 
+			</if>
+			<if test=" search_type=='year'">
+				and YEAR(order_refund.update_time) = YEAR( NOW( ) )
+			</if>
+			<if test=" start_time !=null and start_time !=''">
+				and order_refund.update_time&gt;#{start_time}
+			</if>
+			<if test=" end_time !=null and end_time !=''">
+				and order_refund.update_time&lt;#{end_time}
+			</if>
+		)AS end_refund_count,
+		(
+			SELECT 
+			CASE WHEN SUM(CASE WHEN refund_state='end' THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+			SUM(CASE WHEN refund_state='end' THEN refund_price ELSE 0 END) END
+			 FROM order_refund WHERE is_delete='0'
+			<if test=" search_type=='day'">
+				and to_days(order_refund.update_time) =to_days(now())
+			</if>
+			<if test=" search_type=='week'">
+				and YEARWEEK(date_format(order_refund.update_time,'%Y-%m-%d')) = YEARWEEK(now()) 
+			</if>
+			<if test=" search_type=='mouth'">
+				and DATE_FORMAT(order_refund.update_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' ) 
+			</if>
+			<if test=" search_type=='year'">
+				and YEAR(order_refund.update_time) = YEAR( NOW( ) )
+			</if>
+			<if test=" start_time !=null and start_time !=''">
+				and order_refund.update_time&gt;#{start_time}
+			</if>
+			<if test=" end_time !=null and end_time !=''">
+				and order_refund.update_time&lt;#{end_time}
+			</if>
+		)AS end_refund_price
+		
+		FROM goods_order 
+		WHERE  is_delete='0'
+		<if test=" search_type=='day'">
+			and to_days(goods_order.update_time) =to_days(now())
+		</if>
+		<if test=" search_type=='week'">
+			and YEARWEEK(date_format(goods_order.update_time,'%Y-%m-%d')) = YEARWEEK(now()) 
+		</if>
+		<if test=" search_type=='mouth'">
+			and DATE_FORMAT(goods_order.update_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' ) 
+		</if>
+		<if test=" search_type=='year'">
+			and YEAR(goods_order.update_time) = YEAR( NOW( ) )
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and goods_order.update_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and goods_order.update_time&lt;#{end_time}
+		</if>
+	</select>
+	<insert id="insertRefundReason" parameterType="refundReasonBean">
+		insert into refund_reason
+		(
+			reason_name,create_time,sort
+		)
+		values
+		(
+			#{reason_name},now(),#{sort}
+		)
+	</insert>
+	<update id="updateRefundReason" parameterType="refundReasonBean">
+		update refund_reason
+		<set>
+			<if test=" reason_name !=null and reason_name !=''">
+				reason_name=#{reason_name},
+			</if>
+			<if test=" sort !=null">
+				sort=#{sort},
+			</if>
+		</set>
+		where reason_id=#{reason_id}
+	</update>
+	<update id="deleteRefundReason" parameterType="refundReasonBean">
+		update refund_reason set is_delete=1 where reason_id=#{reason_id}
+	</update>
+	<select id="getRefundReasonDetail" parameterType="refundReasonBean" resultType="refundReasonBean">
+		select * from refund_reason where reason_id=#{reason_id} and is_delete=0
+	</select>
+	<select id="getRefundReasonList" parameterType="refundReasonBean" resultType="refundReasonBean">
+		select * from refund_reason where is_delete=0 order by sort asc,create_time asc
+	</select>
+	<select id="getRefundDetail" parameterType="refundBean" resultType="refundBean">
+		select * from order_refund where is_delete=0 and refund_id=#{refund_id}
+	</select>
+	<update id="updateRefund" parameterType="refundBean">
+		update order_refund
+		<set>
+			update_time=now(),
+			<if test=" refund_state !=null and refund_state !=''">
+				refund_state=#{refund_state},
+			</if>
+			<if test=" refuse_note !=null and refuse_note !=''">
+				refuse_note=#{refuse_note},
+			</if>
+		</set>
+		where refund_id=#{refund_id}
+	</update>
+	<select id="getRefundList" parameterType="refundBean" resultType="refundBean">
+		select a.*,b.member_nick_name,c.goods_name from order_refund as a inner join member as b on a.member_id=b.member_id
+		and a.is_delete=0 and b.member_is_delete=0 inner join order_goods as c on a.order_goods_id=c.order_goods_id and c.is_delete=0 where 1=1
+		<if test=" refund_id !=null">
+			and refund_id like concat('%',#{refund_id},'%')
+		</if>
+		<if test=" member_id !=null">
+			and member_id like concat('%',#{member_id},'%')
+		</if>
+		<if test=" order_id !=null">
+			and order_id like concat('%',#{order_id},'%')
+		</if>
+		<if test=" order_no !=null and order_no !=''">
+			and order_no like concat('%',#{order_no},'%')
+		</if>
+		<if test=" refund_state !=null and refund_state!=''">
+			and refund_state =#{refund_state}
+		</if>
+		<if test=" refund_type !=null and refund_type!=''">
+			and refund_type =#{refund_type}
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and create_time&lt;#{end_time}
+		</if>
+		order by create_time desc
+	</select>
+	<select id="getOrderGoodsList" parameterType="orderGoodsBean" resultType="orderGoodsBean">
+		select * from order_goods where is_delete=0
+		<if test=" order_id !=null">
+			and order_id=#{order_id}
+		</if>
+		order by create_time asc
+	</select>
+	<select id="getOrderDetail" parameterType="orderBean" resultType="orderBean">
+		select * from goods_order where order_id=#{order_id} and is_delete=0
+	</select>
+	<select id="getOrderList" parameterType="orderBean" resultType="orderBean">
+		select * from goods_order where is_delete=0
+		<if test=" order_id !=null">
+			and order_id like concat('%',#{order_id},'%')
+		</if>
+		<if test=" member_id !=null">
+			and member_id like concat('%',#{member_id},'%')
+		</if>
+		<if test=" order_no !=null and order_no !=''">
+			and order_no like concat('%',#{order_no},'%')
+		</if>
+		<if test=" order_state !=null and order_state!=''">
+			and order_state =#{order_state}
+		</if>
+		<if test=" ping_no !=null and ping_no!=''">
+			and ping_no like concat('%',#{ping_no},'%')
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and create_time&lt;#{end_time}
+		</if>
+		order by create_time desc
+	</select>
+	<select id="exportOrderExcel" parameterType="orderBean" resultType="orderBean">
+		select * from goods_order where is_delete=0
+		<if test=" order_id !=null">
+			and order_id like concat('%',#{order_id},'%')
+		</if>
+		<if test=" member_id !=null">
+			and member_id like concat('%',#{member_id},'%')
+		</if>
+		<if test=" order_no !=null and order_no !=''">
+			and order_no like concat('%',#{order_no},'%')
+		</if>
+		<if test=" order_state !=null and order_state!=''">
+			and order_state =#{order_state}
+		</if>
+		<if test=" ping_no !=null and ping_no!=''">
+			and ping_no like concat('%',#{ping_no},'%')
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and create_time&lt;#{end_time}
+		</if>
+		order by create_time desc
+	</select>
+	<update id="deleteOrder" parameterType="orderBean">
+		update goods_order set is_delete=1 where order_id=#{order_id}
+	</update>
+	<update id="updateOrder" parameterType="orderBean">
+		update goods_order
+		<set>
+			update_time=now(),
+			<if test=" order_state !=null and order_state !=''">
+				order_state=#{order_state},
+			</if>
+			<if test=" custom_remark !=null and custom_remark !=''">
+				custom_remark=#{custom_remark},
+			</if>
+			<if test=" send_time !=null and send_time !=''">
+				send_time=#{send_time},
+			</if>
+			<if test=" logistics_id !=null and logistics_id !=''">
+				logistics_id=#{logistics_id},
+			</if>
+			<if test=" logistics_no !=null and logistics_no !=''">
+				logistics_no=#{logistics_no},
+			</if>
+			<if test=" logistics_name !=null and logistics_name !=''">
+				logistics_name=#{logistics_name},
+			</if>
+			<if test=" logistics_code !=null and logistics_code !=''">
+				logistics_code=#{logistics_code},
+			</if>
+			<if test=" logistics_state !=null and logistics_state !=''">
+				logistics_state=#{logistics_state},
+			</if>
+		</set>
+		where order_id=#{order_id}
+	</update>
+</mapper>

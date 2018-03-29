@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.controller.WorkOrderDaoC">
+	<select id="getSendWorkOrderWorkerList" parameterType="workOrderBean" resultType="memberBean">
+		SELECT *,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{order_address_longitude}*PI()/180-a.member_service_longitude*PI()/180)/2),2)
+		+COS(#{order_address_longitude}*PI()/180)*COS(a.member_service_latitude*PI()/180)*POW(SIN((#{order_address_latitude}*PI()/180-a.member_service_latitude*PI()/180)/2),2)))*1000) AS distance
+		FROM member AS a 
+		having a.member_type=1 and a.member_state=1 
+		AND distance IS NOT NULL
+		ORDER BY distance asc
+	</select>
+	<select id="exportRefundOrderExcel" resultType="workOrderBean">
+		select * from refund_work_order where order_is_delete=0 order by
+		order_accept_time desc
+	</select>
+	<select id="exportWorkOrderExcel" parameterType="workOrderBean" resultType="workOrderBean">
+		select a.*,b.member_real_name as worker_name from work_order as a left join member as b on
+		a.order_accept_id=b.member_id where 1=1
+		<if test=" order_is_delete!=null and order_is_delete!=''">
+			and order_is_delete=#{order_is_delete}
+		</if>
+		<if test=" order_name!=null and order_name!=''">
+			and order_name like CONCAT('%',#{order_name},'%')
+		</if>
+		<if test=" order_phone !=null and order_phone !=''">
+			and order_phone like CONCAT('%',#{order_phone},'%')
+		</if>
+		<if test=" order_id !=null and order_id !=''">
+			and order_id like CONCAT('%',#{order_id},'%')
+		</if>
+		<if test=" order_state !=null and order_state !=''">
+			and order_state=#{order_state}
+		</if>
+		<if test="order_create_time!=null and order_create_time!=''">
+			and order_create_time &gt; #{order_create_time}
+		</if>
+		<if test="order_update_time!=null and order_update_time!=''">
+			and order_create_time &lt; #{order_update_time}
+		</if>
+		<if test="stateList !=null and stateList !=''">
+			and find_in_set(order_state,#{stateList})
+		</if>
+		<if test="district !=null and district !=''">
+			and order_address_district=#{district}
+		</if>
+		<if test="is_complaints !=null and is_complaints !=''">
+			and is_complaints=#{is_complaints}
+		</if>
+		order by order_create_time desc
+	</select>
+	<select id="getFinanceStatistics" parameterType="orderBean" resultType="map">
+		SELECT
+		COUNT(*) AS all_count,
+		(
+		select CASE WHEN SUM(CASE WHEN deposit_price is not null THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+		SUM(CASE WHEN deposit_price is not null THEN 1 ELSE 0 END) END
+		FROM work_order WHERE order_is_delete='0'
+		<if test=" search_type=='day'">
+			and to_days(work_order.order_create_time) =to_days(now())
+		</if>
+		<if test=" search_type=='week'">
+			and YEARWEEK(date_format(work_order.order_create_time,'%Y-%m-%d')) = YEARWEEK(now())
+		</if>
+		<if test=" search_type=='mouth'">
+			and DATE_FORMAT(work_order.order_create_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' )
+		</if>
+		<if test=" search_type=='year'">
+			and YEAR(work_order.order_create_time) = YEAR( NOW( ) )
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and work_order.order_create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and work_order.order_create_time&lt;#{end_time}
+		</if>
+		)AS work_order_deposit_count,
+		(
+		select CASE WHEN SUM(CASE WHEN deposit_price is not null THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+		SUM(CASE WHEN deposit_price is not null THEN deposit_price ELSE 0 END) END
+		FROM work_order WHERE order_is_delete='0'
+		<if test=" search_type=='day'">
+			and to_days(work_order.order_create_time) =to_days(now())
+		</if>
+		<if test=" search_type=='week'">
+			and YEARWEEK(date_format(work_order.order_create_time,'%Y-%m-%d')) = YEARWEEK(now())
+		</if>
+		<if test=" search_type=='mouth'">
+			and DATE_FORMAT(work_order.order_create_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' )
+		</if>
+		<if test=" search_type=='year'">
+			and YEAR(work_order.order_create_time) = YEAR( NOW( ) )
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and work_order.order_create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and work_order.order_create_time&lt;#{end_time}
+		</if>
+		)AS work_order_deposit_price,
+		(
+		select CASE WHEN SUM(CASE WHEN order_final_price is not null THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+		SUM(CASE WHEN order_final_price is not null THEN 1 ELSE 0 END) END
+		FROM work_order WHERE order_is_delete='0'
+		<if test=" search_type=='day'">
+			and to_days(work_order.order_create_time) =to_days(now())
+		</if>
+		<if test=" search_type=='week'">
+			and YEARWEEK(date_format(work_order.order_create_time,'%Y-%m-%d')) = YEARWEEK(now())
+		</if>
+		<if test=" search_type=='mouth'">
+			and DATE_FORMAT(work_order.order_create_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' )
+		</if>
+		<if test=" search_type=='year'">
+			and YEAR(work_order.order_create_time) = YEAR( NOW( ) )
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and work_order.order_create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and work_order.order_create_time&lt;#{end_time}
+		</if>
+		)AS work_order_complete_count,
+		(
+		select CASE WHEN SUM(CASE WHEN order_final_price is not null THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+		SUM(CASE WHEN order_final_price is not null THEN order_price ELSE 0 END) END
+		FROM work_order WHERE order_is_delete='0'
+		<if test=" search_type=='day'">
+			and to_days(work_order.order_create_time) =to_days(now())
+		</if>
+		<if test=" search_type=='week'">
+			and YEARWEEK(date_format(work_order.order_create_time,'%Y-%m-%d')) = YEARWEEK(now())
+		</if>
+		<if test=" search_type=='mouth'">
+			and DATE_FORMAT(work_order.order_create_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' )
+		</if>
+		<if test=" search_type=='year'">
+			and YEAR(work_order.order_create_time) = YEAR( NOW( ) )
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and work_order.order_create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and work_order.order_create_time&lt;#{end_time}
+		</if>
+		)AS work_order_complete_price,
+		(
+		select CASE WHEN SUM(CASE WHEN member_deposit_money is not null THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+		SUM(CASE WHEN member_deposit_money is not null THEN 1 ELSE 0 END) END
+		FROM member WHERE member_is_delete='0'
+		<if test=" search_type=='day'">
+			and to_days(member.member_create_time) =to_days(now())
+		</if>
+		<if test=" search_type=='week'">
+			and YEARWEEK(date_format(member.member_create_time,'%Y-%m-%d')) = YEARWEEK(now())
+		</if>
+		<if test=" search_type=='mouth'">
+			and DATE_FORMAT(member.member_create_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' )
+		</if>
+		<if test=" search_type=='year'">
+			and YEAR(member.member_create_time) = YEAR( NOW( ) )
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and member.member_create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and member.member_create_time&lt;#{end_time}
+		</if>
+		)AS worker_deposit_count,
+		(
+		select CASE WHEN SUM(CASE WHEN member_deposit_money is not null THEN 1 ELSE 0 END) IS NULL THEN 0 ELSE
+		SUM(CASE WHEN member_deposit_money is not null THEN member_deposit_money ELSE 0 END) END
+		FROM member WHERE member_is_delete='0'
+		<if test=" search_type=='day'">
+			and to_days(member.member_create_time) =to_days(now())
+		</if>
+		<if test=" search_type=='week'">
+			and YEARWEEK(date_format(member.member_create_time,'%Y-%m-%d')) = YEARWEEK(now())
+		</if>
+		<if test=" search_type=='mouth'">
+			and DATE_FORMAT(member.member_create_time, '%Y%m' ) = DATE_FORMAT( CURDATE() , '%Y%m' )
+		</if>
+		<if test=" search_type=='year'">
+			and YEAR(member.member_create_time) = YEAR( NOW( ) )
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and member.member_create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and member.member_create_time&lt;#{end_time}
+		</if>
+		)AS worker_deposit_price
+		FROM system_setting
+	</select>
+	<select id="getPingHistoryList" parameterType="pingHistoryBean" resultType="pingHistoryBean">
+		SELECT a.*,b.member_real_name,b.member_nick_name,b.member_account FROM ping_history AS a INNER JOIN member AS b WHERE
+		a.member_id=b.member_id and a.is_delete=0
+		<if test=" member_real_name !=null and member_real_name !='' ">
+			and b.member_real_name like concat('%',#{member_real_name},'%')
+		</if>
+		<if test=" member_nick_name !=null and member_nick_name !='' ">
+			and b.member_nick_name like concat('%',#{member_nick_name},'%')
+		</if>
+		<if test=" member_account !=null and member_account !='' ">
+			and b.member_account like concat('%',#{member_account},'%')
+		</if>
+		<if test=" ping_type !=null and ping_type !='' ">
+			and a.ping_type=#{ping_type}
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and a.create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and a.create_time&lt;#{end_time}
+		</if>
+		order by a.create_time desc
+	</select>
+	<select id="exportPingHistoryExcel" parameterType="pingHistoryBean" resultType="pingHistoryBean">
+		SELECT a.*,b.member_real_name,b.member_nick_name,b.member_account FROM ping_history AS a INNER JOIN member AS b WHERE
+		a.member_id=b.member_id and a.is_delete=0
+		<if test=" member_real_name !=null and member_real_name !='' ">
+			and b.member_real_name like concat('%',#{member_real_name},'%')
+		</if>
+		<if test=" member_nick_name !=null and member_nick_name !='' ">
+			and b.member_nick_name like concat('%',#{member_nick_name},'%')
+		</if>
+		<if test=" member_account !=null and member_account !='' ">
+			and b.member_account like concat('%',#{member_account},'%')
+		</if>
+		<if test=" ping_type !=null and ping_type !='' ">
+			and a.ping_type=#{ping_type}
+		</if>
+		<if test=" start_time !=null and start_time !=''">
+			and a.create_time&gt;#{start_time}
+		</if>
+		<if test=" end_time !=null and end_time !=''">
+			and a.create_time&lt;#{end_time}
+		</if>
+		order by a.create_time desc
+	</select>
+	<select id="getWorkOrderStateCount" resultType="map" parameterType="systemAccountBean">
+		SELECT (CASE
+		WHEN SUM(CASE WHEN order_state IN (0,7,4,6,12) THEN
+		1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE WHEN
+		order_state IN (0,7,4,6,12) THEN 1 ELSE
+		0 END) END )AS
+		wait_audit,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (3,5) THEN 1
+		ELSE 0 END) IS NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (3,5)
+		THEN 1 ELSE 0 END) END )AS complete_accept,
+		(CASE WHEN
+		SUM(CASE WHEN
+		order_state IN (8,9) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (8,9) THEN 1 ELSE
+		0
+		END) END )AS complete,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (2,11) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (2,11) THEN 1 ELSE 0
+		END) END )AS wait_accept,
+		(CASE WHEN SUM(CASE WHEN
+		order_state IN (11) THEN 1
+		ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (11) THEN 1 ELSE 0
+		END) END )AS complete_over,
+		(CASE WHEN
+		SUM(CASE WHEN
+		order_state IN (1,15) THEN 1 ELSE 0 END) IS
+		NULL THEN 0 ELSE SUM(CASE
+		WHEN order_state IN (1,15) THEN 1
+		ELSE 0
+		END) END )AS exception
+		FROM
+		work_order WHERE order_is_delete=0 AND TO_DAYS(order_update_time)=TO_DAYS(NOW())
+		<if test=" district !=null and district !='' ">
+			AND order_address_district=#{district}
+		</if>
+	</select>
+	<insert id="createWorkOrder" parameterType="workOrderBean" keyProperty="order_id" useGeneratedKeys="true">
+		INSERT INTO
+		work_order
+		(
+		order_member_id,order_name,order_state,order_phone,order_address_country,order_address_province,order_address_city
+		,order_address_district,order_address_detail,order_address_longitude,order_address_latitude,order_subscribe_content,order_subscribe_note,order_subscribe_img1
+		,order_subscribe_img2,order_subscribe_img3,order_hope_service_time,order_create_time,order_update_time,order_class_id,order_accept_id
+		)
+		VALUES
+		(
+		#{order_member_id},#{order_name},#{order_state},#{order_phone},#{order_address_country},#{order_address_province},#{order_address_city},
+		#{order_address_district},#{order_address_detail},#{order_address_longitude},#{order_address_latitude},#{order_subscribe_content},#{order_subscribe_note},#{order_subscribe_img1},
+		#{order_subscribe_img2},#{order_subscribe_img3},#{order_hope_service_time},now(),now(),#{order_class_id},#{order_accept_id}
+		)
+	</insert>
+	<update id="deleteServiceClass" parameterType="serviceClassBean">
+		update service_class set
+		class_is_delete='1',class_update_time=now() where class_id=#{class_id}
+	</update>
+	<update id="updateServiceClass" parameterType="serviceClassBean">
+		update service_class
+		<set>
+			class_update_time=now(),
+			<if test=" class_name !=null and class_name !='' ">
+				class_name=#{class_name},
+			</if>
+			<if test=" class_state !=null and class_state !='' ">
+				class_state=#{class_state},
+			</if>
+			<if test=" class_img !=null and class_img !='' ">
+				class_img=#{class_img},
+			</if>
+			<if test=" class_parent_id !=null and class_parent_id !='' ">
+				class_parent_id=#{class_parent_id},
+			</if>
+			<if test=" class_sort !=null and class_sort !='' ">
+				class_sort=#{class_sort},
+			</if>
+			<if test=" class_price !=null and class_price !='' ">
+				class_price=#{class_price},
+			</if>
+			<if test=" class_desc !=null and class_desc !='' ">
+				class_desc=#{class_desc},
+			</if>
+			<if test=" class_unit !=null and class_unit !='' ">
+				class_unit=#{class_unit},
+			</if>
+		</set>
+		where class_id=#{class_id}
+	</update>
+	<insert id="insertServiceClass" parameterType="serviceClassBean">
+		insert into service_class
+		(
+		class_name,class_img,class_parent_id,class_create_time,class_update_time,class_price
+		,class_desc,class_unit
+		)
+		values
+		(
+		#{class_name},#{class_img},#{class_parent_id},now(),now()
+		,#{class_price},#{class_desc},#{class_unit}
+		)
+	</insert>
+	<select id="getServiceClassDetail" parameterType="serviceClassBean" resultType="serviceClassBean">
+		select * from service_class where
+		class_is_delete=0 and class_id=#{class_id}
+	</select>
+	<select id="getServiceClassList" parameterType="serviceClassBean" resultType="serviceClassBean">
+		SELECT a.*,(SELECT CASE WHEN
+		COUNT(*)>0 THEN "0" ELSE "1" END FROM service_class
+		WHERE class_parent_id=a.class_id AND class_is_delete='0') AS is_end
+		FROM service_class AS a
+		WHERE a.class_parent_id=#{class_parent_id} AND a.class_is_delete='0' AND class_state='1'
+		ORDER BY
+		a.class_sort ASC
+	</select>
+	<select id="getRefundOrderList" resultType="workOrderBean">
+		select * from refund_work_order where order_is_delete=0 order by
+		order_accept_time desc
+	</select>
+	<insert id="createRefundWorkOrder" parameterType="workOrderBean" keyProperty="order_id" useGeneratedKeys="true">
+		INSERT
+		INTO refund_work_order
+		(
+		order_member_id,order_name,order_state,order_phone,order_address_country,order_address_province,order_address_city,
+		order_address_district,order_address_detail,order_address_longitude,order_address_latitude,order_subscribe_content,
+		order_subscribe_note,order_subscribe_img1,order_subscribe_img2,order_subscribe_img3,order_hope_service_time,
+		order_create_time,order_update_time,order_audit_pass_time,order_accept_id,order_accept_time,order_cancle_why,
+		order_cancle_time,order_cancle_pass_time,order_reality_content,order_complete_img1,order_complete_img2,order_complete_img3,
+		order_complete_note,order_service_time,order_complete_time,order_complete_pass_time,order_is_delete,order_class_id,
+		order_is_cancle,order_service_attitude,order_service_aging,order_service_quality,order_evaluate_content,order_price
+		)
+		VALUES
+		(
+		#{order_member_id},#{order_name},#{order_state},#{order_phone},#{order_address_country},#{order_address_province},
+		#{order_address_city},#{order_address_district},#{order_address_detail},#{order_address_longitude},
+		#{order_address_latitude},#{order_subscribe_content},#{order_subscribe_note},#{order_subscribe_img1},
+		#{order_subscribe_img2},#{order_subscribe_img3},#{order_hope_service_time},now(),
+		now(),#{order_audit_pass_time},#{order_accept_id},#{order_accept_time},#{order_cancle_why},
+		#{order_cancle_time},#{order_cancle_pass_time},#{order_reality_content},#{order_complete_img1},#{order_complete_img2},
+		#{order_complete_img3},#{order_complete_note},#{order_service_time},#{order_complete_time},#{order_complete_pass_time},
+		#{order_is_delete},#{order_class_id},#{order_is_cancle},#{order_service_attitude},#{order_service_aging},
+		#{order_service_quality},#{order_evaluate_content},#{order_price}
+		)
+	</insert>
+	<select id="getWorkOrderDetail" parameterType="workOrderBean" resultType="workOrderBean">
+		select * from work_order where
+		order_id=#{order_id}
+	</select>
+	<select id="getOrderList" parameterType="workOrderBean" resultType="workOrderBean">
+		select a.*,b.member_real_name as worker_name from work_order as a left join member as b on
+		a.order_accept_id=b.member_id where 1=1
+		<if test=" order_is_delete!=null and order_is_delete!=''">
+			and order_is_delete=#{order_is_delete}
+		</if>
+		<if test=" order_name!=null and order_name!=''">
+			and order_name like CONCAT('%',#{order_name},'%')
+		</if>
+		<if test=" order_phone !=null and order_phone !=''">
+			and order_phone like CONCAT('%',#{order_phone},'%')
+		</if>
+		<if test=" order_id !=null and order_id !=''">
+			and order_id like CONCAT('%',#{order_id},'%')
+		</if>
+		<if test=" order_state !=null and order_state !=''">
+			and order_state=#{order_state}
+		</if>
+		<if test="order_create_time!=null and order_create_time!=''">
+			and order_create_time &gt; #{order_create_time}
+		</if>
+		<if test="order_update_time!=null and order_update_time!=''">
+			and order_create_time &lt; #{order_update_time}
+		</if>
+		<if test="stateList !=null and stateList !=''">
+			and find_in_set(order_state,#{stateList})
+		</if>
+		<if test="district !=null and district !=''">
+			and order_address_district=#{district}
+		</if>
+		<if test="is_complaints !=null and is_complaints !=''">
+			and is_complaints=#{is_complaints}
+		</if>
+
+		order by order_create_time desc
+	</select>
+	<update id="updateOrder">
+		update work_order
+		<set>
+			order_update_time=now(),
+			<if test="order_member_id !=null and order_member_id !=''">
+				order_member_id=#{order_member_id},
+			</if>
+			<if test="order_name !=null and order_name !=''">
+				order_name=#{order_name},
+			</if>
+			<if test="order_phone !=null and order_phone !=''">
+				order_phone=#{order_phone},
+			</if>
+			<if test="order_address_country !=null and order_address_country !=''">
+				order_address_country=#{order_address_country},
+			</if>
+			<if test="order_address_province !=null and order_address_province !=''">
+				order_address_province=#{order_address_province},
+			</if>
+			<if test="order_address_city !=null and order_address_city !=''">
+				order_address_city=#{order_address_city},
+			</if>
+			<if test="order_address_district !=null and order_address_district !=''">
+				order_address_district=#{order_address_district},
+			</if>
+			<if test="order_address_detail !=null and order_address_detail !=''">
+				order_address_detail=#{order_address_detail},
+			</if>
+			<if test="order_address_longitude !=null and order_address_longitude !=''">
+				order_address_longitude=#{order_address_longitude},
+			</if>
+			<if test="order_address_latitude !=null and order_address_latitude !=''">
+				order_address_latitude=#{order_address_latitude},
+			</if>
+			<if test="order_subscribe_content !=null and order_subscribe_content !=''">
+				order_subscribe_content=#{order_subscribe_content},
+			</if>
+			<if test="order_subscribe_note !=null and order_subscribe_note !=''">
+				order_subscribe_note=#{order_subscribe_note},
+			</if>
+			<if test="order_subscribe_img1 !=null and order_subscribe_img1 !=''">
+				order_subscribe_img1=#{order_subscribe_img1},
+			</if>
+			<if test="order_subscribe_img2 !=null and order_subscribe_img2 !=''">
+				order_subscribe_img2=#{order_subscribe_img2},
+			</if>
+			<if test="order_subscribe_img3 !=null and order_subscribe_img3 !=''">
+				order_subscribe_img3=#{order_subscribe_img3},
+			</if>
+			<if test="order_hope_service_time !=null and order_hope_service_time !=''">
+				order_hope_service_time=#{order_hope_service_time},
+			</if>
+			<if test="order_create_time !=null and order_create_time !=''">
+				order_create_time=#{order_create_time},
+			</if>
+			<if test="order_audit_pass_time !=null and order_audit_pass_time !=''">
+				order_audit_pass_time=#{order_audit_pass_time},
+			</if>
+			<if test="order_state !=null and order_state !=''">
+				order_state=#{order_state},
+			</if>
+			<if test="order_accept_id !=null and order_accept_id !=''">
+				order_accept_id=#{order_accept_id},
+			</if>
+			<if test="order_accept_time !=null and order_accept_time !=''">
+				order_accept_time=#{order_accept_time},
+			</if>
+			<if test="order_cancle_why !=null and order_cancle_why !=''">
+				order_cancle_why=#{order_cancle_why},
+			</if>
+			<if test="order_cancle_time !=null and order_cancle_time !=''">
+				order_cancle_time=#{order_cancle_time},
+			</if>
+			<if test="order_cancle_pass_time !=null and order_cancle_pass_time !=''">
+				order_cancle_pass_time=#{order_cancle_pass_time},
+			</if>
+			<if test="order_reality_content !=null and order_reality_content !=''">
+				order_reality_content=#{order_reality_content},
+			</if>
+			<if test="order_complete_img1 !=null and order_complete_img1 !=''">
+				order_complete_img1=#{order_complete_img1},
+			</if>
+			<if test="order_complete_img2 !=null and order_complete_img2 !=''">
+				order_complete_img2=#{order_complete_img2},
+			</if>
+			<if test="order_complete_img3 !=null and order_complete_img3 !=''">
+				order_complete_img3=#{order_complete_img3},
+			</if>
+			<if test="order_complete_note !=null and order_complete_note !=''">
+				order_complete_note=#{order_complete_note},
+			</if>
+			<if test="order_service_time !=null and order_service_time !=''">
+				order_service_time=#{order_service_time},
+			</if>
+			<if test="order_complete_time !=null and order_complete_time !=''">
+				order_complete_time=#{order_complete_time},
+			</if>
+			<if test="order_complete_pass_time !=null and order_complete_pass_time !=''">
+				order_complete_pass_time=#{order_complete_pass_time},
+			</if>
+			<if test="order_is_delete !=null and order_is_delete !=''">
+				order_is_delete=#{order_is_delete},
+			</if>
+			<if test="order_class_id !=null and order_class_id !=''">
+				order_class_id=#{order_class_id},
+			</if>
+			<if test="order_price !=null and order_price !=''">
+				order_price=#{order_price},
+			</if>
+			<if test="is_lock !=null and is_lock !=''">
+				is_lock=#{is_lock},
+			</if>
+			<if test="lock_id !=null and lock_id !=''">
+				lock_id=#{lock_id},
+			</if>
+			<if test=" work_way !=null and work_way !=''">
+				work_way=#{work_way},
+			</if>
+		</set>
+		where order_id=#{order_id}
+	</update>
+	<update id="deleteOrder" parameterType="string">
+		update work_order set order_is_delete=1 where
+		FIND_IN_SET(order_id,#{ids})
+	</update>
+</mapper>

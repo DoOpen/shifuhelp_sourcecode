@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.interfaces.ShopCarDaoI">
+	<update id="deleteShopCar" parameterType="string">
+		update goods_shop_car
+		set is_delete=1
+		where find_in_set(car_id,#{car_ids})
+	</update>
+	<select id="getShopCarList" parameterType="shopCarBean" resultType="shopCarBean">
+		select a.*,b.goods_img,b.buy_type,c.specification_img,c.specification_price,c.specification_stock from goods_shop_car as a inner join goods as b 
+		on a.goods_id=b.goods_id and a.is_delete=0 and b.is_delete=0 inner join goods_relation_specification as c
+		on a.specification_id=c.specification_id and c.is_delete=0 where a.is_delete=0
+		<if test=" car_ids !=null and car_ids !='' ">
+			and find_in_set(a.car_id,#{car_ids})
+		</if>
+		order by a.create_time desc
+	</select>
+	
+	<update id="updateShopCar" parameterType="shopCarBean">
+		update goods_shop_car
+		<set>
+			<if test=' goods_num != null'>
+				goods_num=#{goods_num},
+			</if>
+			<if test=' goods_name != null and goods_name != "" '>
+				goods_name=#{goods_name},
+			</if>
+			<if test=' specification_ids != null and specification_ids != "" '>
+				specification_ids=#{specification_ids},
+			</if>
+			<if test=' specification_names != null and specification_names != "" '>
+				specification_names=#{specification_names},
+			</if>
+		</set>
+		where car_id=#{car_id}
+	</update>
+	<select id="getShopCarDetail" parameterType="shopCarBean" resultType="shopCarBean">
+		select a.*,b.goods_img,c.specification_img,c.specification_price,c.specification_stock from goods_shop_car as a inner join goods as b 
+		on a.goods_id=b.goods_id and a.is_delete=0 and b.is_delete=0 inner join goods_relation_specification as c
+		on a.specification_id=c.specification_id and c.is_delete=0 where a.is_delete=0
+		<if test=' member_id != null'>
+			and a.member_id=#{member_id}
+		</if>
+		<if test=' goods_id != null'>
+			and a.goods_id=#{goods_id}
+		</if>
+		<if test=' specification_id != null'>
+			and a.specification_id=#{specification_id}
+		</if>
+		<if test=' car_id != null'>
+			and a.car_id=#{car_id}
+		</if>
+	</select>
+
+	<insert id="insertShopCar" parameterType="shopCarBean" keyProperty="car_id" useGeneratedKeys="true">
+		insert into goods_shop_car
+		(
+			member_id,goods_id,goods_name,specification_id,specification_ids,specification_names,
+			goods_num,create_time,update_time
+		)
+		values
+		(
+			#{member_id},#{goods_id},#{goods_name},#{specification_id},#{specification_ids},
+			#{specification_names},#{goods_num},now(),now()
+		)
+	</insert>
+</mapper>

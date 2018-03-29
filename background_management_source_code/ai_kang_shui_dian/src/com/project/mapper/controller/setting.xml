@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dao.controller.SettingDaoC">
+	<resultMap id="cityBeans" type="cityBean">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="code" property="code" />
+		<result column="parent_id" property="parent_id" />
+		<result column="is_delete" property="is_delete" />
+		<result column="create_time" property="create_time" />
+		<result column="update_time" property="update_time" />
+		<association property="cityBeans" resultMap="cityBeans2" />
+	</resultMap>
+	<resultMap id="cityBeans2" type="cityBean">
+		<result column="id2" property="id" />
+		<result column="name2" property="name" />
+		<result column="code2" property="code" />
+		<result column="parent_id2" property="parent_id" />
+		<result column="is_delete2" property="is_delete" />
+		<result column="create_time2" property="create_time" />
+		<result column="update_time2" property="update_time" />
+		<association property="cityBeans" resultMap="cityBeans3" />
+	</resultMap>
+	<resultMap id="cityBeans3" type="cityBean">
+		<result column="id3" property="id" />
+		<result column="name3" property="name" />
+		<result column="code3" property="code" />
+		<result column="parent_id3" property="parent_id" />
+		<result column="is_delete3" property="is_delete" />
+		<result column="create_time3" property="create_time" />
+		<result column="update_time3" property="update_time" />
+	</resultMap>
+	<select id="getAppVersionDetail" parameterType="appVersionBean" resultType="appVersionBean">
+		select * from app_version where version_type=#{version_type}
+	</select>
+	<update id="updateAppVersion" parameterType="appVersionBean">
+		update app_version
+		<set>
+			update_time=now(),
+			<if test=" version_name !=null and version_name !=''">
+				version_name=#{version_name},
+			</if>
+			<if test=" version_no !=null and version_no !=''">
+				version_no=#{version_no},
+			</if>
+			<if test=" update_content !=null and update_content !=''">
+				update_content=#{update_content},
+			</if>
+			<if test=" download_address !=null and download_address !=''">
+				download_address=#{download_address},
+			</if>
+			<if test=" server_address !=null and server_address !=''">
+				server_address=#{server_address},
+			</if>
+			<if test=" must_update !=null and must_update !=''">
+				must_update=#{must_update},
+			</if>
+			<if test=" server_update !=null and server_update !=''">
+				server_update=#{server_update},
+			</if>
+		</set>
+		where version_id=#{version_id}
+	</update>
+	<select id="getCityListCache" resultMap="cityBeans">
+		select
+		a.id,a.name,a.parent_id,a.code,a.is_delete,a.create_time,a.update_time,
+		b.id as id2,b.name as name2,b.parent_id as
+		parent_id2,b.code as code2,b.is_delete as is_delete2,b.create_time as create_time2,b.update_time as update_time2,
+		c.id
+		as id3,c.name as name3,c.parent_id as parent_id3,c.code as code3,c.is_delete as is_delete3,c.create_time as
+		create_time3,c.update_time as update_time3
+		from city as a
+		left join city as b
+		on b.parent_id=a.id and b.is_delete=0
+		left join city as c
+		on c.parent_id=b.id and c.is_delete=0
+		where a.parent_id=-1 and
+		a.is_delete=0
+	</select>
+	<select id="getSettingList" parameterType="settingBean" resultType="settingBean">
+		select * from system_setting where
+		is_delete=0 order by create_time asc
+	</select>
+	<select id="getHtmlStyle" parameterType="htmlStyleBean" resultType="htmlStyleBean">
+		select * from html_style where
+		style_type=#{style_type} and is_delete=0
+	</select>
+	<update id="updateSetting" parameterType="settingBean">
+		update system_setting
+		<set>
+			<if test=" setting_desc !=null and setting_desc !=''">
+				setting_desc=#{setting_desc},
+			</if>
+			<if test=" setting_value !=null and setting_value !=''">
+				setting_value=#{setting_value},
+			</if>
+			<if test=" setting_unit !=null and setting_unit !=''">
+				setting_unit=#{setting_unit},
+			</if>
+		</set>
+		where setting_id=#{setting_id}
+	</update>
+	<select id="getPingSetting" resultType="PingSettingBean">
+		select * from ping_setting limit 1
+	</select>
+	<select id="getSystemSettingDetail" parameterType="settingBean" resultType="settingBean">
+		select * from system_setting where is_delete=0
+		<if test=" setting_id !=null">
+			and setting_id=#{setting_id}
+		</if>
+		<if test=" setting_name !=null and setting_name !=''">
+			and setting_name=#{setting_name}
+		</if>
+		limit 1
+	</select>
+	<select id="getMsgType" parameterType="msgTypeBean" resultType="msgTypeBean">
+		select * from msg_type
+		where is_delete='0' and
+		msg_type=#{msg_type} and msg_state='1'
+	</select>
+	<select id="getCityDetail" parameterType="cityBean" resultType="cityBean">
+		select * from city where id=#{id} and is_delete=0
+	</select>
+	<select id="getCityList" parameterType="cityBean" resultType="cityBean">
+		select * from city where is_delete=0
+		<if test=" parent_id !=null">
+			and parent_id=#{parent_id}
+		</if>
+		order by code+0 asc,create_time asc
+	</select>
+	<update id="updateCity" parameterType="cityBean">
+		update city
+		<set>
+			update_time=now(),
+			<if test=" name !=null and name !=''">
+				name=#{name},
+			</if>
+			<if test=" code !=null and code !=''">
+				code=#{code},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	<update id="deleteCity" parameterType="cityBean">
+		update city set is_delete=1 where id=#{id}
+	</update>
+	<insert id="insertCity" parameterType="cityBean">
+		insert into city
+		(
+		name,code,parent_id,create_time,update_time
+		)
+		values
+		(
+		#{name},#{code},#{parent_id},now(),now()
+		)
+	</insert>
+	<insert id="insertHtml" parameterType="htmlBean">
+		insert into system_html
+		(
+		html_name,html_url,sort,create_time,update_time
+		)
+		values
+		(
+		#{html_name},#{html_url},#{sort},now(),now()
+		)
+	</insert>
+	<update id="updateHtml" parameterType="htmlBean">
+		update system_html
+		<set>
+			<if test=" html_name !=null and html_name !=''">
+				html_name=#{html_name},
+			</if>
+			<if test=" html_url !=null and html_url !=''">
+				html_url=#{html_url},
+			</if>
+			<if test=" sort !=null">
+				sort=#{sort},
+			</if>
+		</set>
+		where html_id=#{html_id}
+	</update>
+	<update id="deleteHtml" parameterType="htmlBean">
+		update system_html set is_delete=1 where html_id=#{html_id}
+	</update>
+	<select id="getHtmlDetail" parameterType="htmlBean" resultType="htmlBean">
+		select * from system_html where is_delete=0
+		<if test=" html_id !=null">
+			and html_id=#{html_id}
+		</if>
+		<if test=" html_name !=null and html_name !=''">
+			and html_name=#{html_name}
+		</if>
+		limit 1
+	</select>
+	<select id="getHtmlList" parameterType="htmlBean" resultType="htmlBean">
+		select * from system_html where is_delete=0 order
+		by sort asc,create_time asc
+	</select>
+
+	<insert id="insertBanner" parameterType="bannerBean">
+		insert into banner
+		(
+		banner_title,banner_img,banner_url,banner_type,banner_desc,create_time,sort,banner_position,goods_id,chain_url
+		)
+		values
+		(
+		#{banner_title},#{banner_img},#{banner_url},#{banner_type},#{banner_desc},now(),#{sort},
+		#{banner_position},#{goods_id},#{chain_url}
+		)
+	</insert>
+	<update id="updateBanner" parameterType="bannerBean">
+		update banner
+		<set>
+			<if test=" banner_title !=null and banner_title !=''">
+				banner_title=#{banner_title},
+			</if>
+			<if test=" banner_img !=null and banner_img !=''">
+				banner_img=#{banner_img},
+			</if>
+			<if test=" banner_url !=null and banner_url !=''">
+				banner_url=#{banner_url},
+			</if>
+			<if test=" banner_type !=null and banner_type !=''">
+				banner_type=#{banner_type},
+			</if>
+			<if test=" banner_desc !=null and banner_desc !=''">
+				banner_desc=#{banner_desc},
+			</if>
+			<if test=" sort !=null">
+				sort=#{sort},
+			</if>
+			<if test=" banner_position !=null and banner_position !=''">
+				banner_position=#{banner_position},
+			</if>
+			<if test=" goods_id !=null">
+				goods_id=#{goods_id},
+			</if>
+			<if test=" chain_url !=null and chain_url !=''">
+				chain_url=#{chain_url},
+			</if>
+		</set>
+		where banner_id=#{banner_id}
+	</update>
+	<update id="deleteBanner" parameterType="bannerBean">
+		update banner set is_delete=1 where banner_id=#{banner_id}
+	</update>
+	<select id="getBannerDetail" parameterType="bannerBean" resultType="bannerBean">
+		select * from banner where is_delete=0
+		<if test=" banner_id !=null">
+			and banner_id=#{banner_id}
+		</if>
+	</select>
+	<select id="getBannerList" parameterType="bannerBean" resultType="bannerBean">
+		select * from banner where is_delete=0
+		<if test=" banner_id !=null">
+			and banner_id like concat('%',#{banner_id},'%')
+		</if>
+		<if test=" banner_title !=null and banner_title !=''">
+			and banner_title like concat('%',#{banner_title},'%')
+		</if>
+		<if test=" banner_type !=null and banner_type !=''">
+			and banner_type=#{banner_type}
+		</if>
+		<if test=" banner_position !=null and banner_position !=''">
+			and banner_position=#{banner_position}
+		</if>
+		order by sort asc,create_time asc
+	</select>
+</mapper>
