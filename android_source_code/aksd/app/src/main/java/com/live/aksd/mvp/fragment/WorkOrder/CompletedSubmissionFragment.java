@@ -33,8 +33,6 @@ import com.live.aksd.R;
 import com.live.aksd.bean.WorkOrderDetailBean;
 import com.live.aksd.mvp.adapter.ImageMediaAdapter;
 
-import org.greenrobot.greendao.annotation.Index;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,6 +110,11 @@ public class CompletedSubmissionFragment extends DialogFragment {
     View line5;
     @BindView(R.id.line6)
     View line6;
+	//sfsm xiaozhangxin: [修改内容] add code @{
+	@BindView(R.id.etRealArea)
+	EditText etRealArea;
+	// @}
+
 
 
     public interface CompletedSubmissionOnclickListener {
@@ -177,6 +180,10 @@ public class CompletedSubmissionFragment extends DialogFragment {
     private void initViews() {
         service_class_price = workOrderDetailBean.getService_class_price();
         work_area = workOrderDetailBean.getWork_area();
+		// sfsm  zhoushilei: [师傅完工面积可编辑] modified code @{
+        if (work_area.contains(".")){
+            work_area=work_area.substring(0,work_area.indexOf("."));
+        }
         String order_reality_content = workOrderDetailBean.getOrder_reality_content();
         if (order_reality_content.contains("null")) {
             order_reality_content = order_reality_content.substring(4, order_reality_content.length());
@@ -184,14 +191,14 @@ public class CompletedSubmissionFragment extends DialogFragment {
         etRealContent.setText(order_reality_content);
         tvUnitPrice.setText("单价（元）：" + service_class_price);
         if ("0".equals(workOrderDetailBean.getOrder_type())) {
-            tvRealArea.setText("施工面积（平方米）：" + workOrderDetailBean.getWork_area());
+            etRealArea.setText(work_area);
             float realtotal = Float.parseFloat(work_area) * Float.parseFloat(service_class_price);
-            tvTotalPrice.setText("总费用（元）：" + realtotal);
+            tvTotalPrice.setText(getString(R.string.toutal_price) + realtotal);
         } else {
-            tvRealArea.setVisibility(View.GONE);
-            tvTotalPrice.setText("总费用（元）：" + service_class_price);
+            etRealArea.setVisibility(View.GONE);
+            tvTotalPrice.setText(getString(R.string.toutal_price) + service_class_price);
         }
-
+		// @}
 
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -207,7 +214,8 @@ public class CompletedSubmissionFragment extends DialogFragment {
             }
         });
 
-
+	
+		
         etOtherPrice.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -216,15 +224,17 @@ public class CompletedSubmissionFragment extends DialogFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 if (TextUtils.isEmpty(etOtherPrice.getText())) {
                     etOtherPrice.setText("0");
                 }
+				// sfsm  zhoushilei: [师傅完工面积可编辑] modified code @{
                 if ("0".equals(workOrderDetailBean.getOrder_type())) {
-                    float realtotal = Float.parseFloat(work_area) * Float.parseFloat(service_class_price) + Float.parseFloat(etOtherPrice.getText().toString());
-                    tvTotalPrice.setText("总费用（元）：" + realtotal);
+                    double realtotal = Double.parseDouble(etRealArea.getText().toString()) * Double.parseDouble(service_class_price) + Double.parseDouble(etOtherPrice.getText().toString());
+                    tvTotalPrice.setText(getString(R.string.toutal_price) + realtotal);
                 } else {
-                    float i = Float.parseFloat(service_class_price) + Float.parseFloat(etOtherPrice.getText().toString());
-                    tvTotalPrice.setText("总费用（元）：" + i);
+                    double i = Double.parseDouble(service_class_price) + Double.parseDouble(etOtherPrice.getText().toString());
+                    tvTotalPrice.setText(getString(R.string.toutal_price) + i);
                 }
 
 
@@ -235,6 +245,42 @@ public class CompletedSubmissionFragment extends DialogFragment {
 
             }
         });
+
+
+        etRealArea.addTextChangedListener(new TextWatcher() {
+            @Override
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String otherPrice = etOtherPrice.getText().toString();
+                if (TextUtils.isEmpty(otherPrice)){
+                    otherPrice="0";
+                }
+                if (TextUtils.isEmpty(etRealArea.getText().toString())) {
+                    etRealArea.setText("0");
+                }
+                if ("0".equals(workOrderDetailBean.getOrder_type())) {
+                    double realtotal = Double.parseDouble(etRealArea.getText().toString()) * Double.parseDouble(service_class_price) + Double.parseDouble(otherPrice);
+                    tvTotalPrice.setText(getString(R.string.toutal_price) + realtotal);
+                } else {
+                    double i = Double.parseDouble(service_class_price) + Double.parseDouble(otherPrice);
+                    tvTotalPrice.setText(getString(R.string.toutal_price) + i);
+                }
+			// @}
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+		
+		
 
     }
 
