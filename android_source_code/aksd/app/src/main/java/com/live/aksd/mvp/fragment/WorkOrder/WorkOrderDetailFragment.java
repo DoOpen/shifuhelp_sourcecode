@@ -157,6 +157,12 @@ public class WorkOrderDetailFragment extends BaseFragment<IWorkOrderDetailView, 
     TextView textView3;
     @BindView(R.id.nestedScrollView)
     NestedScrollView nestedScrollView;
+    @BindView(R.id.tvAssessTittle)
+    TextView tvAssessTittle;
+    @BindView(R.id.tvAssessContent)
+    TextView tvAssessContent;
+    @BindView(R.id.llAssess)
+    LinearLayout llAssess;
 
 
     private UserBean userBean;
@@ -337,6 +343,33 @@ public class WorkOrderDetailFragment extends BaseFragment<IWorkOrderDetailView, 
                 break;
 
             case "7"://完工未评价
+				//sfsm zhoushilei: [工单详情增加用户评价显示] add code @{
+                orderState.setBackgroundColor(getResources().getColor(R.color.bg_8));
+                tvOne.setVisibility(View.GONE);
+                tvTwo.setVisibility(View.GONE);
+
+                tvSubmitTime.setVisibility(View.VISIBLE);
+                tvActualService.setVisibility(View.VISIBLE);
+                tvOtherService.setVisibility(View.VISIBLE);
+                tvActualPrcie.setVisibility(View.VISIBLE);
+                tvOtherPrcie.setVisibility(View.VISIBLE);
+                tvToatalPrcie.setVisibility(View.VISIBLE);
+                if (!TextUtils.isEmpty(data.getOthers_service_content())) {
+                    tvOtherService.setText(getString(R.string.other_contente) + data.getOthers_service_content());
+                }
+                if (!TextUtils.isEmpty(data.getOthers_price())) {
+                    tvOtherPrcie.setText(getString(R.string.other_pricer) + data.getOthers_price() + getString(R.string.yuan));
+                }
+                tvActualService.setText(getString(R.string.actual_content) + data.getOrder_subscribe_content() + getString(R.string.yuan_area));
+                tvActualPrcie.setText(getString(R.string.actual_price) + data.getOrder_price() + getString(R.string.yuan));
+                tvToatalPrcie.setText(getString(R.string.total_price) + data.getOrder_final_price() + getString(R.string.yuan));
+
+                llCompleteImg.setVisibility(View.VISIBLE);
+                imgAdapter.clear();
+                imgAdapter.addAll(data.getOrderCompleteImgBeans());
+                imgAdapter.notifyDataSetChanged();
+                break;
+				// @}
             case "9"://完工已评价
                 orderState.setBackgroundColor(getResources().getColor(R.color.bg_8));
                 tvOne.setVisibility(View.GONE);
@@ -362,6 +395,14 @@ public class WorkOrderDetailFragment extends BaseFragment<IWorkOrderDetailView, 
                 imgAdapter.clear();
                 imgAdapter.addAll(data.getOrderCompleteImgBeans());
                 imgAdapter.notifyDataSetChanged();
+				//sfsm zhoushilei: [工单详情增加用户评价] add code @{
+                llAssess.setVisibility(View.VISIBLE);
+                if (TextUtils.isEmpty(data.getOrder_evaluate_content())) {
+                    tvAssessContent.setText("暂无评价内容");
+                } else {
+                    tvAssessContent.setText(data.getOrder_evaluate_content());
+                }
+				// @}
                 break;
             case "8"://完工用户待确认
             case "12"://完工待审核
