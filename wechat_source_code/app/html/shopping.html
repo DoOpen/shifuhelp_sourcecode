@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <!--底层导航栏-->
+        <div class="p_f b  h50 w flex-between bgc_fff bor_t">
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../icon/store_tab_home@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">首页</div>
+            </div>
+            </a>
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../icon/home_tab_order@2x.png" alt=""></div>
+                <div class="f_f f_s11 t_a_c m_t5">我的预约</div>
+            </div>
+            </a>
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../icon/store_tab_shop_search@2x.png.png" alt=""></div>
+                <div class="col_blue f_s11 t_a_c m_t5">我的商城</div>
+            </div>
+            </a>
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../icon/home_tab_mine@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">个人中心</div>
+            </div>
+            </a>
+        </div>
+    </body>
+</html>

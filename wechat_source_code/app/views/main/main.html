@@ -1,0 +1,122 @@
+
+<div class="bgc_body wrapper">
+<!--Banner轮播-->
+	<div class="bannerBox1 p_r">
+		<div class="flexsliders">
+			<ul class="slides">
+				<li ng-repeat="item in bannerInfo" repeat-finish="flexsliders('.flexsliders')">
+					<a ng-href="{{item.banner_url}}" ng-show="item.banner_type=='common'">
+						<img ng-src="{{item.banner_img}}"/>
+					</a>
+					<a ng-href="https://{{item.banner_url}}" ng-show="item.banner_type=='chain'">
+						<img ng-src="{{item.banner_img}}"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--服务选项-->
+	<div class="w h100 bgc_fff flex-start">
+		<a href="#/pre?id={{dt.class_id}}" ng-repeat="dt in serviceList | limitTo: 1" class="dis_b w h100">
+			<div class="w h " >
+				<div class="w h70 p_t20 ">
+					<div class="w45 m0a ">
+						<img ng-src="{{dt.class_img}}" alt="" class="w45 h45 b_r_b50">
+					</div>
+				</div>
+				<div class="w h30 t_a_c" ng-bind="dt.class_name"></div>
+			</div>
+		</a>
+		<a href="#/preRepair?id={{dt.class_id}}" ng-repeat="dt in serviceList | limitTo: -1" class="dis_b w h100">
+			<div class="w h " >
+				<div class="w h70 p_t20 ">
+					<div class="w45 m0a ">
+						<img ng-src="{{dt.class_img}}" alt="" class="w45 h45 b_r_b50">
+					</div>
+				</div>
+				<div class="w h30 t_a_c" ng-bind="dt.class_name"></div>
+			</div>
+		</a>
+
+			<!-- <div class="w_b25 h ">
+				<div class="w h70 p_t20">
+					<div class="b_r_b50 w45 h45 m0a "><img src="app/icon/home_choose_install@2x.png.png" alt=""></div>
+				</div>
+				<div class="w h30 t_a_c" ng-bind="names.b"></div>
+			</div>
+			<div class="w_b25 h ">
+				<div class="w h70 p_t20">
+					<div class="b_r_b50 w45 h45 m0a "><img src="app/icon/home_choose_install@2x.png.png" alt=""></div>
+				</div>
+				<div class="w h30 t_a_c" ng-bind="names.c"></div>
+			</div>
+			<div class="w_b25 h ">
+				<div class="w h70 p_t20">
+					<div class="b_r_b50 w45 h45 m0a "><img src="app/icon/home_choose_install@2x.png.png" alt=""></div>
+				</div>
+				<div class="w h30 t_a_c" ng-bind="names.d"></div>
+			</div> -->
+	</div>
+	<div class="  h40 flex-center ">
+		<div class="flex-between f_s16 f_w_6">
+			<div class="m_r20 "><div class="bor_b_bbb w80"></div></div>
+			<div class="">明星师傅展示</div>
+			<div class="m_l20 "><div class="bor_b_bbb w80"></div></div>
+		 </div>
+	</div>
+	<!--风采展示-->
+	<div>
+		<div class=" o_a bgc_body " id="exhibition">
+			<div class="wmax">
+			<!-- <a ng-href="{{dt.star_worker_info}}" class="dis_lb w165 h bgc_fff fl_l m_l10" ng-repeat="dt in starInfo">
+				<div class=" h w  p_t30 ">
+					<div class="w60 h60 b_r_b50 m0a" >
+						<img ng-src="{{dt.member_head_image}}" alt="" class="b_r_b50">
+					</div>
+					<div class=" w h20 flex-center m_t15 f_w_6 f_s15" ng-bind="dt.member_real_name"></div>
+					<div class=" w h20 flex-center m_t10 f_s14 text_ellipsis" ng-bind="dt.member_work_type"></div>
+					<div class="bor_blue w100 h30 b_r15 flex-center m0a m_t15 m_b20 col_blue">风采展示</div>
+				</div>
+			</a>  -->
+			<a ng-href="{{dt.star_worker_info}}" class="dis_lb w173 h200 bgc_fff fl_l m_l10" ng-repeat="dt in starInfo">
+				<div class="h w p_t10">
+					<div class="w120 h120 b_r_b50 m0a " >
+						<img ng-src="{{dt.member_head_image}}" alt="" class="b_r_b50">
+					</div>
+					<div class=" w h20 flex-center m_t10 f_s14 text_ellipsis" ng-bind="dt.member_work_type"></div>
+					<div class="h35 f_w_6 f_s15 flex-center m_t5" ng-bind="dt.member_real_name"></div>
+				</div>
+			</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="h50 w "></div>
+	<!--底层导航栏-->
+	<div class="p_f b  h50 w flex-between bgc_fff bor_t">
+		<a href="#/main">
+			<div class="h w60  m_l15 m_r15 m_b5">
+				<div class=" h20 w20 m0a m_t5 "><img src="app/icon/home_tab_search_search@2x.png.png" alt=""></div>
+				<div class="col_blue f_s11 t_a_c m_t5">首页</div>
+			</div>
+		</a>
+		<a href="#/pendingAudit">
+			<div class="h w60  m_l15 m_r15 m_b5">
+				<div class=" h20 w20 m0a m_t5 "><img src="app/icon/home_tab_order@2x.png" alt=""></div>
+				<div class="f_f f_s11 t_a_c m_t5">我的预约</div>
+			</div>
+		</a>
+		<a href="app-mall/index.html#/home">
+			<div class="h w60  m_l15 m_r15 m_b5">
+				<div class=" h20 w20 m0a m_t5 "><img src="app/icon/home_tab_shop@2x.png" alt=""></div>
+				<div class="f_s11 t_a_c m_t5">我的商城</div>
+			</div>
+		</a>
+		<a href="#/personalCenter">
+			<div class="h w60  m_l15 m_r15 m_b5">
+				<div class=" h20 w20 m0a m_t5 "><img src="app/icon/home_tab_mine@2x.png" alt=""></div>
+				<div class="f_s11 t_a_c m_t5">个人中心</div>
+			</div>
+		</a>
+	</div>
+</div>

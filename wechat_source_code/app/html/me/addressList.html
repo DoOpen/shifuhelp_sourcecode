@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <div class="wrapper bgc_body">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 w10"><img src="../../icon/back@2x.png" alt=""></div>
+            <div class="f_s16">我的地址</div>
+        </div>
+        <!--收货地址信息-->
+        <div class="bgc_fff f_s13">
+            <div class="w h40 p_l15 p_r15 h40 flex-between">
+                <div class="">用户姓名</div>
+                <div class="">电话</div>
+            </div>
+            <div class="w p_l15 p_r15 m_b25">用户详细地址用户详细地址用户详细地址用户详细地址用户</div>
+            <div class="w h25  p_l15 p_r15 flex-between m_b10"> 
+                <div class=" h w_b30 flex-start">
+                    <div class="h20 w20 ndz"></div>
+                    <div class="m_l5">默认地址</div>
+                </div>
+                <div class=" h w_b70 flex-end">
+                    <div class="flex-start"><img src="../../icon/address_icon_compile_nor@2x.png.png" alt="" class="w20 h20 m_r5">编辑</div>
+                    <div class="flex-start m_l20"><img src="../../icon/address_icon_delete_nor@2x.png.png" alt="" class="w20 h20 m_r5">删除</div>                   
+                </div>
+            </div>
+            <div class="w h10 bgc_body bor_t m0a"></div>
+        </div>
+<div class="bgc_fff f_s13">
+            <div class="w h40 p_l15 p_r15 h40 flex-between">
+                <div class="">用户姓名</div>
+                <div class="">电话</div>
+            </div>
+            <div class="w p_l15 p_r15 m_b25">用户详细地址用户详细地址用户详细地址用户详细地址用户</div>
+            <div class="w h25  p_l15 p_r15 flex-between m_b10"> 
+                <div class=" h w_b30 flex-start">
+                    <div class="h20 w20 ndz"></div>
+                    <div class="m_l5">默认地址</div>
+                </div>
+                <div class=" h w_b70 flex-end">
+                    <div class="flex-start"><img src="../../icon/address_icon_compile_nor@2x.png.png" alt="" class="w20 h20 m_r5">编辑</div>
+                    <div class="flex-start m_l20"><img src="../../icon/address_icon_delete_nor@2x.png.png" alt="" class="w20 h20 m_r5">删除</div>                   
+                </div>
+            </div>
+            <div class="w h10 bgc_body bor_t m0a"></div>
+        </div><div class="bgc_fff f_s13">
+            <div class="w h40 p_l15 p_r15 h40 flex-between">
+                <div class="">用户姓名</div>
+                <div class="">电话</div>
+            </div>
+            <div class="w p_l15 p_r15 m_b25">用户详细地址用户详细地址用户详细地址用户详细地址用户</div>
+            <div class="w h25  p_l15 p_r15 flex-between m_b10"> 
+                <div class=" h w_b30 flex-start">
+                    <div class="h20 w20 ndz"></div>
+                    <div class="m_l5">默认地址</div>
+                </div>
+                <div class=" h w_b70 flex-end">
+                    <div class="flex-start"><img src="../../icon/address_icon_compile_nor@2x.png.png" alt="" class="w20 h20 m_r5">编辑</div>
+                    <div class="flex-start m_l20"><img src="../../icon/address_icon_delete_nor@2x.png.png" alt="" class="w20 h20 m_r5">删除</div>                   
+                </div>
+            </div>
+            <div class="w h10 bgc_body bor_t m0a"></div>
+        </div>
+        <!--新增地址-->
+        <div class=" p_a b w h45 flex-center">
+            <div class=" w h flex-center col_fff bgc_blue f_s16">新增收货地址</div>
+        </div>
+        <!--遮罩-->
+        
+        <div class=" bgc_t_b60 p_f r l b t dis_n flex-center">          
+                <div class=" h150 w300 z100 bgc_fff b_r5">
+                    <div class="w h_b70 f_s18  flex-center">确定要删除这条地址吗？</div>
+                    <div class="w h_b30 flex-center">
+                        <div class="w_b50 h bgc_666 flex-center f_s18 col_fff">取消</div>
+                        <div class="w_b50 h bgc_blue flex-center f_s18 col_fff">确定</div>
+                    </div>
+                </div>           
+        </div>
+        <div class="p_f t w h p_r" ng-show="add==1">
+        
+        <div class="p_a t w h bgc_t_b60 "  ng-click="addHide(0);ofFun(0);addsNull()"></div>
+        <div class="p_a b w  bgc_fff z99">
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b25 h flex-start">收货人</div>
+                <div class="w_b75 h  flex-start"><input type="text" placeholder="姓名" class="w" ng-model="adds.name"></div>
+            </div>
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b25 h flex-start">联系电话</div>
+                <div class="w_b75 h  flex-start"><input type="text" placeholder="手机或者固定号码" class="w" ng-model="adds.mobile"></div>
+            </div>
+            <div class="bor_b w_b90 h60  m0a flex-start ">
+                <div class="w_b25 h flex-start">选择地区</div>
+                <div class="w_b75 h flex-start ">
+                    <input id="aaddress" type="text" readonly="readonly" placeholder="请选择地址" class="w" ng-model="address">
+                    <input id="huadong" type="hidden" value="20,234,504">
+                    <div class="w15 h15 flex-center">
+                        <img src="app/icon/reserve_information_icon_next@2x.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b25 h flex-start">详细地址</div>
+                <div class="w_b75 h  flex-start"><input type="text" placeholder="如街道、楼层、门牌号等" class="w"  ng-model="adds.detailed_address"></div>
+            </div>
+            <div class=" w_b90 h60  m0a  flex-start">
+                <div class="w_b25 h flex-start">邮政编码</div>
+                <div class="w_b75 h  flex-start"><input type="text" placeholder="邮政编码(选填)" class="w"  ng-model="adds.zip_code"></div>
+            </div>
+            <div class="p_a b40 w h20 f_s18 flex-center col_red">
+                请填写好地址信息！
+            </div>
+            <div class="w h45"></div>
+            <!--新增地址按钮-->
+            <div class=" p_a b w h45 flex-center" ng-show="of==0">
+                    <div class=" w h flex-center col_fff bgc_blue f_s20" ng-click="addressNew();addHide(0);addsNull()">确定</div>
+            </div>
+            <!--修改地址按钮-->
+            <div class=" p_a b w h45 flex-center " ng-show="of==1">
+                    <div class=" w h flex-center col_fff bgc_blue f_s20" ng-click="updataAddressFun(adds.address_id);addHide(0);ofFun(0);addsNull()">确定</div>
+            </div>
+        </div>
+        
+    </div>
+    </div>
+    </body>
+</html>

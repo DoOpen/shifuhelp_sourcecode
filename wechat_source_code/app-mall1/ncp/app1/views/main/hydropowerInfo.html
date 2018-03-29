@@ -1,0 +1,24 @@
+<div  class="wrapper p_r">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16" ng-bind="infoHTML.class_name"></div>
+        </div>
+        <div class="w h150 "><img ng-src="{{infoHTML.class_img}}" alt=""></div>
+        <div class="w  p_t20 ">
+            <div class=" w_b90 f_s16 m0a"><span ng-bind="infoHTML.class_name"></span>详情:</div>
+            <div class=" f_s14 w_b90 m0a m_t20" ng-bind="infoHTML.class_desc">
+            </div>
+
+        </div>
+        <div class=" w h_b25 p_a b f_s18 p_r">
+            <div class="bgc_body h20"></div>
+            <div class=" h45 w flex-start m_l20 w_b90">价格:
+            <div class="col_red m_l20" ><span ng-bind="infoHTML.class_price"></span></div>
+            </div>
+            <div class="flex-center h_b60 w bgc_body p_a b">
+                <a href="#/pre?id={{infoHTML.class_id}}" class="b_r40 w h50 flex-center"><div class="flex-center b_r40 w_b90 h50 col_fff bgc_blue">去预约</div></a>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,49 @@
+<div class="" id="home">
+    <div class="Shopping_search">
+        <div class="pl-15 pr-15 search-topbox col_fff">
+            <p class="f-14 p_a region">上海</p>
+            <p class="m0a searchBox">
+                <a class="di_bl w100 h100 searchbtn" ng-click="appSearch()">
+                    <span class="di_bl f-12 bs pl-35 line_h30">搜索您想要的商品</span>
+                </a>
+            </p>
+            <a href="JavaScript:android.appShophome()" onclick="appShophome()" class="f-14 p_a jump col_fff ahovfff"></a>
+        </div>
+    </div>
+    <div class="banners">
+        <div class="swiper-container banner t_c hei_150">
+            <div class="swiper-wrapper">
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <!-- taglist -->
+    <div class="classifylist back_fff">
+        <ul class="o_h">
+            <!--<li ng-repeat="item in home.classlist" ng-click="home.Recommend(item.class_id)">-->
+                <!--<a href="JavaScript:;"  class="di_bl">-->
+                    <!--<img class="di_bl m0a" ng-src={{item.class_img}} alt="">-->
+                    <!--<span class="di_bl">{{item.class_name}}</span>-->
+                <!--</a>-->
+            <!--</li>-->
+        </ul>
+    </div>
+    <!-- 为你推荐 -->
+    <div class="wntj">
+        <div class="wntj_out">
+            <!--<div class="wntj_box">-->
+                <!--<div class="wntj_tit main_col f-18 t_c">为您推荐</div>-->
+                <!--<ul class="wntj_goodslist o_h">-->
+
+                <!--</ul>-->
+            <!--</div>-->
+        </div>
+
+
+        <div class="loadmore loadmore_line">
+            <span class="load__tips">{{modelstext}}</span>
+        </div>
+    </div>
+    <a class="p_f cartbtn" ng-click="appCart()"></a>
+</div>

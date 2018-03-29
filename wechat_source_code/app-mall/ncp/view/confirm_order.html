@@ -1,0 +1,116 @@
+<div class="wrap flex flex-v back_ef" id="confirm_order">
+    <!--<div class="pulice_header">-->
+        <!--<div class="titbox p_r">-->
+            <!--<a href="javascript:history.go(-1)" class="history_1 p_a"></a>-->
+            <!--<p class="tit">确认订单</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="main back_ef flex-1">
+        <div class="addressBar plr-15 o_h back_fff">
+            <a href="JavaScript:android.appGoaddress()" onclick="appGoaddress()" class="di_bl w100 h100">
+                <i class="addressBar-location location-icon l mt-15"></i>
+                <div class="col_333 l mt-15 ml-15">
+                    <p class="address-detail f-14 o_h">
+                        <span class="di_bl l addressName text_ellipsis" ng-bind="affirm.address.name"></span>
+                        <span class="di_bl l ml-15 addressPhone" ng-bind="affirm.address.mobile">123456789009</span>
+                    </p>
+                    <p class="address-detailed mt-10 f-12">{{affirm.address.province}}{{affirm.address.city}}{{affirm.address.country}}{{affirm.address.detailed_address}}</p>
+                </div>
+                <i class="addressBar-right right-icon r"></i>
+            </a>
+        </div>
+        <ul class="o_h mt-8 mb-1">
+            <li class="store_list" md="{{s.merchants_id}}" ng-repeat="s in affirm.list">
+                <div class="store_tit back_fff pr-15">
+                    <a href="" class="store_name f-16 di_bl l" ng-bind="s.merchantsBean.merchants_name">店铺名称</a>
+                </div>
+                <div class="store_goods">
+                    <ul>
+                        <li class="goods_list back_fff" gd="{{g.goods_id}}" num="{{g.goods_num}}" ng-repeat="g in s.shoppingCarBeans">
+                            <img class="di_bl l" src="" ng-src="{{g.goodsBean.goods_img}}" alt="">
+                            <div class="goodsDetail ml-7  l f-14">
+                                <p class="goodsName text_ellipsis" ng-bind="g.goodsBean.goods_name">新鲜蔬果</p>
+                                <div class="l">
+                                    <p class="goodsWeight mt-5 f-12" ng-bind="g.goods_parameters_name">14kg</p>
+                                    <p class="goodsPrice mt-5" ng-bind="g.car_totla_price | currency:'¥'">￥36.5</p>
+                                </div>
+                                <div class="mt-10 f-14 r">X<span ng-bind="g.goods_num"></span></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--<div class="list-Column plr-15 back_fff f-14">-->
+                    <!--<div class="b1b_CD hei_45">-->
+                        <!--<a href="javascript:void(0)" class="di_bl w100 h100">-->
+                            <!--<span class="di_bl l">发票信息</span>-->
+                            <!--<i class="list-right hei_45 right-icon r"></i>-->
+                            <!--<span class="di_bl r mr-10">明细（电子）-个人</span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="list-Column plr-15 back_fff f-14">
+                    <div class="hei_45">
+                        <span class="di_bl l">买家留言</span>
+                        <input type="text" class="di_bl bn l ml-15 remark" placeholder="选择填写，方便与商家达成一致要求" />
+                    </div>
+                </div>
+            </li>
+            <li class="store_list" ng-if="!affirm.carid">
+                <div class="store_tit back_fff pr-15">
+                    <a href="" class="store_name f-16 di_bl l" ng-bind="affirm.detail.merchantsBean.merchants_name">店铺名称</a>
+                </div>
+                <div class="store_goods">
+                    <ul>
+                        <li class="goods_list back_fff">
+                            <img class="di_bl l" src="" ng-src="{{affirm.detail.goods_img}}" alt="">
+                            <div class="goodsDetail ml-7  l f-14">
+                                <p class="goodsName text_ellipsis" ng-bind="affirm.detail.goods_name">新鲜蔬果</p>
+                                <div class="l">
+                                    <p class="goodsWeight mt-5 f-12" ng-bind="affirm.detail.parameter_name">14kg</p>
+                                    <p class="goodsPrice mt-5" ng-bind="affirm.detail.end_price | currency:'¥'">￥36.5</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-Column plr-15 back_fff f-14 mt-5">
+                    <div class="b1b_CD hei_45">
+                        <a href="javascript:void(0)" class="di_bl w100 h100">
+                            <span class="di_bl l">数量</span>
+                            <div class="numbox r mt-10">
+                                <p class="l numMinus" ng-click="affirm.numfn(1,affirm.detail.goods_stock)">-</p>
+                                <input type="text" class="numN di_bl l bn" value="{{affirm.num}}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')"  onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" ng-blur="affirm.numfn(3,affirm.detail.goods_stock)"  />
+                                <p class="l numAdd" ng-click="affirm.numfn(2,affirm.detail.goods_stock)">+</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!--<div class="list-Column plr-15 back_fff f-14">-->
+                    <!--<div class="b1b_CD hei_45">-->
+                        <!--<a href="javascript:void(0)" class="di_bl w100 h100">-->
+                            <!--<span class="di_bl l">发票信息</span>-->
+                            <!--<i class="list-right hei_45 right-icon r"></i>-->
+                            <!--<span class="di_bl r mr-10">明细（电子）-个人</span>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="list-Column plr-15 back_fff f-14">
+                    <div class="hei_45">
+                        <span class="di_bl l">买家留言</span>
+                        <input type="text" class="di_bl bn l ml-15 remark" placeholder="选择填写，方便与商家达成一致要求" />
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="footerzw w100 hei_50"></div>
+    <div class="footer p_f b0 l0 w100">
+        <div class="total_Column">
+            <div class="heji_total back_fff f-14">
+                <p class="l col_EA2">合计:￥<span class="col_EA2" ng-bind="affirm.total"></span></p>
+                <a class="Submit-order f-16 r di_bl col_fff t_c ahovfff" ng-show="affirm.state==1" ng-click="affirm.AffirmOrder()">提交订单</a>
+                <a href="javascript:void(0)" class="Submit-order f-16 r di_bl col_fff t_c ahovfff" ng-show="affirm.state==2">提交中...</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<!--<div class="search_goods">-->
+    <div class="wrap flex flex-v back_ef">
+        <div class="bgc_blue col_fff h40 flex-end p_r">
+            <div class="p_a l h flex-center">
+                <a href="javascript:history.go(-1)" class="history_1"></a>
+            </div>
+            <div class="f_s16 h w_b30 flex-center" ng-click="searchGoods.goodsType(1)"  ng-class="{true:'col_red',false:'col_fff'}[searchGoods.type==1]">综合排序</div>
+            <div class="f_s16 h w_b30 flex-center" ng-click="searchGoods.goodsType(2)" ng-class="{true:'col_red',false:'col_fff'}[searchGoods.type==2]">销量排序</div>
+            <div class="f_s16 h w_b30 flex-center" ng-click="searchGoods.goodsType(3)" ng-class="{true:'col_red',false:'col_fff'}[searchGoods.type==3]">价格排序</div>
+        </div>
+        <!--<div class="pulice_header">-->
+            <!--<div class="titbox p_r">-->
+                <!--<a href="javascript:history.go(-1)" class="history_1 p_a"></a>-->
+                <!--<p class="search-tag f-14 l">商品</p>-->
+                <!--<p class="search-text l ml-15 bor_5 o_h">-->
+                    <!--<input type="text" class="di_bl" ng-model="search" placeholder="请输入搜索内容">-->
+                <!--</p>-->
+                <!--<p class="r mr-15"><a href="JavaScript:void(0)" class="col_fff ahovfff" searchselect>搜索</a></p>-->
+            <!--</div>-->
+            <!--<div class="searchnav-switch p_a back_fff line_h45 t_c col_666 di_n">-->
+                <!--<p class="b1b_CD cur" onclick="switchs(this)">商品</p>-->
+                <!--<p class="" onclick="switchs(this)">商家</p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="main flex-1 mt-5">
+            <ul class="shop_list">
+
+            </ul>
+            <div class="t_c f-14 col_666 line_h50">{{modelstext}}</div>
+        </div>
+    </div>
+    <script>
+        function switchs(obj){
+            $(".searchnav-switch").find(obj).addClass('cur').siblings().removeClass('cur')
+            $(".searchnav-switch").slideUp(0);
+            $(".search-tag").text($(".searchnav-switch").find(obj).text());
+        }
+        $(".search-tag").click(function () {
+            $(".searchnav-switch").slideDown(0);
+        })
+    </script>
+<!--</div>-->

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+        <!--新增，修改地址信息遮罩-->
+   <div ng-show="pay==1">
+            <div class="p_a t w h bgc_t_b60" >
+                <div class=" w_b60 h_b25 m0a p_r m_t120 bgc_fff b_r15 ">
+                    <div class="w h_b70 f_s18 m0a flex-center p_l10 p_r10">预约需要缴纳 30 定金，定金等工单完成后会退回，您确定要预约吗?</div>
+                    <div class="w h_b30 flex-center bor_t">
+                        <div class="w_b50 h_b80 flex-center f_s18 bor_r" ng-click="payFun(0)">取消</div>
+                        <div class="w_b50 h_b80 flex-center f_s18 col_blue" ng-click="paymentFun()">
+                            确定
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

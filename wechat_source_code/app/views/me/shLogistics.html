@@ -1,0 +1,65 @@
+
+    <div class="wrapper bgc_body">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">退货物流</div>
+        </div>
+        <div class="w h110 bgc_fff p_l15 p_t15 p_r15 f_s13">
+            <div class="f_w_6 m_b10">退货给卖家:</div>
+            <p >请填写退货信息：请确保退货物流与订单号的信息准确无误，以保障商家可以正常收到退回商品！
+                <span class="col_red">
+                    <span ng-bind="rday"></span>天
+                    <span ng-bind="rhour"></span>小时
+                </span>
+                后未填写提交，该申请将自动关闭！
+            </p>
+        </div>
+        <!--退货物流信息填写-->
+        <div class="w h_b60">
+            <div class="w h40 flex-start p_l15 f_s13 f_w_6">物流公司<span class="col_red m_l10">(必填)</span></div>
+            <div class="w_b90 h40 flex-start m_l15  bgc_fff b_r5 p_r">
+                <input type="text" class="w_b90 h p_a l p_l10" ng-model="lname" placeholder="请选择或填写物流公司">
+                <select class="bor_n w h" id="selects" ng-change="lnameFun()" ng-model="lname">    
+                    <option value ="顺丰快递">顺丰快递</option>  
+                    <option value ="申通快递">申通快递</option>  
+                    <option value ="韵达快递">韵达快递</option>  
+                    <option value ="圆通快递">圆通快递</option>  
+                    <option value ="中通快递">中通快递</option> 
+                    <option value ="天天快递">天天快递</option>
+                    <option value ="邮政快递">邮政快递</option>  
+                </select>   
+            </div>
+            <div class="w h40 flex-start p_l15 f_s13 f_w_6 ">
+                物流单号
+                <span class="col_red m_l10">(必填)</span>
+            </div>
+            <div class="w_b90 h40 flex-start m_l15 p_l10 bgc_fff b_r5">
+                <input type="number" placeholder="填写物流单号" ng-model="logistics.no" class="w">
+            </div>
+            <div class="w h40 flex-start p_l15 f_s13 f_w_6">
+                联系电话
+                <span class="col_red m_l10">(必填)</span>
+            </div>
+            <div class="w_b90 h40 flex-start m_l15 p_l10 bgc_fff b_r5">
+                <input type="number" placeholder="填写电话" ng-model="logistics.phone" class="w">
+            </div>
+            <div class="w h40 flex-start p_l15 f_s13 f_w_6">退货人姓名</div>
+            <div class="w_b90 h40 flex-start m_l15 p_l10 bgc_fff b_r5">
+                <input type="text" placeholder="填写姓名" ng-model="logistics.name" class="w">
+            </div>
+        </div>
+        <div class="p_a b w h45 flex-center">
+            <div class=" w h flex-center col_fff bgc_blue f_s16" ng-click="ofFun()">提交</div>
+        </div>
+        <!-- 未填写信息遮罩 -->
+        <div ng-show="of==1">
+            <div class="p_f t w h bgc_t_b60" >
+                <div class=" w_b60 h_b30 m0a p_r m_t120 bgc_fff b_r15 ">
+                    <div class="w h25 f_s18 m0a p_t65 flex-center">请填写好必填信息！</div>
+                    <div class="p_a b w h45 bgc_blue col_fff flex-center f_s18 f_w_6 b_r_b15" ng-click="ofs()">确 定</div>
+                </div>
+            </div>
+        </div>
+    </div>

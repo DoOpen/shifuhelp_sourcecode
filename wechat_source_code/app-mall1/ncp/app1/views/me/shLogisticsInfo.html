@@ -1,0 +1,28 @@
+
+    <div class="wrapper bgc_body f_s14">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">物流追踪</div>
+        </div>
+        <div class="h105 flex-start bgc_fff m_b10">
+            <div class="h65 w65 m_l10 "><img ng-src="{{rinfoHTML.orderGoodsBean.goods_img}}"  alt=""></div>
+            <div class="w_b60 h  m_l10 p_t15">
+                <div class="m_t2">物流状态 <span class="m_l10 col_red" ng-bind="listInfo[0].logistics_state"></span></div>
+                <div class="col_666 f_s12 m_t5">物流公司： <span class="" ng-bind="rinfoHTML.logistics_company"></span></div>
+                <div class="col_666 f_s12 m_t5">售后单号： <span class="" ng-bind="rinfoHTML.refund_no"></span></div>
+                <div class="col_666 f_s12 m_t5">运单编号： <span class="" ng-bind="rinfoHTML.logistics_no"></span></div>
+            </div>
+        </div>
+        <div class="w bgc_fff flex-start1 p_l15 p_r15 p_t20 p_b20 p_r" ng-repeat="dt in listInfo track by $index">
+            <div class="w40 h p_r">
+                <div class="p_a m_l5 t3 w20 h20" ng-class="{true:'wltb',false:'nowltb'}[$index==0]" >
+                </div>
+            </div>
+            <div class="w_b80 ">
+                <div class="" ng-bind="dt.logistics_context"></div>
+                <div class="m_t5" ng-bind="dt.logistics_time"></div>
+            </div>
+        </div>
+    </div>

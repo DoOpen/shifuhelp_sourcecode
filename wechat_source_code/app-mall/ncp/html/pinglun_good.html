@@ -1,0 +1,58 @@
+<div id="pinglun_good" class="w100 h100 back_F7">
+    <div class="pulice_header">
+        <div class="titbox p_r">
+            <a href="javascript:history.go(-1)" class="history_1 p_a"></a>
+            <p class="tit h flex-center">商品评论</p>
+        </div>
+    </div>
+    <div class="starbox">
+        <div class="l starbox_l">
+            <span class="f-30" ng-bind="pingfen.zpf"></span><span class="f-16">分</span>
+        </div>
+        <div class="r starbox_r f-14">
+            <p class="rate_box">商品评分:
+                <span class="star_rate star-off" ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star1>0]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star1>1]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star1>2]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star1>3]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star1>4]"></span>
+            </p>
+            <p class="rate_box">物流评分:
+                <span class="star_rate star-off" ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star2>0]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star2>1]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star2>2]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star2>3]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star2>4]"></span>
+            </p>
+            <p class="rate_box">配送评分:
+                <span class="star_rate star-off" ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star3>0]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star3>1]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star3>2]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star3>3]"></span>
+                <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[pingfen.goodsDetail.goods_star3>4]"></span>
+            </p>
+
+        </div>
+    </div>
+    <div class="wrap_geheng back_F1F5F6 hei_2"></div>
+    <!--商品评论-->
+    <div class="good_pin_box" style="min-height: 3rem;border-bottom: 2px solid #f1f5f6" ng-repeat="item in pinglun.pinglunlist" >
+        <div class="flex-start">
+            <div class="pinglun_img flex-center">
+                <img ng-show="item.member_head_image" ng-src={{item.member_head_image}} alt="" class="pinglun_img">
+                <img ng-hide="item.member_head_image" ng-src={{item.member_head_image}} alt="" class="pinglun_img bgc_999">
+            </div>
+            <span  class="f-14 ml-10">{{item.member_nick_name}}</span>
+            <!-- <span  class="f-14 ml-10">{{item.memberBean.member_account | limitTo:3}}****{{item.memberBean.member_account | limitTo:-4}}</span> -->
+        </div>
+        <p  class="f-14 mt-10">{{item.assessment_desc}}</p>
+        <!-- <p  class="f-14 mt-10" ng-hide="item.memberBean.assessment_desc">系统默认好评！</p> -->
+        <div class="h60 flex-start mt-10" ng-show="item.assessment_img1" >
+            <img ng-src="{{item.assessment_img1}}" class="h w60 m_r20">
+            <img ng-src="{{item.assessment_img2}}" class="h w60 m_r20">
+            <img ng-src="{{item.assessment_img3}}" class="h w60 m_r20">
+        </div>
+        <p class="f-12 col_666 mt-10" >{{item.create_time}}</p>
+        <!--<div class="ck_total_pingjia f-14" ><a class="chakanpingjia">查看全部评价</a></div>-->
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body class="bgc_body">
+    <div class="bgc_666 col_fff h40 flex-center">预约详情</div>
+    <!--预约信息区-->
+    <div class=" bk  bgc_fff" >
+        <div class="p_l10 p_r10 p_t25">
+            <div class=" bk fl_l w m_b15">姓——名：   
+                <div class="dis_l ">这里是地址</div>
+            </div>
+            <div class=" bk fl_l w m_b15">联系电话：     
+                <div class="dis_l ">这里是地址</div>
+            </div>
+            <div class=" bk fl_l m_b15">服务地址：
+                <div class="dis_l ">这里是地址</div>
+            </div>        
+            <div class=" bk fl_l m_b15">服务内容：
+                <div class="dis_l ">这里是内容啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</div>
+            </div>
+            <!--预约图片-->
+            <div class="bk fl_l m_b15 ">
+                <div class=" bk fl_l m_b15">相关图片：</div>
+                <div class="bk  dis_l fl_l w200 h80">
+                    <div class="bk w80 h80 m_r10">图片位置</div>
+                </div>
+            </div>
+            <!--时间区-->
+            <div class=" bk fl_l m_b15 w">期望上门服务时间：
+                <div class="dis_l ">时间</div>
+            </div> 
+            <div class=" bk fl_l m_b10 w">预约时间：
+                <div class="dis_l ">这里是地址</div>
+            </div>
+            <div class=" bk fl_l m_b10 w">审核通过：
+                <div class="dis_l ">这里是地址</div>
+            </div> 
+            <div class=" bk fl_l m_b30 w">发布时间：
+                <div class="dis_l ">这里是地址</div>
+            </div> 
+        </div>
+        <div class=" flex-between h40 w p_l10 p_r10 bor_t">
+                <div class="bk h w_b70 flex-start">
+                    <div class="">等待师傅接单</div>
+                </div>
+                <div class=" h w_b30 flex-end">
+                    <div class="bor b_r30 h30 w80 flex-center">联系客服</div>
+                </div>
+        </div>
+    </div>
+    <div class="bk m_l10 m_t30">注：具体费用，以实际情况为主</div>
+    </body>
+</html>

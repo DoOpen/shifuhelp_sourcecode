@@ -1,0 +1,48 @@
+<div class="wrap flex flex-v back_ef" id="confirm_order">
+    <!--<div class="pulice_header">-->
+        <!--<div class="titbox p_r">-->
+            <!--<a href="javascript:history.go(-1)" class="history_1 p_a"></a>-->
+            <!--<p class="tit">支付订单</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="main back_ef flex-1 p_a w100 h100">
+        <div class="back_fff col_333 f-14 plr-15 mb-10">
+            <p class="pt-15">订单号:<span ng-bind="order_detail.order_no"></span></p>
+            <p class="mt-15 pb-15">支付金额: <span ng-bind="order_detail.order_total_price | currency:'¥'"></span></p>
+        </div>
+        <div class="col_333 f-14 back_fff">
+            <div class="mb-1 plr-15 line_h45 b1b_CD">支付方式</div>
+            <ul class="o_h">
+                <li class="list-Column pl-15 f-14" payswitch>
+                    <div class="b1b_CD hei_45">
+                        <i class="wx-icon l mt-12"></i>
+                        <span class="di_bl l ml-15">微信支付</span>
+                        <p class="noche r mr-15" type="1"></p>
+                    </div>
+                </li>
+                <li class="list-Column pl-15 f-14" payswitch>
+                    <div class="hei_45">
+                        <i class="zfb-icon l mt-12"></i>
+                        <span class="di_bl l ml-15">支付宝</span>
+                        <p class="noche r mr-15" type="2"></p>
+                    </div>
+                </li>
+            </ul>
+            <!--<div class="list-Column pl-15 f-14">-->
+                <!--<div class="hei_45">-->
+                    <!--<i class="hdfk-icon l mt-12"></i>-->
+                    <!--<span class="di_bl l ml-15">货到付款</span>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="t_c col_666 f-14 mt-15">支付有问题？拨打<a href="JavaScript:android.appJumpphone()" onclick="appJumpphone()" class="col_217 f-14" >400-8627158</a></div>
+    </div>
+    <div class="footer p_f l0 b0 w100">
+        <div class="total_Column">
+            <div class="heji_total back_fff f-14">
+                <p class="l col_EA2">合计:{{order_detail.order_total_price | currency:'¥'}}</p>
+                <a ng-click="pays()" class="Submit-order f-16 r di_bl col_fff t_c ahovfff">立即支付</a>
+            </div>
+        </div>
+    </div>
+</div>

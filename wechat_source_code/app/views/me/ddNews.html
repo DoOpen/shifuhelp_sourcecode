@@ -1,0 +1,27 @@
+
+    <div class="wrapper bgc_body ">
+        <div class="bgc_blue col_fff h40 flex-between p_r">
+            <div class=" l15 h flex-center m_l15">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">订单消息</div>
+            <div class="w10 m_r15"></div>
+        </div>
+        <div class="" ng-repeat="dd in listInfo">
+            <div class="w h55 flex-center">
+                <div class="bgc_fff col_333  h25 flex-center b_r3 p_l10 p_r10" ng-bind="dd.create_time">时间</div>
+            </div>
+            <div class="w bgc_fff p_l15 p_r5 p_t10 p_b10 m_b5">
+                <div class="f_s12 col_333 m_b10" ng-bind="dd.msg_desc"></div>
+                <div class=" h_b70 f_s12">
+                    <div class="h20 p_r15 flex-start f_s11 col_b1 b">
+                        <div class="flex-start w ">订单号: <span class="m_l5" ng-bind="dd.order_no">123456</span></div>
+                    </div>
+                    <div class="h20 p_r15 flex-start f_s11 col_b1 b" ng-show="dd.logistics_no">
+                        <div class="flex-start w ">快递单号: <span class="m_l5" ng-bind="dd.logistics_no">123456</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h40 flex-center col_666">没有消息啦</div>
+    </div>

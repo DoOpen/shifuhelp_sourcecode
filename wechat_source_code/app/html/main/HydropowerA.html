@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <div>
+        <div class=" h45 flex-center">
+            <div class="flex-between">
+                <div class="m_r20">—</div>
+                <div>水电安装</div>
+                <div class="m_l20">—</div>
+            </div>
+        </div>
+        <div class="w h10 bgc_body"></div>
+        <div class="flex-between p_a t55 b w ">
+            <div class="h w_b30 bgc_body">
+                <ul class="t_a_c">
+                    <li class="h50 flex-center m_b5 djlb" onclick="b1()" id="qinggong" >清工</li>
+                    <li class="h50 flex-center" onclick="b()" id="baogong">包工包料</li>
+                </ul>
+            </div>   
+            <div class="h w dis_b" id="a1">
+                <ul class="t_a_c">                  
+                    <a href="" class="dis_b h70 w_b50  fl_l "> <li class="h w p_t30">1</li></a>
+                    <a href="" class="dis_b h70 w_b50  fl_l "> <li class="h w p_t30">1</li></a>    <a href="" class="dis_b h70 w_b50  fl_l "> <li class="h w p_t30">1</li></a>
+                    <a href="" class="dis_b h70 w_b50  fl_l "> <li class="h w p_t30">1</li></a>
+                </ul>
+            </div>
+            <div class="h w dis_n" id="a2">
+                <ul class="t_a_c">                  
+                    <a href="" class="dis_b h70 w_b50  fl_l "> <li class="h w p_t30">5</li></a>
+                    <a href="" class="dis_b h70 w_b50  fl_l "> <li class="h w p_t30">5</li></a>    <a href="" class="dis_b h70 w_b50  fl_l "> <li class="h w p_t30">5</li></a>
+                    <a href="" class="dis_b h70 w_b50  fl_l "> <li class="h w p_t30">5</li></a>
+                </ul>
+            </div> 
+        </div>
+        </div>
+    <script>
+        function b(){
+            var c1=document.getElementById("a1");
+            c1.style.display="none";
+            var c2=document.getElementById("a2");
+            c2.style.display="block";
+            var c3=document.getElementById("baogong");
+            c3.style.background="#fff";
+            c3.style.color="#ecb303";
+            var c4=document.getElementById("qinggong");
+            c4.style.background="#f2f2f2";
+            c4.style.color="#333";
+        }
+        function b1(){
+            var c1=document.getElementById("a1");
+            c1.style.display="block";
+            var c2=document.getElementById("a2");
+            c2.style.display="none";
+            var c3=document.getElementById("qinggong");
+            c3.style.background="#fff";
+            c3.style.color="#ecb303";
+            var c4=document.getElementById("baogong");
+            c4.style.background="#f2f2f2";
+            c4.style.color="#333";
+        }
+    </script>   
+    </body>
+</html>

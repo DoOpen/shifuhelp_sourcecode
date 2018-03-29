@@ -1,0 +1,39 @@
+
+    <div class="wrapper bgc_body">
+        <!--头-->
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">意见反馈</div>
+        </div>
+        <!--意见和建议-->
+        <div class=" h30 w flex-start p_l15 col_b4">意见和建议</div>
+        <div class="">
+            <div class="w h130 " >
+             <textarea name="" id="" cols="30" rows="5" class="w h p_t10 p_l15 p_r10 p_b10 bor_n" placeholder="您输入您的反馈意见~" ng-model="content.text"></textarea>
+            </div>
+        </div>
+        <!--联系方式-->
+        <div class=" h30 w flex-start p_l15 col_b4">联系方式</div>
+        <div class="w h40 p_l15 bgc_fff" >
+             <input type="tel" maxlength="20" placeholder="留下您的联系方式" class="w h" ng-model="content.phone">
+        </div>
+        <div class="p_a b w flex-center h50 bgc_blue col_fff f_s20" ng-click="ofFun()">
+            提交
+        </div>
+        <!-- 等待遮罩 -->
+        <div ng-show="laoding==1">
+            <div class="p_f t w h bgc_t_b60" >
+                <!-- 等待 -->
+                <div class=" w130 h130 m0a p_r m_t210 bgc_0_t_b60 b_r15 p_t30" ng-show="laoding1==0">
+                    <div class="w50 h50 m0a"><img src="ncp/app1/icon/006.gif" alt="" ></div>
+                    <div class="col_b4 t_a_c m_t10">请稍后</div>
+                </div>
+                <!-- 成功 -->
+                <div class=" w130 h130 m0a p_r m_t210 " ng-show="laoding1==1">
+                    <img src="ncp/app1/icon/tijiao@2x.png" alt="" >
+                </div>
+            </div>
+        </div>
+    </div>

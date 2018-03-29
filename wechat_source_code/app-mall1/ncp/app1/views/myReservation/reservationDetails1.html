@@ -1,0 +1,234 @@
+
+<div class="wrapper bgc_body">
+    <div class="bgc_blue col_fff h40 flex-center p_r">
+        <a href="#/pendingAudit?pas1={{states}}" class="dis_b h">
+            <div class="p_a l15 h flex-center">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" >
+            </div>
+        </a>
+        <div class="f_s16">预约详情</div>
+    </div>
+    <!--预约信息区-->
+    <div class="bgc_fff f_s14 p_r" >
+        <div class="p_l5 p_r40 p_t15 ">
+            <!--盖章区-->
+            <div class="w80 h80 p_a t10 r10" ng-class="{'stamp1':states==1,'stamp2':states==2,'stamp3':states==3}"></div>
+            <!--订单信息区-->
+            <div class="w  fl_l m_b12 flex-start">
+                <div class="w65  h flex-between">
+                    <div >姓</div>
+                    <div >名:</div>
+                </div>
+                <div class="m_l15" ng-bind="infoHTML.order_name"></div>
+            </div>
+            <div class="w  fl_l m_b12 flex-start">
+                <div class=" min_w65 h " >联系电话:</div>
+                <div class="m_l15" ng-bind="infoHTML.order_phone"></div>
+            </div>
+            <div class="w  fl_l m_b12 flex-start">
+                <div class=" min_w65 h ">服务地址:</div>
+                <div class="dis_l m_l15">
+                    <span ng-bind="infoHTML.order_address_province" class="m_r10"></span>
+                    <span ng-bind="infoHTML.order_address_city" class="m_r10"></span>
+                    <span ng-bind="infoHTML.order_address_district" class="m_r10"></span>
+                    <span ng-bind="infoHTML.order_address_detail" class="m_r10"></span>
+                </div>
+            </div>        
+            <div class="w  fl_l m_b12 flex-start">
+                <div class=" min_w65 h ">服务内容:</div>
+                    <div class="p_l15">
+                        <span ng-bind="infoHTML.order_subscribe_content"></span>
+                        <span class="m_l15 ">备注-
+                            <span class="" ng-bind="infoHTML.order_subscribe_note"></span>
+                        </span>
+                    </div>
+                
+            </div>
+            <!--预约图片-->
+            <div class=" w fl_l m_b12 ">
+                <div class="  fl_l m_b12 t_a_c">相关图片:</div>
+                <div class=" h60 flex-start">
+                    <div class=" w60 h60 m_l15" ng-show="infoHTML.order_subscribe_img1!=''">
+                        <img ng-src="{{infoHTML.order_subscribe_img1}}" alt="">
+                    </div>
+                    <div class=" w60 h60 m_l20" ng-show="infoHTML.order_subscribe_img2!=''">
+                        <img ng-src="{{infoHTML.order_subscribe_img2}}" alt="">
+                    </div>
+                    <div class=" w60 h60 m_l20" ng-show="infoHTML.order_subscribe_img3!=''">
+                        <img ng-src="{{infoHTML.order_subscribe_img3}}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="w  fl_l m_b12 w m_l5">期望上门服务时间:
+                <div class="dis_l" ng-bind="infoHTML.order_hope_service_time"></div>
+            </div> 
+            <div class="w  fl_l m_b12 w m_l5">预约时间:
+                <div class="dis_l" ng-bind="infoHTML.order_create_time"></div>
+            </div>
+            <div ng-hide="states==1">
+                <div class="fl_l m_b10 w m_l5">审核通过:
+                    <div class="dis_l " ng-bind="infoHTML.order_audit_pass_time"></div>
+                </div> 
+                <div class="fl_l m_b10 w m_l5">发布时间:
+                    <div class="dis_l " ng-bind="infoHTML.order_audit_pass_time"></div>
+                </div> 
+            </div> 
+            <div class="fl_l m_b10 w m_l5" 
+                ng-show="states==4||states==3">师傅接单时间:
+                <div class="dis_l" ng-bind="infoHTML.order_accept_time"></div>
+            </div> 
+                
+        </div> 
+           
+        <div class=" flex-between h40 w p_l10 p_r10 bor_t" ng-show="states==1">
+                <div class=" h w_b70 flex-start" >
+                    <div class="">等待平台审核</div>
+                </div>
+                <div class=" h w_b30 flex-end">
+                    <div class="bor_blue b_r30 h25 w75 flex-center f_s12 col_blue"><a href="tel:4006061314" class="col_blue">联系客服</a></div>
+                </div>
+        </div>
+        <div class=" flex-between h40 w p_l10 p_r10 bor_t" ng-show="states==2">
+                <div class=" h w_b70 flex-start">
+                    <div class="">等待师傅接单</div>
+                </div>
+                <div class=" h w_b30 flex-end">
+                    <div class="bor_blue b_r30 h25 w75 flex-center f_s12 col_blue"><a href="tel:4006061314" class="col_blue" class="col_blue">联系客服</a></div>
+                </div>
+        </div>
+        <div class=" flex-between h80 w p_l10 p_r10 bor_t bor_b m_t10 f_s12" 
+            ng-show="states==3||states==4">
+                <div class="h w_b70 flex-start">
+                    <div class="h60 w60  m_r10" >
+                        <img ng-src="{{worker.member_head_image}}" alt="" class="b_r_b50">
+                    </div>
+                    <div class="h60 w_b70 flex-column">
+                        <div class="w h_b50 l_h30 flex-start">
+                            <div class="w_b30 h f_s14 flex-start" ng-bind="worker.member_real_name"></div>
+                            <div class="w_b70 h flex-start ">
+                                <div class="" ng-class="{true:'pjxxs',false:'npjxxs'}[goodRate>0]"></div>
+                                <div class="" ng-class="{true:'pjxxs',false:'npjxxs'}[goodRate>1]"></div>
+                                <div class="" ng-class="{true:'pjxxs',false:'npjxxs'}[goodRate>2]"></div>
+                                <div class="" ng-class="{true:'pjxxs',false:'npjxxs'}[goodRate>3]"></div>
+                                <div class="" ng-class="{'pjxxs':goodRate==5,'bpjxxs':goodRate==4.5,'npjxxs':goodRate<4.5}"></div>
+                            </div>                            
+                        </div>
+                        <div class="h_b50 w l_h30 l_s1" >好评率<span ng-bind="worker.member_good_rate"></span></div>
+                    </div>
+                </div>
+                <div class=" h w_b30 flex-end" ng-show="states==3">
+                    <div class="bor_blue b_r30 h25 w80 flex-center col_blue"><a href="tel:4006061314" class="col_blue">联系客服</a></div>
+                </div>
+                <div class=" h w_b30 flex-end" ng-show="infoHTML.order_state==8">
+                    <a href=""><div class="bor_blue b_r30 h25 w80 flex-center col_blue" ng-click="eFun(1)">立即评价</div></a>
+                </div>
+                <div class=" h w_b30 flex-end" ng-show="infoHTML.order_state==9">
+                    <a href=""><div class="bor_666 b_r30 h25 w80 flex-center col_666" >已评价</div></a>
+                </div>    
+    </div>
+    </div>
+    <div class=" m_l10 m_t15 col_blue f_s12" ng-show="states==1||states==2">注:具体费用，以实际情况为主</div>
+    <div class=" m_l10 m_t15 col_blue f_s12" ng-show="infoHTML.order_state==7">订单已经完工，等我们确认后就可以评价啦！</div>
+    <!--确认完成按钮-->
+    <div class="w h45 bgc_blue col_fff flex-center f_s20 p_a b" ng-show="infoHTML.order_state==12" ng-click="memberEvaluateFun(infoHTML.order_id)">确认完成</div>
+    <!--评价遮罩-->
+    <div class=" w h p_r" ng-show="e==1">
+        <div class="p_f t w h  bgc_t_b60 " ng-click="eFun(0);evaluateFun()"></div>
+        <div class="p_f b bgc_fff w p_r">
+            <div class="w h100 m_t20 p_l40">
+                <div class="flex-start">
+                    <div class="w21 h21 m_r10">
+                        <img src="app/icon/My Bookings_icon_manner.png.png" alt="">
+                    </div>
+                    <!--<div class="w21 h20 m_r20 npjxx"></div>-->
+                    <div class="h21 m_r10 flex-center">服务态度:</div>
+                    <div class="npjxx" ng-click="evaluateFun('attitudeL',1)" ng-class="
+                    {'pjxx':evaluate.attitudeL>0.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('attitudeL',2)" ng-class="{'pjxx':evaluate.attitudeL>1.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('attitudeL',3)" ng-class="{'pjxx':evaluate.attitudeL>2.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('attitudeL',4)" ng-class="{'pjxx':evaluate.attitudeL>3.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('attitudeL',5)" ng-class="{'pjxx':evaluate.attitudeL>4.5}"></div>
+                </div>
+                <div class="flex-start m_t15">
+                    <div class="w21 h21 m_r10">
+                        <img src="app/icon/My Bookings_icon_aging.png.png" alt="">
+                    </div>
+                    <div class="h21 m_r10 flex-center">服务时效:</div>
+                    <div class="npjxx" ng-click="evaluateFun('aging',1)" ng-class="
+                    {'pjxx':evaluate.aging>0.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('aging',2)" ng-class="{'pjxx':evaluate.aging>1.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('aging',3)" ng-class="{'pjxx':evaluate.aging>2.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('aging',4)" ng-class="{'pjxx':evaluate.aging>3.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('aging',5)" ng-class="{'pjxx':evaluate.aging>4.5}"></div>
+                </div>
+                <div class="flex-start m_t15">
+                    <div class="w21 h21 m_r10">
+                        <img src="app/icon/My Bookings_icon_mass.png.png" alt="">
+                    </div>
+                    <div class="h21 m_r10 flex-center">服务质量:</div>
+                    <div class="npjxx" ng-click="evaluateFun('quality',1)" ng-class="
+                    {'pjxx':evaluate.quality>0.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('quality',2)" ng-class="{'pjxx':evaluate.quality>1.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('quality',3)" ng-class="{'pjxx':evaluate.quality>2.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('quality',4)" ng-class="{'pjxx':evaluate.quality>3.5}"></div>
+                    <div class="npjxx" ng-click="evaluateFun('quality',5)" ng-class="{'pjxx':evaluate.quality>4.5}"></div>
+                </div>
+            </div>
+            <div class=" w_b80 h90 m0a m_t20" >
+                 <textarea name="" id="" cols="" rows="" class="w h p_t5 p_l10 p_r10" placeholder="其他想要说的~" ng-model="evaluate.text"></textarea>
+            </div>
+            <div class="w h45 m_t20 f_s20 bgc_blue col_fff flex-center" ng-click="memberCompleteFun()">发布</div>
+        </div>
+    </div>
+    <!--评价完成-->
+    <div class="bgc_fff m_t10 f_s14 p_t10 h110 w m_t10" ng-show="infoHTML.order_state==9"> 
+        <!-- <div class=" flex-start">
+            <div class="w_b25 bk flex-start p_l15">服务评语：</div>
+            <div class="w_b75 h40 bk p_r10">这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语</div>
+        </div> -->
+        <div class="w h100 p_l30">
+            <div class="flex-start">
+                <div class="w21 h21 m_r10">
+                    <img src="app/icon/My Bookings_icon_manner.png.png" alt="">
+                </div>
+                <div class="h21 m_r10 flex-center">服务态度:</div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_sercice_quality>0.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_sercice_quality>1.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_sercice_quality>2.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_sercice_quality>3.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_sercice_quality>4.5}"></div>
+            </div>
+            <div class="flex-start m_t10">
+                <div class="w21 h21 m_r10">
+                    <img src="app/icon/My Bookings_icon_aging.png.png" alt="">
+                </div>
+                <div class="h21 m_r10 flex-center">服务态度:</div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_aging>0.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_aging>1.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_aging>2.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_aging>3.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_aging>4.5}"></div>
+            </div>
+            <div class="flex-start m_t10">
+                <div class="w21 h21 m_r10">
+                    <img src="app/icon/My Bookings_icon_mass.png.png" alt="">
+                </div>
+                <div class="h21 m_r10 flex-center">服务态度:</div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_attitude>0.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_attitude>1.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_attitude>2.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_attitude>3.5}"></div>
+                <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_attitude>4.5}"></div>
+            </div>
+           </div>
+    </div>
+    <!-- 等待遮罩 -->
+    <div ng-show="laoding==1">
+        <div class="p_a t w h bgc_t_b60" >
+            <div class=" w130 h130 m0a p_r m_t210 bgc_0_t_b60 b_r15 p_t30">
+                <div class="w50 h50 m0a"><img src="app/icon/006.gif" alt="" ></div>
+                <div class="col_b4 t_a_c m_t10">请稍后</div>
+            </div>
+        </div>
+    </div>
+</div>

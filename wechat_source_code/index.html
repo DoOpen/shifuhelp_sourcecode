@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<!--  HTML -->
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no"/>
+  	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<title></title>
+	<!--初始化样式表-->
+	<link rel="stylesheet" type="text/css" href="app/css/reset1.css">
+	<!--公共样式表-->
+	<link rel="stylesheet" type="text/css" href="app/css/style1.css">
+	<!--主样式表-->
+	<link rel="stylesheet" type="text/css" href="app/css/main1.css">
+	<!--选择地址-->
+	<link rel="stylesheet" type="text/css" href="app/css/LArea.css">
+	<!--rem单位js-->
+	<script type="text/javascript">
+		(function (doc, win) {
+		    var docEl = doc.documentElement,
+		        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+		        recalc = function () {
+		            var clientWidth = docEl.clientWidth;
+		            if (!clientWidth) return;
+		            if(clientWidth>=640){
+		                docEl.style.fontSize = '100px';
+		            }else{
+		                docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+		        }
+		    };
+		    if(!doc.addEventListener) return;
+		    win.addEventListener(resizeEvt, recalc, false);
+		    doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+	</script>
+	<!--jquery-->
+	<script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.js"></script>
+	<script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script src="app/js/jquery.flexslider-min.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+	<div ng-view class="h"></div>
+	
+	<!--小提示-->
+	<div class="Prompt-back Prompt1" hidden="">
+	    <span class="tips"></span>
+	</div>
+	<!--带确认小提示-->
+	<div class="Prompt-back Prompt2" hidden="">
+	    <ul class="tips2">
+	    </ul>
+	</div>
+	<!--数据加载中-->
+	<div id="loading" class="dis_n">
+	    <div class="mask_transparent"></div>
+	    <div class="toast">
+	        <div class="loading">
+	            <i class=""></i>
+	        </div>
+	    </div>
+	</div>
+	<div id="loading1" class="dis_n">
+	    <div class="mask_transparent"></div>
+	</div>
+    <!-- <div id="loading" class="dis_n">
+        <div class="mk"></div>
+        <div class="p_f t l w h flex-center">
+            <div class=" h100 w80 z102 b_r3 col_666 loading">
+            </div>
+        </div>
+    </div> -->
+	<!--angular-->
+	<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+	<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular-cookies.min.js"></script>
+	<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular-route.min.js"></script>
+	<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular-touch.min.js"></script>
+	<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular-animate.min.js"></script>
+	<!--微信权限-->
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<!--导入/引入自己写的-->
+	<script src="app/js/router.js"></script>
+	<script src="app/js/main.js"></script>
+	<script src="app/js/public.js"></script>
+		<!--选择地址js-->
+	<script src="app/js/LArea.js"></script> 
+	<script src="app/js/LAreaData1.js"></script> 
+	<script src="app/js/LAreaData2.js"></script>
+		<!--选择日期时间js-->
+	<script src="app/js/datePicker.js"></script>
+		<!--ping ++  js-->
+	<script src="app/js/pingpp.js"></script> 
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+    <div class="wrapper bgc_body col_body">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">我的优惠券</div>
+        </div>
+        <!--使用情况-->
+        <div class="w h40 bgc_fff flex-start col_b1">
+            <div class="w_b33 bor_r h ">
+                <div class="h w_b40 flex-center m0a" ng-click="couponFun('not_used')" ng-class="{'bor_b_y':type=='not_used'}">未使用</div>
+            </div>
+            <div class="w_b33 bor_r h ">
+                <div class="h w_b40  flex-center m0a" ng-click="couponFun('already_used')" ng-class="{'bor_b_y':type=='already_used'}">已使用</div>
+            </div>
+            <div class="w_b33 h ">
+                <div class="h w_b40  flex-center m0a" ng-click="couponFun('expired')" ng-class="{'bor_b_y':type=='expired'}">已过期</div>
+            </div>           
+        </div>
+        <!--优惠券详情-->
+        <div class=" w_b90 h150 m0a m_t10 bgc_fff p_r" ng-repeat="dt in listInfo" ng-class="{'col_a9':type=='already_used'||type=='expired'}">
+            <div class="bgc_blue h5 w b_r_t15" 
+            ng-class="{'bgc_a9':type=='already_used'||type=='expired'}"></div>
+            <div class="p_l10 p_t15 p_r25 p_b15">
+                <div class="f_s18 w" ng-bind="dt.coupon_name"></div>
+                <div class="flex-end h25">
+                    <div class="p_r h w15"><span class="f_s10 p_a b5 r">￥</span></div>
+                    <span class="f_s22 f_w_6" ng-bind="dt.coupon_price"></span>
+                </div>
+                <div class="f_s10 flex-end col_b1" ng-bind="dt.coupon_type"></div>
+            </div>
+            <div class="bor_tx p_l10 p_t5">
+                <div class="f_s12">满<span ng-bind="dt.coupon_full_price"></span>减<span ng-bind="dt.coupon_price"></span></div>
+                <div class="f_s12 m_t5 flex-start">有效期:
+                    <span class="m_l5" ng-bind="dt.start_time"></span>
+                    <span class="m_l5 m_r5">-</span>
+                    <span ng-bind="dt.end_time"></span>
+
+                </div>
+            </div>
+            <div class="p_a t w h flex-center" ng-show="type=='already_used'">
+                <img src="ncp/app1/icon/discount coupon_icon_use_disabled@2x.png.png" alt="" class="w75 h75">
+            </div>
+            <div class="p_a t w h flex-center" ng-show="type=='expired'">
+                <img src="ncp/app1/icon/discount coupon_icon_overdue_disabled@2x.png.png" alt="" class="w75 h75">
+            </div>
+        </div>
+    </div>

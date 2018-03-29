@@ -1,0 +1,13 @@
+ <div class="w h bgc_body ">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">系统消息</div>
+        </div>
+        <div class=" bgc_fff m0a m_t5 m_r10 m_l10 p_t5 p_l10 p_b10 p_r5 " ng-repeat="xt in listInfo">
+            <div class="m_t5" ng-bind="xt.msg_desc">123</div>
+            <div class="m_t5 f_s10 col_666" ng-bind="xt.create_time">123</div>
+        </div>
+        <div class="h40 flex-center col_666">没有消息啦</div>
+    </div>

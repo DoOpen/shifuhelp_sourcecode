@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body class="bgc_body p_r ">
+    <div class="bgc_blue col_fff h45 flex-center">预约详情</div>
+    <!--预约信息区-->
+    <div class="   bgc_fff f_s14 p_r" >
+        <div class="p_l5 p_r40 p_t15 ">
+            <!--盖章区-->
+            <div class="w75 h75 p_a t15 r15 stamp1"></div>
+            <!--订单信息区-->
+            <div class="w  fl_l m_b15 flex-start">
+                <div class="w60  h flex-between">
+                    <div >姓</div>
+                    <div >名:</div>
+                </div>
+                <div class="m_l15">张三</div>
+            </div>
+            <div class="w  fl_l m_b15 flex-start">
+                <div class=" min_w65 h ">联系电话:</div>
+                <div class="m_l15">18212234564</div>
+            </div>
+            <div class="w  fl_l m_b15 flex-start">
+                <div class=" min_w65 h ">服务地址:</div>
+                <div class="dis_l" ">
+                        <span ng-bind="dt.order_address_province" class="m_r10">s</span>
+                        <span ng-bind="dt.order_address_city" class="m_r10">as</span>
+                        <span ng-bind="dt.order_address_district" class="m_r10">f</span>
+                        <span ng-bind="dt.order_address_detail" class="m_r10">d</span>
+                    </div>
+            </div>        
+            <div class="w  fl_l m_b15 flex-start">
+                <div class=" min_w65 h ">服务内容:</div>
+                <div class="m_l15">这是内容啦啦啦啦这是内容啦啦啦啦这是内容啦啦啦啦这是内容啦啦啦啦这是内容啦啦啦啦</div>
+            </div>
+            <!--预约图片-->
+            <div class=" w fl_l m_b15 ">
+                <div class="  fl_l m_b15 t_a_c">相关图片:</div>
+                <div class=" h60 flex-start">
+                    <div class=" w60 h60 m_l15">图片位置</div>
+                    <div class=" w60 h60 m_l20">图片位置</div>
+                    <div class=" w60 h60 m_l20">图片位置</div>
+                </div>
+            </div>
+            <div class="w  fl_l m_b15 w m_l5">期望上门服务时间:
+                <div class="dis_l ">时间</div>
+            </div> 
+            <div class="w  fl_l m_b15 w m_l5">预约时间:
+                <div class="dis_l ">这里是地址</div>
+            </div> 
+        </div>
+        
+        <div class=" flex-between h40 w p_l10 p_r10 bor_t">
+                <div class=" h w_b70 flex-start">
+                    <div class="">等待平台审核</div>
+                </div>
+                <div class=" h w_b30 flex-end">
+                    <div class="bor_blue b_r30 h25 w75 flex-center f_s12 col_blue">联系客服</div>
+                </div>
+        </div>
+    </div>
+    
+    <div class=" m_l10 m_t15 col_blue">注:具体费用，以实际情况为主</div>
+    <div class="p_f t w h bgc_t_b60 z100">
+        <div class="p_a b bgc_fff w h_b45">
+            <div class="w h100 m_t20 p_l40">
+                <div class="flex-start">
+                    <div class="w21 h21 m_r10">
+                        <img src="../../icon/My Bookings_icon_manner.png.png" alt="">
+                    </div>
+                    <!--<div class="w21 h20 m_r20 npjxx"></div>-->
+                    <div class="h21 m_r10 flex-center">服务态度:</div>
+                    <div class="npjxx"></div>
+                    <div class="npjxx"></div>
+                    <div class="npjxx"></div>
+                    <div class="npjxx"></div>
+                    <div class="npjxx"></div>
+                </div>
+                <div class="flex-start m_t15">
+                    <div class="w21 h21 m_r10">
+                        <img src="../../icon/My Bookings_icon_aging.png.png" alt="">
+                    </div>
+                    <div class="h21 m_r10 flex-center">服务时效:</div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                </div>
+                <div class="flex-start m_t15">
+                    <div class="w21 h21 m_r10">
+                        <img src="../../icon/My Bookings_icon_mass.png.png" alt="">
+                    </div>
+                    <div class="h21 m_r10 flex-center">服务质量:</div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                    <div class="w21 h20 m_r20 npjxx"></div>
+                </div>
+            </div>
+            <div class=" w_b80 h90 m0a m_t20" >
+                 <textarea name="" id="" cols="" rows="" class="w h p_t5 p_l10 p_r10" placeholder="其他想要说的~"></textarea>
+            </div>
+            <div class="w h45 p_a b f_s20 bgc_blue col_fff flex-center">发布</div>
+        </div>
+    </div>
+    </body>
+    <script>
+
+        var dj=document.getElementById("dj1");
+        dj.addEventListener("click",function(){
+            dj.className="pjxx";
+        });
+    </script>
+    <!-- for(var i=0;i<spans.length;i++){
+    　　　　spans[i].onclick=function(){
+    　　　　　　var id=parseInt(this.id);
+    　　　　　　flag=id;
+    　　　　　　for(var i=0;i<=id;i++){
+    　　　　　　　　spans[i].innerHTML="★";
+    　　　　　　}
+    　　　　　　Expand();//这里是鼠标点击星星的扩展，例如出现分值之类的，总之要扩展什么随你的大小便啦~
+    　　　　};
+    　　} -->
+</html>

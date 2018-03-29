@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <div class="wrapper bgc_body">
+        <!--头-->
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 w10 t10" ng-click="back()">
+                <img src="app/icon/back@2x.png" alt="">
+            </div>
+            <div class="f_s16">申请退款</div>
+        </div>
+        <div class="h40 flex-start p_l15 f_w_6">选择退货数量:</div>
+        <div class="h40 flex-start p_l15 f_w_6">选择退款数量:</div>
+        <!--商品信息-->
+        <div class="w h105  p_l15 p_r15 bgc_fff ">
+            <div class="w75 h75 fl_l m_t10"><img ng-src="{{dt.goods_img}}" alt=""></div>
+            <div class="m_l15 h fl_l w255 p_r">
+                <div class="w h35 m_t10" ng-bind="dt.goods_name"></div>
+                <div class="m_l5 f_s12 col_b1  p_a b40">规格:<span ng-bind="dt.specification_name"></span></div>
+                <div class="col_red f_s14  p_a b15">￥<span ng-bind="dt.goods_price"></span></div>
+                <div class="p_a r b15 t_a_c flex-start">
+                    <div class="w20 h20 bor_blue1 flex-center f_s20">-</div>
+                    <div class="bor_blue1 w40 h20 flex-center"><input type="text" value="1" class="w38 h18  p_l15 f_s12"></div>
+                    <div class="w20 h20 bor_blue1 f_s20 flex-center">+</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="h40 flex-start p_l15 f_w_6">退款原因（必填）</div>
+            <div class="h60 bgc_fff flex-between p_l15 p_r15 ">
+                <input type="text" placeholder="退款原因" disabled ="disabled" class="bgc_fff">
+                <div class="p_a r15 w10 h15 flex-center"><img src="../../icon/icon_arrow_right.png" alt=""></div>
+            </div>
+        </div>
+        <div>
+            <div class="h40 flex-start p_l15 f_w_6">退款金额（必填）</div>
+            <div class="h60 bgc_fff flex-between p_l15 p_r15 ">
+                <input type="text" placeholder="请填写退款金额，不能大于付款总额" class="w" >
+            </div>
+        </div>
+        <div>
+            <div class="h40 flex-start p_l15 f_w_6">退款金额（必填）</div>
+            <div class=" bgc_fff flex-between p_l15 p_r15 p_t20">
+                <textarea name="" id="" cols="20" rows="4" class="bor_s_n w" placeholder="请说明退款原因"></textarea>
+            </div>
+        </div>
+        <!--上传图片-->
+        <div class="h40 flex-start p_l15 f_w_6">上传现场图片（可不上传）</div>
+        <div class=" h100  bgc_fff flex-center">
+            <div class="h70 w  ">
+                <form>
+                        <div id="ftFileImgBox">
+                            <!-- <div class="img h70 w70 m_l10  p_r p_t5 bgc_d9 dis_l fl_l flex-center b_r5">
+                                <div class="d_red_x b_r_b50"></div>
+                                <div class="w62 h62  m0a">
+                                    <img src="app/images/reserve information_pho_scene@2x.png" alt="">
+                                </div>
+                            </div> -->
+                        </div>
+                    
+                        <div class="h w70 m_l20  p_r p_t5  dis_l fl_l bor_body" >
+                            <input multiple class="p_a w h t l o_0" type="file"  name="img[]" onchange="angular.element(this).scope().ftfilefn(this)">
+                            <div class="m0a w25 h25 m_t10">
+                                <img src="app/icon/reserve_information_pic_cemera@2x.png" alt="">
+                            </div>
+                            <div class="f_s12 m_t5 m_b10 col_b4 t_a_c ">最多三张</div>
+                        </div> 
+                </form>            
+            </div>
+        </div>
+        <div class=" w flex-center  h50 bgc_blue col_fff f_s20">
+            提交申请
+        </div>
+        <!--退货退款原因遮罩-->
+        <div class="p_f t w h p_r f_s16 dis_n" >
+        
+        <div class="p_a t w h bgc_t_b60 "  ng-click="addHide(0);ofFun(0);addsNull()"></div>
+        <div class="p_a b w  bgc_fff z99 p_r">
+            <div class="bor_b w h60 p_r15 p_l15 flex-center f_s18">请选择退款原因</div>
+            <div class="p_a t15 r15 w25 h25"><img src="../../icon/reserve_information_turnoff_highlight@2x.png" alt=""></div>
+            <div class="bor_b w h60   flex-between p_r15 p_l15">
+                <div class=" h flex-start">不想要了</div>
+                <div class="w20 h20 flex-center ndz" ng-click="nFun(1)" ng-class="{'dz':n==1}"></div>
+            </div>
+            <div class="bor_b w h60   flex-between p_r15 p_l15">
+                <div class=" h flex-start">拍错了</div>
+                <div class="w20 h20 flex-center ndz" ng-click="nFun(2)" ng-class="{'dz':n==2}"></div>
+            </div>
+            <div class="bor_b w h60   flex-between p_r15 p_l15">
+                <div class=" h flex-start">价格贵了</div>
+                <div class="w20 h20 flex-center ndz" ng-click="nFun(3)" ng-class="{'dz':n==3}"></div>
+            </div>
+            <div class="bor_b w h60   flex-between p_r15 p_l15">
+                <div class=" h flex-start">其他原因</div>
+                <div class="w20 h20 flex-center ndz" ng-click="nFun(4)" ng-class="{'dz':n==4}"></div>
+            </div>
+            
+        </div>
+        
+        </div>
+    
+    </div>
+    </body>
+</html>

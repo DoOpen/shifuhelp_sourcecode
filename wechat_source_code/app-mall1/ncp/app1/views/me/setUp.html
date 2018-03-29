@@ -1,0 +1,52 @@
+
+    <div class="wrapper">
+    <div class="w h bgc_body col_body">
+        <div class="bgc_blue col_fff h40  p_r flex-center">
+            <div class="p_a l15 h flex-center">
+                <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">设置</div>
+        </div>
+    <!--绑定手机信息-->
+        <div class=" h45 flex-start bgc_fff bor_b m_t5">
+            <div class=" h w_b30 flex-start m_l15 ">绑定手机</div>
+            <a href="#/bindMobile" class="h w_b70 " ng-show="userInfo1.member_phone==''">
+                <div class="h w flex-end p_r15">
+                    <div class="f_s12 col_b4">未绑定手机号</div>
+                    <div class="w10 h15 flex-center m_l5">
+                        <img src="ncp/app1/icon/icon_arrow_right.png" alt="">
+                    </div>
+                </div>
+            </a>
+            <a href="#/updataMobile" class="h w_b70" ng-hide="userInfo1.member_phone==''">
+                <div class="h w flex-end p_r15">
+                    <div class="f_s12 col_b4">
+                        <span class="m_r5">已绑定:</span>
+                        <span>{{phone}}</span>
+                    </div>
+                    <div class="w10 h15 flex-center m_l5">
+                        <img src="ncp/app1/icon/icon_arrow_right.png" alt="">
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!--个人资料-->
+        <div class=" h45 flex-between bgc_fff bor_b p_r15">
+            <div class=" h w_b30 flex-start m_l15 ">个人资料</div>
+            <a href="#/userData" class="h w_b70 flex-end">               
+                <div class="w10 h15 flex-center m_l5">
+                    <img src="ncp/app1/icon/icon_arrow_right.png" alt="">
+                </div>
+            </a>
+        </div>
+        <!--关于我们-->
+        <div class=" h45 flex-between bgc_fff bor_b p_r15">
+            <div class=" h w_b30 flex-start m_l15 ">关于我们</div>
+            <a href="/html/others/about_our.html" class="h w_b70 flex-end">               
+                <div class="w10 h15 flex-center m_l5">
+                    <img src="ncp/app1/icon/icon_arrow_right.png" alt="">
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>

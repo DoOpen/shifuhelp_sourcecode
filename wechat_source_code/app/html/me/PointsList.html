@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <div class="w h bgc_body col_body">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 w10"><img src="../../icon/back@2x.png" alt=""></div>
+            <div class="f_s16">我的积分</div>
+        </div>
+        <!--积分总额-->
+        <div class="h140 w p_r ">
+            <img src="../../icon/my integral_banner@2x.png.png" alt="">
+            <div class="p_a h60 w b40">
+                <div class="col_fff w f_s30 t_a_c">0</div>
+                <div class="col_fff w f_s16 t_a_c">积分</div>
+            </div>
+        </div>
+        <!--积分使用情况-->
+        <div class="w h40 bgc_fff flex-start">
+            <div class="w_b33 bor_r h flex-center bor_b_y">获取记录</div>
+            <div class="w_b33 bor_r h flex-center col_b1">使用记录</div>
+            <div class="w_b33 flex-center h col_b1">使用规则</div>
+        </div>
+        <!--积分详情-->
+        <div class="w_b90 bgc_fff m0a m_t7 p_15_10 p_r" ng-repeat="dt in addList">
+            <div class="f_s12 w" ng-bind="dt.integral_type_show">前端</div>
+            <div class="f_s12 w m_t5">sd </div>
+            <div class="f_s10 w_b50 h flex-end p_a r t p_r10">
+                <div>+<span ng-bind="dt.integral_value"></span>积分</div>
+            </div>
+            <div class="f_s10 h25    p_r ">
+                <div class="p_a b" ng-bind="dt.create_time">时间</div> 
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

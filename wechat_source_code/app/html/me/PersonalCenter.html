@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+            
+            function signs(){
+                var s=document.getElementById("sign");
+                s.value="已签到";
+                
+            }
+   
+
+        </script>
+
+    </head>
+    <body>
+ <div class="wrapper bgc_fff p_r">
+    <div class="mine_bg">
+        <div class="w h40 flex-between">
+            <a href="#/setUp" class="dis_b w50 h40">
+                <div class="h20 w21 m0a m_t10">
+                    <img src="../../icon/mine_icon_set@2x.png" alt="">
+                </div>
+            </a>
+            <a href="#/newsList" class="dis_b w50 h40">
+                <div class=" h20 w20 m0a m_t10">
+                    <img src="../../icon/mine_icon_Message@2x.png" alt="">
+                </div>
+            </a>
+        </div>
+        <!--用户资料区-->
+        <div class=" m0a  w m_t30 ">
+            <div class="b_r_b50 w60 h60 m0a bgc_fff flex-center">
+              <img ng-src="{{userInfo.member_head_image}}" alt="" class="b_r_b50 w50 h50"> 
+            </div>
+            <div class="w  h20 t_a_c f_s18 m_t5" ng-bind="userInfo.member_nick_name">415454646</div>
+            <div class=" h20 w t_a_c f_s11 m_t5" 
+            ng-bind="userInfo.member_phone?userInfo.member_phone:'手机号未绑定'">45645</div>
+            <div class="flex-center">
+                <div class="sign flex-center" ng-click="signFun()" ng-show="sign=='0'">签到</div>
+                <!-- <div class="nosign flex-center" ng-show="sign=='1'">已签到</div> -->
+            </div>
+        </div>
+        <!--订单信息区-->
+        <div class=" w h70 m_t10 flex-start bor_t">
+        <a href="#/order?id=1" class="dis_b  w_b20">
+            <div class="" >
+                <div class=" h20 w20 m0a m_t5 m_b5"><img src="../../icon/mine_icon_Send out@2x .png.png" alt=""></div>
+                <div class="f_s14 t_a_c ">待付款</div>
+            </div>
+        </a>
+        <div class="h25"></div>
+        <a href="#/order?id=2" class="dis_b  w_b20">
+            <div class="" >
+                <div class=" h20 w20 m0a m_t5 m_b5"><img src="../../icon/mine_icon_ obligation@2x.png.png" alt=""></div>
+                <div class="f_s14 t_a_c ">待发货</div>
+            </div>
+        </a>
+        <div class="h25"></div>
+        <a href="#/order?id=3" class="dis_b  w_b20">
+            <div class="" >
+                <div class=" h20 w20 m0a m_t5 m_b5"><img src="../../icon/mine_icon_ receiving@2x .png.png" alt=""></div>
+                <div class="f_s14 t_a_c ">待收货</div>
+            </div>
+        </a>
+        <div class="h25"></div>
+        <a href="#/order?id=4" class="dis_b  w_b20">
+            <div class="" >
+                <div class=" h20 w20 m0a m_t5 m_b5"><img src="../../icon/mine_icon_evaluation@2x .png.png" alt=""></div>
+                <div class="f_s14 t_a_c ">待评价</div>
+            </div>
+        </a>
+        <div class="h25"></div>
+        <a href="#/shList" class="dis_b  w_b20">
+            <div class="bor_l" >
+                <div class=" h20 w20 m0a m_t5 m_b5"><img src="../../icon/mine_icon_after sale @2x .png.png" alt=""></div>
+                <div class="f_s14 t_a_c    ">售后</div>
+            </div>
+        </a>
+        </div>      
+    </div>
+        <!--我的信息区-->
+        <div class="h8 w bgc_body"></div>
+        <div class=" h100 w flex-start">
+            <a href="#/pointsList" class="dis_b h w_b33   ">
+            <div class="">
+                <div class=" h25 w25 m20a m_b10">
+                    <img src="../../icon/mine_icon_ integration@2x.png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">我的积分</div>
+            </div></a>
+            <a href="#/couponList" class="  dis_b h w_b33   ">
+            <div class="">
+                <div class=" h25 w25 m20a m_b10">
+                    <img src="../../icon/mine_icon_ privilege@2x.png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">我的优惠券</div>
+            </div></a>
+            <a href="#/addressList" class="  dis_b h w_b33   ">
+            <div class="">
+                <div class=" h25 w25 m20a m_b10">
+                    <img src="../../icon/mine_icon_ site  @2x.png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">我的地址</div>
+            </div></a>
+
+        </div>
+        <div class=" h100 w flex-start">
+            <a href="#/collectionList" class="  dis_b h w_b33   ">
+            <div class="">
+                <div class=" h25 w25 m20a m_b10">
+                    <img src="../../icon/mine_icon_   collect@2x .png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">我的收藏</div>
+            </div></a>
+            <a href="" class="  dis_b h w_b33   " >
+            <div class="">
+                <div class=" h25 w25 m20a m_b10">
+                    <img src="../../icon/mine_icon_  service@2x.png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">联系客服</div>
+            </div></a>
+            <a href="" class="  dis_b h w_b33   ">
+            <div class="">
+                <div class=" h25 w25 m20a m_b10">
+                    <img src="../../icon/mine_icon_feedback @2x .png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">意见反馈</div>
+            </div></a>
+
+        </div>
+        <div class="h60 w bgc_body flex-center"> 
+        投诉热线：021-123456798</div>
+        <!--底层导航栏-->
+        <div class="p_f b  h50 w flex-between bgc_fff bor_t">
+            <a href="#/main"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/mine_tab_home@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">首页</div>
+            </div>
+            </a>
+            <a href="#/pendingAudit"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/home_tab_order@2x.png" alt=""></div>
+                <div class="f_f f_s11 t_a_c m_t5">我的预约</div>
+            </div>
+            </a>
+            <a href="#/shopping"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/home_tab_shop@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">我的商城</div>
+            </div>
+            </a>
+            <a href="#/personalCenter"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/mine_tab_search@2x.png.png" alt=""></div>
+                <div class="col_blue f_s11 t_a_c m_t5">个人中心</div>
+            </div>
+            </a>
+        </div>
+        <!-- 签到成功遮罩 -->
+    <div ng-show="type==1">
+        <div class="p_a t w h bgc_t_b60 dis_n" >
+            <div class=" w_b60 h_b30 m0a p_r m_t120 bgc_fff b_r15 ">
+                <div class="w h25 f_s18 m0a p_t65 flex-center">恭喜您! 签到成功!</div>
+                <div class="flex-center m_t30">
+                    <div class="f_s35 col_blue ">+5</div>
+                    <div class="f_s18 m_l10">积分</div>
+                </div>
+                <div class="p_a b w h45 bgc_blue col_fff flex-center f_s18 f_w_6 b_r_b15" ng-click="none1()">确 定</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <!-- <div class="wr../..er">
+    签到成功遮罩
+        <div class="p_a w h bgc_t_b60  dis_n ">
+            <div class=" w_b60 h_b30 m0a p_r m_t120 bgc_fff b_r15 ">
+                <div class="w150 h25 f_s18 m0a p_t65">恭喜您! 签到成功!</div>
+                <div class="flex-center m_t30">
+                    <div class="f_s35 col_blue ">+5</div>
+                    <div class="f_s18 m_l10">积分</div>
+                </div>
+                <div class="p_a b w h45 bgc_blue col_fff flex-center f_s18 f_w_6 b_r_b15">确 定</div>
+            </div>
+        </div>
+    <div class="mine_bg">
+        <div class="w h40 flex-between">
+            <a href="" class="dis_b w50 h40">
+                <div class=" h20 w21 m0a m_t10">
+                    <img src="../../icon/mine_icon_set@2x.png" alt="">
+                </div>
+            </a>
+            <a href="" class="dis_b w50 h40">
+                <div class=" h20 w20 m0a m_t10">
+                    <img src="../../icon/mine_icon_Message@2x.png" alt="">
+                </div>
+            </a>
+        </div>
+        用户资料区
+        <div class=" m0a  w_b33">
+            <div class=" b_r_b50 w60 h60 m0a">
+              <img src="../../icon/mine_image@2x.png" alt=""> 
+            </div>
+            <div class=" w col_fff h20 m_t10 m_b10 t_a_c f_s15">用户名称</div>
+            <div class=" h20 w t_a_c f_s11 ">手机号未绑定</div>
+            <div class="flex-center"><input type="button" value="签到" onclick="signs()" class="sign" id="sign"></div>
+        </div>
+        订单信息区
+        <div class=" w h70 m_t30 flex-start">
+        <a href="" class="dis_b  w_b20">
+            <div class="" >
+                <div class=" h18 w20 m10a"><img src="../../icon/mine_icon_obligation@2x.png" alt=""></div>
+                <div class="f_s14 t_a_c col_fff">待付款</div>
+            </div>
+        </a>
+        <div class="bor_r_f h25"></div>
+        <a href="" class="dis_b  w_b20">
+            <div class="" >
+                <div class=" h18 w20 m10a"><img src="../../icon/mine_icon_Send out@2x.png" alt=""></div>
+                <div class="f_s14 t_a_c col_fff">待发货</div>
+            </div>
+        </a>
+        <div class="bor_r_f h25"></div>
+        <a href="" class="dis_b  w_b20">
+            <div class="" >
+                <div class=" h15 w20 m10a"><img src="../../icon/mine_icon_receiving@2x .png" alt=""></div>
+                <div class="f_s14 t_a_c col_fff p_t2">待收货</div>
+            </div>
+        </a>
+        <div class="bor_r_f h25"></div>
+        <a href="" class="dis_b  w_b20">
+            <div class="" >
+                <div class=" h18 w20 m10a"><img src="../../icon/mine_icon_evaluation@2x.png" alt=""></div>
+                <div class="f_s14 t_a_c col_fff">待评价</div>
+            </div>
+        </a>
+        <div class="bor_r_f h25"></div>
+        <a href="" class="dis_b  w_b20">
+            <div class="" >
+                <div class=" h18 w20 m10a"><img src="../../icon/mine_icon_after sale@2x.png" alt=""></div>
+                <div class="f_s14 t_a_c col_fff">售后</div>
+            </div>
+        </a>
+        </div>      
+    </div>
+        我的信息区
+        <div class="h5 w bgc_body"></div>
+        <div class=" h100 w flex-start">
+            <a href="" class="  dis_b h w_b33  bor_b bor_r ">
+            <div class="">
+                <div class=" h30 w30 m20a m_b10">
+                    <img src="../../icon/mine_icon_ integration@2x.png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">我的积分</div>
+            </div></a>
+            <a href="" class="  dis_b h w_b33  bor_b bor_r ">
+            <div class="">
+                <div class=" h30 w30 m20a m_b10">
+                    <img src="../../icon/mine_icon_ privilege@2x.png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">我的优惠券</div>
+            </div></a>
+            <a href="" class="  dis_b h w_b33  bor_b ">
+            <div class="">
+                <div class=" h30 w30 m20a m_b10">
+                    <img src="../../icon/mine_icon_ site  @2x.png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">我的地址</div>
+            </div></a>
+    
+        </div>
+        <div class=" h100 w flex-start">
+            <a href="" class="  dis_b h w_b33  bor_b bor_r ">
+            <div class="">
+                <div class=" h30 w30 m20a m_b10">
+                    <img src="../../icon/mine_icon_   collect@2x .png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">我的收藏</div>
+            </div></a>
+            <a href="" class="  dis_b h w_b33  bor_b bor_r ">
+            <div class="">
+                <div class=" h30 w30 m20a m_b10">
+                    <img src="../../icon/mine_icon_  service@2x.png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">联系客服</div>
+            </div></a>
+            <a href="" class="  dis_b h w_b33  bor_b ">
+            <div class="">
+                <div class=" h30 w30 m20a m_b10">
+                    <img src="../../icon/mine_icon_feedback @2x .png.png" alt=""> 
+                </div>
+                <div class="h_b60 f_s14 t_a_c">意见反馈</div>
+            </div></a>
+    
+        </div>
+        <div class="h60 w bgc_body flex-center"> 
+        投诉热线：021-123456798</div>
+        底层导航栏
+        <div class="p_f b  h50 w flex-between bgc_fff bor_t">
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/mine_tab_home@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">首页</div>
+            </div>
+            </a>
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/home_tab_order@2x.png" alt=""></div>
+                <div class="f_f f_s11 t_a_c m_t5">我的预约</div>
+            </div>
+            </a>
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/home_tab_shop@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">我的商城</div>
+            </div>
+            </a>
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/mine_tab_search@2x.png.png" alt=""></div>
+                <div class="col_blue f_s11 t_a_c m_t5">个人中心</div>
+            </div>
+            </a>
+        </div>
+    </div> -->
+    </body>
+    
+</html>

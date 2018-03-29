@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+        <div class="wrapper bgc_body">
+            <!--头-->
+            <div class="bgc_blue col_fff h40 flex-center p_r">
+                <div class="p_a l15 w10 t10" ng-click="back()">
+                    <img src="app/icon/back@2x.png" alt="">
+                </div>
+                <div class="f_s16">订单详情</div>
+            </div>
+            <!--订单状态-->
+            <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15" ng-show="infoHTML.refund_state_show=='已接受'">
+                <div class="w flex-start">等待买家付款</div>
+                <div class="">您的商品打包中，请耐心等候哦</div>
+            </div>
+            <!--订单地址-->
+            <div class="w h80 bgc_fff p_l15 flex-between p_r15">
+                <div class="h w_b10 flex-center">
+                    <img src="../../icon/709269121146552965.png" alt="" class="w25 h25">
+                </div>
+                <div class="h w_b90 p_t10">
+                    <div class="flex-start">
+                        <div class="w_b40">收货人:<span>启明</span></div>
+                        <div class="">13879789797</div>
+                    </div>
+                    <div class="">收货地址: 
+                        <span>爽肤水放假了冯绍峰水电费所发生的爽肤水放假了冯绍峰水电费所发生的</span>
+                    </div>
+                </div>
+            </div>
+            <!--商品信息-->
+            <div class="w h105  p_l15 p_r15 bgc_fff m_t10">
+                <div class="w75 h75 fl_l m_t10"><img ng-src="{{dt.orderGoodsBeans[0].goods_img}}" alt=""></div>
+                <div class="m_l15 h fl_l w255 p_r">
+                    <div class="w h35 m_t10" ng-bind="dt.orderGoodsBeans[0].goods_name">商品名称</div>
+                    <div class="m_l5 f_s10 col_b1  p_a b40">官方标配:<span ng-bind="dt.specification_name"></span></div>
+                    <div class="col_red f_s14  p_a b15">￥<span ng-bind="dt.orderGoodsBeans[0].goods_price"></span>189.9</div>
+                    <div class="p_a r b15 t_a_c">x<span ng-bind="dt.orderGoodsBeans[0].goods_num">1</span></div>
+                </div>
+            </div>
+            <!--退款按钮-->
+            <div class="w h40 p_r15 bgc_fff flex-end" ng-show="infoHTML.refund_type=='with_goods'">
+                <div class="w75 h30 f_s12 col_b1 bor flex-center b_r15">申请退款</div> 
+            </div>
+            <div class="w h40 p_r15 bgc_fff flex-end" ng-show="">
+                    <div class="w75 h30 col_666 flex-center">退款中</div>
+                    <div class="w75 h30 col_666 bor flex-center b_r15" >取消退款</div>
+            </div>
+            <!--配送方式-->
+            <div class="w h50 bgc_fff flex-between p_l15 p_r15 m_t10 bor_b">
+                <div class="">配送方式</div>
+                <div class="f_w_6">快递免邮</div>
+            </div>
+            <!--留言-->
+            <div class="w h50 bgc_fff flex-start p_l15 p_r15 bor_b">
+                <div class="">我的留言: <span></span></div>
+            </div>
+            <!--退货订单时间-->
+            <div class="w h100 p_l15  p_t10 p_r15 bgc_fff bor_b">
+                <div class="w  flex-between ">
+                    <div class="">快递配送费</div>
+                    <div class="">￥<span>0</span></div>
+                </div>
+                <div class="w  flex-between m_t10">
+                    <div class="">优惠券折扣</div>
+                    <div class="">￥<span>0</span></div>
+                </div>
+                <div class="w  flex-between m_t10 ">
+                    <div class="">积分折扣</div>
+                    <div class="">￥<span>0</span></div>
+                </div>
+            </div>
+            <!--实际支付-->
+            <div class="w h50 bgc_fff flex-end p_l15 p_r15 bor_b">
+                <div class="f_w_6">实际应付:</div>
+                <div class="col_red">￥<span ng-bind="dt.orderGoodsBeans[0].goods_price">188</span></div>
+            </div>
+            <!--订单时间-->
+            <div class="w h65 p_l15  p_t10 p_r25 f_s13 bgc_fff m_t10">
+                <div class="">订单编号:<span class="m_l10" ng-bind="infoHTML.order_no">2017-5-5</span></div>
+                <div class="m_t5">订单创建时间:<span class="m_l10">2017-5-5</span></div>
+            </div>
+            <!--填写退货物流-->
+            <div class="w h45 p_r15 flex-end bgc_fff m_t10 bor_t">
+                <div class="bor_666 b_r30 h30 w60 flex-center f_s12 m_r10">联系客服</div>
+                <div class="bor_666 b_r30 h30 w60 flex-center f_s12 m_r10">取消订单</div>
+                <div class="col_blue b_r15 w60 h30 fl_r flex-center f_s12 bor_blue">付款</div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+
+    <div>
+        <div ng-show="pay==1">
+            <div class="p_a t w h bgc_t_b60" >
+                <div class=" w_b60 h_b30 m0a p_r m_t120 bgc_fff b_r15 ">
+                    <div class="w h25 f_s18 m0a p_t65 flex-center">预约需要缴纳30定金，定金等工单完成后会退回，您确定要预约吗</div>
+                    <div class="w h_b30 flex-center bor_t">
+                        <div class="w_b50 h_b80 flex-center f_s18 bor_r" ng-click="payFun(0)">取消</div>
+                        <div class="w_b50 h_b80 flex-center f_s18 col_blue" ng-click="paymentFun()">
+                            确定
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--底层导航栏-->
+        <div class="p_f b  h50 w flex-between bgc_fff bor_t">
+            <a href="#/main"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="app/icon/store_tab_home@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">首页</div>
+            </div>
+            </a>
+            <a href="#/pendingAudit"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="app/icon/home_tab_order@2x.png" alt=""></div>
+                <div class="f_f f_s11 t_a_c m_t5">我的预约</div>
+            </div>
+            </a>
+            <a href="#/shopping"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="app/icon/store_tab_shop_search@2x.png.png" alt=""></div>
+                <div class="col_blue f_s11 t_a_c m_t5">我的商城</div>
+            </div>
+            </a>
+            <a href="#/personalCenter"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="app/icon/home_tab_mine@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">个人中心</div>
+            </div>
+            </a>
+        </div>
+    </div>

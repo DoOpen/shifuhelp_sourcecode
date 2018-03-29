@@ -1,0 +1,38 @@
+<div  class="wrapper">
+    <div class="bgc_blue col_fff h40 flex-center p_r">
+        <div class="p_a l15 h flex-center">
+            <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+        </div>
+        <div class="f_s16" ng-bind="title"></div>
+    </div>
+    <div class="flex-between p_a t40 b w ">
+        <div class="h w_b30 bgc_body">
+            <ul class="t_a_c" ng-repeat="dt1 in listInfo1" >
+                <li class="h50 flex-center m_b5" ng-class="{'djlb':dt1.class_id==type}" ng-click="hydropower2(dt1.class_id)" ng-bind="dt1.class_name"></li>
+            </ul>
+        </div>   
+        <div class="h w">
+            <div class="flex-fstart">
+                <div class=" h70 w_b50 flex-center" ng-repeat="dt2 in listInfo2"> 
+                    <div class="w_b60 h40 flex-center bgc_body">
+                        <a href="" ng-hide="dt2.serviceClassBeans.length==0" ng-bind="dt2.class_name" ng-click="hied(dt2.serviceClassBeans)"></a>
+                        <a href="#/hydropowerInfo?id={{dt2.class_id}}" ng-show="dt2.serviceClassBeans.length==0" ng-bind="dt2.class_name"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--其它选项遮罩-->
+        <div class=" p_a z99 b w h bgc_t_b60 " ng-show="modelBox==1">
+            <div class="w25 h25  p_a t15 r15 z100" ng-click="hied1()">
+                <img src="app/icon/reserve_information_turnoff_highlight@2x.png" alt="">
+            </div>
+            <div class=" w h_b50 p_a t80 p_l20 " > 
+                <ul class="otherul f_s16 flex-fstart">
+                    <a href="#/hydropowerInfo?id={{dt3.class_id}}" class="dis_b h40 w100 fl_l m_b20 m_r15" ng-repeat="dt3 in serviceClassBeans">
+                        <li class="col_blue  " ng-bind="dt3.class_name"></li>
+                    </a>
+                </ul>
+            </div>
+        </div> 
+</div>

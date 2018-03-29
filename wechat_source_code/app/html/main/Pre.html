@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+<!---->
+    </head>
+    <body class="bgc_body">
+    <!-- 未填写信息遮罩 -->
+        <div >
+            <div class="p_a t w h bgc_t_b60" >
+                <div class=" w_b60 h_b30 m0a p_r m_t120 bgc_fff b_r15 ">
+                    <div class="w h25 f_s18 m0a p_t65 flex-center">请填写好必填信息！</div>
+                    <a href="a">
+                        <div class="p_a b w h45 bgc_blue col_fff flex-center f_s18 f_w_6 b_r_b15" ng-click="none()">确 定</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--用户协议区-->
+        <div class=" m_t10 h40 flex-between bgc_fff p_r5">
+            <div class=" h w_b50 flex-start">
+                <div class="w20 h20 m_l10 m_r10 m_b5"><img src="../../icon/reserve information_icon_agreement@2x.png.png" alt=""></div>
+                <div>用户预约协议</div>
+            </div>
+            <a href="" class="dis_b h w_b50 ">
+           <div class=" h w flex-end">
+                <div class="f_s12 col_blue">预约即同意协议</div>
+                <div class="m_l5 w15 h15 flex-center"><img src="../../icon/reserve_information_icon_next@2x.png" alt=""></div>
+            </div> 
+            </a>
+        </div>
+        <!--填写信息区-->
+        <div class=" h40 w flex-start p_l10 col_b4">填写服务相关信息</div>
+        <!--填写姓名-->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10 ">
+                <div>姓</div>
+                <div class="m_l30">名</div>
+            </div>
+            <div class=" h w flex-start "><input type="text" name="username" placeholder="请输入您的姓名" class="w_b90"></div>
+        </div>
+        <!--填写电话-->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10 ">电话号码</div>
+            <div class=" h w flex-start "><input type="text" name="username" placeholder="请输入您的电话号码" class="w_b90"></div>
+        </div>
+        <!--选择地址-->
+        <div class=" h40 flex-start bgc_fff bor_b  p_r5">
+            <div class=" h w_b30 flex-start m_l10 ">服务地址</div>
+            <div class=" h w flex-between ">
+                <input type="text" name="username" placeholder="请选择" class="">
+                <div class="m_l5 w15 h15 flex-center"><img src="../../icon/reserve_information_icon_next@2x.png" alt=""></div>
+            </div>
+        </div>
+        <!--输入详细地址-->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10 ">详细地址</div>
+            <div class=" h w flex-start ">
+                <input type="text"  placeholder="请输入详情地址" class="">
+            </div>
+        </div>
+        <!--服务内容-->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10 ">服务内容</div>
+            <div class=" h w flex-start"></div>
+        </div>
+        <!--备注-->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10 ">
+                <div>备</div>
+                <div class="m_l30">注</div>
+            </div>
+            <div class=" h w flex-start "><input type="text" name="username" placeholder="备注信息" class="w_b90"></div>
+        </div>
+        <!--上传图片-->
+        <div class=" h40 w flex-start p_l10 col_b4">上传现场图片（可不上传）</div>
+        <div class=" h80  bgc_fff flex-center">
+            <div class="h70 w  ">
+                <div class="h w70 m_l10  p_r p_t5 bgc_d9 dis_l fl_l">
+                    <div class="d_red_x b_r_b50"></div>
+                    <div class="w60 h60  m0a ">
+                        <img src="../../images/reserve information_pho_scene@2x.png" alt="">
+                    </div>
+                </div>
+                <div class="h w70 m_l20  p_r p_t5 bgc_d9 dis_l fl_l ">
+                    <div class="w15 h15 p_a t_f5 r_f5 z99 d_red_x b_r_b50"></div>
+                    <div class="w60 h60  m0a ">
+                        <img src="../../images/reserve information_pho_scene@2x.png" alt="">
+                    </div>
+                </div>
+                <div class="h w70 m_l20  p_r p_t5  dis_l fl_l bor_body">
+                    <div class="m0a w25 h25 m_t10">
+                        <img src="../../icon/reserve_information_pic_cemera@2x.png" alt="">
+                    </div>
+                    <div class="f_s12 m_t5 col_b4 t_a_c ">最多三张</div>
+                </div>               
+            </div>
+        </div>
+        <!--服务时间-->
+        <div class=" m_t10 h45 flex-between bgc_fff p_l10 p_r5">
+            <div class=" h w_b40 flex-between">
+                <div>期望上门服务时间:</div>
+            </div>
+            <div class=" h w_b60 flex-end">
+                <input type="text" placeholder="请选择时间" id="date" class="w">
+                <div class="m_l5 w15 h15 flex-center"><img src="../../icon/reserve_information_icon_next@2x.png" alt=""></div>
+            </div>
+        </div>
+        
+        <div class="m_t15 w flex-center">
+            <a href="" class="b_r40 w h50 flex-center m_b10 m_t15"><input type="button" name="y" value="去预约" class="b_r40 w_b90 h50 col_fff bgc_blue "></a>
+        </div>
+    </body>
+</html>

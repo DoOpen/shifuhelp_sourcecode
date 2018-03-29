@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <div class="wrapper bgc_body f_s14">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 w10"><img src="../../icon/back@2x.png" alt=""></div>
+            <div class="f_s16">我的订单</div>
+        </div>
+        <!--导航栏-->
+        <div class=" w h40 p_l10 p_r10 flex-between bgc_fff">
+            <div class="w50 h flex-center yylbclick">全部</div>
+            <div class="w50 h flex-center yylbclick">待付款</div>
+            <div class="w50 h flex-center yylbclick">待发货</div>
+            <div class="w50 h flex-center yylbclick">待收货</div>
+            <div class="w50 h flex-center yylbclick">待评价</div>
+        </div>
+        <!--订单列表-->
+        <div ng-repeat="dt in listInfo " class="bgc_fff m_t10">
+            <a href="#/shInfo?id={{dt.refund_id}}">
+                <div class="w h40 bor_b">
+                    <div class="w p_l15 p_r15 h40 flex-between">
+                        <div class="">订单号:<span ng-bind="dt.refund_order_no">订单号</span></div>
+                        <div class="flex-start">
+                            <div>等待</div>
+                            <div ng-show="dt.refund_type=='not_goods'||dt.refund_type=='money'">退款</div>
+                            <div ng-show="dt.refund_state_show=='待审核'||dt.refund_state_show=='已接受'">中</div>
+                            <div ng-show="dt.refund_state_show=='已退款'">成功</div>
+                            <div ng-show="dt.refund_state_show=='已拒绝'">失败</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w h105  p_l15 p_r15 ">
+                    <div class="w75 h75 fl_l m_t10"><img ng-src="{{dt.merchants_img}}" alt=""></div>
+                    <div class="m_l15 h fl_l w255 p_r">
+                        <div class="w h35 m_t10" ng-bind="dt.goodsBean.goods_name">这是商品名称这是商品名称这是商品名称这是商品名称这是商品名称这</div>
+                        <div class="m_l5 f_s10 col_b1  p_a b40">官方标配:<span ng-bind="dt.orderGoodsBean.specification_name"></span></div>
+                        <div class="col_red f_s14  p_a b15">￥<span ng-bind="dt.goodsBean.goods_price"></span>189.9</div>
+                        <div class="p_a r b15 t_a_c">x<span ng-bind="dt.refund_count">1</span></div>
+                    </div>
+                </div>
+                <div class="w bor"></div>
+                <div class="w h40 p_r15 flex-end">
+                    <div class="flex-start">
+                        共一件商品 合计:
+                        <div class="col_red f_s14 ">￥<span ng-bind="dt.goodsBean.goods_price"></span>189.9</div>
+                        <div class="flex-start m_l5">(运费:<div class=" f_s14 ">￥<span ng-bind="dt.goodsBean.goods_price"></span>189.9</div>)</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    </body>
+</html>

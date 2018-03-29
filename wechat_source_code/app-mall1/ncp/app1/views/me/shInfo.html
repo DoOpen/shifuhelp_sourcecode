@@ -1,0 +1,166 @@
+
+    <div class="f_s14 wrapper" >
+    <!--售后订单-->
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">订单详情</div>
+        </div>
+        <!--退货状态-->
+        <div class="w h75 p_l15 bgc_yellow col_fff" ng-show="infoHTML.refund_state=='wait_review'">
+            <div class="w h flex-start f_s20 ">等待商家回复</div>
+        </div>
+        <!--退货申请状态-->
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15" ng-show="infoHTML.refund_state=='accept'">
+            <div class="w flex-start">商家已同意您的退款申请！</div>
+            <div class="m_t5" ng-bind="infoHTML.audit_time"></div>
+        </div>
+        <!--退货申请状态-->
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15" ng-show="infoHTML.refund_state=='end'">
+            <div class="w flex-start">等待商家回收退回商品！请耐心等待！</div>
+            <div class="m_t5" ng-bind="infoHTML.logistics_time"></div>
+        </div>
+        <!--退货申请状态-->
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15" ng-show="infoHTML.refund_state=='end'">
+            <div class="w flex-start">恭喜您！退款成功！</div>
+            <div class="m_t5" ng-bind="infoHTML.end_time"></div>
+        </div>
+        <!--退货申请状态-->
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16" ng-show="
+        infoHTML.refund_state=='refuse'">
+            <div class="w flex-start">对不起！退款失败！</div>
+            <div class="m_t5" ng-bind="infoHTML.audit_time"></div>
+        </div>
+    
+
+        <!--退货商品信息-->
+        <div class="w h105 bgc_body p_l15 p_r15 ">
+                <div class="w75 h75 fl_l m_t10"><img ng-src="{{infoHTML.orderGoodsBean.goods_img}}" alt=""></div>
+                <div class="m_l15 h fl_l w255 p_r">
+                    <div class="w h35 m_t10" ng-bind="infoHTML.orderGoodsBean.goods_name"></div>
+                    <div class="m_l5 f_s10 col_b1  p_a b40">官方标配:<span ng-bind="infoHTML.orderGoodsBean.specification_name"></span></div>
+                    <div class="m_t5 col_red f_s12 w60 h20 bgc_fff p_a b15 flex-center">￥<span ng-bind="infoHTML.orderGoodsBean.goods_price"></span></div>
+                    <div class="p_a r b15 t_a_c">x<span ng-bind="infoHTML.orderGoodsBean.goods_num">1</span></div>
+                </div>
+        </div>
+        <!--退货退款按钮信息-->
+        <div ng-show="infoHTML.refund_state=='wait_review'||infoHTML.refund_state=='accept'">
+            <div class="w h40 p_r15 flex-end" ng-show="infoHTML.refund_type=='not_goods'||infoHTML.refund_type=='with_goods'">
+                <div class="f_s12 col_b1 m_r15">退货中</div>
+                <div class="bor_blue col_blue b_r15 w75 h25 fl_r flex-center f_s12" ng-click="noFun(1)" ng-show="infoHTML.refund_state=='wait_review'">取消退货</div>
+            </div>
+            <div class="w h40 p_r15 flex-end" 
+            ng-show="infoHTML.refund_type=='money'">
+                <div class="f_s12 col_b1 m_r15">退款中</div>
+                <div class="bor_blue col_blue b_r15 w75 h25 fl_r flex-center f_s12" ng-click="noFun
+                (1)" ng-show="infoHTML.refund_state=='wait_review'">取消退款</div>
+            </div>
+        </div>
+        <!--退货退款提示信息-->
+        <div class="w h8 bgc_body bor_t"></div>
+        <div class="w h75 p_l15  p_t15 p_r15" ng-show="infoHTML.refund_state=='accept'&&infoHTML.logistics_no==''">
+            恭喜您！商家已同意您的退款申请！请填写正确的物流信息！如有疑问请联系客服！谢谢合作！
+            </div>
+        <div class="w h75 p_l15  p_t15 p_r15" ng-show="infoHTML.refund_state=='wait_review'">
+            您的申请已提交成功！正在等待商家审核！请您耐心等待。谢谢合作！
+        </div>
+        <div class="w h75 p_l15  p_t15 p_r15" ng-show="infoHTML.refund_state=='refuse'&&infoHTML.refund_type!='with_goods'">
+            对不起！退款失败！商家拒绝了您的退款申请！给您带来的不变！我们深感抱歉！如有疑问请联系客服！谢谢合作！
+        </div>
+        <div class="w h75 p_l15  p_t15 p_r15" ng-show="infoHTML.refund_state=='end'&&infoHTML.refund_type=='with_goods'">
+            恭喜您！退款成功！商家已将您的退款金额退回到您的支付账号内，请随时留意！如有疑问请联系客服！谢谢合作！
+        </div>
+        <div class="w h75 p_l15  p_t15 p_r15" ng-show="infoHTML.refund_state=='accept'&&infoHTML.logistics_no!=''">
+            等待商家回收退回商品！并检测无误后就可以给您退款啦！如有疑问请联系客服！谢谢合作！
+        </div>        
+        <div class="w h75 p_l15  p_t15 p_r15" ng-show="infoHTML.refund_state=='refuse'&&infoHTML.refund_type=='with_goods'">
+            对不起！商家拒绝了您的退货申请！如有疑问请联系客服！谢谢合作！
+        </div>  
+        <div class="w h8 bgc_body"></div>
+        <!--退款金额-->
+        <div class="w h40 flex-between p_l15 p_r15">
+            <div class="">退款金额</div>
+            <div class="col_red flex-center">￥
+                <div ng-bind="infoHTML.refund_price"></div>
+            </div>
+        </div>
+        <div class="w h8 bgc_body" ng-show="infoHTML.refund_state=='end'"></div>
+        <!--退款账号-->
+        <div class="w h40 flex-between p_l15 p_r15" ng-show="infoHTML.refund_state=='end'">
+            <div class="">退回账号</div>
+            <div class="col_red flex-center">
+                账号：
+                <div class="refundCode" ng-bind="refundCode"></div>
+            </div>
+        </div>
+        <div class="w h8 bgc_body"></div>
+        <!--退货订单时间-->
+        <div class="w h85 p_l15  p_t10 p_r25 f_s13">
+            <div class="">订单编号:<span class="m_l10" ng-bind="infoHTML.order_no"></span></div>
+            <div class="m_t5">创建时间:<span class="m_l10" ng-bind="order.create_time"></span></div>
+            <div class="m_t5">付款时间:<span class="m_l10" ng-bind="order.pay_time"></span></div>
+        </div>
+        <div class="w h5 bgc_body"></div>
+         <!--退款原因-->
+        <div class="w  p_l15  p_t10 p_r25 f_s13">
+            <div class="">退款原因:<span class="m_l10" ng-bind="infoHTML.reason_name"></span></div>
+            <div class="m_t5">退款金额:<span class="m_l10" ng-bind="infoHTML.refund_price"></span></div>
+            <div class="m_t5">申请时间:<span class="m_l10" ng-bind="infoHTML.start_time"></span></div>
+            <div class="m_t5 m_b15">售后单号:<span class="m_l10" ng-bind="infoHTML.refund_no"></span></div>
+        </div>
+        <div class="w h5 bgc_body"></div>
+        <!--退款上传的照片-->
+          <div class="w h120 p_l15  p_t10 p_r25 f_s13">
+            <div class="">上传的凭证:</div>
+            <div class="h70 w  m_t10">
+                <div class="h66 w66 p_r bor_d9_2 dis_l fl_l ">
+                    <img ng-src="{{infoHTML.refund_img1}}" alt="">           
+                </div>
+                <div class="h66 w66 p_r bor_d9_2 dis_l fl_l m_l20">
+                    <img ng-src="{{infoHTML.refund_img2}}" alt="">           
+                </div>
+                <div class="h66 w66 p_r bor_d9_2 dis_l fl_l m_l20">
+                    <img ng-src="{{infoHTML.refund_img3}}" alt="">           
+                </div>
+            </div>
+        </div>
+        <div class="w h5 bgc_body"></div>
+        <!--填写退货物流-->
+        <div class="w h45 p_r15 flex-end">
+            <div class="bor_666 b_r30 h25 w75 flex-center f_s12 m_r5"><a href="tel:4006061314" >联系客服</a></div>
+            <div class="bor_666 b_r30 h25 w75 flex-center f_s12 m_r5" ng-hide="infoHTML.logistics_no==''" ><a href="#/shLogisticsInfo?rid={{rid}}">查看物流</a></div>
+            <a href="#/shLogistics?rid={{rid}}" ng-show="infoHTML.logistics_no==''&&infoHTML.refund_state=='accept'">
+                <div class="bgc_blue col_fff b_r15 w90 h25 fl_r flex-center f_s12">填写退货物流</div>
+            </a>
+        </div>
+        <!--取消退款遮罩-->
+        <div class=" bgc_t_b60 p_f r l b t flex-center " ng-show="no==1">          
+            <div class=" h150 w250 z100 bgc_fff b_r5">
+                <div class="w h_b70 f_s18  flex-center">您确定要取消退款吗？</div>
+                <div class="w h_b30 flex-center bor_t">
+                    <div class="w_b50 h_b80 flex-center f_s18 bor_r" ng-click="noFun(0)">取消</div>
+                    <div class="w_b50 h_b80 flex-center f_s18 col_blue" ng-click="noRefundFun()">
+                        确定
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <!-- 等待遮罩 -->
+        <div ng-show="loading==1">
+            <div class="p_f t w h bgc_t_b60" >
+                <!-- 等待 -->
+                <div class=" w130 h130 m0a p_r m_t210 bgc_0_t_b60 b_r15 p_t30" ng-show="loadings==0">
+                    <div class="w50 h50 m0a"><img src="ncp/app1/icon/006.gif" alt="" ></div>
+                    <div class="col_b4 t_a_c m_t10">请稍后</div>
+                </div>
+                <!-- 成功 -->
+                <div class=" w130 h130 m0a p_r m_t210 " ng-show="loadings==1">
+                    <!--退款-->
+                    <img src="ncp/app1/icon/refund_sheet_countermand@2x.png.png" alt="" ng-show="infoHTML.refund_type=='money'">
+                    <!--退货-->
+                    <img src="ncp/app1/icon/sales return_sheet_countermand@2x.png.png" alt="" ng-show="infoHTML.refund_type!='money'">
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+     
+    <div class="wrapper">
+       <div class="bgc_blue col_fff h40  p_r flex-center">
+            <div class="p_a l15 h flex-center">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">绑定手机号</div>
+
+        </div>
+        <!--绑定手机号码-->
+        <div>
+            <div class="m0a m_t75 w_b90 h45 flex-start bor b_r5 p_l15">
+                <input type="number" placeholder="请输入您的手机号码" id="phone" ng-model="phone.p1">
+            </div>
+            <div class="w_b90 m0a m_t5 f_s10 col_red w h15">
+                <span class="w h15 "  ng-show="phone.p2==1">请输入正确的手机号码！</span>
+            </div>
+        </div>
+        <div class="m0a m_t20 w_b90 h45 flex-between">
+            <div class=" h bk w210 flex-start bor b_r5 p_l15">
+                <input type="number" placeholder="请输入收到的验证码" ng-model="phone.code">
+            </div>
+            <div class="h">
+            <input type="button" class="{{paraclass}}" id="codebtn" ng-click="checkPhone()" value="{{paracont}}" disabled="disabled"> 
+            </div>
+        </div>
+        <div>
+            <div class="w_b90 m0a f_s10 col_red m_t5 w h15">
+                <span class="w h15 " ng-show="codeOf==0">请输入正确的验证码！</span>
+
+            </div>
+            <div>
+              <div class="flex-center w h25 col_red m_t5">该手机号码已经绑定过，不能重复绑定！</div>
+              <div class="flex-center w h25 col_red m_t5" >验证码已发送，请注意查收！</div>
+              <div class="h25 m_t5"></div>
+              <div class="bgc_blue col_fff b_r5 w_b90 h45 m0a flex-center f_s18" ng-click="codefun()">立即绑定</div>
+            </div>
+
+        </div>
+        
+        <!-- 预约成功遮罩 -->
+        <div ng-show="phone.of==1" class="dis_n">
+            <div class="p_a t w h bgc_t_b60" >
+                <div class=" w_b60 h_b30 m0a p_r m_t120 bgc_fff b_r15 ">
+                    <div class="w h25 f_s18 m0a p_t65 flex-center">绑定手机成功！</div>
+                    <a href="#/personalCenter">
+                        <div class="p_a b w h45 bgc_blue col_fff flex-center f_s18 f_w_6 b_r_b15" >确 定</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div class="wrapper">
+        <div class="bgc_blue col_fff h40  p_r flex-center">
+            <div class="p_a l15 h flex-center">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">更换绑定手机号</div>
+        </div>
+        <!--更换绑定的手机号码-->
+        <div class="w150 h50 m0a m_t40 f_s16 m_b40" ng-hide="userInfo.member_phone==''">
+            <div class="flex-center m_b5" >当前绑定</div>
+            <div class="flex-center f_w_6 l_s1">{{phone1}}</div>
+        </div>
+        <div class="m0a m_t20 w_b90 h45 flex-between">
+            <div class=" h bk w210 flex-start bor b_r5 p_l15">
+                <input type="number" placeholder="请输入收到的验证码" ng-model="code2.phone">
+            </div>
+            <div class="h">
+            <input type="button" class="{{paraclass}}" id="codebtn" ng-click="updateMobilefun();djsfun()" value="{{paracont}}" disabled="disabled"> 
+            </div>
+        </div>
+        <div>
+            <div class="w_b90 m0a f_s10 col_red m_t10">
+                <span class="w h15" ng-show="codeOf==0">请输入正确的验证码！</span>
+                <div class="w h15" ng-hide="codeOf==0"></div>
+            </div>
+            <div ng-click="codefun()">
+                <div class="bgc_blue col_fff b_r5 w_b90 h45 m0a m_t30 flex-center f_s18" >下一步</div>
+            </div>
+
+        </div>
+    </div>
+ 
+
+   <!--  <div class="wrapper">
+      <div class="bgc_blue col_fff h40  p_r flex-center">
+           <div class="p_a l15 w10 t10" ng-click="back()">
+               <img src="app/icon/back@2x.png" alt="">
+           </div>
+           <div class="f_s16">绑定手机号</div>
+   
+       </div>
+       绑定手机号码
+       <div>
+           <div class="m0a m_t75 w_b90 h45 flex-start bor b_r5 p_l15">
+               <input type="text" placeholder="请输入您的手机号码" ng-model="phone.p1">
+           </div>
+           <div class="w_b90 m0a m_t5 f_s10 col_red w h15">
+               <span class="w h15 dis_n"  ng-show="codeOf==0">请输入正确的手机号码！</span>
+           </div>
+       </div>
+       <div class="m0a m_t20 w_b90 h45 flex-between">
+           <div class=" h bk w210 flex-start bor b_r5 p_l15">
+               <input type="text" placeholder="请输入收到的验证码" ng-model="phone1.code">
+           </div>
+           <div class="w110 h flex-center bgc_a9 b_r5  col_fff" ng-click="bindMobilefun()">获取验证码
+           </div>
+       </div>
+       <div>
+           <div class="w_b90 m0a f_s10 col_red m_t5 w h15">
+               <span class="w h15 dis_n" ng-show="codeOf==0">请输入正确的验证码！</span>
+   
+           </div>
+           <div ng-click="codefun()">
+               <div class="bgc_blue col_fff b_r5 w_b90 h45 m0a m_t30 flex-center f_s18" >立即绑定</div>
+           </div>
+   
+       </div>
+   </div>
+    <!-- <div>
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 w10">
+                <img src="../../icon/back@2x.png" alt="">
+            </div>
+            <div class="f_s16">绑定手机号</div>
+        </div>
+    绑定手机号码
+        <div class="m0a m_t75 w_b90 h45 bk flex-start bor b_r5 p_l15" >
+            <input type="text" placeholder="请输入您的手机号码">
+        </div>
+        <div class="w150 h50 m0a m_t40 f_s16 m_b40">
+            <div class="flex-center m_b5" >当前绑定</div>
+            <div class="flex-center l_s">176****1516</div>
+        </div>
+        <div class="m0a m_t20 w_b90 h45 flex-between">
+            <div class=" h bk w210 flex-start bor b_r5 p_l15">
+                <input type="text" placeholder="请输入收到的验证码">
+            </div>
+            <div class="w110 h flex-center bgc_a9 b_r5  col_fff">获取验证码
+            </div>
+        </div>
+        <div class="bgc_blue col_fff b_r5 w_b90 h45 m0a m_t45 flex-center f_s18">立即绑定</div>
+    </div> -->
+    </body>
+</html>

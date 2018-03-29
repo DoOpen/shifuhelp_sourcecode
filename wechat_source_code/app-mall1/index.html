@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>师傅上门Pro</title>
+    <link rel="stylesheet" href="ncp/css/style1.css">
+    <link rel="stylesheet" href="ncp/css/reset.css">
+    <link rel="stylesheet" href="ncp/css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="ncp/css/public.css">
+    <link rel="stylesheet" href="ncp/css/style.css">
+    <link rel="stylesheet" href="ncp/css/city.css">
+
+
+</head>
+<body ng-controller="home">
+<div ng-view class="w100 h100"></div>
+<!--小提示-->
+<div class="Prompt-back Prompt1" hidden="">
+    <span class="tips"></span>
+</div>
+<!--带确认小提示-->
+<div class="Prompt-back Prompt2" hidden="">
+    <ul class="tips2">
+    </ul>
+</div>
+<!--数据加载中-->
+<div id="loading" class="di_n">
+    <div class="mask_transparent"></div>
+    <div class="toast">
+        <div class="loading">
+            <i class=""></i>
+        </div>
+        <p class="">数据加载中</p>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.0&key=0ba3efbc0f728999717ea6f1fb208f3f"></script>
+
+<script src="ncp/js/jquery-2.2.4.min.js"></script>
+<script src="ncp/js/angular1.5.8.min.js"></script>
+<script src="ncp/js/angular-cookies.min.js"></script>
+<script src="ncp/js/angular-route.min.js"></script>
+<script src="ncp/js/angular-touch.min.js"></script>
+<script src="ncp/js/angular-animate.min.js"></script>
+<script src="ncp/js/swiper-3.3.1.jquery.min.js"></script>
+
+<script src="ncp/js/jquery-weui.min.js"></script>
+<script src="ncp/js/city-picker.min.js"></script>
+<!--<script src="ncp/js/flexible.js"></script>-->
+<!--<script src="ncp/js/iscroll.js"></script>-->
+<!--<script src="ncp/js/navbarscroll.js"></script>-->
+<script src="ncp/js/pulice.js"></script>
+<script src="ncp/js/route.js"></script>
+<script src="ncp/js/directive.js"></script>
+<script src="ncp/js/main.js"></script>
+<script src="ncp/js/me-lazyload.js"></script>
+</html>

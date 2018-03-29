@@ -1,0 +1,199 @@
+
+    <div class="wrapper bgc_body ">
+        <div class="p_f t w l bgc_blue col_fff h40 flex-between p_r">
+            <div class=" l15 h flex-center m_l15">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">填写预约信息</div>
+            <div class="w10 m_r15"></div>
+        </div>
+        <div class="h40"></div>
+        <!--用户协议区-->
+        <div class=" m_t5 h40 flex-between bgc_fff p_r5">
+            <div class=" h w_b50 flex-start">
+                <div class="w20 h20 m_l10 m_r10 m_b5"><img src="app/icon/reserve information_icon_agreement@2x.png.png" alt=""></div>
+                <div>用户预约协议</div>
+            </div>
+            <a href="/html/others/2017111402020597035723.html" class="dis_b h w_b50 ">
+                <div class=" h w flex-end">
+                    <div class="f_s12 col_blue">预约即同意协议</div>
+                    <div class="m_l5 w15 h15 flex-center"><img src="app/icon/reserve_information_icon_next@2x.png" alt=""></div>
+                </div> 
+            </a>
+        </div>
+        <!--填写信息区-->
+        <div class=" h30 w flex-start p_l10 col_b4">填写服务信息</div>
+        <!--填写姓名-->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10 ">
+                <div class="col_red w10 ">*</div>
+                <div class="">姓名</div>
+            </div>
+            <div class=" h w flex-start "><input type="text" name="username" placeholder="请输入您的姓名" maxlength="10" class="w" ng-model="obj.order_name"></div>
+        </div>
+        <!--填写电话-->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10 ">
+                <div class="col_red w10 ">*</div>
+                <div class="">电话号码</div>
+            </div>
+            <div class=" h w flex-start "><input type="tel" name="username" placeholder="请输入您的电话号码" maxlength="11" class="w" id="phone" ng-model="obj.order_phone" ></div>
+        </div>
+        <!--选择地址-->
+        <div class=" h40 flex-start bgc_fff bor_b p_r5">
+            <div class=" h w_b30 flex-start m_l10 ">
+                <div class="col_red w10 ">*</div>
+                <div class="">选择地区</div>
+            </div>
+            <div class=" h w flex-between ">
+                <input id="aaddress" type="text" readonly="readonly" placeholder="请选择地址" class="w">
+                <input id="huadong" type="hidden" >
+                <div class="m_l5 w15 h15 flex-center">
+                    <img src="app/icon/reserve_information_icon_next@2x.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class=" h40 flex-start bgc_fff">
+            <div class=" h w_b30 flex-start m_l10 ">
+                <div class="col_red w10 ">*</div>
+                <div class="">详细地址</div>
+            </div>
+            <div class=" h w flex-start p_r10">
+                <input type="text" maxlength="30" placeholder="请输入详情地址" class="w" ng-model="obj.order_address_detail">
+            </div>
+        </div>
+        <!--服务内容-->
+        <div class=" h30 w flex-start p_l10 col_b4">服务内容</div>
+        <!-- 一级目录 -->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10">
+                <div class="col_red w10 ">*</div>
+                <div class="">选择服务</div>
+            </div>
+            <div class=" h w flex-start p_r10">
+                <select class="w h_b80" ng-change="serviceListFun_1(serviceListText)" ng-model="serviceListText" ng-options="c.class_id as c.class_name for c in listInfo" >
+                    
+                </select>
+            </div>
+        </div>
+        <!-- 二级目录 -->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10">
+                <div class="col_red w10 ">*</div>
+                <div class="">选择内容</div>
+            </div>
+            <div class=" h w flex-start p_r10">
+                <select class="w h_b80" ng-show="listInfo_2 != ''" ng-change="serviceListFun_2(serviceListText_1)" ng-model="serviceListText_1" ng-options="d.class_id as d.class_name for d in listInfo_1" >
+    
+                </select>
+                <select class="w h_b80" ng-hide="listInfo_2 != ''" ng-change="serviceListFun_2(serviceListText_1)" ng-model="serviceListText_1" ng-options="d.class_id as (d.class_name +'--'+ d.class_price +''+ d.class_unit) for d in listInfo_1" >
+                
+                </select>
+            </div>
+        </div>
+        <!-- 三级目录（不一定有） -->
+        <div class=" h40 flex-start bgc_fff bor_b" ng-show="listInfo_2 != ''">
+            <div class=" h w_b30 flex-start m_l10">
+                <div class="col_red w10 ">*</div>
+                <div class="">选择内容</div>
+            </div>
+            <div class=" h w flex-start p_r10">
+                <select class="w h_b80" ng-change="serviceInfoFun(order_class_id)" ng-model="order_class_id" ng-options="c.class_id as (c.class_name +'--'+ c.class_price +''+ c.class_unit) for c in listInfo_2" >
+
+                </select>
+            </div>
+        </div>
+        <!-- <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10 ">
+                <div class="col_red w10 "></div>
+                <div class="">价格</div>
+            </div>
+            <div class=" h w flex-start ">
+                <div class="col_red w10 ">￥</div>
+                <div class="" ng-bind="">190元</div>
+            </div>
+        </div> -->
+        <div class=" h40 flex-start bgc_fff bor_b">
+            <div class=" h w_b30 flex-start m_l10 ">
+                <div class="col_red w10 "></div>
+                <div class="">备注</div>
+            </div>
+            <div class=" h w flex-start "><input type="text" name="username" placeholder="备注信息（可不填写）"maxlength="50" class="w" ng-model="obj.order_subscribe_note"></div>
+        </div>
+        <!--上传图片-->
+
+        <div class=" h30 w flex-start p_l10 col_b4">上传现场图片（可不上传）</div>
+        <div class=" h80  bgc_fff flex-center">
+            <div class="h70 w  ">
+                <form>
+                    <div id="ftFileImgBox"> 
+                        <!-- <div class="img h70 w70 m_l10  p_r p_t5 bgc_d9 dis_l fl_l flex-center b_r5">
+                            <div class="d_red_x b_r_b50"></div>
+                            <div class="w62 h62  m0a">
+                                <img src="app/images/reserve information_pho_scene@2x.png" alt="">
+                            </div>
+                        </div> -->
+                    </div>
+                
+                    <div class="h w70 m_l20  p_r  dis_l fl_l bor_body" id="fileUrl" >
+                        <input multiple class="p_a w h t l o_0" type="file"  name="img[]" onchange="angular.element(this).scope().ftfilefn(this)">
+                        <div class="m0a w25 h25 m_t10">
+                            <img src="app/icon/reserve_information_pic_cemera@2x.png" alt="">
+                        </div>
+                        <div class="f_s12 m_t5 m_b10 col_b4 t_a_c ">最多三张</div>
+                    </div> 
+                </form>            
+            </div>
+        </div> 
+        <!--服务时间-->
+        <div class=" m_t5 h40 flex-between bgc_fff p_l10 p_r5 bor_b">
+            <div class=" h w_b40 flex-start">
+                <div class="col_red w10 ">*</div>
+                <div>期望上门时间:</div>
+            </div>
+            <div class=" h w_b60 flex-end">
+                <input type="text" placeholder="请选择期望上门时间" id="time_select1" class="w" onfocus="this.blur();">
+                <div class="m_l5 w15 h15 flex-center"><img src="app/icon/reserve_information_icon_next@2x.png" alt=""></div>
+            </div>
+        </div>
+        <div class="m_t15 w flex-center m_b10">
+            <div class="b_r40 w_b90 h50 flex-center" ng-click="preof()"><input type="button" name="y" value="去预约" class="b_r40 w h50 col_fff bgc_blue "></div>
+        </div>
+        <!-- 未填写信息遮罩 -->
+        <div ng-show="preobj==1">
+            <div class="p_f t w h bgc_t_b60" >
+                <div class=" w_b60 h_b30 m0a p_r m_t120 bgc_fff b_r15 ">
+                    <div class="w h25 f_s18 m0a p_t65 flex-center">以上必填项不能为空！</div>
+                    <div class="p_a b w h45 bgc_blue col_fff flex-center f_s18 f_w_6 b_r_b15" ng-click="none()">确 定</div>
+                </div>
+            </div>
+        </div>
+        <!-- 确认缴纳定金遮罩 -->
+        <div ng-show="pay==1">
+            <div class="p_f t w h bgc_t_b60" >
+                <div class=" w_b60 h_b30 m0a p_r m_t120 bgc_fff b_r15 ">
+                    <div class="w h_b70 f_s18 m0a flex-center p_l15 p_r10">预约需要缴纳定金，您确定要预约吗?</div>
+                    <div class="w h_b30 flex-center bor_t">
+                        <div class="w_b50 h_b80 flex-center f_s18 bor_r" ng-click="payFun(0);payFun1()">取消</div>
+                        <div class="w_b50 h_b80 flex-center f_s18 col_blue" ng-click="paymentFun()">
+                            确定
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 等待遮罩 -->
+        <div ng-show="laoding==1">
+            <div class="p_f t w h bgc_t_b60" >
+                <!-- 等待 -->
+                <div class=" w130 h130 m0a p_r m_t210 bgc_0_t_b60 b_r15 p_t30" ng-show="laoding1==0">
+                    <div class="w50 h50 m0a"><img src="app/icon/006.gif" alt="" ></div>
+                    <div class="col_b4 t_a_c m_t10">请稍后</div>
+                </div>
+                <!-- 成功 -->
+                <div class=" w130 h130 m0a p_r m_t210 " ng-show="laoding1==1">
+                    <img src="app/icon/sheet_yuyuechenggong.png.png" alt="" >
+                </div>
+            </div>
+        </div>
+</div>

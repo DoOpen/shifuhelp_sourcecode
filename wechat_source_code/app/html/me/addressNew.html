@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <div class="wrapper bgc_t_b70">
+    <!--新增地址信息-->
+        <div class="p_a b w h_b52 bgc_fff">
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b30 h flex-start">收货人</div>
+                <div class="w_b70 h  flex-start"><input type="text" placeholder="姓名"></div>
+            </div>
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b30 h flex-start">联系电话</div>
+                <div class="w_b70 h  flex-start"><input type="text" placeholder="手机或者固定号码"></div>
+            </div>
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b30 h flex-start">选择地区</div>
+                <div class="w_b70 h  flex-start"><input type="text" placeholder=""></div>
+            </div>
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b30 h flex-start">详细地址</div>
+                <div class="w_b70 h  flex-start"><input type="text" placeholder="如街道、楼层、门牌号等"></div>
+            </div>
+            <div class=" w_b90 h60  m0a flex-start">
+                <div class="w_b30 h flex-start">邮政编码</div>
+                <div class="w_b70 h  flex-start"><input type="text" placeholder="邮政编码(选填)"></div>
+            </div>
+            <div class=" p_a b w h45 flex-center ">
+                    <div class=" w h flex-center col_fff bgc_blue f_s20">确定</div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

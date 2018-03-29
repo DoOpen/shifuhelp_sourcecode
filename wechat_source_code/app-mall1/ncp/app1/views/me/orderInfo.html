@@ -1,0 +1,167 @@
+    <div class="wrapper bgc_body">
+        <!--头-->
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <a href="#/order?rt=2&type={{infoHTML.order_state}}">
+                    <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20">
+                </a>
+            </div>
+            <div class="f_s16">订单详情</div>
+        </div>
+        <!--订单状态-->
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15" ng-show="infoHTML.order_state=='wait_pay'">
+            <div class="w flex-start">等待买家付款</div>
+            <div class="m_t10"></div>
+        </div>
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15" ng-show="infoHTML.order_state=='wait_send'">
+            <div class="w flex-start">等待商家发货</div>
+            <div class="m_t10">您的商品打包中，请耐心等候哦</div>
+        </div>
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15" ng-show="infoHTML.order_state=='wait_receive'">
+            <div class="w flex-start">商家已经发货</div>
+            <div class="m_t10"></div>
+        </div>
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15" ng-show="infoHTML.order_state=='wait_assessment'">
+            <div class="w flex-start">订单已经完成！等待评价！</div>
+            <div class="m_t10"></div>
+        </div>
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15" ng-show="
+        infoHTML.order_state=='end'">
+            <div class="w flex-start">订单已经完成</div>
+            <div class="m_t10"></div>
+        </div>
+        <!--订单地址-->
+        <div class="w h80 bgc_fff p_l15 flex-between p_r15">
+            <div class="h w_b10 flex-center">
+                <img src="ncp/app1/icon/709269121146552965.png" alt="" class="w25 h25">
+            </div>
+            <div class="h w_b90 p_t10">
+                <div class="flex-start">
+                    <div class="w_b60">收货人:<span ng-bind="infoHTML.name"></span></div>
+                    <div class="" ng-bind="infoHTML.mobile"></div>
+                </div>
+                <div class="m_t5">收货地址: 
+                    <span ng-bind="infoHTML.province"></span>
+                    <span ng-bind="infoHTML.city"></span>
+                    <span ng-bind="infoHTML.district"></span>
+                    <span ng-bind="infoHTML.detailed_address"></span>
+                </div>
+            </div>
+        </div>
+        <!--商品信息-->
+        <div ng-repeat="dt in goodsList">
+            <div class="w h105  p_l15 p_r15 bgc_fff m_t10">
+                <div class="w75 h75 fl_l m_t10"><img ng-src="{{dt.goods_img}}" alt=""></div>
+                <div class="m_l15 h fl_l w255 p_r">
+                    <div class="w h35 m_t10" ng-bind="dt.goods_name"></div>
+                    <div class="m_l5 f_s12 col_b1  p_a b40">规格:<span ng-bind="dt.specification_name"></span></div>
+                    <div class="col_red f_s14  p_a b15">￥<span ng-bind="dt.goods_price"></span></div>
+                    <div class="p_a r b15 t_a_c">x<span ng-bind="dt.goods_num"></span></div>
+                </div>
+            </div>
+            <!--退款按钮-->
+            <div class="w h40 p_r15 bgc_fff flex-end" ng-show="infoHTML.order_state=='wait_send'&&dt.is_refund!='1'">
+                    <div class="w75 h30 col_666 bor flex-center b_r15" ng-click="refundFun(1,infoHTML.order_id,dt.order_goods_id,1)">申请退款</div>
+            </div>
+            <div class="w h40 p_r15 bgc_fff flex-end" ng-show="infoHTML.order_state=='wait_receive'&&dt.is_refund!='1'">       
+                    <div class="w75 h30 col_666 bor flex-center b_r15" ng-click="refundFun(1,infoHTML.order_id,dt.order_goods_id,2)">申请退货</div>
+
+            </div>
+            <!--退款中-->
+            <div class="w h40 p_r15 bgc_fff flex-end" ng-show="infoHTML.order_state=='wait_send'&&dt.is_refund=='1'">
+                    <div class="w75 h30 col_666 flex-center">退款中</div>
+            </div>
+            <div class="w h40 p_r15 bgc_fff flex-end" ng-show="infoHTML.order_state=='wait_receive'&&dt.is_refund=='1'">            
+                    <div class="w75 h30 col_666 flex-center">退货中</div>
+                
+            </div>
+        </div>
+        <!--配送方式-->
+        <div class="w h50 bgc_fff flex-between p_l15 p_r15 m_t10 bor_b">
+            <div class="">配送方式</div>
+            <div class="f_w_6" ng-show="infoHTML.express_price==0">快递免邮</div>
+            <div class="f_w_6" ng-show="infoHTML.express_price!=0">快递不包邮</div>
+        </div>
+        <!--留言-->
+        <div class="w bgc_fff flex-start p_l15 p_r15 bor_b p_t15 p_b15">
+            <div class="" >我的留言: <span ng-bind="infoHTML.remark"></span></div>
+        </div>
+        <!--退货订单时间-->
+        <div class="w h100 p_l15  p_t10 p_r15 bgc_fff bor_b">
+            <div class="w  flex-between ">
+                <div class="">快递配送费</div>
+                <div class="">￥<span ng-bind="infoHTML.express_price"></span></div>
+            </div>
+            <div class="w  flex-between m_t10">
+                <div class="">优惠券折扣</div>
+                <div class="">￥<span ng-bind="infoHTML.coupon_price">0</span></div>
+            </div>
+            <div class="w  flex-between m_t10 ">
+                <div class="">积分折扣</div>
+                <div class="">￥<span ng-bind="infoHTML.deduct_integral_price">0</span></div>
+            </div>
+        </div>
+        <!--实际支付-->
+        <div class="w h50 bgc_fff flex-end p_l15 p_r15 bor_b">
+            <div class="f_w_6">实际应付:</div>
+            <div class="col_red">￥<span ng-bind="infoHTML.order_total_price"></span></div>
+        </div>
+        <!--订单时间-->
+        <div class="w  p_l15  p_t10  p_b10 p_r15 f_s14 bgc_fff m_t10">
+            <div class="">订单编号:<span class="m_l10" ng-bind="infoHTML.order_no"></span></div>
+            <div class="m_t5">订单创建时间:<span class="m_l10" ng-bind="infoHTML.create_time">2017-5-5</span></div>
+            <div class="m_t5" ng-show="infoHTML.pay_time!=''">付款时间:<span class="m_l10" ng-bind="infoHTML.pay_time"></span></div>
+            <div class="m_t5" ng-show="infoHTML.send_time!=''">发货时间:<span class="m_l10" ng-bind="infoHTML.send_time"></span></div>
+            <div class="m_t5" ng-show="infoHTML.end_time!=''">完成时间:<span class="m_l10" ng-bind="infoHTML.end_time"></span></div>
+            <div class="m_t5" ng-show="infoHTML.refund_time!=''">退款时间:<span class="m_l10" ng-bind="infoHTML.refund_time"></span></div>
+
+        </div>
+        <!--填写退货物流-->
+        <div class="w h45 p_r15 flex-end bgc_fff m_t10 bor_t">
+            <div class="bor_666 b_r30 h30 w60 flex-center f_s12 m_l10"><a href="tel:4006061314">联系客服</a></div>
+            <div class="bor_666 b_r30 h30 w60 flex-center f_s12 m_l10" ng-show="infoHTML.order_state=='wait_pay'" ng-click="cancelFun(1)">取消订单</div>
+            <div class="bor_666 b_r30 h30 w60 flex-center f_s12 m_l10" ng-show="infoHTML.order_state=='wait_receive'"><a href="#/orderLogistics?oid={{infoHTML.order_id}}">查看物流</a></div>
+            <div class="col_blue b_r15 w60 h30 fl_r flex-center f_s12 bor_blue m_l10" ng-show="infoHTML.order_state=='wait_pay'" 
+            ng-click="appGoPay(infoHTML.order_id)">付款</div>
+            <div class="col_blue b_r15 w60 h30 fl_r flex-center f_s12 bor_blue m_l10" ng-show="infoHTML.order_state=='wait_receive'" ng-click="confirmFun(1)">确认收货</div>
+            <div class="col_blue b_r15 w60 h30 fl_r flex-center f_s12 bor_blue m_l10" ng-show="infoHTML.order_state=='wait_assessment'"><a href="#/orderEvaluate?oid={{infoHTML.order_id}}" class="col_blue">评价</a></div>
+        </div>
+        <!--申请退款遮罩-->
+        <div class=" bgc_t_b60 p_f r l b t flex-center " ng-show="refund==1">          
+            <div class=" h150 w250 z100 bgc_fff b_r5">
+                <div class="w h_b70 f_s18  flex-center">您确定要申请退款吗？</div>
+                <div class="w h_b30 flex-center bor_t">
+                    <div class="w_b50 h_b80 flex-center f_s18 bor_r" ng-click="refundFun(0)">取消</div>
+                    <div class="w_b50 h_b80 flex-center f_s18 " >
+                        <a href="#/orderRefund?id={{oid}}&gid={{gid}}&type={{type}}" class="col_blue">           
+                        确定
+                        </a>
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <!--取消订单-->
+        <div class=" bgc_t_b60 p_f r l b t flex-center " ng-show="cancel==1">          
+            <div class=" h150 w250 z100 bgc_fff b_r5">
+                <div class="w h_b70 f_s18  flex-center">您确定要取消订单吗？</div>
+                <div class="w h_b30 flex-center bor_t">
+                    <div class="w_b50 h_b80 flex-center f_s18 bor_r" ng-click="cancelFun(0)">取消</div>
+                    <div class="w_b50 h_b80 flex-center f_s18 col_blue" ng-click="cancelOrderFun()">
+                        确定
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <!--取消订单-->
+        <div class=" bgc_t_b60 p_f r l b t flex-center " ng-show="confirm==1">          
+            <div class=" h150 w250 z100 bgc_fff b_r5">
+                <div class="w h_b70 f_s18  flex-center">您确定要取消订单吗？</div>
+                <div class="w h_b30 flex-center bor_t">
+                    <div class="w_b50 h_b80 flex-center f_s18 bor_r" ng-click="confirmFun(0)">取消</div>
+                    <div class="w_b50 h_b80 flex-center f_s18 col_blue" ng-click="confirmReceiptFun()">
+                        确定
+                    </div>
+                </div>
+            </div>           
+        </div>
+</div>

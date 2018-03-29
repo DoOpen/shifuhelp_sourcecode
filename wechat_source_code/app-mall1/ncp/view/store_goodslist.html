@@ -1,0 +1,35 @@
+<div class="wrap flex flex-v">
+    <div class="o_h">
+        <div class="storeDetail-header p_r">
+            <div class="storeDetail-headerTop">
+                <!--<a href="javascript:history.go(-1)" class="history_1 p_a"></a>-->
+                <p class="storeDetail-headerTit t_c col_fff f-16"></p>
+            </div>
+            <div class="storeDetail p_a">
+                <img src="image/zixun1@2x.png" ng-src="{{store.storeDetail.merchants_img}}" alt="" class="di_bl l ml-15">
+                <p class="ml-15 l f-12">
+                    <span class="di_bl col_fff" ng-bind="store.storeDetail.merchants_name">店铺名</span>
+                    <span class="di_bl mt-10 col_fff">5.0分</span>
+                </p>
+                <P class="collection-btn r mr-15" ng-show="store.storeDetail.is_collection==0" ng-click="store.Collectionfn(store.storeDetail.merchants_id)"></P>
+                <P class="collection-btn cur r mr-15" ng-show="store.storeDetail.is_collection==1" ng-click="store.cancelCollectionfn(store.storeDetail.collection_id)"></P>
+            </div>
+        </div>
+        <ul class="filter-bar plr-15 o_h back_fff b1b_CD f-14">
+            <li class="w_4 l act" ng-click="store.clicktag(1,1,'','','')" listswitch>推荐</li>
+            <li class="w_4 l" ng-click="store.clicktag(1,'','','sales','desc')" listswitch>销量</li>
+            <li class="w_4 l" ng-click="store.clicktag(1,'',1,'','')" listswitch>新品</li>
+            <li class="w_4 l selectback" id="state" listswitch>价格</li>
+        </ul>
+    </div>
+    <div class="main flex-1">
+        <ul class="shop_list"></ul>
+        <div class="t_c f-14 col_666 line_h50">{{modelstext}}</div>
+    </div>
+    <ul class="store-nav line_h50 h_50 f-16 t_c b1t_CD back_f8 p_r">
+        <li class="p_a line l50 tm0a"></li>
+        <!--<li class="w_3 l"><a class="di_bl w100 sjxq" ng-click="appstoreDetail()">商家详情</a></li>-->
+        <li class="w_2 l"><a class="di_bl w100 spfl" ng-click="appgoodslist()">商品分类</a></li>
+        <li class="w_2 r"><a class="di_bl" href="JavaScript:android.appJumpCall()" onclick="appJumpCall()">联系卖家</a></li>
+    </ul>
+</div>

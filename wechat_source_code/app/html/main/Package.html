@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 w10"><img src="../../icon/back@2x.png" alt=""></div>
+            <div class="f_s16">套餐一详情</div>
+        </div>
+        <div class="w h130"><img src="../../images/details_banner@2x.png" alt=""></div>
+        <div class="bk w  p_t15 p_l15">
+            <div class="bk w_b90 f_s16 f_w_6">套餐一详情:</div>
+            <div class="f_s14 m_t15"><span class="f_w_6">工艺</span>
+            <div class="m_t10">水管走墙、横平竖直、强弱电走地</div></div>
+
+            <div class="f_s14 m_t15"><span class="f_w_6">材料</span>
+            <div class="m_t10">保利、伟星、金牛、日丰等、普通pvc电线</div></div>
+
+            <div class="f_s14 m_t15"><span class="f_w_6">赠品</span>
+            <div class="m_t10">前置过滤器B1、水电保修年卡</div></div>
+
+            <div class="f_s16 m_t30 m_b25 col_red">备注：循环水另计</div>
+        </div>
+        <div class="bk w h_b20 p_f b f_s16 ">
+            <div class="bgc_body h10"></div>
+            <div class="bk h45 w flex-start m_l20 w_b90">价格:
+            <div class="col_red m_l20 ">99元/平方</div>
+            </div>
+            <div class="flex-center h_b60 bgc_body">
+                <input type="button" name="y" value="去预约" class="b_r40 w_b90 h50 bgc_blue col_fff">
+            </div>
+        </div>
+    </body>
+</html>

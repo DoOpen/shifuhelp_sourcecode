@@ -1,0 +1,12 @@
+ <div class="w h bgc_body ">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">系统消息</div>
+        </div>
+        <div class="h110 bgc_fff m0a m_t5 m_r10 m_l10 p_t5 p_l10 p_r5 p_r" ng-repeat="xt in xtHtml">
+            <div class="m_t5" ng-bind="xt.msg_desc"></div>
+            <div class="p_a b10" ng-bind="xt.create_time"></div>
+        </div>   
+    </div>

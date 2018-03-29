@@ -1,0 +1,41 @@
+
+<div class="f_s14 wrapper" >
+    <div class="p_f t w z99 bgc_blue col_fff h40 flex-center p_r">
+        <div class="p_a l15 h flex-center">
+            <a href="#/personalCenter">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20">
+            </a>
+        </div>
+        <div class="f_s16">售后订单</div>
+    </div>
+    <div class="h40"></div>
+        <!--售后订单列表-->
+        <div ng-repeat="dt in listInfo">
+            <a href="#/shInfo?rid={{dt.refund_id}}&oid={{dt.order_id}}">
+            <div class="w h40">
+                <div class="w p_l15 p_r15 h40 flex-between">
+                    <div class="">售后编号:<span ng-bind="dt.refund_no">订单号</span></div>
+                    <div class="flex-start col_blue">
+                        <div ng-show="dt.refund_type=='with_goods'">退货</div>
+                        <div ng-show="dt.refund_type=='not_goods'|| dt.refund_type=='money'">退款</div>
+                        <div ng-bind="dt.refund_state_show">待审核</div>
+                    </div>
+                </div>
+            </div>
+            <div class="w h105 bgc_body p_l15 p_r15 flex-between">
+                <div class="w75 h75 fl_l m_t10"><img ng-src="{{dt.orderGoodsBean.goods_img}}" alt=""></div>
+                <div class="m_l15 h fl_l w255 p_r">
+                    <div class="w h40 m_t10 text_ellipsis_2" ng-bind="dt.orderGoodsBean.goods_name"></div>
+                    <div class="m_l5 f_s10 col_b1  p_a b40">规格:<span ng-bind="dt.orderGoodsBean.specification_names"></span></div>
+                    <div class="m_t5 col_red f_s12 w60 h20 bgc_fff p_a b15 flex-center">￥<span ng-bind="dt.orderGoodsBean.specification_price"></span></div>
+                    <div class="p_a r b15 t_a_c">x<span ng-bind="dt.orderGoodsBean.goods_num">1</span></div>
+                </div>
+            </div>
+            <div class="w h40 p_r15 flex-end">
+                <div class="bor_blue col_blue b_r15 w75 h25 fl_r flex-center f_s12">查看详情</div>
+            </div>
+            <div class="w h8 bgc_body bor_t"></div>
+            </a>
+        </div>
+    
+ </div>

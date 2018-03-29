@@ -1,0 +1,304 @@
+<div class="wrap flex flex-v o_h p_a back_F1F5F6">
+    <!-- <div class="pulice_header">
+        <div class="titbox p_r">
+            <a href="javascript:history.go(-1)" class="history_1 p_a"></a>
+            <p class="tit h flex-center">商品信息</p>
+            <a href="#/cart" class="rold p_a jump_carticon"></a>
+        </div>
+    </div> -->
+    <div class="main flex-1">
+        <div class="goods_box back_fff">
+            <div class="banners">
+                <div class="swiper-container banner t_c hei_300">
+                    <div class="swiper-wrapper">
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <!-- <div class="banners" style="height: 6rem;">
+                <div class="swiper-container banner t_c">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" ng-repeat="b in goods.goodsDetail.goodsImgBeans">
+                            <img style="height: 6rem;" src="" ng-src="{{b.goods_img}}" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div> -->
+            <div class="goods_detail ">
+                <i class="fengexian"></i>
+                <div class="o_h h90 p_r">
+                    <p class="f-16 goo_des col_333 l text_ellipsis" ng-bind="goods.goodsDetail.goods_name"></p>
+                    <p class="l goo_des m_t10 f-8 text_ellipsis" ng-bind="goods.goodsDetail.goods_desc"></p>
+                    <!--<p class="l ml-10 f-8 t_c"><span class="bor_3 b1_787 plr-3">包邮</span></p>-->
+                    <div class="p_a r1 goo_des_r f-12 h90">
+                        <a id="sharegood" >
+                            <span class="icon_goods_fenxiang m_b10"></span>
+                            <span>分享</span>
+                        </a>
+                        <p class="m_t15"><span ng-bind="goods.goodsDetail.total_sales">2000</span>购买</p>
+                    </div>
+                </div>
+                <div class="o_h mr_-35">
+                    <!--<p class="f-14 col_333 col_ju">{{goods.goodsDetail.goods_price | currency:'¥'}}</p>-->
+                    <p class="f-14 col_333 col_ju">￥{{goods.goodsDetail.goods_now_price}}</p>
+                </div>
+                <!--<div class="o_h line_h20 mt-15">-->
+                    <!--<p class="f-12 col_999 l">库存：{{goods.goodsDetail.goods_stock}}</p>-->
+                    <!--<p class="f-12 col_999 l ml-70">销量：{{goods.goodsDetail.year_sales}}</p>-->
+                    <!--<p class="f-12 col_999 r" ng-bind="goods.goodsDetail.goodsDetai.goods_address">发货地：上海</p>-->
+                <!--</div>-->
+            </div>
+            <div class="wrap_geheng back_F1F5F6 hei_10"></div>
+        </div>
+        <!--<div class="serve o_h white">-->
+            <!--<p class="quan f-12 col_999 l">快捷支付</p>-->
+            <!--<p class="quan f-12 col_999 l ml-25">快递免邮</p>-->
+            <!--<p class="quan f-12 col_999 l ml-25">七天无理由退货</p>-->
+        <!--</div>   -->
+        <div class="serve o_h white flexfen">
+            <p class="quan f-12 col_999 ">快捷支付</p>
+            <p class="quan f-12 col_999 ">快递免邮</p>
+            <p class="quan f-12 col_999 ">七天无理由退货</p>
+        </div>
+        <!-- <div class="wrap_geheng back_F1F5F6 hei_4"></div>
+        <div class="serve o_h white">
+            <span class="jifen_border f-14 hei_20 pl-10 pr-10">积分</span>
+            <span class="ml-10 jifen_hei col_999 f-14">支付可获得{{goods.goodsDetail.goods_get_integral?goods.goodsDetail.goods_get_integral:'0'}}积分</span>
+        </div> -->
+        <div class="wrap_geheng back_F1F5F6 hei_10"></div>
+        <!--<div class="select_spec f-14 line_h45 plr-15" parametershow>选择规格</div>-->
+        <!--<div class="shop_detail back_fff mt-8">-->
+            <!--<div class="shop_detailBIT o_h">-->
+                <!--<img src="" ng-src="{{goods.goodsDetail.merchantsBean.merchants_img}}" alt="" class="di_bl l">-->
+                <!--<p class="l ml-15">-->
+                    <!--<span class="f-14 col_333 di_bl" ng-bind="goods.goodsDetail.merchantsBean.merchants_name"></span>-->
+                    <!--<span class="f-12 col_999 di_bl mt7 text_ellipsis" ng-bind="goods.goodsDetail.merchantsBean.merchants_desc">店铺简介的内容显示区店铺简介的内容显示区店铺简介的内容显示区店铺简介的内容显示区</span>-->
+                <!--</p>-->
+            <!--</div>-->
+            <!--<div class="shop_detailScore t_c f-12 o_h">-->
+                <!--<p class="l">-->
+                    <!--<span class="di_bl col_EA2">5.0</span>-->
+                    <!--<span class="di_bl col_999">商品描述</span>-->
+                <!--</p>-->
+                <!--<p class="l">-->
+                    <!--<span class="di_bl col_EA2">5.0</span>-->
+                    <!--<span class="di_bl col_999">卖家服务</span>-->
+                <!--</p>-->
+                <!--<p class="l">-->
+                    <!--<span class="di_bl col_EA2">5.0</span>-->
+                    <!--<span class="di_bl col_999">物流服务</span>-->
+                <!--</p>-->
+            <!--</div>-->
+            <!--<div class="o_h f-12 col_333 t_c shopbtn mt-10">-->
+                <!--<a href="JavaScript:android.appJumpCall()" onclick="appJumpCall()" class="di_bl l bor_3 lxmj">联系商家</a>-->
+                <!--<a class="di_bl r bor_3 goshop">进入店铺</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="starbox">
+            <div class="l starbox_l">
+                <span class="f-30" ng-bind="goods.zpf"></span><span class="f-16">分</span>
+            </div>
+            <div class="r starbox_r f-14">
+                    <p class="rate_box">商品评分:
+                        <span class="star_rate star-off" ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star1>0]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star1>1]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star1>2]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star1>3]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star1>4]"></span>
+                    </p>
+                    <p class="rate_box">物流评分:
+                        <span class="star_rate star-off" ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star2>0]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star2>1]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star2>2]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star2>3]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star2>4]"></span>
+                    </p>
+                    <p class="rate_box">配送评分:
+                        <span class="star_rate star-off" ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star3>0]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star3>1]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star3>2]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star3>3]"></span>
+                        <span class="star_rate star-off"  ng-class="{true:'star-on',false:'star-off'}[goods.goodsDetail.goods_star3>4]"></span>
+                    </p>
+
+            </div>
+        </div>
+        <div class="wrap_geheng back_F1F5F6 hei_2"></div>
+        <div class="w h50 f-18 flex-center bgc_fff">
+            用户评价
+        </div>
+       <!--商品评论-->
+        <div class="good_pin_box m_b15" ng-show="goods.pingjialist[0]">
+            <div class="flex-start">
+                <div class="pinglun_img flex-center">
+                     <img ng-show="goods.pingjialist[0].member_head_image" ng-src={{goods.pingjialist[0].member_head_image}} alt="" class="pinglun_img">
+                     <img ng-hide="goods.pingjialist[0].member_head_image" ng-src={{goods.pingjialist[0].member_head_image}} alt="" class="pinglun_img bgc_999">
+                </div>
+                <span  class="f-14 ml-10">{{goods.pingjialist[0].member_nick_name}}</span>
+            </div>
+            <p  class="f-14 mt-10">{{goods.pingjialist[0].assessment_desc}}</p>
+            <div class="h60 flex-start mt-10" ng-show="goods.pingjialist[0].assessment_img1" >
+                <img ng-src="{{goods.pingjialist[0].assessment_img1}}" class="h w60 m_r20">
+                <img ng-src="{{goods.pingjialist[0].assessment_img2}}" class="h w60 m_r20">
+                <img ng-src="{{goods.pingjialist[0].assessment_img3}}" class="h w60 m_r20">
+            </div>
+            <p class="f-12 col_666 mt-10" >{{goods.pingjialist[0].create_time}}</p>
+            <div class="flex-center">
+            <div class="ck_total_pingjia f-14  m_t10 m_b15" ><a href="JavaScript:android.appGoodpinglun()" onclick="appGoodpinglun()"  class="chakanpingjia dis_bl">查看全部评价</a></div>
+            </div>
+
+        </div>
+        <div class="w h50 f-14 flex-center bgc_fff m_b15" ng-hide="goods.pingjialist[0]">
+            还没有评价记录
+        </div>
+        <!--<div class="wrap_geheng back_F1F5F6 hei_10"></div>-->
+          <!--商品详情介绍-->
+        <div class="goo_des_box f-14" id="gDeatils">
+            <p class="hei_40 line_h40 t_c f-18">商品详情</p>
+            <!-- <div class="goo_des_img" ng-repeat="b in goods.goodsDetail.goodsImgBeans">
+                <img style="width: 100%;"  ng-src="{{b.goods_img}}" alt="">
+            </div> -->
+            <div ng-bind-html="goods.details" ></div>
+        </div>
+        <!--添加购物车-->
+        <!-- <div class="parameterback di_n"></div>
+        <div class="parameterbox back_fff tform110">
+            <div class="details o_h">
+                <img ng-src="ncp/images/home_banner_pic@2x.png" class="di_bl l" alt=""> -->
+                <!--<img ng-src="{{goods.goodsDetail.goods_img}}" class="di_bl l" alt="">-->
+                <!-- <p class="l">
+                    <span class="di_bl f-16 detailsName text_ellipsis" ng-bind="goods.goodsDetail.goods_name">新鲜蔬菜</span>
+                    <span class="di_bl f-14 detailsPrice" ng-bind="goods.goodsDetail.goods_total | currency:'¥'"></span>
+                </p>
+                <i class="r Close" parameterhide></i>
+            </div>
+            <div class="parameterDetail">
+                <div class="parameterList" ng-repeat="p in goods.goodsDetail.goodsParameterBeans">
+                    <p class="col_999 f-14 parameterName">{{p.parameter_name}}:</p>
+                    <ul class="parameterTag o_h f-12 col_333">
+                        <li class="l" id="{{a.parameter_id}}" ng-class="{act:$index==0}" price="{{a.parameter_price}}" parid="{{a.parameter_id}}" ng-bind="a.parameter_name" ng-repeat="a in p.goodsParameterBeans" ng-click="goods.selectPar()" switch></li>
+                    </ul>
+                </div>
+                <div class="nums o_h">
+                    <p class="l f-14">请选择数量：</p>
+                    <div class="r bor_3 o_h t_c">
+                        <span class="di_bl l minus f-16 bs" ng-click="goods.numfn(1,goods.goodsDetail.goods_stock)">-</span>
+                        <input type="text" class="di_bl l content f-14 bn t_c" value="1" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')"  onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" ng-blur="goods.numfn(3,goods.goodsDetail.goods_stock)" />
+                        <span class="di_bl r add f-16 bs" ng-click="goods.numfn(2,goods.goodsDetail.goods_stock)">+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-block">
+                <a href="" class="di_bl w_2 l col_fff f-16 t_c btn-buy ahovfff" ng-click="goods.addcart()" >加入购物车</a>
+                <a href="" class="di_bl w_2 l col_fff f-16 t_c btn-addtocart ahovfff" ng-click="goods.goConfirmhtml()">立即购买</a>
+            </div>
+        </div> -->
+    </div>
+    <div class="footer goods_detailFooter flex-between back_fff o_h">
+        <div class="o_h l goods_detailFooterL">
+            <div class="l w_b33 lxsj">
+                <!-- <a  href="JavaScript:android.appJumpCall()" onclick="appJumpCall()" class="di_bl w100 h100"> -->
+                <a href="JavaScript:android.appJumpCall()" onclick="appJumpCall()" class="di_bl w100 h100">
+                    <i class="di_bl m0a"></i>
+                    <span class="w f-10 t_c flex-center">客服</span>
+                </a>
+            </div>
+            <div class="l w_b33 goindex t_c ">
+                <a href="JavaScript:android.appGoHome()" onclick="appGoHome()" >
+                    <i class="di_bl m0a"></i>
+                    <span  class=" di_bl t_c ahovfff f-10">首页</span>
+                </a>
+            </div>
+
+            <div class="r w_b33 sc">
+                <a href="" class="di_bl">
+                    <i class="di_bl m0a" ng-hide="goods.goodsDetail.collection_id" ng-click="goods.Collectionfn(goods.goodsDetail.goods_id)"></i>
+                    <i class="di_bl m0a act" ng-show="goods.goodsDetail.collection_id" ng-click="goods.cancelCollectionfn(goods.goodsDetail.goods_id)"></i>
+                    <span class="di_bl t_c h flex-center f-10">收藏</span>
+                </a>
+            </div>
+        </div>
+        <!-- <div class="l jrgwc t_c parametershow">
+            <a href="javascript:void(0)" class="col_fff f-16 di_bl ahovfff" parametershow>加入购物车</a>
+        </div>
+        <div class="l ljgm t_c">
+            <a href="javascript:void(0)" class="col_fff f-16 di_bl ahovfff" parametershow>立即购买</a>
+        </div> -->
+        <div class="l jrgwc t_c parametershow">
+            <div class="col_fff f-16 di_bl ahovfff" ng-click="goods.zezaoFun(1,1)">加入购物车</div>
+        </div>
+        <div class="l ljgm t_c">
+            <div class="col_fff f-16 di_bl ahovfff" ng-click="goods.zezaoFun(1,2)" >立即购买</div>
+        </div>
+    </div>
+    <!--选择商品参数遮罩-->
+    <div class="p_f t w h p_r f_s14 z99" ng-show="goods.zezao==1">
+        
+        <div class="p_f t w h bgc_t_b60 "  ng-click="goods.zezaoFun(0)"></div>
+        <div class="p_f b w   bgc_fff z99 ">
+            <div class="  h110 m_tf20 p_r15 p_l15 flex-between">
+                <div class=" w_b90 flex-start p_r h">
+                    <div class="w110 h110 b_r3 bgc_fff" >
+                            <img ng-src="{{goods.goodsDetail.goods_img}}" class="w h ">
+                    </div>
+                    <div class="m_l20 h p_r w_b60">
+                        <div class=" m_t30 w f_s18 col_red" >￥<span ng-bind="listInfo.specification_price" class="col_red">133.23</span></div>
+                        <div class=" w f_s16 m_t7" >库存:<span ng-bind="listInfo.specification_stock"></span>件</div>
+                        <div class="p_a b w f_s16 flex-start">已选: <span ng-bind="listInfo.specification_names" class="m_l5"></span></div>
+                    </div>
+                </div>
+                <div class="w20 h20 m_b20" ng-click="goods.zezaoFun(0)"><img src="ncp/image/guanbi_r@2x.png" class="w h "></div>
+            </div>
+            <div class=" p_l15 m_t5 " id="g{{$index}}" ng-repeat="dt in guigeInfo track by $index">
+                <div class="" ng-bind="dt.specification_name">规格</div>
+                <div class="m_t10 flex-fstart" >
+                    <!-- <div class="w70 h30 b_r3 flex-center m_r15 m_b15" ng-repeat="dt1 in dt.specificationBeans" ng-bind="dt1.specification_name" ng-click="goods.specificationFn($parent.$index,dt1.specification_id)" ng-class="{true:'guige1',false:'guige'}[goods.gg[$parent.$index]==dt1.specification_id]">规格1</div> -->
+                    <div class="w70 h30 b_r3 flex-center m_r15 m_b15" ng-repeat="dt1 in dt.specificationBeans" ng-bind="dt1.specification_name" ng-click="goods.specificationFn($parent.$index,dt1.specification_id);goods.onspecificationFn(dt1.specification_id)" ng-class="{true:'guige1',false:'guige'}[dt1.specification_id==goods.specIdArr[$parent.$index]]">规格1</div>
+                </div> 
+            </div>
+            <div class="h30 flex-between p_r15 p_l15">
+                <div >请选择数量：</div>
+                <div class="b_r3 t_c h bor_999 flex-start">
+                        <span class="bor_r_999 h fl_l w25 flex-center f_s16" ng-click="goods.numfn(1,listInfo.specification_stock)">-</span>
+                        <input type="tel" class="h w40 t_a_c content" ng-model="goods.num" ng-blur="goods.numfn(3,listInfo.specification_stock)" />
+                        <span class="bor_l_999 fl_r w25 flex-center f_s16 h add f-16 bs" ng-click="goods.numfn(2,listInfo.specification_stock)">+</span>
+                </div>
+            </div>
+            <div class="w h50 f_s16 m_t20 flex-center bgc_blue col_fff" ng-click="goods.addcart()" ng-show="goods.type1==1">
+                添加
+            </div>
+            <div class="w h50 f_s16 m_t20 flex-center bgc_999 col_fff" ng-show="goods.type1==2&&goods.max==0">
+                确定
+            </div>
+            <div class="w h50 f_s16 m_t20 flex-center bgc_blue col_fff" ng-show="goods.type1==2&&goods.max!=0" ng-click="goods.goConfirmhtml()">
+                确定
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script>
+//    $(".clas_arrdow").click(function () {
+//        if($(".clas_arrdow").hasClass('clas_arrup')){
+//            $(".clas_arrdow").removeClass('clas_arrup');
+//            $(".classify").removeClass('up');
+//            $(".cartbtn").removeClass('di_n');
+//        }else{
+//            $(".clas_arrdow").addClass('clas_arrup');
+//            $(".classify").addClass('up');
+//            $(".cartbtn").addClass('di_n');
+//        }
+//    })
+    // var Myswiper = new Swiper('.swiper-container',{
+    //     pagination:'.swiper-pagination',
+    //          direction:"horizontal",
+    //          observer:true,
+    //          observeParents:true,
+    //          loop:true,
+    //          loopAdditionalSlides:1,
+    //          autoplay:2000,
+    //          autoplayDisableOnInteraction:false,
+    // });
+</script>

@@ -1,0 +1,126 @@
+<div class="wrapper bgc_body">
+        <!--头-->
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">申请退款</div>
+        </div>
+        <div class="h40 flex-start p_l15 f_w_6" ng-show="type==2">选择退货数量:</div>
+        <div class="h40 flex-start p_l15 f_w_6" ng-hide="type==2">选择退款数量:</div>
+        <!--商品信息-->
+        <div class="w h105  p_l15 p_r15 bgc_fff" ng-repeat="dt in goodsList" ng-show="dt.order_goods_id==gid">
+            <div class="w75 h75 fl_l m_t10"><img ng-src="{{dt.goods_img}}" alt=""></div>
+            <div class="m_l15 h fl_l w255 p_r">
+                <div class="w h35 m_t10" ng-bind="dt.goods_name"></div>
+                <div class="m_l5 f_s12 col_b1  p_a b40">规格:<span ng-bind="dt.specification_name"></span></div>
+                <div class="col_red f_s14  p_a b15">￥<span ng-bind="dt.goods_price"></span></div>
+                <!--商品数量-->
+                <div class="p_a r b15 t_a_c flex-start">
+                    <div class="w20 h20 bor_blue1 flex-center f_s20" ng-click="goodsNum1Fun(2)">-</div>
+                    <div class="bor_blue1 w40 h20 flex-center"><input type="number" ng-blur="goodsNum2Fun()" class="w38 h18  p_l15 f_s12" ng-model="goods.Num1"></div>
+                    <div class="w20 h20 bor_blue1 f_s20 flex-center"  ng-click="goodsNum1Fun(1)">+</div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="type==2">
+            <div class="h40 flex-start p_l15 f_w_6">退货类型（必选）</div>
+            <div class="h100 bgc_fff p_l15 p_r15 p_t10 f_s14" >
+                 <div class="bor_b w h40 flex-between p_r15 p_l15 bor_body b_r_t10">
+                    <div class=" h flex-start">我要退款（未收到货）</div>
+                    <div class="w20 h20 flex-center ndz" ng-click="sFun(3)" ng-class="{'dz':s==3}"></div>
+                </div>
+                <div class="bor_b w h40 flex-between p_r15 p_l15 bor_body bor_tn b_r_b10">
+                    <div class=" h flex-start">我要退货（已收到货）</div>
+                    <div class="w20 h20 flex-center ndz" ng-click="sFun(4)" ng-class="{'dz':s==4}"></div>
+                </div>  
+            </div>
+        </div>
+        <div>
+            <div class="h40 flex-start p_l15 f_w_6">退款原因（必选）</div>
+            <div class="h60 bgc_fff flex-between p_l15 p_r15" ng-click="rFun(1)">
+                <input type="text" placeholder="退款原因" disabled ="disabled" class="bgc_fff" ng-model="refund.reason">
+                <div class="w10 h15 flex-center"><img src="ncp/app1/icon/icon_arrow_right.png" alt=""></div>
+            </div>
+        </div>
+        <div>
+            <div class="h40 flex-start p_l15 f_w_6">退款金额</div>
+            <div class="h60 bgc_fff flex-start p_l15 p_r15 ">
+                ￥
+                <input type="text"  class="w m_l5" ng-model="refundMoney1">
+            </div>
+        </div>
+        <div>
+            <div class=" h40 flex-start p_l15 f_w_6">退款(货)说明（可不填）</div>
+            <div class="h100 bgc_fff flex-between p_l15 p_r15 ">
+                <textarea name="" id="" cols="20" rows="3" class="bor_s_n w" placeholder="请说明退款原因" ng-model="refund.desc"></textarea>
+            </div>
+        </div>
+        <!--上传图片-->
+        <div class="h40 flex-start p_l15 f_w_6">上传凭证图片（可不上传）</div>
+        <div class=" h100  bgc_fff flex-center">
+            <div class="h70 w  ">
+                <form>
+                        <div id="ftFileImgBox">
+                            <!-- <div class="img h70 w70 m_l10  p_r p_t5 bgc_d9 dis_l fl_l flex-center b_r5">
+                                <div class="d_red_x b_r_b50"></div>
+                                <div class="w62 h62  m0a">
+                                    <img src="images/reserve information_pho_scene@2x.png" alt="">
+                                </div>
+                            </div> -->
+                        </div>
+                    
+                        <div class="h w70 m_l20  p_r p_t5  dis_l fl_l bor_body" id="fileUrl">
+                            <input multiple class="p_a w h t l o_0" type="file"  name="img[]" onchange="angular.element(this).scope().ftfilefn(this)">
+                            <div class="m0a w25 h25 m_t10">
+                                <img src="ncp/app1/icon/reserve_information_pic_cemera@2x.png" alt="">
+                            </div>
+                            <div class="f_s12 m_t5 m_b10 col_b4 t_a_c ">最多三张</div>
+                        </div> 
+                </form>            
+            </div>
+        </div>
+        <div class=" w flex-center  h50 bgc_blue col_fff f_s20" ng-click="ofFun()">
+            提交申请
+        </div>
+        <!--退货退款原因遮罩-->
+        <div class="p_f t w h p_r f_s14 " ng-show="r==1">
+            <div class="p_a t w h bgc_t_b60 "  ng-click="rFun(0)"></div>
+            <div class="p_a b w  bgc_fff z99 p_r">
+                <div class="bor_b w h60 p_r15 p_l15 flex-center f_s18">请选择退款原因</div>
+                <div class="p_a t15 r15 w25 h25" ng-click="rFun(0)">
+                    <img src="ncp/app1/icon/reserve_information_turnoff_highlight@2x.png" alt="">
+                </div>
+                <div class="bor_b w h60 flex-between p_r15 p_l15" ng-repeat="dt1 in reasonList">
+                    <div class=" h flex-start" ng-bind="dt1.reason_name"></div>
+                    <div class="w20 h20 flex-center ndz" ng-click="nFun(dt1.refund_reason_id)" ng-class="{'dz':n==dt1.refund_reason_id}"></div>
+                </div>
+                <div class=" w flex-center  h45 bgc_blue col_fff f_s18" ng-click="rFun(0)">
+                    确定
+                </div>           
+            </div>
+        </div>
+        <!-- 等待遮罩 -->
+        <div ng-show="laoding==1">
+            <div class="p_f t w h bgc_t_b60" >
+                <!-- 等待 -->
+                <div class=" w130 h130 m0a p_r m_t210 bgc_0_t_b60 b_r15 p_t30" ng-show="laoding1==0">
+                    <div class="w50 h50 m0a"><img src="ncp/app1/icon/006.gif" alt="" ></div>
+                    <div class="col_b4 t_a_c m_t10">请稍后</div>
+                </div>
+                <!-- 成功 -->
+                <div class=" w130 h130 m0a p_r m_t210 " ng-show="laoding1==1">
+                    <img src="ncp/app1/icon/tijiao@2x.png" alt="" >
+                </div>
+            </div>
+        </div>
+        <!-- 未填写信息遮罩 -->
+        <div ng-show="of==1">
+            <div class="p_f t w h bgc_t_b60" >
+                <div class=" w_b60 h_b30 m0a p_r m_t120 bgc_fff b_r15 ">
+                    <div class="w h25 f_s18 m0a p_t65 flex-center">以上必选信息不能为空！</div>
+                    <div class="p_a b w h45 bgc_blue col_fff flex-center f_s18 f_w_6 b_r_b15" ng-click="ofs(0)">确 定</div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <div class="f_s14" >
+    <!--售后订单-->
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 w10"><img src="../../icon/back@2x.png" alt=""></div>
+            <div class="f_s16">订单详情</div>
+        </div>
+        <!--退货申请状态-->
+        <div class="w h75 p_l15 bgc_yellow col_fff f_s16 p_t15">
+            <div class="w flex-start ">退货状态</div>
+            <div class="">时间</div>
+        </div>
+        <!--退货商品信息-->
+        <div class="w h100 p_l15 p_r15 p_t5 ">
+            <div class="w75 h75 fl_l m_t5"><img src="../../images/store_image@2x.png" alt=""></div>
+            <div class="m_l15 h fl_l w250 p_r">
+                <div class="w ">商品名称商品名称商品名称商品名称商品名称商品名称商品名称</div>
+                <div class="m_l5 f_s12 col_b1 m_t10">官方标配:<span>银色</span></div>
+                <div class="m_t5 col_red f_s12 w60 h20 bgc_fff flex-center">￥<span>188.9</span></div>
+                <div class="p_a r b5 t_a_c">x<span>1</span></div>
+            </div>
+        </div>
+        <div class="w h40 p_r15 flex-end">
+            <div class="f_s12 col_b1 m_r15">退货中</div>
+            <div class="bor_blue col_blue b_r15 w75 h25 fl_r flex-center f_s12">取消退货</div>
+        </div>
+        <!--退货退款提示信息-->
+        <div class="w h10 bgc_body bor_t"></div>
+        <div class="w h75 p_l15  p_t15 p_r25">
+            恭喜您! 商家已同意您的退款申请! 请填写正确的物流信息! 如有疑问请联系客服! 谢谢合作!
+        </div>
+        <div class="w h5 bgc_body"></div>
+        <!--退货订单时间-->
+        <div class="w h85 p_l15  p_t10 p_r25 f_s13">
+            <div class="">订单编号:<span class="m_l10">2017-5-5</span></div>
+            <div class="m_t5">创建时间:<span class="m_l10">2017-5-5</span></div>
+            <div class="m_t5">付款时间:<span class="m_l10">2017-5-5</span></div>
+        </div>
+        <div class="w h5 bgc_body"></div>
+         <!--退款原因-->
+        <div class="w  p_l15  p_t10 p_r25 f_s13">
+            <div class="">退款原因:<span class="m_l10">2017-5-5</span></div>
+            <div class="m_t5">退款金额:<span class="m_l10">2017-5-5</span></div>
+            <div class="m_t5">申请时间:<span class="m_l10">2017-5-5</span></div>
+            <div class="m_t5 m_b15">售后单号:<span class="m_l10">2017-5-5</span></div>
+        </div>
+        <div class="w h5 bgc_body"></div>
+        <!--退款上传的照片-->
+          <div class="w h120 p_l15  p_t10 p_r25 f_s13">
+            <div class="">上传的凭证:</div>
+            <div class="h70 w  m_t10">
+                <div class="h w70   p_r p_t5 bgc_d9 dis_l fl_l">
+                    <div class="w60 h60  m0a ">
+                        <img src="../../images/reserve information_pho_scene@2x.png" alt="">
+                    </div>
+                </div>
+                <div class="h w70 m_l20  p_r p_t5 bgc_d9 dis_l fl_l">
+                    <div class="w60 h60  m0a ">
+                        <img src="../../images/reserve information_pho_scene@2x.png" alt="">
+                    </div>
+                </div>
+                <div class="h w70 m_l20  p_r p_t5 bgc_d9 dis_l fl_l">
+                    <div class="w60 h60  m0a ">
+                        <img src="../../images/reserve information_pho_scene@2x.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w h5 bgc_body"></div>
+        <!--填写退货物流-->
+        <div class="w h45 p_r15 flex-end">
+            <div class="bor b_r30 h25 w75 flex-center f_s12 m_r5">联系客服</div>
+            <div class="bor_blue col_blue b_r15 w90 h25 fl_r flex-center f_s12">填写退货物流</div>
+        </div>
+        <!-- 成功遮罩 -->
+        <div ng-show="laoding==1" class="">
+            <div class="p_f t w h bgc_t_b60" >
+                <div class=" w130 h130 m0a p_r m_t210 ">
+                    <img src="../../icon/refund_sheet_countermand@2x.png.png" alt="">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    </body>
+</html>

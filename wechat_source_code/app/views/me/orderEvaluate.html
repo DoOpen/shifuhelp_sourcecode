@@ -1,0 +1,97 @@
+
+    <div class="wrapper f_s14">
+        <!--头-->
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+                <div class="p_a l15 h flex-center">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+                <div class="f_s16">发布评价</div>
+        </div>
+        <form id="form{{$index}}" ng-repeat="dt in rinfoHTML track by $index">
+            <div id="{{$index}}" class="bgc_fff">
+                <div class="flex-between h60 bgc_fff p_l15 bor_b">
+                    <div class="w_b50 flex-start">
+                        <div class="w40 h40 m_t10 m_b10"><img ng-src="{{dt.goods_img}}" alt=""></div>
+                        <div class="m_l10">商品描述</div>
+                    </div>
+                    <div class="w_b50 h flex-start">
+                        <div class="pjxx1" ng-click="xxFun($event);pfFun1($index,1)"></div>
+                        <div class="pjxx1" ng-click="xxFun($event);pfFun1($index,2)"></div>
+                        <div class="pjxx1" ng-click="xxFun($event);pfFun1($index,3)"></div>
+                        <div class="pjxx1" ng-click="xxFun($event);pfFun1($index,4)"></div>
+                        <div class="pjxx1" ng-click="xxFun($event);pfFun1($index,5)"></div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="w h90 " >
+                     <textarea name="" id="" cols="" rows="3"  maxlength="50" class="w h p_t10 p_l15 p_r10 bor_n" placeholder="其他想要说的~（限50字）" ng-model="evaluate.text[$index]"></textarea>
+                    </div>
+                </div>
+                <!--上传图片-->
+                <div class=" h80  bgc_fff flex-center">
+                    <div class="h70 w  ">
+                        <div class="ftFileImgBox">
+                            <!-- <div class="img h70 w70 m_l10  p_r p_t5 bgc_d9 dis_l fl_l flex-center b_r5">
+                                <div class="d_red_x b_r_b50"></div>
+                                <div class="w62 h62  m0a">
+                                    <img src="app/images/reserve information_pho_scene@2x.png" alt="">
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="h w70 m_l20  p_r p_t5  dis_l fl_l bor_body fileUrl" >
+                            <input id="file{{$index}}" multiple class="p_a w h t l o_0" type="file"  name="img[]" onchange="angular.element(this).scope().ftfilefn(this)">
+                            <div class="m0a w25 h25 m_t10 m_b5">
+                                <img src="app/icon/reserve_information_pic_cemera@2x.png" alt="">
+                            </div>
+                            <div class="f_s12 m_t5 m_b10 col_b4 t_a_c ">最多三张</div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="w h5 bgc_body"></div>
+            </div>
+        </form>            
+
+        <div class="bgc_fff m_b20">
+            <div class="flex-start h40 bgc_fff p_l15 ">
+                <div class=" flex-start  m_r20">
+                  物流评分
+                </div>
+                <div class="w_b50 h flex-start ">
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(1,'logistics')"></div>
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(2,'logistics')"></div>
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(3,'logistics')"></div>
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(4,'logistics')"></div>
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(5,'logistics')"></div>
+                </div>
+            </div>
+            <div class="flex-start h40 bgc_fff p_l15 ">
+                <div class="  -start  m_r20">
+                  服务评分
+                </div>
+                <div class="w_b50 h flex-start ">
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(1,'quality')"></div>
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(2,'quality')"></div>
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(3,'quality')"></div>
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(4,'quality')"></div>
+                    <div class="pjxx1" ng-click="xxFun($event);pfFun(5,'quality')"></div>
+                </div>
+            </div>
+        </div>
+        <div class=" w flex-center h50 bgc_blue col_fff f_s20" ng-click="orderEvaluateFun()">
+            立即发布
+        </div>
+        <!-- 等待遮罩 -->
+        <div ng-show="laoding==1">
+            <div class="p_f t w h bgc_t_b60" >
+                <!-- 等待 -->
+                <div class=" w130 h130 m0a p_r m_t210 bgc_0_t_b60 b_r15 p_t30" ng-show="laoding1==0">
+                    <div class="w50 h50 m0a"><img src="app/icon/006.gif" alt="" ></div>
+                    <div class="col_b4 t_a_c m_t10">请稍后</div>
+                </div>
+                <!-- 成功 -->
+                <div class=" w130 h130 m0a p_r m_t210 " ng-show="laoding1==1">
+                    <img src="app/icon/sheet_yuyuechenggong.png.png" alt="" >
+                </div>
+            </div>
+        </div>
+    </div>

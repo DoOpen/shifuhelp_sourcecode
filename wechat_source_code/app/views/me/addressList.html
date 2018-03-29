@@ -1,0 +1,99 @@
+
+<div class="wrapper bgc_body">
+        <div class="bgc_blue col_fff h40 flex-between p_r">
+            <div class=" l15 h flex-center m_l15">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">我的地址</div>
+            <div class="w10 m_r15"></div>
+        </div>
+        <!--收货地址信息-->
+        <div class="bgc_fff f_s13" ng-repeat="dt in listInfo">
+            <div class="w h40 p_l15 p_r15 h40 flex-between">
+                <div class="" ng-bind="dt.address_name" ></div>
+                <div class="" ng-bind="dt.address_mobile"></div>
+            </div>
+            <div class="w p_l15 p_r15 m_b25">
+                <div class="dis_l" ">
+                    <span ng-bind="dt.address_province" ></span>
+                    <span ng-bind="dt.address_city" ></span>
+                    <span ng-bind="dt.address_district" ></span>
+                    <span ng-bind="dt.address_detail" ></span>
+                </div>
+            </div>
+            <div class="w h25  p_l15 p_r15 flex-between m_b10"> 
+                <div class=" h w_b30 flex-start" ng-click="defaultAddressfun(dt.address_id)">
+                    <div class="h20 w20 ndz m_b2" ng-class="{'dz':dt.is_default==1}"></div>
+                    <div class="m_l5 ">默认地址</div>
+                </div>
+                <div class=" h w_b70 flex-end">
+                    <div class="flex-start" ng-click="edtaddressFun(dt.address_id,dt.address_name,dt.address_mobile,dt.address_province,dt.address_city,dt.address_district,dt.address_detail,dt.address_zip_code);addHide(1);ofFun(1)">
+                        <img src="app/icon/address_icon_compile_nor@2x.png.png" alt="" class="w20 h20 m_r5">编辑
+                    </div>
+                    <div class="flex-start m_l20" ng-click="delFun(1,dt.address_id)"><img src="app/icon/address_icon_delete_nor@2x.png.png" alt="" class="w20 h20 m_r5">删除</div>                   
+                </div>
+            </div>
+            <div class="w h8 bgc_body m0a"></div>
+        </div>
+        <div class="w h35"></div>
+        <!--新增地址-->
+        <div class=" p_f b w h45 flex-center">
+            <div class=" w h flex-center col_fff bgc_blue f_s16" ng-click="addHide(1)">新增收货地址</div>
+        </div>
+    <!--删除地址遮罩-->
+    <div class=" bgc_t_b60 p_f r l b t flex-center " ng-show="del==1">          
+            <div class=" h150 w250 z100 bgc_fff b_r5">
+                <div class="w h_b70 f_s18  flex-center">确定要删除这条地址吗？</div>
+                <div class="w h_b30 flex-center bor_t">
+                    <div class="w_b50 h_b80 flex-center f_s18 bor_r" ng-click="delFun(0)">取消</div>
+                    <div class="w_b50 h_b80 flex-center f_s18 col_blue" ng-click="deleteAddressfun()">确定</div>
+                </div>
+            </div>           
+    </div>
+    <!--新增，修改地址信息遮罩-->
+    <div class="p_f t w h p_r" ng-show="add==1">
+        
+        <div class="p_a t w h bgc_t_b60 "  ng-click="addHide(0);ofFun(0);addsNull()"></div>
+        <div class="p_a b w  bgc_fff z99">
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b25 h flex-start">收货人</div>
+                <div class="w_b75 h  flex-start"><input type="text" placeholder="姓名" class="w" ng-model="adds.name"></div>
+            </div>
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b25 h flex-start">联系电话</div>
+                <div class="w_b75 h  flex-start"><input type="tel" maxlength="11" placeholder="手机或者固定号码" class="w" ng-model="adds.mobile"></div>
+            </div>
+            <div class="bor_b w_b90 h60  m0a flex-start ">
+                <div class="w_b25 h flex-start">选择地区</div>
+                <div class="w_b75 h flex-start ">
+                    <input id="aaddress" type="text" readonly="readonly" placeholder="请选择地址" class="w" ng-model="address">
+                    <input id="huadong" type="hidden" value="20,234,504">
+                    <div class="w15 h15 flex-center">
+                        <img src="app/icon/reserve_information_icon_next@2x.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="bor_b w_b90 h60  m0a flex-start">
+                <div class="w_b25 h flex-start">详细地址</div>
+                <div class="w_b75 h  flex-start"><input type="text" placeholder="如街道、楼层、门牌号等" class="w"  ng-model="adds.detailed_address"></div>
+            </div>
+            <div class=" w_b90 h60  m0a  flex-start">
+                <div class="w_b25 h flex-start">邮政编码</div>
+                <div class="w_b75 h  flex-start"><input type="tel" maxlength="6" placeholder="邮政编码(选填)" class="w"  ng-model="adds.zip_code"></div>
+            </div>
+            <div class="p_a b45 w h20 f_s18 flex-center col_red" ng-show="info==1">
+                地址必填项不能为空！
+            </div>
+            <div class="w h45"></div>
+            <!--新增地址按钮-->
+            <div class=" p_a b w h45 flex-center" ng-show="of==0">
+                <div class=" w h flex-center col_fff bgc_blue f_s20" ng-click="infoOf()">确定</div>
+            </div>
+            <!--修改地址按钮-->
+            <div class=" p_a b w h45 flex-center " ng-show="of==1">
+                <div class=" w h flex-center col_fff bgc_blue f_s20" ng-click="infoOf1(adds.address_id)">确定</div>
+            </div>
+        </div>
+        
+    </div>
+</div>

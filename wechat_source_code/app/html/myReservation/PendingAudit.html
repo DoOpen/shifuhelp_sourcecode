@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body class="bgc_body">
+    <div class="bgc_body">
+<div class="wrapper bgc_body">
+    <div class=" w h40 p_l10 p_r10 flex-between bgc_fff">
+        <div ng-click="PendingAudit('member_subscribe_wait_audit');pasFun(0)"  class=" h w60 m_l15 m_r15 flex-center ">
+            <div class="w h p_r flex-center">
+                待审核
+                <div class="p_a b w45 " ng-class="{true:'yylbclick',flase:''}[type=='member_subscribe_wait_audit']" ></div>
+            </div>
+        </div>
+        <div ng-click="PendingAudit('member_release');pasFun(1)"  class=" h w60 m_l15 m_r15 flex-center ">
+            <div class="w h p_r flex-center">
+                已发布
+                <div class="p_a b w45 " ng-class="{true:'yylbclick',flase:''}[type=='member_release']" ></div>
+            </div>
+        </div>
+        <div ng-click="PendingAudit('member_wait_service');pasFun(2)" class=" h w60 m_l15 m_r15 flex-center ">
+            <div class="w h p_r flex-center">
+                待服务
+                <div class="p_a b w45 " ng-class="{true:'yylbclick',flase:''}[type=='member_wait_service']" ></div>
+            </div>            
+        </div>
+        <div ng-click="PendingAudit('member_complete');pasFun(3)" class=" h w60 m_l15 m_r15 flex-center">
+            <div class="w h p_r flex-center">
+                已完成
+                <div class="p_a b w45 " ng-class="{true:'yylbclick',flase:''}[type=='member_complete']" ></div>
+            </div>            
+        </div>
+    </div>
+    <a href="#/reservationDetails1?id={{dt.order_id}}"  ng-repeat="dt in listInfo">
+        <div class="  m_t10 m_l10 m_r10 bgc_fff f_s14" >
+            <div class="p_l10 p_r30 p_t15">
+                <div class="p_r m_b20 flex-start1">
+                    <!--服务内容-->
+                    <div class=" w30 ">
+                        <div class="m_l5 w20 h20 "><img src="../../icon/MyBooking_icon_message@2x.png.png" alt=""></div>
+                    </div>
+                    <div class="m_l15 w_b80 " ng-bind="dt.order_subscribe_content">
+                        <span>服务内容服务内容服务内容服务内容服服务内容服务内容服务内容服务内容服务内容服务内容服服务内容服务内容</span>
+                        <span class="m_l10" ng-hide="dt.order_subscribe_note==''">备注-</span>
+                        <div class="dis_l" ng-bind="dt.order_subscribe_note"></div> 
+                    </div>
+                   
+                </div>
+                <div class="p_r m_b20 flex-start1">
+                    <!--服务内容-->
+                    <div class=" w30 ">
+                        <div class="m_l5 w20 h20 "><img src="../../icon/MyBooking_icon_address@2x.png.png" alt=""></div>
+                    </div>
+                    <div class="m_l15 w_b80" ng-bind="dt.order_subscribe_content">
+                        <span ng-bind="dt.order_address_province" class="m_r10"></span>
+                        <span ng-bind="dt.order_address_city" class="m_r10"></span>
+                        <span ng-bind="dt.order_address_district" class="m_r10"></span>
+                        <span ng-bind="dt.order_address_detail" class="m_r10"></span>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class=" flex-between h45 w p_l10 p_r20 bor_t">
+                <div class=" h w  flex-between">
+                    <!--服务内容-->
+                    <div class="flex-start w_b80">
+                        <div class=" w30 ">
+                            <div class="m_l5 w20 h20 "><img src="../../icon/MyBooking_icon_time@2x.png.png" alt=""></div>
+                        </div>
+                        <div class="m_l15 m_r20" ng-bind="dt.order_subscribe_content">
+                            <div class=" " ng-bind="type=='member_subscribe_wait_audit'?dt.order_hope_service_time:type=='member_release' ? dt.order_audit_pass_time: type=='member_wait_service'?dt.order_service_time:dt.order_complete_time"></div>
+                        </div>
+                    </div>
+                    <div class=" h w70 flex-end">
+                        <div class="bor_blue b_r30 h25 w85 flex-center col_blue">查看详情</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <!--旧预约列表-->
+    <a href="#/reservationDetails1?id={{dt.order_id}}"  ng-repeat="dt in listInfo">
+        <div class="  m_t10 m_l10 m_r10 bgc_fff f_s14" >
+            <div class="p_l10 p_r30 p_t15">
+                <div class=" m_b20">
+                    <!--服务内容-->
+                    <span class="f_w_6 m_r10">服务内容:</span>
+                    <div class="dis_l" ng-bind="dt.order_subscribe_content"></div>
+                    <!--备注-->
+                    <span class="m_l10" ng-hide="dt.order_subscribe_note==''">备注-</span>
+                    <div class="dis_l" ng-bind="dt.order_subscribe_note"></div>
+                </div>
+                <div class="m_b15"><span class="f_w_6">服务地址：</span>
+                    <div class="dis_l" ">
+                        <span ng-bind="dt.order_address_province" class="m_r10"></span>
+                        <span ng-bind="dt.order_address_city" class="m_r10"></span>
+                        <span ng-bind="dt.order_address_district" class="m_r10"></span>
+                        <span ng-bind="dt.order_address_detail" class="m_r10"></span>
+                    </div>
+                </div>
+            </div>
+            <div class=" flex-between h45 w p_l10 p_r20 bor_t">
+                    <div class=" h w_b70 flex-start f_s13">
+                        <div class=""><span ng-bind="type=='member_subscribe_wait_audit'?'预约':type=='member_release' ? '发布' : type=='member_wait_service'?'接单':'完成'"></span>时间：</div>
+                        <div class=" " ng-bind="type=='member_subscribe_wait_audit'?dt.order_hope_service_time:type=='member_release' ? dt.order_audit_pass_time: type=='member_wait_service'?dt.order_service_time:dt.order_complete_time"></div>
+                    </div>
+                    <div class=" h w_b30 flex-end">
+                        <div class="bor_blue b_r30 h25 w85 flex-center col_blue">查看详情</div>
+                    </div>
+            </div>
+        </div>
+    </a>
+                   <!--  <div class=" h w_b70 flex-start f_s13">
+                        <div class=""><span ng-bind="type=='member_subscribe_wait_audit'?'预约':type=='member_release' ? '发布' : type=='member_wait_service'?'接单':'完成'"></span>时间：</div>
+                        <div class=" " ng-bind="type=='member_subscribe_wait_audit'?dt.order_hope_service_time:type=='member_release' ? dt.order_audit_pass_time: type=='member_wait_service'?dt.order_service_time:dt.order_complete_time"></div>
+                    </div>
+                    <div class=" h w_b30 flex-end">
+                        <div class="bor_blue b_r30 h25 w85 flex-center col_blue">查看详情</div>
+                    </div> -->
+            
+    
+    <!--底层导航栏-->
+        <div class="p_f b  h50 w flex-between bgc_fff bor_t">
+            <a href="#/main"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="app/icon/store_tab_home@2x.png" alt=""></div>
+                <div class=" f_s11 t_a_c m_t5">首页</div>
+                </div>
+            </a>
+            <a href="#/pendingAudit"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="app/icon/My Bookings_tab_ order_search@2x.png.png" alt=""></div>
+                <div class="col_blue f_f f_s11 t_a_c m_t5">我的预约</div>
+            </div>
+            </a>
+            <a href="#/shopping"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="app/icon/home_tab_shop@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">我的商城</div>
+            </div>
+            </a>
+            <a href="#/personalCenter"><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="app/icon/home_tab_mine@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">个人中心</div>
+            </div>
+            </a>
+
+        </div>
+        <div class="bpjxxs"></div>
+            <!-- 等待遮罩 -->
+    <div ng-show="type==1" class="dis_n">
+        <div class="p_a t w h bgc_t_b60" >
+            <div class=" w130 h130 m0a p_r m_t210 bgc_0_t_b60 b_r15 p_t30">
+                <div class="w50 h50 m0a"><img src="../../icon/006.gif" alt="" ></div>
+                <div class="col_b4 t_a_c m_t10">请稍后</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- <div class=" w h40 p_l10 p_r10 flex-around bgc_fff">
+        <div class=" h w60 m_l15 m_r15 flex-center ">
+            <div class="h yylbclick  w45 flex-center">待审核</div>
+        </div>
+        <div class=" h w60 m_l15 m_r15 flex-center">已发布</div>
+        <div class=" h w60 m_l15 m_r15 flex-center">待服务</div>
+        <div class=" h w60 m_l15 m_r15 flex-center">已完成</div>
+    </div>
+    <a href="">
+    <div class="  m_t10 m_l10 m_r10 bgc_fff f_s14" >
+        <div class="p_l10 p_r30 p_t15">
+            <div class=" m_b5"><span class="f_w_6 m_r10">服务内容:</span><div class="dis_l">内容啊啊啊的内容啊啊啊的内容啊啊啊的</div>
+            <span class="m_l10">备注-</span><div class="dis_l">内容啊啊啊的内容啊啊啊的内容啊啊啊的内容啊啊啊的内容啊啊啊的内容啊啊啊的</div>
+            </div>
+            <div class="m_b15"><span class="f_w_6">服务地址：</span><div class="dis_l">这里是地址</div>
+            </div>
+        </div>
+        <div class=" flex-between h45 w p_l10 p_r20 bor_t">
+                <div class=" h w_b70 flex-start f_s13">
+                    <div class="">发布时间：</div>
+                    <div class=" ">时间</div>
+                </div>
+                <div class=" h w_b30 flex-end">
+                    <div class="bor_blue b_r30 h25 w85 flex-center col_blue">查看详情</div>
+                </div>
+        </div>
+    </div>
+    </a>-->
+        <!--底层导航栏-->
+        <!-- <div class="p_f b  h50 w flex-between bgc_fff bor_t">
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/store_tab_home@2x.png" alt=""></div>
+                <div class=" f_s11 t_a_c m_t5">首页</div>
+            </div>
+            </a>
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/My Bookings_tab_ order_search@2x.png.png" alt=""></div>
+                <div class="col_blue f_f f_s11 t_a_c m_t5">我的预约</div>
+            </div>
+            </a>
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/home_tab_shop@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">我的商城</div>
+            </div>
+            </a>
+            <a href=""><div class="h w60  m_l15 m_r15 m_b5">
+                <div class=" h20 w20 m0a m_t5 "><img src="../../icon/home_tab_mine@2x.png" alt=""></div>
+                <div class="f_s11 t_a_c m_t5">个人中心</div>
+            </div>
+            </a>
+        </div> --> 
+        </div>
+    </body>
+</html>

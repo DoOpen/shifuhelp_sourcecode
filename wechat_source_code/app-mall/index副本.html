@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>爱康水电</title>
+    <link rel="stylesheet" href="../app-mall/ncp/css/style1.css">
+    <link rel="stylesheet" href="../app-mall/ncp/css/reset.css">
+    <link rel="stylesheet" href="../app-mall/ncp/css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="../app-mall/ncp/css/public.css">
+    <link rel="stylesheet" href="../app-mall/ncp/css/style.css">
+
+
+</head>
+<body ng-controller="home">
+<div ng-view class="w100 h100">
+    
+</div>
+<div class="wrap flex flex-v back_ef" id="confirm_order">
+    <div class="pulice_header">
+        <div class="titbox p_r">
+            <p class="tit  h flex-center">支付完成</p>
+        </div>
+    </div>
+    <div class="main back_ef flex-1">
+        <div class="back_fff col_333 f-12 plr-15">
+            <div class="pt-30 pb-30 o_h m0a w_2 ">
+                <div class=" w h120"><div class="Pigeon-icon w h"></div></div>
+                <div class="w  f-24 m_t10 flex-center">支付完成</div>
+            </div>
+            <p class="pb-30 o_h t_c ">
+                <a href="#/home" class="di_bl l main_col bor_5 history_mall">返回商城</a>
+                <a href="http://aksd.tstweiguanjia.com/#/order?rt=1&id=5" class="di_bl r main_col bor_5 view-order">查看订单</a>
+            </p>
+        </div>
+        <!--为你推荐-->
+        <!--<div class="wntj">-->
+            <!--<div class="wntj_tit main_col f-18 t_c">为你推荐</div>-->
+            <!--<ul class="wntj_goodslist">-->
+                <!--<li class="wntj_goods back_fff">-->
+                    <!--<a href="#/goods_detail" class="">-->
+                        <!--<img src="image/home_selected@3x.png" alt="" class="di_bl m0a">-->
+                        <!--<p class="wntj_goodsName text_ellipsis_3 f-12">商品名称和品牌用两行的空间 显示商品名称和品牌用两行的 空间显示两行的空两行的空</p>-->
+                        <!--<p class="wntj_goodsYieldly f-10"><span class="bor_3">上海</span></p>-->
+                        <!--<p class="wntj_goodsPrice f-14">¥260</p>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="wntj_goods back_fff">-->
+                    <!--<a href="#/goods_detail" class="">-->
+                        <!--<img src="image/home_selected@3x.png" alt="" class="di_bl m0a">-->
+                        <!--<p class="wntj_goodsName text_ellipsis_3 f-12">商品名称和品牌用两行的空间 显示商品名称和品牌用两行的 空间显示两行的空两行的空</p>-->
+                        <!--<p class="wntj_goodsYieldly f-10"><span class="bor_3">上海</span></p>-->
+                        <!--<p class="wntj_goodsPrice f-14">¥260</p>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="wntj_goods back_fff">-->
+                    <!--<a href="#/goods_detail" class="">-->
+                        <!--<img src="image/home_selected@3x.png" alt="" class="di_bl m0a">-->
+                        <!--<p class="wntj_goodsName text_ellipsis_3 f-12">商品名称和品牌用两行的空间 显示商品名称和品牌用两行的 空间显示两行的空两行的空</p>-->
+                        <!--<p class="wntj_goodsYieldly f-10"><span class="bor_3">上海</span></p>-->
+                        <!--<p class="wntj_goodsPrice f-14">¥260</p>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+    <div class="footer">
+    </div>
+</div>
+<!--小提示-->
+<div class="Prompt-back Prompt1" hidden="">
+    <span class="tips"></span>
+</div>
+<!--带确认小提示-->
+<div class="Prompt-back Prompt2" hidden="">
+    <ul class="tips2">
+    </ul>
+</div>
+<!--数据加载中-->
+<div id="loading" class="di_n">
+    <div class="mask_transparent"></div>
+    <div class="toast">
+        <div class="loading">
+            <i class=""></i>
+        </div>
+        <p class="">数据加载中</p>
+    </div>
+</div>
+</body>
+
+<!--<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/flexible.js"></script>-->
+<!--<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/iscroll.js"></script>-->
+<!--<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/navbarscroll.js"></script>-->
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/pulice.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/route.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/directive.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/main.js"></script>
+<script type="text/javascript" src="http://aksd.tstweiguanjia.com/app-mall/ncp/lib/jquery.raty.min.js"></script>
+</html>

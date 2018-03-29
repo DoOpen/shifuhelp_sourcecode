@@ -1,0 +1,24 @@
+
+    <div class="w h bgc_body col_body wrapper">
+        <div class="bgc_blue col_fff h40  p_r flex-center">
+            <div class="p_a l15 h flex-center">
+                <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">个人资料</div>
+        </div>
+    <!--个人资料-->
+        <div class=" h65 flex-between bgc_fff bor_b ">
+            <div class=" h w_b30 flex-start m_l15 ">头像</div>               
+            <div class="m_r15 w40 h40 b_r_b50 ">
+                <img ng-src="{{userInfo.member_head_image}}" alt="" class="b_r_b50">
+            </div>
+        </div>
+        <div class=" h45 flex-between bgc_fff bor_b ">
+            <div class=" h w_b30 flex-start m_l15 ">昵称</div>               
+            <div class="m_r15 " ng-bind="userInfo.member_nick_name"></div>
+        </div>
+        <div class=" h45 flex-between bgc_fff bor_b ">
+            <div class=" h w_b30 flex-start m_l15 ">性别</div>               
+            <div class="m_r15" ng-bind="userInfo.member_sex"></div>
+        </div>
+    </div>

@@ -1,0 +1,172 @@
+<div class="f-14" id="home" >
+    <div class="Shopping_search">
+        <div class="pl-15 pr-15 search-topbox col_fff p_r">
+            <p class="f-14 p_a l10 region text_ellipsis w60" id="city-picker" >{{city}}
+            </p>
+            <p class="m0a searchBox">
+                <a class="di_bl w100 h100 searchbtn" ng-click="appSearch()">
+                    <span class="di_bl f-12 bs pl-35 line_h30">搜索您想要的商品</span>
+                </a>
+            </p>
+            <!-- <a href="JavaScript:android.appShophome()" onclick="appShophome()" class="f-14 p_a jump col_fff ahovfff"></a> -->
+            <a href="http://wx.shifuhelp.com/#/newsList" class="f-14 p_a jump col_fff ahovfff"></a>
+        </div>
+    </div>
+    <div class="banners">
+        <div class="swiper-container banner t_c h175">
+            <div class="swiper-wrapper">
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <!-- taglist -->
+    <div class="classifylist back_fff p_l10 p_r10 p_t10">
+        <ul class="o_h flex-between">
+            <!--<li ng-repeat="item in home.classlist" ng-click="home.Recommend(item.class_id)">-->
+                <!--<a href="JavaScript:;"  class="di_bl">-->
+                    <!--<img class="di_bl m0a" lazy-src={{item.class_img}} alt="">-->
+                    <!--<span class="di_bl">{{item.class_name}}</span>-->
+                <!--</a>-->
+            <!--</li>-->
+            <li class="bgc_f9 h50 flex-start m_b10" ng-click="home.goLevel(home.classList[0].class_id)">
+                <div class="w40 h40 m_l5 " ><img ng-src="{{home.classList[0].class_img}}" class="w h b_r_b50"></div>
+                <div class="m_l5 text_ellipsis w_b65" ng-bind="home.classList[0].class_name"></div>
+            </li>
+            <li class="bgc_f9 h50 flex-start m_b10 " ng-click="home.goLevel(home.classList[1].class_id)">
+                <div class="w40 h40 m_l5 " ><img ng-src="{{home.classList[1].class_img}}" class="w h b_r_b50"></div>
+                <div class="m_l5 text_ellipsis w_b65" ng-bind="home.classList[1].class_name"></div>
+            </li>
+        </ul>
+        <ul class="o_h flex-between">    
+            <li class="bgc_f9 h50 flex-start m_b10" ng-click="home.goLevel(home.classList[2].class_id)">
+                <div class="w40 h40  m_l5 "><img ng-src="{{home.classList[2].class_img}}" class="w h b_r_b50"></div>
+                <div class="m_l5 text_ellipsis w_b65" ng-bind="home.classList[2].class_name"></div>
+            </li>
+            <li class="bgc_f9 h50 flex-start m_b10" ng-click="home.goLevel(home.classList[3].class_id)">
+                <div class="w40 h40  m_l5 "><img ng-src="{{home.classList[3].class_img}}" class="w h b_r_b50"></div>
+                <div class="m_l5 text_ellipsis w_b65" ng-bind="home.classList[3].class_name"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="h50 bor_b_f9 p_r10 p_l10  flex-between bgc_fff" ng-click="home.goLevel(home.listInfo[0].class_id)">
+        <div class="f_s16 f_w_b w120 text_ellipsis" ng-bind="home.listInfo[0].class_name">类名</div>
+        <div class=" h20 flex-start f_s12">更多<span class="more dis_lb m_l10"></span></div>
+    </div>
+
+    <div class=" h220 flex-between p_l10 p_r10 bgc_fff" ng-show="home.listInfo[0].goodsBeans[0].goods_id">
+        <div class="w_b48  fl_l h " ng-show="home.listInfo[0].goodsBeans[0].goods_id" ng-click="home.goGoodsDetail(home.listInfo[0].goodsBeans[0].goods_id)">
+            <img lazy-src="{{home.listInfo[0].goodsBeans[0].goods_img}}" class="w h ">
+        </div>
+        <div class="w_b48  fl_l h p_r ">
+            <div class="w h_b58 " ng-show="home.listInfo[0].goodsBeans[1].goods_id" ng-click="home.goGoodsDetail(home.listInfo[0].goodsBeans[1].goods_id)">
+                <img lazy-src="{{home.listInfo[0].goodsBeans[1].goods_img}}" class="w h ">
+            </div>
+            <div class="w p_a b h_b38  flex-between">
+                <div class="w_b48  h" ng-show="home.listInfo[0].goodsBeans[2].goods_id" ng-click="home.goGoodsDetail(home.listInfo[0].goodsBeans[2].goods_id)">
+                    <img lazy-src="{{home.listInfo[0].goodsBeans[2].goods_img}}" class="w h ">
+                </div>
+                <div class="w_b48  h" ng-show="home.listInfo[0].goodsBeans[3].goods_id" ng-click="home.goGoodsDetail(home.listInfo[0].goodsBeans[3].goods_id)">
+                    <img lazy-src="{{home.listInfo[0].goodsBeans[3].goods_img}}" class="w h ">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h50 bor_b_f9 p_r10 p_l10  flex-between bgc_fff" ng-click="home.goLevel(home.listInfo[1].class_id)">
+        <div class="f_s16 f_w_b w120 text_ellipsis" ng-bind="home.listInfo[1].class_name">类名</div>
+        <div class=" h20 flex-start f_s12">更多<span class="more dis_lb m_l10"></span></div>
+    </div> 
+    <div class="  flex-fstart p_l10 p_r10 bgc_fff"  ng-show="home.listInfo[1].goodsBeans[0].goods_id">
+        <li class="dis_b w_b48  h150" ng-repeat="item in home.listInfo[1].goodsBeans | limitTo:4" ng-class="{'m_l13': $index %2 != 0, 'm_t10': $index > 1}" ng-show="item.goods_id" ng-click="home.goGoodsDetail(item.goods_id)">
+            <img lazy-src="{{item.goods_img}}" class="w h ">
+        </li>
+
+        <!--<div class="w_b48  h150  " ng-show="home.listInfo[1][0].goods_id" ng-click="home.goGoodsDetail(home.listInfo[1][0].goods_id)">-->
+            <!--<img lazy-src="{{home.listInfo[1][0].goods_img}}" class="w h ">-->
+        <!--</div>-->
+        <!--<div class="w_b48 m_l10 h150  " ng-show="home.listInfo[1][1].goods_id" ng-click="home.goGoodsDetail(home.listInfo[1][1].goods_id)">-->
+            <!--<img lazy-src="{{home.listInfo[1][1].goods_img}}" class="w h ">-->
+        <!--</div>-->
+        <!--<div class="w_b48 m_t10 h150  " ng-show="home.listInfo[1][2].goods_id" ng-click="home.goGoodsDetail(home.listInfo[1][2].goods_id)">-->
+            <!--<img lazy-src="{{home.listInfo[1][2].goods_img}}" class="w h ">-->
+        <!--</div>-->
+        <!--<div class="w_b48 m_t10 m_l10 h150  " ng-show="home.listInfo[1][3].goods_id" ng-click="home.goGoodsDetail(home.listInfo[1][3].goods_id)">-->
+            <!--<img lazy-src="{{home.listInfo[1][3].goods_img}}" class="w h ">-->
+        <!--</div>-->
+    </div>
+    <div class="h50 bor_b_f9 p_r10 p_l10  flex-between bgc_fff" ng-click="home.goLevel(home.listInfo[2].class_id)">
+        <div class="f_s16 f_w_b w120 text_ellipsis" ng-bind="home.listInfo[2].class_name">类名</div>
+        <div class=" h20 flex-start f_s12">更多<span class="more dis_lb m_l10"></span></div>
+    </div>
+    <div class=" h300 flex-between p_l10 p_r10 bgc_fff" ng-show="home.listInfo[2].goodsBeans[0].goods_id">
+        <div class="w_b48  fl_l h p_r">
+            <div class="w h_b58 " ng-show="home.listInfo[2].goodsBeans[0].goods_id" ng-click="home.goGoodsDetail(home.listInfo[2].goodsBeans[0].goods_id)">
+                <img lazy-src="{{home.listInfo[2].goodsBeans[0].goods_img}}" class="w h ">
+            </div>
+            <div class="w p_a b h_b40 " ng-show="home.listInfo[2].goodsBeans[1].goods_id" ng-click="home.goGoodsDetail(home.listInfo[2].goodsBeans[1].goods_id)">
+                <img lazy-src="{{home.listInfo[2].goodsBeans[1].goods_img}}" class="w h ">
+            </div>
+        </div>
+        <div class="w_b48  fl_l h p_r ">
+            <div class="w h_b40 " ng-show="home.listInfo[2].goodsBeans[2].goods_id" ng-click="home.goGoodsDetail(home.listInfo[2].goodsBeans[2].goods_id)">
+                <img lazy-src="{{home.listInfo[2].goodsBeans[2].goods_img}}" class="w h ">
+            </div>
+            <div class="w p_a b h_b58 " ng-show="home.listInfo[2].goodsBeans[3].goods_id" ng-click="home.goGoodsDetail(home.listInfo[2].goodsBeans[3].goods_id)">
+                <img lazy-src="{{home.listInfo[2].goodsBeans[3].goods_img}}" class="w h ">
+            </div>
+        </div>
+    </div>
+    <div class="h50 bor_b_f9 p_r10 p_l10  flex-between bgc_fff" ng-click="home.goLevel(home.listInfo[3].class_id)">
+        <div class="f_s16 f_w_b w120 text_ellipsis" ng-bind="home.listInfo[3].class_name">推荐</div>
+        <div class=" h20 flex-start f_s12">更多<span class="more dis_lb m_l10"></span></div>
+    </div>
+    <div class=" flex-fstart p_l10 p_r10 bgc_fff">
+        <div class="h180 w_b48  fl_l h p_r m_b10" ng-repeat="dt in home.listInfo[3].goodsBeans track by $index" ng-class="{true:'m_r5',false:'m_l5'}[$index%2==0]" ng-click="home.goGoodsDetail(dt.goods_id)"><img lazy-src="{{dt.goods_img}}" class="w h "></div>
+    </div>
+    <!-- 为你推荐 -->
+    <div class="wntj">
+        <div class="wntj_out">
+            <!--<div class="wntj_box">-->
+                <!--<div class="wntj_tit main_col f-18 t_c">为您推荐</div>-->
+                <!--<ul class="wntj_goodslist o_h">-->
+
+                <!--</ul>-->
+            <!--</div>-->
+        </div>
+
+
+        <div class="loadmore loadmore_line">
+            <span class="">没有商品啦！</span>
+        </div>
+    </div>
+   
+    <a href="#/cart" class="p_f cartbtn " ng-hide="cartNum"></a>
+    <a href="#/cart" class="p_f cartbtn_act " ng-show="cartNum"></a>
+    <!--底层导航栏-->
+        <div class="p_f b  h50 w flex-between bgc_fff bor_t">
+            <a href="{{urls}}#/main">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/store_tab_home@2x.png" alt=""></div>
+                    <div class=" f_s11 t_a_c m_t10">首页</div>
+                </div>
+            </a>
+            <a href="{{urls}}#/pendingAudit">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/home_tab_order@2x.png" alt=""></div>
+                    <div class="f_f f_s11 t_a_c m_t10">我的预约</div>
+                </div>
+            </a>
+            <a href="#/home">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/store_tab_shop_search@2x.png.png" alt=""></div>
+                    <div class="col_blue f_s11 t_a_c m_t10">我的商城</div>
+                </div>
+            </a>
+            <a href="{{urls}}#/personalCenter">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/home_tab_mine@2x.png" alt=""></div>
+                    <div class="f_s11 t_a_c m_t10">个人中心</div>
+                </div>
+            </a>
+        </div>
+</div>

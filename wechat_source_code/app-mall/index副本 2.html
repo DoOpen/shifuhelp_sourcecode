@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>爱康水电</title>
+    <link rel="stylesheet" href="http://aksd.tstweiguanjia.com/app-mall/ncp/css/style1.css">
+    <link rel="stylesheet" href="http://aksd.tstweiguanjia.com/app-mall/ncp/css/reset.css">
+    <link rel="stylesheet" href="http://aksd.tstweiguanjia.com/app-mall/ncp/css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="http://aksd.tstweiguanjia.com/app-mall/ncp/css/public.css">
+    <link rel="stylesheet" href="http://aksd.tstweiguanjia.com/app-mall/ncp/css/style.css">
+
+
+</head>
+<body ng-controller="home">
+<div ng-view class="w100 h100">
+</div>
+<div class="" id="home">
+    <div class="Shopping_search">
+        <div class="pl-15 pr-15 search-topbox col_fff">
+            <!-- <p class="f-14 p_a region">上海</p> -->
+            <p class="m0a searchBox">
+                <a class="di_bl w100 h100 searchbtn" ng-click="appSearch()">
+                    <span class="di_bl f-12 bs pl-35 line_h30">搜索您想要的商品</span>
+                </a>
+            </p>
+            <!-- <a href="JavaScript:android.appShophome()" onclick="appShophome()" class="f-14 p_a jump col_fff ahovfff"></a> -->
+            <a href="http://aksd.tstweiguanjia.com/#/newsList" class="f-14 p_a jump col_fff ahovfff"></a>
+        </div>
+    </div>
+    <div class="banners">
+        <div class="swiper-container banner t_c hei_150">
+            <div class="swiper-wrapper">
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <!-- taglist -->
+    <div class="classifylist back_fff">
+        <ul class="o_h">
+            <!--<li ng-repeat="item in home.classlist" ng-click="home.Recommend(item.class_id)">-->
+                <!--<a href="JavaScript:;"  class="di_bl">-->
+                    <!--<img class="di_bl m0a" ng-src={{item.class_img}} alt="">-->
+                    <!--<span class="di_bl">{{item.class_name}}</span>-->
+                <!--</a>-->
+            <!--</li>-->
+            <li class="bgc_999 w_b45 h40">
+                <div class="w30 h30 bor_b50 m_l5 "></div>
+                <div class="m_l5"></div>
+            </li>
+        </ul>
+    </div>
+    <!-- 为你推荐 -->
+    <div class="wntj">
+        <div class="wntj_out">
+            <!--<div class="wntj_box">-->
+                <!--<div class="wntj_tit main_col f-18 t_c">为您推荐</div>-->
+                <!--<ul class="wntj_goodslist o_h">-->
+
+                <!--</ul>-->
+            <!--</div>-->
+        </div>
+
+
+        <div class="loadmore loadmore_line">
+            <span class="">没有商品啦！</span>
+        </div>
+    </div>
+    <!--底层导航栏-->
+        <div class="p_f b  h50 w flex-between bgc_fff bor_t">
+            <a href="#/home">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/home_tab_search_search@2x.png.png" alt=""></div>
+                    <div class="col_blue f_s11 t_a_c m_t10">首页</div>
+                </div>
+            </a>
+            <a href="#/goodsClass">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/home_tab_order@2x.png" alt=""></div>
+                    <div class="f_f f_s11 t_a_c m_t10">分类</div>
+                </div>
+            </a>
+            <a href="#/cart">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/home_tab_shop@2x.png" alt=""></div>
+                    <div class=" f_s11 t_a_c m_t10">购物车</div>
+                </div>
+            </a>
+            <a href="{{urls}}app1/index.html#/personalCenter">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/home_tab_mine@2x.png" alt=""></div>
+                    <div class="f_s11 t_a_c m_t10">个人中心</div>
+                </div>
+            </a>
+        </div>
+
+</div>
+<!--小提示-->
+<div class="Prompt-back Prompt1" hidden="">
+    <span class="tips"></span>
+</div>
+<!--带确认小提示-->
+<div class="Prompt-back Prompt2" hidden="">
+    <ul class="tips2">
+    </ul>
+</div>
+<!--数据加载中-->
+<div id="loading" class="di_n">
+    <div class="mask_transparent"></div>
+    <div class="toast">
+        <div class="loading">
+            <i class=""></i>
+        </div>
+        <p class="">数据加载中</p>
+    </div>
+</div>
+</body>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/jquery-2.2.4.min.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/angular1.5.8.min.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/angular-cookies.min.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/angular-route.min.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/angular-touch.min.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/angular-animate.min.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/swiper-3.3.1.jquery.min.js"></script>
+<!--<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/flexible.js"></script>-->
+<!--<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/iscroll.js"></script>-->
+<!--<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/navbarscroll.js"></script>-->
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/pulice.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/route.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/directive.js"></script>
+<script src="http://aksd.tstweiguanjia.com/app-mall/ncp/js/main.js"></script>
+<script type="text/javascript" src="http://aksd.tstweiguanjia.com/app-mall/ncp/lib/jquery.raty.min.js"></script>
+</html>

@@ -1,0 +1,26 @@
+
+    <div class="wrapper bgc_body ">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="ncp/app1/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">订单消息</div>
+        </div>
+        <div class="h180" ng-repeat="dd in ddHtml">
+            <div class="w h55 flex-center">
+                <div class="bgc_blue col_fff  h25 flex-center b_r3 p_l10 p_r10" ng-bind="dd.create_time">时间</div>
+            </div>
+            <div class="w h125 bgc_fff p_l15 p_r5 p_t10 m_b5">
+                <div class="f_s12 col_red m_b10" ng-bind="dd.msg_desc"></div>
+                <div class="w75 h75 fl_l ">
+                    <img src="images/store_image@2x.png" alt="">
+                </div>
+                <div class="m_l15 h_b70 fl_l w_b73 p_r f_s12">
+                    <div class="" >商品名称商品名称商品名称商品名称商品名称商品名称商品名称</div>
+                    <div class="h20 p_r15 flex-start f_s11 col_b1 p_a b">
+                        <div class="flex-start w ">快递单号: <span class="m_l5">123456</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>

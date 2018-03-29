@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <div class="w h bgc_body col_body">
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 w10"><img src="../../icon/back@2x.png" alt=""></div>
+            <div class="f_s16">我的优惠券</div>
+        </div>
+        <!--使用情况-->
+        <div class="w h40 bgc_fff flex-start">
+            <div class="w_b33 bor_r h ">
+                <div class="h w_b40 bor_b_y flex-center m0a">未使用</div>
+            </div>
+            <div class="w_b33 bor_r h col_b1">
+                <div class="h w_b40  flex-center m0a">已使用</div>
+            </div>
+            <div class="w_b33 h col_b1">
+                <div class="h w_b40  flex-center m0a">已过期</div>
+            </div>           
+        </div>
+        <!--优惠券详情-->
+        <div class="bk w_b90 h150 m0a m_t10 bgc_fff">
+            <div class="bgc_blue h5 w"></div>
+            <div class="p_l10 p_t15 p_r25 p_b15">
+                <div class="f_s18 w">优惠券名称</div>
+                <div class="flex-end f_s13">￥<span class="f_s22">50</span></div>
+                <div class="f_s10 flex-end col_b1">使用类型</div>
+            </div>
+            <div class="bor_tx p_l10 p_t5">
+                <div class="f_s12">优惠详情</div>
+                <div class="f_s12">有效期:<span class="m_l5">时间</span></div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

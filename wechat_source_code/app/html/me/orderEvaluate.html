@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>爱康水电服务平台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no"/>
+        <!--移动端适配导入-->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/main1.css">
+        <link rel="stylesheet" type="text/css" href="../../css/reset1.css">
+        <!--rem单位js-->
+        <script type="text/javascript">
+            (function (doc, win) {
+                var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth>=640){
+                            docEl.style.fontSize = '100px';
+                        }else{
+                            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+                    }
+                };
+                if(!doc.addEventListener) return;
+                win.addEventListener(resizeEvt, recalc, false);
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            })(document, window);
+        </script>
+
+    </head>
+    <body>
+    <div class="wrapper f_s14">
+        <!--头-->
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+                <div class="p_a l15 w10 t10" ng-click="back()">
+                    <img src="app/icon/back@2x.png" alt="">
+                </div>
+                <div class="f_s16">订单详情</div>
+        </div>
+        <div class="bgc_fff">
+            <div class="flex-between h60 bgc_fff p_l15 bor_b">
+                <div class="w_b50 flex-start">
+                    <div class="w40 h40 m_t10 m_b10"><img src="../../icon/refund_sheet_yuyuechenggong@2x.png.png" alt=""></div>
+                    <div class="m_l10">商品描述</div>
+                </div>
+                <div class="w_b50 h flex-start ">
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                </div>
+            </div>
+            <div class="">
+                <div class="w h90 " >
+                 <textarea name="" id="" cols="" rows="3" class="w h p_t10 p_l15 p_r10 bor_n" placeholder="其他想要说的~" ng-model="evaluate.text"></textarea>
+                </div>
+            </div>
+            <!--上传图片-->
+            <div class=" h80  bgc_fff flex-center">
+                <div class="h70 w  ">
+                    <form>
+                        <div id="ftFileImgBox">
+                            <!-- <div class="img h70 w70 m_l10  p_r p_t5 bgc_d9 dis_l fl_l flex-center b_r5">
+                                <div class="d_red_x b_r_b50"></div>
+                                <div class="w62 h62  m0a">
+                                    <img src="app/images/reserve information_pho_scene@2x.png" alt="">
+                                </div>
+                            </div> -->
+                        </div>
+                    
+                        <div class="h w70 m_l20  p_r p_t5  dis_l fl_l bor_body" >
+                            <input multiple class="p_a w h t l o_0" type="file"  name="img[]" onchange="angular.element(this).scope().ftfilefn(this)">
+                            <div class="m0a w25 h25 m_t15 m_b20">
+                                <img src="../../icon/reserve_information_pic_cemera@2x.png" alt="">
+                            </div>
+                        </div> 
+                    </form>            
+                </div>
+            </div>
+            <div class="w h5 bgc_body"></div>
+        </div>
+        <div class="bgc_fff">
+            <div class="flex-start h40 bgc_fff p_l15 ">
+                <div class=" flex-start  m_r20">
+                  物流评分
+                </div>
+                <div class="w_b50 h flex-start ">
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                </div>
+            </div>
+            <div class="flex-start h40 bgc_fff p_l15 ">
+                <div class=" flex-start  m_r20">
+                  服务评分
+                </div>
+                <div class="w_b50 h flex-start ">
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                    <div class="npjxx1"></div>
+                </div>
+            </div>
+        </div>
+        <div class=" w flex-center p_a b h50 bgc_blue col_fff f_s20" ng-click="ofFun()">
+            立即发布
+        </div>
+    </div>
+    </body>
+</html>

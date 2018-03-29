@@ -1,0 +1,37 @@
+
+    <div class="wrapper bgc_body p_r" >
+        <div class="bgc_blue col_fff h40 flex-between p_r">
+            <div class=" l15 h flex-center m_l15">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">我的收藏</div>
+            <div class="w10 m_r15"></div>
+        </div>
+        <!--收藏产品信息-->
+        <div  class="bor_b w h110 flex-start goods_list" ng-repeat="dt in listInfo track by $index">
+            <div class="h w_b15 bgc_fff flex-center">
+                <div class="scmxz w25 h25 scList" id="cid{{$index}}" cid="{{dt.collection_id}}" ng-click="onclick($index)"></div>
+            </div>
+            <a href="http://aksd.qubaotang.cn/app-mall/index.html#/goods_detail?dd={{dt.goodsBean.goods_id}}" class="dis_lb w_b85 h">
+                <div class="w h bgc_fff p_l15 p_r5 p_t15  fl_r">
+                    <div class="w75 h75 fl_l">
+                        <img ng-src="{{dt.goodsBean.goods_img}}" alt="">
+                    </div>
+                    <div class="p_l15 h fl_l w_b73 p_r f_s14">
+                        <div class="text_ellipsis_2" ng-bind="dt.goodsBean.goods_name">这是商品名称</div>
+                        <div class=" h20 p_r15 flex-between p_a b10 w">
+                            <div class="flex-start w100 col_red">￥<span ng-bind="dt.goodsBean.goods_now_price"></span></div>
+                            <div class=" h "><span ng-bind="dt.goods_stock"></span>人购买</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class=" p_a b h40 w flex-between">
+            <div class="h w_b60 flex-start">
+                <div class="m_l10 scmxz w25 h25 alls" ng-click="qOnclick()"></div>
+                <div class="m_l10">全选</div>
+            </div>
+            <div class="w100 f_s18 bgc_blue col_fff h flex-center" ng-click="delete()">删除</div>
+        </div>
+    </div>

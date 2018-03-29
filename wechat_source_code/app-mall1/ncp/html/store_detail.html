@@ -1,0 +1,75 @@
+<div class="wrap flex flex-v back_ef">
+    <!--<div class="pulice_header di_n">
+        <div class="titbox p_r">
+            <a href="javascript:history.go(-1)" class="history_1 p_a"></a>
+            <p class="tit">商家名</p>
+        </div>
+    </div>-->
+    <div class="shop_detail back_fff">
+        <div class="shop_detailBIT store-detailBIT o_h">
+            <img src="{{store.storeDetail.merchants_img}}" alt="" class="di_bl l">
+            <p class="l ml-15">
+                <span class="f-14 col_333 di_bl" ng-bind="store.storeDetail.merchants_name">店铺</span>
+                <span class="f-12 col_999 di_bl mt-7 text_ellipsis" ng-bind="store.storeDetail.merchants_desc">店铺简介的内容显示区店铺简介的内容显示区店铺简介的内容显示区店铺简介的内容显示区</span>
+            </p>
+            <span class="di_bl collection-btn r mt-15" ng-show="store.storeDetail.is_collection==0" ng-click="store.Collectionfn(store.storeDetail.merchants_id)"></span>
+            <span class="di_bl collection-btn cur r mt-15" ng-show="store.storeDetail.is_collection==1" ng-click="store.cancelCollectionfn(store.storeDetail.collection_id)"></span>
+        </div>
+        <div class="shop_detailScore t_c f-12 o_h">
+            <p class="l">
+                <span class="di_bl col_EA2">5.0</span>
+                <span class="di_bl col_999">商品描述</span>
+            </p>
+            <p class="l">
+                <span class="di_bl col_EA2">5.0</span>
+                <span class="di_bl col_999">卖家服务</span>
+            </p>
+            <p class="l">
+                <span class="di_bl col_EA2">5.0</span>
+                <span class="di_bl col_999">物流服务</span>
+            </p>
+        </div>
+        <div class="o_h f-12 col_333 t_c shopbtn">
+            <a href="JavaScript:android.appJumpCall()" onclick="appJumpCall()" class="di_bl l bor_3 lxmj">联系卖家</a>
+            <a href="" class="di_bl r bor_3 goshop">进入店铺</a>
+        </div>
+    </div>
+    <ul class="back_fff mt-7 f-14 line_h45">
+        <li class="pl-15"><a href="JavaScript:android.appJumpCall()" onclick="appJumpCall()" class="b1b_CD storeContact-icon di_bl">联系商家</a></li>
+        <li class="pl-15"><a href="" class="storePhone-icon di_bl">商家电话 400-2541-023</a></li>
+    </ul>
+    <ul class="back_fff mt-7 f-14 line_h45">
+        <li class="pl-15">
+            <p class="b1b_CD o_h">
+                <span class="di_bl l">店铺简介</span>
+                <span class="di_bl l ml-15" ng-bind="store.storeDetail.merchants_desc">新鲜水果值得信赖</span>
+            </p>
+        </li>
+        <li class="pl-15">
+            <p class="b1b_CD o_h">
+                <span class="di_bl l">店铺名称</span>
+                <span class="di_bl l ml-15" ng-bind="store.storeDetail.merchants_name">爱吃水果</span>
+            </p>
+        </li>
+        <li class="pl-15">
+            <a href="#/view_aptitude" class="b1b_CD select_spec di_bl">查看资质</a>
+        </li>
+        <li class="pl-15">
+            <p class="b1b_CD o_h">
+                <span class="di_bl l">所在地区</span>
+                <span class="di_bl l ml-15">上海浦东新区</span>
+            </p>
+        </li>
+        <li class="pl-15">
+            <p class="b1b_CD o_h">
+                <span class="di_bl l">开店时间</span>
+                <span class="di_bl l ml-15">2016-08-23</span>
+            </p>
+        </li>
+    </ul>
+</div>
+<script>
+    function appGostore(i) {
+        window.location.href='http://nongye.tstweiguanjia.com/index.html#/store_goodslist?md='+i
+    }
+</script>

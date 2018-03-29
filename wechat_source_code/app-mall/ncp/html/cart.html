@@ -1,0 +1,99 @@
+<div class="wrap flex flex-v" id="cart">
+    <div class="pulice_header">
+        <div class="titbox p_r">
+            <a href="javascript:history.go(-1)" class="history_1 p_a"></a>
+            <p class="tit h flex-center">购物车</p>
+        </div>
+    </div>
+
+
+    <!-- <div class="main back_ef flex-1 mb-50">
+        <ul class="o_h store_box">
+            <li class="store_list" ng-repeat="s in cart.carts"> -->
+                <!-- <div class="store_tit back_fff plr-15">
+                    <p class="store_che noche l" id="store{{s.merchantsBean.merchants_id}}" ng-click="cart.store(s.merchantsBean.merchants_id)"></p>
+                    <a href="" class="store_name f-16 di_bl l" ng-bind="s.merchantsBean.merchants_name">店铺名称</a>
+                </div> -->
+                <!-- <div class="store_goods">
+                    <ul>
+                        <li class="goods_list back_fff" ng-repeat="g in s.shoppingCarBeans">
+                            <p class="goods_che noche l" id="goods{{$index}}" carid="{{g.car_id}}" ng-click="cart.goods(g.merchants_id,$index)"></p>
+                            <img class="ml-15 di_bl l" src="" ng-src="{{g.goodsBean.goods_img}}" alt="">
+                            <div class="goodsDetail ml-7  l f-14">
+                                <p class="goodsName text_ellipsis" ng-bind="g.goodsBean.goods_name">新鲜蔬果</p>
+                                <div class="l">
+                                    <p class="goodsWeight mt-5 f-12" ng-bind="g.goods_parameters_name">14kg</p>
+                                    <p class="goodsPrice mt-5" ng-bind="g.car_totla_price | currency:'¥'" price="{{g.car_totla_price}}">￥36.5</p>
+                                </div>
+                                <div class="numbox r mt-10">
+                                    <p class="l numMinus" ng-click="cart.numfncart(g.car_totla_price,g.goodsBean.goods_stock,g.car_id,1)">-</p>
+                                    <input type="text" class="numN di_bl l bn" id="CarNum{{g.car_id}}" value="{{g.goods_num}}" ng-blur="cart.numfncart(g.car_totla_price,g.goodsBean.goods_stock,g.car_id)" />
+                                    <p class="l numAdd" ng-click="cart.numfncart(g.car_totla_price,g.goodsBean.goods_stock,g.car_id,2)">+</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div> -->
+
+
+    <div class="main back_ef flex-1 mb-50">
+        <ul class="o_h store_box">
+           <!--  <li class="store_list" ng-repeat="s in cart.carts">
+                <div class="store_tit back_fff plr-15">
+                    <p class="store_che noche l" id="store{{s.merchantsBean.merchants_id}}" ng-click="cart.store(s.merchantsBean.merchants_id)"></p>
+                    <a href="" class="store_name f-16 di_bl l" ng-bind="s.merchantsBean.merchants_name">店铺名称</a>
+                </div> -->
+                <div class="store_goods">
+                    <ul>
+                        <li class="goods_list back_fff flex-between" ng-repeat="g in cart.carts">
+                            <p class="goods_che noche l" id="goods{{$index}}" carid="{{g.car_id}}" ng-click="cart.goods(g.merchants_id,$index)"></p>
+                            <a href="index.html#/goods_detail?dd={{g.goods_id}}"  >
+                                <img class="ml-15 di_bl l" src="" ng-src="{{g.goods_img}}" alt="">
+                            </a>
+                            <div class="goodsDetail ml-7  l f-14 p_r">
+                                <p class="goodsName " ng-bind="g.goods_name">商品名称</p>
+                                <div class=" l p_a b">
+                                    <p class="goodsWeight mt-5 f-12" ng-bind="g.specification_names">14kg</p>
+                                    <p class="col_red">￥<span id="goodsPrice{{g.car_id}}" class="goodsPrice"  ng-bind="g.specification_price">36.5</span></p>
+                                </div>
+                                <div class="numbox r mt-10 p_a b r">
+                                    <p class="l numMinus" ng-click="cart.numfncart(g.specification_price,g.specification_stock,g.car_id,1)">-</p>
+                                    <input type="text" class="numN di_bl l bn" id="CarNum{{g.car_id}}" value="{{g.goods_num}}" ng-blur="cart.numfncart(g.specification_price,g.specification_stock,g.car_id)" />
+                                    <p class="l numAdd" ng-click="cart.numfncart(g.specification_price,g.specification_stock,g.car_id,2)">+</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            
+        </ul>
+        <div class="h30 flex-center col_999 f_s14" ng-bind="modelstext"></div>
+    </div>
+    <div class="footer p_f b0 l0 w100">
+        <div class="total_Column o_h">
+            <div class="heji_total back_fff">
+                <p class="noche l alls" ng-click="cart.alls()"></p>
+                <p class="qx f-12 l col_999">全选</p>
+                <p class="del f-12 l col_999" ng-click="cart.delshow()">删除</p>
+                <div class="r f-14 o_h">
+                    <p class="l">合计:</p>
+                    <p class="l ml-15 col_red" id="total" ng-init="cart.total=0" ng-bind="cart.total | currency:'¥'">￥36.8</p>
+                    <a class="go_Clearing l di_bl col_fff t_c ml-15 ahovfff" ng-click="cart.goClearing()">去结算</a>
+                </div>
+            </div>
+        </div>
+        <div class="del_box o_h">
+            <div class="heji_total back_fff">
+                <p class="noche l alls" ng-click="cart.alls()"></p>
+                <p class="qx f-12 l col_999">全选</p>
+                <p class="del f-12 l col_999" ng-click="cart.delhide()">去结算</p>
+                <div class="r f-14 o_h">
+                    <a class="go_Clearing l di_bl col_fff t_c ml-15 ahovfff" ng-click="cart.godel()">删除</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no"/>
+  	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<title>师傅上门Pro</title>
+	<!--初始化样式表-->
+	<link rel="stylesheet" type="text/css" href="extension/css/reset.css">
+	<!--公共样式表-->
+	<link rel="stylesheet" type="text/css" href="extension/css/common.css">
+	<!--rem单位js-->
+	<script type="text/javascript">
+		(function (doc, win) {
+		    var docEl = doc.documentElement,
+		        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+		        recalc = function () {
+		            var clientWidth = docEl.clientWidth;
+		            if (!clientWidth) return;
+		            if(clientWidth>=640){
+		                docEl.style.fontSize = '100px';
+		            }else{
+		                docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'; // iphone6
+		        }
+		    };
+		    if(!doc.addEventListener) return;
+		    win.addEventListener(resizeEvt, recalc, false);
+		    doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+	</script>
+	
+</head>
+<body >
+	<div class="h_b100 p15 back_fff">
+		<div class="grid_cell bor_black h_b100 pl15 pr15">
+			<div class="pt50 bor_b pb30">
+				<div class="f22 box_center mb20">安卓平台</div>
+				<div class="box_start">
+					<img src="extension/image/1.jpg" class="h50 w160" onclick="show()">
+					<a href="http://mobile.zhushou.sogou.com/android/appdetail_share.html?app_id=645877"><img src="extension/image/2.jpg" class="h50 w160"></a>
+				</div>
+				<div class="box_center mt20">
+					<a href="http://fx.anzhi.com/share_2880564.html?azfrom=sms">
+						<img src="extension/image/3.jpg" class="h40 w160">
+					</a> 
+				</div>
+			</div>
+			<div class="pt50  pb30 ">
+				<div class="f22 box_center mb20">IOS平台</div>
+				<div class="box_center">
+					<a href="https://itunes.apple.com/cn/app/师傅上门pro/id1297926827?mt=8">
+						<img src="extension/image/4.jpg" class="w110 h120">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="f22  hide p_f t0 w_b100 h_b100" id="tips" >
+		<div class="box_center w_b100 h_b100">
+			<div class="back_main p20 col_fff box_center">正在审核，敬请期待！</div>
+		</div>
+		
+	</div>
+</body>
+	<script type="text/javascript">
+		var t= document.getElementById("tips");
+		function show() {
+			t.style.display='block';
+			time();
+		}
+		function hide() {
+			t.style.display='none';
+		}
+		function time() {
+			setTimeout("hide()",2000);
+		}
+	</script>
+</html>

@@ -1,0 +1,37 @@
+<!--<div class="wrap flex flex-v">-->
+<div class="wrap flex flex-v back_ef">
+    <div class="bgc_fff h40 flex-end p_r">
+        <div class="f_s16 h w_b33 flex-center" ng-click="sortType(1)" ng-class="{true:'col_red',false:''}[obj.type==1]">综合排序</div>
+        <div class="f_s16 h w_b33 flex-center" ng-click="sortType(2)" ng-class="{true:'col_red',false:''}[obj.type==2]">销量排序</div>
+        <div class="f_s16 h w_b33 flex-center" ng-click="sortType(3)" ng-class="{true:'col_red',false:''}[obj.type==3]">价格排序</div>
+        
+    </div>
+    <!--<div class="pulice_header">-->
+        <!--<div class="titbox p_r">-->
+            <!--<a href="javascript:history.go(-1)" class="history_1 p_a"></a>-->
+            <!--<p class="tit">商品分类</p>-->
+            <!--<a href="#/home" class="rold p_a">回到商城</a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="classify p_f back_fff">-->
+        <!--<p class="tit">全部分类</p>-->
+        <!--<div id="nav">-->
+            <!--<div class="scroller">-->
+                <!--<ul class="o_h back_fff">-->
+                    <!--<li ng-class="{act:l.goods_uuid==obj.uuid}" ng-repeat="l in obj.Levellist" uuid="{{l.goods_uuid}}" ng-click="obj.clicktag(l.goods_uuid)" switch>-->
+                    <!--<span class="di_bl">{{l.goods_name}}</span></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="clas_arrdow p_a"><span></span></div>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div class="tagzw"></div>-->
+    <!--<div class="main flex-1">-->
+    <div class="main flex-1 mt-5">
+        <ul class="shop_list">
+
+        </ul>
+        <div class="t_c f-14 col_666 line_h50">{{modelstext}}</div>
+    </div>
+    <!-- <a href="#/cart" class="p_f cartbtn" ></a> -->
+</div>

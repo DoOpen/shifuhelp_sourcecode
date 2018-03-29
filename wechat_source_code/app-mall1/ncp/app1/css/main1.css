@@ -1,0 +1,188 @@
+.wrapper{width: 100%;overflow: hidden;min-height: 100%;}
+/*其它选项的li样式*/
+.otherul li{
+	text-align: center;
+	display:inline;
+	float: left;
+	height:100%;
+	width:100%;
+    background:#fff;
+    border-radius: 0.1rem;
+    line-height: 0.8rem;
+
+}
+.p_25_20{
+	padding:0.5rem 0.4rem;
+}
+/*签到的样式*/
+.sign{
+	background:#ecb303;
+    color:#fff;
+	border-radius: 0.6rem;
+    margin:0 auto;
+	
+    width:1.4rem;
+    height:0.45rem;
+}
+.nosign{
+	border:1px solid #5F5B5B;
+	color:#353232;
+	border-radius: 0.6rem;
+    margin:0 auto;
+    width:1.4rem;
+    height:0.45rem;
+}
+/*获取验证码样式*/
+.getcode{width:2.2rem;height:100%;color:#fff;background:#ecb303;border-radius:0.1rem;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.nocode{width:2.2rem;height:100%;color:#fff;background:#A9A9A9;border-radius:0.1rem;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+/*个人中心的背景图片*/
+.mine_bg{
+	background:url(../icon/mine_bg@2x.png.png) no-repeat top;
+	background-size: 100% 3rem;
+}
+/*我的积分背景图片*/
+.points_bg{
+	background: url(../icon/my integral_banner@2x.png.png) no-repeat center;
+}
+/*删除上传图片的小红叉*/
+.d_red_x{
+	background:url(../icon/reserve_information_turnoff_highlight@2x.png) no-repeat center;
+	height:0.3rem;width:0.3rem;
+	position:absolute;
+	right:-0.1rem;top: -0.1rem;
+	border-right: 50%;
+}
+/*预约等待和成功提示*/
+.wait{background:url(../icon/sheet_load.png.png) no-repeat center 70%;}
+.success{background:url(../icon/sheet_yuyuechenggong.png.png) no-repeat center 70%;}
+/*取消退货成功提示*/
+.qxthSuccess{background:url(../icon/sales return_sheet_countermand@2x.png.png) no-repeat center 70%;}
+/*取消退款成功提示*/
+.qxtkSuccess{background:url(../icon/refund_sheet_countermand@2x.png.png) no-repeat center 70%;}
+ /*预约状况图章*/
+.stamp1{background:url(../icon/MyBookings_icon_audit_disabled.png.png) no-repeat center;}
+.stamp2{background:url(../icon/MyBookings_icon_release_disabled.png.png) no-repeat center;}
+.stamp3{background:url(../icon/MyBookings_icn_OrderReceiving_disabled@.png.png) no-repeat center;}
+/*评价星级图标*/
+.npjxx{background:url(../icon/MyBookings_icon_evaluate_normal.png.png) no-repeat center;
+width:0.42rem;height: 0.4rem;margin-right: 0.4rem;}
+.pjxx{background:url(../icon/MyBookings_icon_evaluate_selected@2x.png.png) no-repeat center;
+width:0.42rem;height: 0.4rem;margin-right: 0.4rem;}
+/*评价星级图标(师傅)*/
+.npjxxs{background:url(../icon/MyBookings_icon_evaluate_normal.png1.png) no-repeat center;
+width:0.32rem;height: 0.32rem;margin-right: 0.16rem;}
+.pjxxs{background:url(../icon/MyBookings_icon_evaluate_selected@2x.png1.png) no-repeat center;
+width:0.32rem;height: 0.32rem;margin-right: 0.16rem;}
+.bpjxxs{background:url(../icon/mine_icon_collect@2x.png) no-repeat center;
+background-size: 0.32rem 0.32rem; width:0.32rem;height: 0.32rem;margin-right: 0.16rem;}
+/*评价星级图标(商品)*/
+.npjxx1{background:url(../icon/MyBookings_icon_evaluate_normal.png.png) no-repeat center;
+width:0.42rem;height: 0.4rem;margin-right: 0.3rem;}
+.pjxx1{background:url(../icon/MyBookings_icon_evaluate_selected@2x.png.png) no-repeat center;
+width:0.42rem;height: 0.4rem;margin-right: 0.3rem;}
+/*默认地址图标*/
+.ndz{background:url(../icon/address_icon_nor.png.png) no-repeat center;}
+.dz{background:url(../icon/address_icon_selected.png.png) no-repeat center;}
+.scmxz{background:url(../icon/address_icon_nor@2x.png.png) no-repeat center;background-size: 0.5rem 0.5rem;}
+.scxz{background:url(../icon/address_icon_selected@2x.png.png) no-repeat center;background-size: 0.5rem 0.5rem;}
+/*选择背景 >*/
+.xz{background:url(../icon/reserve_information_icon_next@2x.png) no-repeat right;width:0.3rem;height:0.3rem;}
+/*我的预约列表点击样式*/
+.yylbclick{border-bottom: 2px solid #ecb303;color:#ecb303;}
+/*第二级菜单点击样式-清工*/
+.djlb{background:#fff;color:#ecb303;border-left: solid #ecb303 3px;}
+/*物流信息图标*/
+.wltb{background:url(../icon/333399125445346176.png) no-repeat center;}
+.nowltb{background:url(../icon/205780080135859612.png) no-repeat center;}
+/*提示*/
+.Prompt-back{position:fixed;z-index:9999;top:0px;left:0px;width:100%;height:100%;}
+.Prompt-back .tips{position:fixed;display:inline-block;width:4.96rem;height:1.08rem;line-height:1.08rem;top:0;left:0;right:0;bottom:0;margin:auto;background:#242424;color:#fff;font-size:.28rem;text-align:center;border-radius:.1rem;}
+.Prompt-back .tips2{position:fixed;display:inline-block;height:6rem;width:12rem;top:0;left:0;right:0;bottom:0;margin:auto;background:#fff;color:#666;font-size:1.2rem;text-align:center;border-radius:3px;}
+.Prompt-back .tips2 p{line-height:3rem;}
+.Prompt-back .tips2 span{display:inline-block;width:49%;height:1.08rem;border-top:1px solid #ccc;border-bottom-left-radius:3px;line-height:3rem;box-sizing:border-box;}
+.Prompt-back .tips2 span:last-child{border-bottom-right-radius:3px;border-bottom-left-radius:0px!important;border-left:1px solid #ccc;color:#999;box-sizing:border-box;}
+.tck-btn{cursor:pointer}
+
+/*首页轮播图*/
+/* Browser Resets
+*********************************/
+.flex-container a:active,
+.flexslider a:active,
+.flex-container a:focus,
+.flexslider a:focus  {outline: none;}
+.slides,
+.flex-control-nav,
+.flex-direction-nav {margin: 0; padding: 0; list-style: none;}
+
+/* FlexSlider Necessary Styles
+*********************************/
+.bannerBox1 .slides > li{height: 2.74rem;}
+.bannerBox2 .slides > li{height: 6.4rem;}
+.flexslider {margin: 0; padding: 0;}
+.flexslider .slides > li {display: none;-webkit-backface-visibility: hidden;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.flexslider .slides img {width: 100%; display: block;vertical-align: middle;}
+.flex-pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+.slides:after {content: "\0020"; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}
+html[xmlns] .slides {display: block;}
+* html .slides {height: 1%;}
+
+.no-js .slides > li:first-child {display: block;}
+
+/* FlexSlider Default Theme
+*********************************/
+.flexslider {margin:0px; background: #fff; border: 0px solid #fff; position: relative; -webkit-border-radius: 4px; -moz-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px; /* -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2); -moz-box-shadow: 0 1px 4px rgba(0,0,0,.2); -o-box-shadow: 0 1px 4px rgba(0,0,0,.2); box-shadow: 0 1px 4px rgba(0,0,0,.2); */ zoom: 1; }
+.flex-viewport { max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; -o-transition: all 1s ease; transition: all 1s ease; }
+.loading .flex-viewport { max-height: 300px; }
+.flexslider .slides { zoom: 1; }
+.carousel li { margin-right: 5px; }
+
+/* Direction Nav */
+.flex-direction-nav {*height: 0;}
+.flex-direction-nav a  { text-decoration:none; display: block; width: 40px; height: 60px; margin: -35px 0 0; position: absolute; top: 50%; z-index: 10; overflow: hidden; opacity: 0; cursor: pointer; color: rgba(0,0,0,0.8); text-indent:-999em;background-color:rgba(0,0,0,0.3) }
+.flex-direction-nav .flex-prev { left: 0px; background-position:5px center }
+.flex-direction-nav .flex-next { right: 0px; background-position:-125px center}
+.flexslider:hover .flex-prev { opacity: 0.7; left: 10px;}
+.flexslider:hover .flex-next { opacity: 0.7; right: 10px;}
+.flexslider:hover .flex-next:hover, .flexslider:hover .flex-prev:hover { opacity: 1; }
+.flex-direction-nav .flex-disabled { opacity: 0!important; filter:alpha(opacity=0); cursor: default; }
+
+/* Pause/Play */
+.flex-pauseplay a { display: block; width: 20px; height: 20px; position: absolute; bottom: 5px; left: 10px; opacity: 0.8; z-index: 10; overflow: hidden; cursor: pointer; color: #000; background:#ddd}
+.flex-pauseplay a:before  { font-family: "flexslider-icon"; font-size: 20px; display: inline-block; content: '\f004'; }
+.flex-pauseplay a:hover  { opacity: 1; }
+.flex-pauseplay a.flex-play:before { content: '\f003'; }
+
+/* Control Nav */
+.bannerBox2 .flex-control-nav{bottom:.8rem;}
+.flex-control-nav {width: 100%; position: absolute; bottom: 10px; text-align: center;z-index:2}
+.flex-control-nav li {margin: 0 5px; display: inline-block; zoom: 1; *display: inline;}
+.flex-control-paging li a {width: 6px; height: 6px; display: block; background: #fff;border:0px solid #999; cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px;opacity:1;/* -webkit-box-shadow: inset 0 0 3px rgba(255,255,255,1); -moz-box-shadow: inset 0 0 3px rgba(255,255,255,1); -o-box-shadow: inset 0 0 3px rgba(255,255,255,1); box-shadow: inset 0 0 3px rgba(255,255,255,1); */}
+.flex-control-paging li a:hover { background:#fff;border:0px solid #fd655a;opacity:0.8}
+.flex-control-paging li a.flex-active { background: #fff; background:#F1BC1A;border:0px solid #fd655a; cursor: default;opacity:1}
+
+.flex-control-thumbs {margin: 5px 0 0; position: static; overflow: hidden;}
+.flex-control-thumbs li {width: 25%; float: left; margin: 0;}
+.flex-control-thumbs img {width: 100%; display: block; opacity: .7; cursor: pointer;}
+.flex-control-thumbs img:hover {opacity: 1;}
+.flex-control-thumbs .flex-active {opacity: 1; cursor: default;}
+
+@media screen and (max-width: 860px) {
+  .flex-direction-nav .flex-prev { opacity: 1; left: 10px;display:none}
+  .flex-direction-nav .flex-next { opacity: 1; right: 10px;display:none}
+}

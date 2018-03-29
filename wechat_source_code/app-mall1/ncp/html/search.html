@@ -1,0 +1,30 @@
+<div id="search">
+    <div class="wrap flex flex-v back_ef">
+        <!-- <div class="pulice_header">
+            <div class="titbox p_r flex-center">
+                <a href="javascript:history.go(-1)" class="history_1 p_a"></a>
+                <p class="search-text l bor_5 o_h">
+                    <input type="text" class="di_bl f_s14" placeholder="搜索您想要的商品" maxlength="15">
+                </p>
+                <p class="p_a r15"><a href="javascript:void(0)" class="col_fff ahovfff" ng-click="search.searchbtn()">搜索</a></p>
+            </div>
+            
+        </div> -->
+        <div class="hot-search line_h45 pl-15 pr-15  back_fff o_h ">
+            <p class="hot-search-tit l f-16 col_333">热搜</p>
+        </div>
+        <div class="flex-fstart pl-15 pr-15  back_fff">
+            <div class="h30 bor_blue p_l10 p_r10 m_b15 m_r15 f_s14 col_blue dis_lb l_h_30" ng-repeat="dt in search.hotList" ng-bind="dt.search_name" ng-click="search.hotSearchlistOn(dt.search_name)" ng-hide="dt.search_name==''"></div>
+        </div>
+    </div>
+    <script>
+        function switchs(obj){
+            $(".searchnav-switch").find(obj).addClass('cur').siblings().removeClass('cur')
+            $(".searchnav-switch").slideUp(0);
+            $(".search-tag").text($(".searchnav-switch").find(obj).text());
+        }
+        $(".search-tag").click(function () {
+            $(".searchnav-switch").slideDown(0);
+        })
+    </script>
+</div>

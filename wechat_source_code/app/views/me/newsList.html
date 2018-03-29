@@ -1,0 +1,35 @@
+
+    <div class="wrapper bgc_body" >
+        <div class="bgc_blue col_fff h40 flex-center p_r">
+            <div class="p_a l15 h flex-center">
+                <img src="app/icon/back@2x.png" alt="" class="w10 h20" ng-click="back()">
+            </div>
+            <div class="f_s16">消息</div>
+        </div>
+        <!--系统消息-->
+        <a href="#/xtNews" class="dis_b h65 w ">
+        <div class="h65 w bgc_fff flex-start p_15 bor_b">
+            <div class="w22 h22 m_r10"><img src="app/icon/Message_icon_ System@2x.png.png" alt=""></div>
+            <div class="h w_b90 p_r">
+                <div class="w flex-start">
+                    <div class=" f_s14">系统消息</div>
+                </div>
+                <div class="f_s11 col_b4 p_a t_f5 r" ng-bind="xtInfo.create_time"></div>
+                <div class="f_s11 col_b4 m_t5 text_ellipsis" ng-bind="xtInfo.msg_desc ? xtInfo.msg_desc : '暂无消息'"></div>
+            </div>
+        </div>
+        </a>
+        <!--订单消息-->
+        <a href="#/ddNews" class="dis_b h65 w ">
+        <div class="h65 w bgc_fff flex-start p_15 ">
+            <div class="w22 h22 m_r10"><img src="app/icon/Message_icon_ indent@2x.png.png" alt=""></div>
+            <div class="h w_b90 p_r">
+                <div class="w flex-start">
+                    <div class=" f_s14">订单消息</div>
+                </div>
+                <div class="f_s11 col_b4 p_a t_f5 r" ng-bind="ddInfo.create_time"></div>
+                <div class="f_s11 col_b4 m_t5 text_ellipsis" ng-bind="ddInfo.msg_desc ? ddInfo.msg_desc : '暂无消息'"></div>
+            </div>
+        </div>
+        </a>               
+    </div>

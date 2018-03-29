@@ -1,0 +1,67 @@
+<div class="wrap f_s14">
+    <div class="pulice_header">
+        <div class="titbox p_r">
+            <!-- <a href="javascript:history.go(-1)" class="history_1 p_a"></a> -->
+            <p class="tit h flex-center">商品分类</p>
+            <!-- <a href="#/cart" class="rold p_a jump_carticon"></a> -->
+        </div>
+    </div>
+    <div>
+       <div class="h50 bor_b_f9 p_r10 p_l10  flex-between bgc_fff " >
+           <div class="f_s16 f_w_b w120 text_ellipsis">积分购买专区</div>
+           <div class=" h20 flex-start" ng-click="goodsClass.goodsListIntegral()">更多<span class="more dis_lb m_l10"></span></div>
+       </div>
+       <div class="h110 bor_b_f9 p_l10 p_r10 bgc_fff flex-between" ng-repeat="dt1 in integralList" ng-click="goodsClass.goGoodsDetail(dt1.goods_id)">
+           <div class="w90 h90 fl_l"><img ng-src="{{dt1.goods_img}}" alt="" class="w h"></div>
+           <div class="m_l15 h fl_l w250 p_r">
+               <p class="w m_t10 text_ellipsis_2" ng-bind="dt1.goods_name">商品名称</p>
+               <div class="col_red f_s14  p_a b40">￥<span ng-bind="dt1.goods_now_price" class="col_red"></span></div>
+               <div class="m_l5 f_s14 col_333  p_a b15">销量:<span class="m_l5" ng-bind="dt1.total_sales">件</span></div>
+               <!-- <div class="p_a r b15 t_a_c"><span ng-bind="dt1.goods_num"></span></div> -->
+           </div>
+       </div>
+    </div>
+    <div ng-repeat="dt in goodsClass.classList track by $index">
+       <div class="h50 bor_b_f9 p_r10 p_l10  flex-between bgc_fff " >
+           <div class="f_s16 f_w_b w120 text_ellipsis" ng-bind="dt.class_name">类名</div>
+           <div class=" h20 flex-start" ng-click="goodsClass.goLevel(dt.class_id)">更多<span class="more dis_lb m_l10"></span></div>
+       </div>
+       <div class="h110 bor_b_f9 p_l10 p_r10 bgc_fff flex-between" ng-repeat="dt1 in goodsClass.listInfo[$index]" ng-click="goodsClass.goGoodsDetail(dt1.goods_id)">
+           <div class="w90 h90 fl_l"><img ng-src="{{dt1.goods_img}}" alt="" class="w h"></div>
+           <div class="m_l15 h fl_l w250 p_r">
+               <p class="w m_t10 text_ellipsis_2" ng-bind="dt1.goods_name">商品名称</p>
+               <div class="col_red f_s14  p_a b40">￥<span ng-bind="dt1.goods_now_price" class="col_red"></span></div>
+               <div class="m_l5 f_s14 col_333  p_a b15">销量:<span class="m_l5" ng-bind="dt1.total_sales">件</span></div>
+               <!-- <div class="p_a r b15 t_a_c"><span ng-bind="dt1.goods_num"></span></div> -->
+           </div>
+       </div>
+    </div>
+    <div class="h50"></div>
+   <!--底层导航栏-->
+        <div class="p_f b  h50 w flex-between bgc_fff bor_t">
+            <a href="#/home">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/store_tab_home@2x.png" alt=""></div>
+                    <div class=" f_s11 t_a_c m_t10">首页</div>
+                </div>
+            </a>
+            <a href="#/goodsClass">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/gouwudai1.png" alt=""></div>
+                    <div class="col_blue f_f f_s11 t_a_c m_t10">分类</div>
+                </div>
+            </a>
+            <a href="#/cart">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/home_tab_shop@2x.png" alt=""></div>
+                    <div class=" f_s11 t_a_c m_t10">购物车</div>
+                </div>
+            </a>
+            <a href="index1.html#/personalCenter" ng-click="appGoCenter()">
+                <div class="h w60  m_l15 m_r15 m_b5">
+                    <div class=" h20 w20 m0a m_t5 p_r"><img class="w h p_a t5" src="ncp/image/home_tab_mine@2x.png" alt=""></div>
+                    <div class="f_s11 t_a_c m_t10">个人中心</div>
+                </div>
+            </a>
+        </div>
+</div>
