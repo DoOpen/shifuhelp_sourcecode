@@ -3,12 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.controller.WorkOrderDaoC">
-	<select id="getSendWorkOrderWorkerList" parameterType="workOrderBean" resultType="memberBean">
+	<select id="getSendWorkOrderWorkerList" parameterType="map" resultType="memberBean">
 		SELECT *,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{order_address_longitude}*PI()/180-a.member_service_longitude*PI()/180)/2),2)
 		+COS(#{order_address_longitude}*PI()/180)*COS(a.member_service_latitude*PI()/180)*POW(SIN((#{order_address_latitude}*PI()/180-a.member_service_latitude*PI()/180)/2),2)))*1000) AS distance
 		FROM member AS a 
-		having a.member_type=1 and a.member_state=1 
-		AND distance IS NOT NULL
+		where a.member_type=1 and a.member_state=1 
+		<if test=" member_account !=null and member_account !='' ">
+			and a.member_account like concat('%',#{member_account},'%')
+		</if>
+		<if test=" member_real_name !=null and member_real_name !='' ">
+			and a.member_real_name like concat('%',#{member_real_name},'%')
+		</if>
+		<if test=" member_is_star !=null and member_is_star !='' ">
+			and a.member_is_star=#{member_is_star}
+		</if>
 		ORDER BY distance asc
 	</select>
 	<select id="exportRefundOrderExcel" resultType="workOrderBean">
@@ -389,6 +397,10 @@
 	</insert>
 	<select id="getWorkOrderDetail" parameterType="workOrderBean" resultType="workOrderBean">
 		select * from work_order where
+		order_id=#{order_id}
+	</select>
+	<select id="getRefundWorkOrderDetail" parameterType="workOrderBean" resultType="workOrderBean">
+		select * from refund_work_order where
 		order_id=#{order_id}
 	</select>
 	<select id="getOrderList" parameterType="workOrderBean" resultType="workOrderBean">

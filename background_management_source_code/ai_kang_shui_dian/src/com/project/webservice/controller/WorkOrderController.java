@@ -2,11 +2,13 @@ package com.project.webservice.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.bean.order.OrderBean;
 import com.project.bean.others.ExcelBean;
@@ -41,8 +43,8 @@ public class WorkOrderController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping(params="getSendWorkOrderWorkerList")
-	public void getSendWorkOrderWorkerList(WorkOrderBean workOrderBean,PageBean pageBean) throws Exception {
-		WriteObject(workOrderService.getSendWorkOrderWorkerList(workOrderBean,pageBean),pageBean.getTotal());
+	public void getSendWorkOrderWorkerList(@RequestParam Map<String, String> params,PageBean pageBean) throws Exception {
+		WriteObject(workOrderService.getSendWorkOrderWorkerList(params,pageBean),pageBean.getTotal());
 	}
 	/**
 	 * 押金统计
@@ -287,6 +289,18 @@ public class WorkOrderController extends BaseController{
 	@RequestMapping(params = "getWorkOrderDetail", method = RequestMethod.POST)
 	public void getWorkOrderDetail(WorkOrderBean workOrderBean) throws Exception {
 		WriteObject(workOrderService.getWorkOrderDetail(workOrderBean));
+	}
+	/**
+	 * 获取退单详情
+	 * @param workOrderBean
+	 * @param memberBean
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(params = "getRefundWorkOrderDetail", method = RequestMethod.POST)
+	public void getRefundWorkOrderDetail(WorkOrderBean workOrderBean) throws Exception {
+		WriteObject(workOrderService.getRefundWorkOrderDetail(workOrderBean));
 	}
 	/**
 	 * 预约审核

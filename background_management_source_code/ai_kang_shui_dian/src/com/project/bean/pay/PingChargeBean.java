@@ -91,7 +91,7 @@ public class PingChargeBean {
 			private String currency;//3 位 ISO 货币代码，人民币为  cny
 			private String subject;//商品标题，该参数最长为 32 个 Unicode 字符。银联全渠道（ upacp / upacp_wap ）限制在 32 个字节；支付宝部分渠道不支持特殊字符
 			private String body;//商品描述信息，该参数最长为 128 个 Unicode 字符。 yeepay_wap 对于该参数长度限制为 100 个 Unicode 字符；支付宝部分渠道不支持特殊字符
-			private HashMap<String, String> extra;//特定渠道发起交易时需要的额外参数，以及部分渠道支付成功返回的额外参数，详细参考 <<支付渠道 extra 参数说明>>
+			private HashMap<String, Object> extra;//特定渠道发起交易时需要的额外参数，以及部分渠道支付成功返回的额外参数，详细参考 <<支付渠道 extra 参数说明>>
 			private Long time_paid;//订单支付完成时的 Unix 时间戳。（银联支付成功时间为接收异步通知的时间）
 			private Long time_expire;//订单失效时的 Unix 时间戳。时间范围在订单创建后的 1 分钟到 15 天，默认为 1 天，创建时间以 Ping++ 服务器时间为准。 微信对该参数的有效值限制为 2 小时内；银联对该参数的有效值限制为 1 小时内
 			private Long time_settle;//订单清算时间，用 Unix 时间戳表示。（暂不生效
@@ -100,7 +100,7 @@ public class PingChargeBean {
 			private Integer amount_refunded;//已退款总金额，单位为对应币种的最小货币单位，例如：人民币为分
 			private String failure_code;//订单的错误码，详见 <<错误>> 中的错误码描述
 			private String failure_msg;//订单的错误消息的描述
-			private HashMap<String, String> metadata;//详见 <<元数据>>
+			private HashMap<String, Object> metadata;//详见 <<元数据>>
 			private CredentialBean credential;//支付凭证，用于客户端发起支付
 			private DescriptionBean description;//订单附加说明，最多 255 个 Unicode 字符
 			public String getId() {
@@ -211,10 +211,10 @@ public class PingChargeBean {
 			public void setBody(String body) {
 				this.body = body;
 			}
-			public HashMap<String, String> getExtra() {
+			public HashMap<String, Object> getExtra() {
 				return extra;
 			}
-			public void setExtra(HashMap<String, String> extra) {
+			public void setExtra(HashMap<String, Object> extra) {
 				this.extra = extra;
 			}
 			public Long getTime_paid() {
@@ -265,10 +265,10 @@ public class PingChargeBean {
 			public void setFailure_msg(String failure_msg) {
 				this.failure_msg = failure_msg;
 			}
-			public HashMap<String, String> getMetadata() {
+			public HashMap<String, Object> getMetadata() {
 				return metadata;
 			}
-			public void setMetadata(HashMap<String, String> metadata) {
+			public void setMetadata(HashMap<String, Object> metadata) {
 				this.metadata = metadata;
 			}
 			public CredentialBean getCredential() {

@@ -115,7 +115,7 @@
       operationClick(index,rowId){
         switch(index){
           case 0:
-            this.$router.push('/work_order_editor/'+encodeURIComponent(JSON.stringify(this.orderBeans[rowId])));
+            this.$router.push('/work_order_editor/'+this.orderBeans[rowId].order_id+'/'+this.$route.params.type);
             break;
           case 1:
             this.post(2,'orderController.api?deleteOrder',{order_id:this.orderBeans[rowId].order_id});
@@ -152,6 +152,7 @@
     watch:{
       $route(to,from){
         this.page=1;
+
         this.getOrderList(this.page);
       }
     }

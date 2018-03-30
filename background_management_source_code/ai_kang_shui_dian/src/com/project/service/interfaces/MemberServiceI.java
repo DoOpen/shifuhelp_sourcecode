@@ -108,8 +108,7 @@ public class MemberServiceI {
 		MemberBean memberBean1 = memberDao.getMemberDetail(memberBean);
 		if (memberBean1 != null) {
 			SettingBean settingBean = settingDao.getSystemSettingDetail(new SettingBean().setSetting_name("nead_deposit"));
-			memberBean1.setMember_good_rate(memberDao.getMemberGoodsRate(memberBean1))
-					.setNead_deposit(settingBean == null ? "系统未设置" : settingBean.getSetting_value());
+			memberBean1.setNead_deposit(settingBean == null ? "系统未设置" : settingBean.getSetting_value());
 			SignBean signBean = signService
 					.getSignToday(new SignBean().setCreate_time(TimeUtils.getCurrentTime("yyyy-MM-dd"))
 							.setMember_id(memberBean.getMember_id()));
@@ -642,11 +641,18 @@ public class MemberServiceI {
 			workOrderService.updateOrderState(workOrderBean,
 					new MemberBean().setMember_id(Integer.valueOf(body.split("#")[0])), "member_complete");
 			MemberBean memberBean=memberDao.getMemberDetail(new MemberBean().setMember_id(workOrderBean1.getOrder_accept_id()));
-			Float balance=Float.valueOf(memberBean.getMember_extract_money())+Float.valueOf(amount)+Float.valueOf(workOrderBean1.getDeposit_price());
-			num=memberDao.updateMemberDetail(new MemberBean().setMember_extract_money(balance).setMember_id(workOrderBean1.getOrder_accept_id()));
-			if(num==0) {
-				throw new Exception("师傅余额更新失败");
+			Float balance=memberBean.getMember_extract_money()+workOrderBean1.getOrder_final_price();
+			SettingBean settingBean=settingDao.getSystemSettingDetail(new SettingBean().setSetting_name("work_order_price_rate"));
+			if(settingBean!=null) {
+				memberBean.setMember_extract_money(balance*Float.valueOf(settingBean.getSetting_value()));
 			}
+			num=memberDao.updateMemberBalance(new MemberBean().setMember_id(workOrderBean1.getOrder_accept_id()).setMember_extract_money(balance));
+			if(num==0) {
+				throw new Exception("更新用户余额失败");
+			}
+			num=memberDao.insertMemberMsg(new MemberMsgBean().setMember_id(workOrderBean1.getOrder_accept_id())
+					.setMsg_type("system")
+					.setMsg_desc("工单收益已到账，请注意查收!到账金额:"+workOrderBean1.getOrder_final_price()+"元"));
 		}
 		return num;
 	}

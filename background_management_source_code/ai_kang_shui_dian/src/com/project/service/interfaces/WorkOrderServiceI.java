@@ -207,12 +207,12 @@ public class WorkOrderServiceI {
 			stateList.add(4);
 			stateList.add(5);
 			stateList.add(6);
-			stateList.add(7);
+			stateList.add(8);
 			stateList.add(12);
 			workOrderBean.setOrder_member_id(memberBean.getMember_id());
 		}else if(type.equals("member_complete")){
 			//用户-已完成
-			stateList.add(8);
+			stateList.add(7);
 			stateList.add(9);
 			workOrderBean.setOrder_member_id(memberBean.getMember_id());
 		}else if(type.equals("all")){
@@ -314,47 +314,23 @@ public class WorkOrderServiceI {
 			if(num==0) {
 				throw new Exception("更新工单信息失败");
 			}
-			MemberBean memberBean2=memberService.getMemberDetail(memberBean);
-			SettingBean settingBean=settingDao.getSystemSettingDetail(new SettingBean().setSetting_name("work_order_price_rate"));
-			if(settingBean==null) {
-				memberBean.setMember_extract_money(memberBean2.getMember_extract_money()+workOrderBean2.getOrder_price());
-			}else {
-				memberBean.setMember_extract_money((memberBean2.getMember_extract_money()+workOrderBean2.getOrder_price())*Float.valueOf(settingBean.getSetting_value()));
-			}
-			num=memberService.updateMemberBalance(memberBean);
-			if(num==0) {
-				throw new Exception("更新用户余额失败");
-			}
+			
 		}else if(type.equals("member_evaluate")){
 			//工单评价
 			workOrderBean.setOrder_state("9");
-			MemberBean memberBean2=memberService.getMemberDetail(new MemberBean().setMember_id(workOrderBean.getOrder_accept_id()));
+			WorkOrderBean workOrderBean2=workOrderDao.getWorkOrderDetail(workOrderBean);
+			MemberBean memberBean2=memberService.getMemberDetail(new MemberBean().setMember_id(workOrderBean2.getOrder_accept_id()));
 			if(memberBean2!=null) {
-				if(workOrderBean.getOrder_service_attitude()==null) {
-					workOrderBean.setOrder_service_attitude(5);
-				}
-				if(workOrderBean.getOrder_service_aging()==null) {
-					workOrderBean.setOrder_service_aging(5);
-				}
-				if(workOrderBean.getOrder_service_quality()==null) {
-					workOrderBean.setOrder_service_quality(5);
-				}
-				Integer good_number=memberBean2.getMember_service_good_number()+workOrderBean.getOrder_service_attitude()==5&&workOrderBean.getOrder_service_aging()==5&&workOrderBean.getOrder_service_quality()==5?1:0;
-				Float good_rate=good_number/(memberBean2.getMember_service_number()+1f);
-				if(good_rate==0) {
-					good_rate=1f;
-				}
 				Float assessment_star1=(memberBean2.getAssessment_star1()*memberBean2.getMember_service_number()+workOrderBean.getOrder_service_attitude())/(memberBean2.getMember_service_number()+1);
 				Float assessment_star2=(memberBean2.getAssessment_star2()*memberBean2.getMember_service_number()+workOrderBean.getOrder_service_aging())/(memberBean2.getMember_service_number()+1);
 				Float assessment_star3=(memberBean2.getAssessment_star3()*memberBean2.getMember_service_number()+workOrderBean.getOrder_service_quality())/(memberBean2.getMember_service_number()+1);
+				Float good_rate=(assessment_star1+assessment_star2+assessment_star3)/15;
 				memberService.updateMemberDetail(new MemberBean().setMember_id(memberBean2.getMember_id())
 						.setMember_service_number(memberBean2.getMember_service_number()+1)
-						.setMember_service_good_number(good_number)
 						.setMember_good_rate(NumberUtils.KeepDecimal(good_rate,2)+"")
 						.setAssessment_star1(assessment_star1)
 						.setAssessment_star2(assessment_star2)
 						.setAssessment_star3(assessment_star3));
-				System.out.println(good_rate);
 			}
 		}else if(type.equals("member_complete")){
 			//用户完工

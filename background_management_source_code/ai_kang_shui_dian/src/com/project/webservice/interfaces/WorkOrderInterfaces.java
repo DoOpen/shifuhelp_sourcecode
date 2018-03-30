@@ -39,7 +39,7 @@ public class WorkOrderInterfaces extends BaseController {
 		if(workOrderBean2==null) {
 			WriteError("工单不存在");
 			return;
-		}else if(!"12".equals(workOrderBean2.getOrder_state())&&!"7".equals(workOrderBean2.getOrder_state())){
+		}else if(!"8".equals(workOrderBean2.getOrder_state())){
 			WriteError("该状态不允许投诉");
 			return;
 		}

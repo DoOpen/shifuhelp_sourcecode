@@ -174,7 +174,7 @@ public class WorkOrderServiceC {
 	 */
 	public int sendWorkOrder(WorkOrderBean workOrderBean) {
 		workOrderBean.setOrder_update_time(TimeUtils.getCurrentTime()).setOrder_accept_time(TimeUtils.getCurrentTime())
-				.setOrder_state("11");
+				.setOrder_state("11").setOrder_audit_pass_time(TimeUtils.getCurrentTime());
 		int num=workOrderDao.updateOrder(workOrderBean);
 		if(num>0) {
 			JPushUtils.myJPushClient("收到新得派单，请及时接受!", workOrderBean.getOrder_accept_id()+"", "0");
@@ -352,12 +352,17 @@ public class WorkOrderServiceC {
 	 * @return
 	 * @throws Exception 
 	 */
-	public List<MemberBean> getSendWorkOrderWorkerList(WorkOrderBean workOrderBean, PageBean pageBean) throws Exception {
-		WorkOrderBean workOrderBean2=workOrderDao.getWorkOrderDetail(workOrderBean);
+	public List<MemberBean> getSendWorkOrderWorkerList(Map<String, String> params, PageBean pageBean) throws Exception {
+		WorkOrderBean workOrderBean2=workOrderDao.getWorkOrderDetail(new WorkOrderBean().setOrder_id(Integer.valueOf(params.get("order_id"))));
 		if(workOrderBean2==null) {
 			throw new Exception("工单不存在");
 		}
-		return workOrderDao.getSendWorkOrderWorkerList(workOrderBean2,pageBean);
+		params.put("order_address_longitude", workOrderBean2.getOrder_address_longitude());
+		params.put("order_address_latitude", workOrderBean2.getOrder_address_latitude());
+		for(Map.Entry<String, String> entry:params.entrySet()) {
+			System.out.println(entry.getKey()+" "+entry.getValue());
+		}
+		return workOrderDao.getSendWorkOrderWorkerList(params,pageBean);
 	}
 	/**
 	 * 导出押金记录excel
@@ -403,5 +408,13 @@ public class WorkOrderServiceC {
 		}
 		List<Object> workOrderBeans=workOrderDao.exportWorkOrderExcel(workOrderBean);
 		return workOrderBeans;
+	}
+	/**
+	 * 获取退单详情
+	 * @param workOrderBean
+	 * @return
+	 */
+	public WorkOrderBean getRefundWorkOrderDetail(WorkOrderBean workOrderBean) {
+		return workOrderDao.getRefundWorkOrderDetail(workOrderBean);
 	}
 }

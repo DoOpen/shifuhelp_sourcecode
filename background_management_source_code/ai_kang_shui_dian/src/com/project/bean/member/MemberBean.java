@@ -33,6 +33,7 @@ public class MemberBean {
 	private String member_certificate;
 	private String member_certificate_content;
 	private Float member_freeze_money;
+	private Float member_total_money;
 	private Float member_extract_money;
 	private Float member_deposit_money;
 	private String member_alipay;
@@ -80,6 +81,13 @@ public class MemberBean {
 	private String last_update_head_img_time;//上次更新头像时间
 	private List<AddressBean> addressBeans;
 	
+	public Float getMember_total_money() {
+		return member_total_money;
+	}
+	public MemberBean setMember_total_money(Float member_total_money) {
+		this.member_total_money = member_total_money;
+		return this;
+	}
 	public String getLast_update_head_img_time() {
 		return last_update_head_img_time;
 	}

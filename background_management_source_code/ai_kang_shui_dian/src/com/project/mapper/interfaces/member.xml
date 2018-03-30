@@ -6,6 +6,7 @@
 	<update id="updateMemberBalance" parameterType="memberBean">
 		update member
 		<set>
+			member_update_time=now(),
 			<if test=" member_extract_money !=null">
 				member_extract_money=#{member_extract_money},
 			</if>
@@ -147,7 +148,7 @@
 		select * from reported where reported_phone=#{reported_phone} and is_delete=0
 	</select>
 	<select id="getMemberDetail" parameterType="memberBean" resultType="memberBean">
-		SELECT * FROM member WHERE member_is_delete=0
+		SELECT *,(member_extract_money+member_freeze_money) as member_total_money FROM member WHERE member_is_delete=0
 		<if test=" member_account !=null and member_account !='' ">
 			and member_account=#{member_account}
 		</if>

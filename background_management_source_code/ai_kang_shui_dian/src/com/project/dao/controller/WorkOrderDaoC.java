@@ -110,7 +110,7 @@ public interface WorkOrderDaoC {
 	 * @param pageBean
 	 * @return
 	 */
-	public List<MemberBean> getSendWorkOrderWorkerList(WorkOrderBean workOrderBean, PageBean pageBean);
+	public List<MemberBean> getSendWorkOrderWorkerList(Map<String, String> params, PageBean pageBean);
 	/**
 	 * 导出押金记录excel
 	 * @param pingHistoryBean
@@ -128,4 +128,10 @@ public interface WorkOrderDaoC {
 	 * @return
 	 */
 	public List<Object> exportRefundOrderExcel();
+	/**
+	 * 获取退单详情
+	 * @param workOrderBean
+	 * @return
+	 */
+	public WorkOrderBean getRefundWorkOrderDetail(WorkOrderBean workOrderBean);
 }

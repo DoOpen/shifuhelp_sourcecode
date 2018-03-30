@@ -157,7 +157,7 @@ let router=new VueRouter({
         },
         //工单详情
         {
-          path:'/work_order_editor/:orderBean',
+          path:'/work_order_editor/:order_id/:type?',
           component:WorkOrderEditor
         },
         //创建工单

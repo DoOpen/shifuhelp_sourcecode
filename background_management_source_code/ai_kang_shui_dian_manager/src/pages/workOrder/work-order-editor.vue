@@ -10,12 +10,16 @@
       return {
         baseData: [],
         toolData:[{name:'通过'},{name:'拒绝'},{name:'保存'},{name:'指派'},{name:'抢派'}],
-        orderBean: JSON.parse(decodeURIComponent(this.$route.params.orderBean)),
+        orderBean: {},
         orderServiceClassBeans:[]
       }
     },
     beforeMount() {
-      this.post(1, 'workOrderController.api?getWorkOrderDetail', {order_id: this.$route.params.order_id});
+      if(this.$route.params.type=='cancel'){
+        this.post(1, 'workOrderController.api?getRefundWorkOrderDetail', {order_id: this.$route.params.order_id});
+      }else{
+        this.post(1, 'workOrderController.api?getWorkOrderDetail', {order_id: this.$route.params.order_id});
+      }
       this.post(4, 'workOrderController.api?getServiceClassList', {level: 5,class_parent_id:-1});
       this.post(3,'settingController.api?getCityListCache');
       this.post(5,'memberController.api?getMemberList',{member_type:1,limit:50000000});
@@ -100,12 +104,15 @@
         {key: 'order_service_time', name: '上门时间', type: 'text'},
         {key: 'order_complete_time', name: '完工时间', type: 'text'}
       ];
-      this.orderBean.address=this.orderBean.order_address_province+'-'+this.orderBean.order_address_city+'-'+this.orderBean.order_address_district;
-      this.init();
     },
     methods: {
       doSuccess(index, data) {
         switch (index) {
+          case 1:
+            data.address=data.order_address_province+'-'+data.order_address_city+'-'+data.order_address_district;
+            this.orderBean = data;
+            this.init();
+            break;
           case 2:
             this.showTip('保存成功', 'success');
             this.$router.back();

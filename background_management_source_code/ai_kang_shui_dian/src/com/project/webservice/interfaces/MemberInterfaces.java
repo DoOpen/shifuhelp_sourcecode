@@ -87,9 +87,7 @@ public class MemberInterfaces extends BaseController {
 	public void payDeposit(MemberBean memberBean,String channel) throws Exception {
 		MemberBean memberBean2=memberService.getMemberDetail(memberBean);
 		PingSettingBean pingSettingBean = settingService.getPingSetting();
-		System.out.println(pingSettingBean.getApp_key());
 		Pingpp.apiKey = pingSettingBean.getApp_key();
-
 		Map<String, Object> chargeParams = new HashMap<String, Object>();
 		String order_no = new UUIDUtils(1).nextId(false, 1) + "";
 		String order_pay_no = order_no.substring(0, order_no.length() - 1) + TimeUtils.getCurrentTime("HHmmss");

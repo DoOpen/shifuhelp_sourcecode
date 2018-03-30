@@ -13,14 +13,14 @@
 		0 END) END )AS
 		member_subscribe_wait_audit,
 		(CASE WHEN SUM(CASE WHEN
-		order_state IN (3,4,5,6,7,12) THEN 1
+		order_state IN (3,4,5,6,8,12) THEN 1
 		ELSE 0 END) IS NULL THEN 0 ELSE SUM(CASE
-		WHEN order_state IN (3,4,5,6,7,12)
+		WHEN order_state IN (3,4,5,6,8,12)
 		THEN 1 ELSE 0 END) END )AS member_wait_service,
 		(CASE WHEN SUM(CASE WHEN
-		order_state IN (8,9) THEN 1 ELSE 0 END) IS
+		order_state IN (7,9) THEN 1 ELSE 0 END) IS
 		NULL THEN 0 ELSE SUM(CASE
-		WHEN order_state IN (8,9) THEN 1 ELSE 0
+		WHEN order_state IN (7,9) THEN 1 ELSE 0
 		END) END )AS member_complete,
 		(CASE WHEN SUM(CASE WHEN
 		order_state IN (2,10,11) THEN 1 ELSE 0 END) IS

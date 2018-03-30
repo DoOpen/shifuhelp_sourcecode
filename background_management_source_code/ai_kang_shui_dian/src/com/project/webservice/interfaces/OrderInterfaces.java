@@ -346,7 +346,7 @@ public class OrderInterfaces extends BaseController{
 			return;
 		}
 		if(pingChargeBean.getData().getObject().getBody().equals("用户余额充值")) {
-			Integer member_id=Integer.valueOf(pingChargeBean.getData().getObject().getMetadata().get("member_id"));
+			Integer member_id=Integer.valueOf((String)pingChargeBean.getData().getObject().getMetadata().get("member_id"));
 			Integer amount=pingChargeBean.getData().getObject().getAmount();
 			String channel=pingChargeBean.getData().getObject().getChannel().equals("alipay_wap")?"支付宝充值":pingChargeBean.getData().getObject().getChannel().equals("wx_wap")?"微信充值":"未知";
 			memberService.insertBalanceHistory(new BalanceHistoryBean().setMember_id(member_id)
@@ -358,7 +358,7 @@ public class OrderInterfaces extends BaseController{
 			memberService.updateMemberBalance(new MemberBean().setMember_id(member_id)
 					.setMember_extract_money(memberBean.getMember_extract_money()+amount/100f));
 		}else if(pingChargeBean.getData().getObject().getBody().equals("商品购买")) {
-			String order_ids = pingChargeBean.getData().getObject().getMetadata().get("order_ids");
+			String order_ids = (String)pingChargeBean.getData().getObject().getMetadata().get("order_ids");
 			orderService.paySuccessOrder(order_ids, pingChargeBean.getData().getObject().getChannel());
 		}
 	}

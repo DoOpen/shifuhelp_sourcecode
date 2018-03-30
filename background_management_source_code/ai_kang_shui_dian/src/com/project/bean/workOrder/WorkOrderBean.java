@@ -439,10 +439,10 @@ public class WorkOrderBean {
 			this.setOrder_state_show("服务中退单审核");
 			break;
 		case "7":
-			this.setOrder_state_show("已完成(已评价)");
+			this.setOrder_state_show("已完成(待评价)");
 			break;
 		case "8":
-			this.setOrder_state_show("用户待确认");
+			this.setOrder_state_show("用户待确认付款");
 			break;
 		case "9":
 			this.setOrder_state_show("已完成(已评价)");
