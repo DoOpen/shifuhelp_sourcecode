@@ -2759,7 +2759,7 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
     }else if (!(/^1[34578]\d{9}$/.test($scope.obj.order_phone))) {
       $scope.tips2('请输入正确的手机号码', 1500)
     }else if (!(/(^[1-9]\d*$)/.test($scope.obj.work_area))) {
-      $scope.tips2('请输入整数平方', 1500)
+      $scope.tips2('施工面积请输入整数', 1500)
     }else if (!$scope.serviceTimeFun($scope.obj.order_hope_service_time, $scope.obj.hope_complete_time)) {
       $scope.tips2('完工时间要大于开工时间', 1500)
     }else{
@@ -3185,6 +3185,8 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
       
       console.log($scope.obj.order_name+' '+$scope.obj.order_phone+' '+$scope.obj.order_address_detail+' '+addre1+' '
       +$scope.obj.order_hope_service_time+' '+$scope.order_class_id+' '+$scope.obj.order_subscribe_content);
+    }else if (!(/^[\u4e00-\u9fa5]+$/.test($scope.obj.order_name))) {
+      $scope.tips2('请输入纯中文姓名', 1500)
     }else if (!(/^1[34578]\d{9}$/.test($scope.obj.order_phone))) {
       $scope.tips2('请输入正确的手机号码', 1500)
     }else{
@@ -3422,9 +3424,9 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
       $scope.states=1;
     }else if(id==2||id==10||id==11){
       $scope.states=2;
-    }else if(id==3||id==4||id==5||id==6||id==7||id==12){
+    }else if(id==3||id==4||id==5||id==6||id==8||id==12){
       $scope.states=3;
-    }else if(id==8||id==9){
+    }else if(id==7||id==9){
       $scope.states=4;
     }else if(id==16){
       $scope.states=0;
@@ -3561,7 +3563,7 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
             $scope.OrderDetailsFun();
             $scope.tips2("提交成功",1000);
           }else if(data['status']=="error"){
-            $scope.tips2(data['data'],1000);
+            $scope.tips2(data['error'],1000);
           }
       });
     }else {
