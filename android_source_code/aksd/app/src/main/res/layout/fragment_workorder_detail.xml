@@ -353,36 +353,36 @@
 
 
             <LinearLayout
-                android:id="@+id/llRefund"
-                android:layout_width="match_parent"
+            android:id="@+id/llRefund"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvRefundTittle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:layout_marginTop="8dp"
+                android:paddingLeft="16dp"
+                android:text="@string/refund_reason"
+                android:textColor="@color/gray_30"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tvRefundTittle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:paddingLeft="16dp"
-                    android:text="@string/refund_reason"
-                    android:textColor="@color/gray_30"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tvRefundContent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/tx_4"
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tvRefundContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/tx_4"
+                android:textSize="14sp" />
 
 
-            </LinearLayout>
+        </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llAssess"

@@ -328,9 +328,11 @@ public class WorkOrderDetailFragment extends BaseFragment<IWorkOrderDetailView, 
                 orderState.setBackgroundColor(getResources().getColor(R.color.lanse));
                 tvOne.setText(R.string.completed);
                 tvThree.setText(R.string.lianxi_user);
-                if ("0".equals(data.getOrder_type())) {
+				//sfsm  zhoushilei: [修改内容] remove code @{
+               /* if ("0".equals(data.getOrder_type())) {
                     tvChange.setVisibility(View.VISIBLE);
-                }
+                }*/
+				// @}
                 break;
             case "4"://未服务退单待审核
             case "6"://服务中退单待审核
@@ -343,7 +345,7 @@ public class WorkOrderDetailFragment extends BaseFragment<IWorkOrderDetailView, 
                 break;
 
             case "7"://完工未评价
-				//sfsm zhoushilei: [工单详情增加用户评价显示] add code @{
+                //sfsm zhoushilei: [工单详情增加用户评价显示] add code @{
                 orderState.setBackgroundColor(getResources().getColor(R.color.bg_8));
                 tvOne.setVisibility(View.GONE);
                 tvTwo.setVisibility(View.GONE);
@@ -369,7 +371,7 @@ public class WorkOrderDetailFragment extends BaseFragment<IWorkOrderDetailView, 
                 imgAdapter.addAll(data.getOrderCompleteImgBeans());
                 imgAdapter.notifyDataSetChanged();
                 break;
-				// @}
+            // @}
             case "9"://完工已评价
                 orderState.setBackgroundColor(getResources().getColor(R.color.bg_8));
                 tvOne.setVisibility(View.GONE);
@@ -395,14 +397,14 @@ public class WorkOrderDetailFragment extends BaseFragment<IWorkOrderDetailView, 
                 imgAdapter.clear();
                 imgAdapter.addAll(data.getOrderCompleteImgBeans());
                 imgAdapter.notifyDataSetChanged();
-				//sfsm zhoushilei: [工单详情增加用户评价] add code @{
+                //sfsm zhoushilei: [工单详情增加用户评价] add code @{
                 llAssess.setVisibility(View.VISIBLE);
                 if (TextUtils.isEmpty(data.getOrder_evaluate_content())) {
                     tvAssessContent.setText("暂无评价内容");
                 } else {
                     tvAssessContent.setText(data.getOrder_evaluate_content());
                 }
-				// @}
+                // @}
                 break;
             case "8"://完工用户待确认
             case "12"://完工待审核
@@ -631,8 +633,6 @@ public class WorkOrderDetailFragment extends BaseFragment<IWorkOrderDetailView, 
     }
 
     //--------------------------------------------------------------------------------------//
-
-
 
 
     @OnClick({R.id.tvChange, R.id.ivLeft, R.id.tvOne, R.id.tvTwo, R.id.tvThree, R.id.tvMap})
