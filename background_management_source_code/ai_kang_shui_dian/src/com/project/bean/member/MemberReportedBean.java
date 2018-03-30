@@ -19,7 +19,15 @@ public class MemberReportedBean {
 	private String update_time;
 	private String reported_state;
 	private String refuse_note;
+	private String reported_note;
 	private String reported_state_show;
+	public String getReported_note() {
+		return reported_note;
+	}
+	public MemberReportedBean setReported_note(String reported_note) {
+		this.reported_note = reported_note;
+		return this;
+	}
 	public String getRefuse_note() {
 		return refuse_note;
 	}
