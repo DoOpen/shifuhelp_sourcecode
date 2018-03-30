@@ -87,6 +87,7 @@
       getOrderList(page){
         this.params.page=page;
         this.params.order_is_delete=this.params.type=='nullify'?1:0;
+        this.params.type=this.isNull(this.$route.params.type)?"":this.$route.params.type;
         this.post(1, 'workOrderController.api?getOrderList',this.params,true);
       },
       doSuccess(index, data) {
@@ -114,7 +115,7 @@
       operationClick(index,rowId){
         switch(index){
           case 0:
-            this.$router.push('/work_order_editor/'+this.orderBeans[rowId].order_id);
+            this.$router.push('/work_order_editor/'+encodeURIComponent(JSON.stringify(this.orderBeans[rowId])));
             break;
           case 1:
             this.post(2,'orderController.api?deleteOrder',{order_id:this.orderBeans[rowId].order_id});
@@ -151,7 +152,6 @@
     watch:{
       $route(to,from){
         this.page=1;
-        this.params.type=this.isNull(this.$route.params.type)?"":this.$route.params.type;
         this.getOrderList(this.page);
       }
     }

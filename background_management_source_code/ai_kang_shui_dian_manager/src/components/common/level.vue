@@ -4,7 +4,7 @@
       <p>{{title}}</p>
     </div>
     <div class="level-content">
-      <input v-model="show" type="text" :disabled="disable" :class="disable?'gray':'white'" :placeholder="tip"  @click="inputClick">
+      <input v-model="show" type="text" :disabled="disable"  :placeholder="tip"  @click="inputClick">
       <div class="select" v-if="isShow">
         <div class="header">
           <h1 v-for="(head,headIndex) in lables.split(',')" @click="headClick(headIndex)" :class="headIndex==index?'head-select':''">{{head}}</h1>

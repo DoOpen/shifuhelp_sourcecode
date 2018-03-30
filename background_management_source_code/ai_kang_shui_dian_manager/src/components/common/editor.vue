@@ -38,6 +38,9 @@
       initValue(){
         this.value=this.initValue;
       },
+      disable(){
+        this.initDisable=this.disable;
+      },
       value(){
         this.$emit('change',this.filed,this.value);
       }

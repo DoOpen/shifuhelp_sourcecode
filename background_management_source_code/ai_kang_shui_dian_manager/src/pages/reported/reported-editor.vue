@@ -29,6 +29,7 @@
         {key: 'reported_img1', name: '报备图片1',type:'img',disable:true},
         {key: 'reported_img2', name: '报备图片2',type:'img',disable:true},
         {key: 'reported_img3', name: '报备图片3',type:'img',disable:true},
+        {key: 'reported_note', name: '报备备注',type:'textarea'},
         {
           key: 'reported_state',
           name: '审核状态',
@@ -56,7 +57,7 @@
         },
         {key: 'refuse_note', name: '拒绝原因',type:'textarea'},
       ];
-      this.baseData[12].disable=this.reportedBean.reported_state=='success'?true:false;
+      this.baseData[13].disable=this.reportedBean.reported_state=='success'?true:false;
       this.init();
     },
     methods: {
@@ -69,7 +70,7 @@
         }
       },
       init(){
-        this.baseData[13].hide=this.reportedBean.reported_state=='refuse'?false:true;
+        this.baseData[14].hide=this.reportedBean.reported_state=='refuse'?false:true;
       },
       change(key, value) {
         this.reportedBean[key]=value;
