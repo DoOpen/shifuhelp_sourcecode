@@ -137,16 +137,24 @@ public class MyWalletFragment extends BaseFragment<IMyWalletView, MyWalletPresen
     @Override
     public void onGetUser(UserBean data) {
         userBean = data;
+
         if (TextUtils.isEmpty(userBean.getMember_pay_password())) {
             tv_setpwd.setText("未设置");
         } else {
             tv_setpwd.setText("已设置");
         }
-        money = userBean.getMember_deposit_money();
+    
+		//sfsm zhoushilei: [修改内容] add code @{
+        tv_freeze.setText(data.getMember_freeze_money()+ getString(R.string.yuan));
+        tv_extract.setText(data.getMember_extract_money()+ getString(R.string.yuan));
+        tv_total.setText(data.getMember_total_money());
+		// @}
+	
+	//sfsm  zhoushilei: [修改内容] remove code @{
+	/*	money = userBean.getMember_deposit_money();
         freeze = userBean.getMember_freeze_money();
-        extract = userBean.getMember_extract_money();
-
-        if (!TextUtils.isEmpty(freeze)) {
+        extract = userBean.getMember_extract_money(); 
+       if (!TextUtils.isEmpty(freeze)) {
             String[] freeMpeny1 = freeze.split("\\.");
             freezeMoney = Integer.parseInt(freeMpeny1[0]);
             tv_freeze.setText(freezeMoney + "元");
@@ -157,8 +165,8 @@ public class MyWalletFragment extends BaseFragment<IMyWalletView, MyWalletPresen
             tv_extract.setText(extractMoney + "元");
         }
         totalMoney = freezeMoney + extractMoney;
-        tv_total.setText(totalMoney + "");
-
+        tv_total.setText(totalMoney + "");*/
+		// @}
 
         if (!TextUtils.isEmpty(userBean.getMember_alipay())) {
             tv_band.setText("支付宝：" + userBean.getMember_alipay());

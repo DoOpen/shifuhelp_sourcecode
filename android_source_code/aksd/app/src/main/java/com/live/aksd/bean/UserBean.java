@@ -105,6 +105,9 @@ public class UserBean implements Serializable{
     private String fill_invitation_code;
     private String member_pay_password;
     private String merchants_account_id;
+
+
+
     private String member_is_star;
     private String month_time;
     private String month_integral;
@@ -112,6 +115,14 @@ public class UserBean implements Serializable{
     private String member_service_latitude;
     private String member_service_number;
     private String member_good_rate;
+    private String member_total_money;
+	    public String getMember_total_money() {
+        return member_total_money;
+    }
+
+    public void setMember_total_money(String member_total_money) {
+        this.member_total_money = member_total_money;
+    }
 
     public String getLast_update_head_img_time() {
         return last_update_head_img_time;
