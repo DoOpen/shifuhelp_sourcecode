@@ -234,17 +234,14 @@
                 </div>
             </div>
             <div class=" w_b80 h90 m0a m_t20" >
-                 <textarea name="" id="" cols="" rows="" class="w h p_t5 p_l10 p_r10" placeholder="其他想要说的~" ng-model="evaluate.text"></textarea>
+                 <textarea name="" id="" cols="" rows="" class="w h p_t5 p_l10 p_r10" placeholder="其他想要说的~" maxlength="100" ng-model="evaluate.text"></textarea>
             </div>
             <div class="w h45 m_t20 f_s20 bgc_blue col_fff flex-center" ng-click="memberCompleteFun()">发布</div>
         </div>
     </div>
     <!--评价完成-->
-    <div class="bgc_fff m_t10 f_s14 p_t10 h110 w m_t10" ng-show="infoHTML.order_state==9"> 
-        <!-- <div class=" flex-start">
-            <div class="w_b25 bk flex-start p_l15">服务评语：</div>
-            <div class="w_b75 h40 bk p_r10">这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语这是评语</div>
-        </div> -->
+    <div class="bgc_fff m_t10 f_s14 p_t10 p_b10 w m_t10" ng-show="infoHTML.order_state==9"> 
+        
         <div class="w h100 p_l30">
             <div class="flex-start">
                 <div class="w21 h21 m_r10">
@@ -279,7 +276,11 @@
                 <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_attitude>3.5}"></div>
                 <div class="npjxxs" ng-class="{'pjxxs':infoHTML.order_service_attitude>4.5}"></div>
             </div>
-           </div>
+        </div>
+        <div class=" flex-start1 p_r20 p_l30">
+            <div class="">评价：</div>
+            <div class="w_b80" ng-bind="infoHTML.order_evaluate_content"></div>
+        </div>
     </div>
     <div class="h60"></div>
     
