@@ -108,7 +108,8 @@ public class WorkOrderServiceC {
 		} else if ("complete_accept".equals(type)) {
 			// 已接单
 			sb.append("3,5,");
-		} else if ("cancl".equals(type)) {
+		} else if ("cancel".equals(type)) {
+			//已退单
 			return workOrderDao.getRefundOrderList(pageBean);
 		} else if ("wait_audit".equals(type)) {
 			// 待审核

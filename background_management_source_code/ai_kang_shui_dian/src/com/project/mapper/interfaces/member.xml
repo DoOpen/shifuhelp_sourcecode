@@ -88,12 +88,12 @@
 		insert into reported
 		(
 			member_id,reported_name,reported_phone,province,city,district,detail,is_delete,reported_img1,
-			reported_img2,reported_img3,create_time,update_time
+			reported_img2,reported_img3,create_time,update_time,reported_note
 		)
 		values
 		(
 			#{member_id},#{reported_name},#{reported_phone},#{province},#{city},#{district},#{detail},
-			#{is_delete},#{reported_img1},#{reported_img2},#{reported_img3},#{create_time},#{update_time}
+			#{is_delete},#{reported_img1},#{reported_img2},#{reported_img3},#{create_time},#{update_time},#{reported_note}
 		)
 	</insert>
 	<update id="updateReported" parameterType="memberReportedBean">
@@ -129,6 +129,9 @@
 			</if>
 			<if test=" reported_img3 !=null and reported_img3 !=''">
 				reported_img3=#{reported_img3},
+			</if>
+			<if test=" reported_note !=null and reported_note !=''">
+				reported_note=#{reported_note},
 			</if>
 		</set>
 		where reported_id=#{reported_id}

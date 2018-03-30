@@ -36,6 +36,9 @@
 			<if test=" refuse_note !=null and refuse_note !=''">
 				refuse_note=#{refuse_note},
 			</if>
+			<if test=" reported_note !=null and reported_note !=''">
+				reported_note=#{reported_note},
+			</if>
 		</set>
 		where reported_id=#{reported_id}
 	</update>

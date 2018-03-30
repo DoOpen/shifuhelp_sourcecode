@@ -536,6 +536,12 @@
 			<if test="order_price !=null and order_price !=''">
 				order_price=#{order_price},
 			</if>
+			<if test="work_requirements !=null and work_requirements !=''">
+				work_requirements=#{work_requirements},
+			</if>
+			<if test="order_final_price !=null and order_final_price !=''">
+				order_final_price=#{order_final_price},
+			</if>
 			<if test="is_lock !=null and is_lock !=''">
 				is_lock=#{is_lock},
 			</if>

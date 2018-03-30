@@ -96,7 +96,7 @@ public class WorkOrderServiceI {
 		if(workOrderBean.getRecommend_phone()!=null) {
 			MemberBean memberBean=memberService.getMemberDetail(new MemberBean().setMember_account(workOrderBean.getRecommend_phone()).setMember_type("1"));
 			if(memberBean==null) {
-				throw new Exception("邀请人不存在");
+				throw new Exception("推荐人不存在");
 			}else {
 				int num=memberService.updateMemberBalance(new MemberBean().setMember_id(memberBean.getMember_id())
 						.setMember_integral(NumberUtils.KeepDecimal(memberBean.getMember_integral()+100)));
@@ -454,7 +454,7 @@ public class WorkOrderServiceI {
 		return workOrderBean1;
 	}
 	/**
-	 * 工单各个转台统计
+	 * 工单各个状态统计
 	 * @return
 	 */
 	public Map<String, Integer> getWorkOrderStateCount(MemberBean memberBean) {

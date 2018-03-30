@@ -94,8 +94,7 @@ public class MemberInterfaces extends BaseController {
 		String order_no = new UUIDUtils(1).nextId(false, 1) + "";
 		String order_pay_no = order_no.substring(0, order_no.length() - 1) + TimeUtils.getCurrentTime("HHmmss");
 		chargeParams.put("order_no", order_pay_no);
-		chargeParams.put("amount",
-				NumberUtils.KeepDecimal(settingService.getSystemSettingDetail(new SettingBean().setSetting_name("nead_deposit")).getSetting_value(), 2)*100);
+		chargeParams.put("amount",NumberUtils.KeepDecimal(settingService.getSystemSettingDetail(new SettingBean().setSetting_name("nead_deposit")).getSetting_value(), 2)*100);
 		Map<String, String> app = new HashMap<String, String>();
 		app.put("id", pingSettingBean.getApp_id());
 		chargeParams.put("app", app);
@@ -142,8 +141,7 @@ public class MemberInterfaces extends BaseController {
 		String order_no = new UUIDUtils(1).nextId(false, 1) + "";
 		String order_pay_no = order_no.substring(0, order_no.length() - 1) + TimeUtils.getCurrentTime("HHmmss");
 		chargeParams.put("order_no", order_pay_no);
-		chargeParams.put("amount",
-				NumberUtils.KeepDecimal(settingBean.getSetting_value(), 2)*100);
+		chargeParams.put("amount",NumberUtils.KeepDecimal(settingBean.getSetting_value(), 2)*100);
 		Map<String, String> app = new HashMap<String, String>();
 		app.put("id", pingSettingBean.getApp_id());
 		chargeParams.put("app", app);
@@ -190,8 +188,8 @@ public class MemberInterfaces extends BaseController {
 		String order_no = new UUIDUtils(1).nextId(false, 1) + "";
 		String order_pay_no = order_no.substring(0, order_no.length() - 1) + TimeUtils.getCurrentTime("HHmmss");
 		chargeParams.put("order_no", order_pay_no);
-		chargeParams.put("amount",(workOrderBean.getOrder_final_price()-workOrderBean.getDeposit_price())*100);
-//		chargeParams.put("amount",1);
+//		chargeParams.put("amount",(workOrderBean.getOrder_final_price()-workOrderBean.getDeposit_price())*100);
+		chargeParams.put("amount",1);
 		Map<String, String> app = new HashMap<String, String>();
 
 		app.put("id", pingSettingBean.getApp_id());

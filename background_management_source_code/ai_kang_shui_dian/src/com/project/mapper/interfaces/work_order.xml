@@ -124,17 +124,23 @@
 	<insert id="createRefundWorkOrder" parameterType="workOrderBean" keyProperty="order_id" useGeneratedKeys="true">
 		INSERT INTO refund_work_order
 		(
-			order_member_id,order_name,order_phone,order_address_country,order_address_province,order_address_city
+			order_member_id,order_name,order_state,order_phone,order_address_country,order_address_province,order_address_city
 			,order_address_district,order_address_detail,order_address_longitude,order_address_latitude,order_subscribe_content,order_subscribe_note,order_subscribe_img1
-			,order_subscribe_img2,order_subscribe_img3,order_hope_service_time,order_create_time,order_update_time,order_class_id,work_area,hope_complete_time
-			,work_requirements,recommend_phone,work_way,order_final_price,service_class_price,order_type
+			,order_subscribe_img2,order_subscribe_img3,order_hope_service_time,order_create_time,order_update_time,order_audit_pass_time,order_accept_id,order_accept_time,
+			order_cancle_why,order_cancle_time,order_cancle_pass_time,,order_reality_content,order_complete_img1,order_complete_img2,order_complete_img3,order_complete_note,
+			order_service_time,order_complete_timem,order_complete_pass_time,order_is_delete,order_class_id,order_is_cancle,order_service_attitude,order_service_aging,order_service_quality,
+			order_evaluate_content,order_price,complaints_content,complaints_time,is_complaints,is_lock,lock_id,deposit_price,work_area,hope_complete_time,work_requirements,recommend_phone,
+			work_way,others_service_content,others_price,order_final_price,order_type,service_class_price
 		)
 		VALUES
 		(
-			#{order_member_id},#{order_name},#{order_phone},#{order_address_country},#{order_address_province},#{order_address_city},
+			#{order_member_id},#{order_name},#{order_state},#{order_phone},#{order_address_country},#{order_address_province},#{order_address_city},
 			#{order_address_district},#{order_address_detail},#{order_address_longitude},#{order_address_latitude},#{order_subscribe_content},#{order_subscribe_note},#{order_subscribe_img1},
-			#{order_subscribe_img2},#{order_subscribe_img3},#{order_hope_service_time},#{order_create_time},#{order_update_time},
-			#{order_class_id},#{work_area},#{hope_complete_time},#{work_requirements},#{recommend_phone},#{work_way},#{order_final_price},#{service_class_price},#{order_type}
+			#{order_subscribe_img2},#{order_subscribe_img3},#{order_hope_service_time},#{order_create_time},#{order_update_time},#{order_audit_pass_time},#{order_accept_id},#{order_accept_time},
+			#{order_cancle_why},#{order_cancle_time},#{order_cancle_pass_time},#{order_reality_content},#{order_complete_img1},#{order_complete_img2},#{order_complete_img3},#{order_complete_note},
+			#{order_service_time},#{order_complete_timem},#{order_complete_pass_time},#{order_is_delete},#{order_class_id},#{order_is_cancle},#{order_service_attitude},#{order_service_aging},#{order_service_quality},
+			#{order_evaluate_content},#{order_price},#{complaints_content},#{complaints_time},#{is_complaints},#{is_lock},#{lock_id},#{deposit_price},#{work_area},#{hope_complete_time},#{work_requirements},#{recommend_phone},
+			#{work_way},#{others_service_content},#{others_price},#{order_final_price},#{order_type},#{service_class_price}
 		)
 	</insert>
 	<update id="updateWorkOrder">
