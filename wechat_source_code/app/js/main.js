@@ -2425,13 +2425,11 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
     'maxDate':'2100-12-31',/*最大日期*/
     'onSubmit':function(){/*确认时触发事件*/
       $scope.obj.order_hope_service_time=calendar.value; // 预约服务时间
-      $scope.calendar2Fun();   
     },
     'onClose':function(){/*取消时触发事件*/
 
     }
   });
-  $scope.calendar2Fun = function () {  //传入上门时间
   var calendar2 = new datePicker();
   calendar2.init({
     'trigger': '#time_select2', /*按钮选择器，用于触发弹出插件*/
@@ -2449,103 +2447,178 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
   $scope.serviceTimeFun = function (d1, d2) {   //判断完工时间不能小于期望时间
     return ((new Date(d1.replace(/-/g,"\/"))) < (new Date(d2.replace(/-/g,"\/"))));
   }
-  
 
   $scope.f=1;//控制上传图片按钮消失 0不消失 1消失
   $scope.fFun = function(id){
     $scope.f=id;
   }
 
-  //图片上传
-    $scope.fileUrl = {
-      'fileImgSrcArr':[] //用来放置要显示原图片的Src
-    }
-    // if(fileLen==3){
-    //       $scope.fFun(0);
-    //     }else{
-    //       $scope.fFun(1);
-    // }
-    
-    $scope.ftfilefn = function (e) {
-        var formDOM = angular.element(e).parents("form"),//找到file所在form(祖先)
-           $formIndex = formDOM.index(),//file祖先form元素的下标(index)
-            ftFileImgBox = angular.element(e).parent().siblings("#ftFileImgBox");//找到同一个form下放置评价图片的盒子(元素)
-        var len = parseInt(ftFileImgBox.find(".img").length);//盒子中放置图片的数量
-        console.log(len);
-        var fileLen =parseInt(e.files.length);//每次change后file的数量
-        if(len+fileLen>3) {
-            console.log("不能超过3张");
-            return false;
+  //图片上传  
+  $scope.fileUrl = {
+    'fileImgSrcArr':[] //用来放置要显示原图片的Src
+  }
+  
+  $scope.photoCompress = function(file,w,objDiv){
+      var ready=new FileReader();
+      /*开始读取指定的Blob对象或File对象中的内容. 当读取操作完成时,readyState属性的值会成为DONE,如果设置了onloadend事件处理程序,则调用之.同时,result属性中将包含一个data: URL格式的字符串以表示所读取文件的内容.*/
+      ready.readAsDataURL(file);
+      ready.onload=function(){
+          var re=this.result;
+          $scope.canvasDataURL(re,w,objDiv)
+      }
+  }
+  $scope.canvasDataURL = function(path, obj, callback){
+      var img = new Image();
+      img.src = path;
+      img.onload = function(){
+          var that = this;
+          // 默认按比例压缩
+          var w = that.width,
+              h = that.height,
+              scale = w / h;
+          w = obj.width || w;
+          h = obj.height || (w / scale);
+          var quality = 0.7;  // 默认图片质量为0.7
+          //生成canvas
+          var canvas = document.createElement('canvas');
+          var ctx = canvas.getContext('2d');
+          // 创建属性节点
+          var anw = document.createAttribute("width");
+          anw.nodeValue = w;
+          var anh = document.createAttribute("height");
+          anh.nodeValue = h;
+          canvas.setAttributeNode(anw);
+          canvas.setAttributeNode(anh);
+          ctx.drawImage(that, 0, 0, w, h);
+          // 图像质量
+          if(obj.quality && obj.quality <= 1 && obj.quality > 0){
+              quality = obj.quality;
+          }
+          // quality值越小，所绘制出的图像越模糊
+          var base64 = canvas.toDataURL('image/jpeg', quality);
+          // 回调函数返回base64的值
+          callback(base64);
+      }
+  }
+  /**
+   * 将以base64的图片url数据转换为Blob
+   * @param urlData
+   *            用url方式表示的base64图片数据
+   */
+  $scope.convertBase64UrlToBlob = function(urlData){
+      var arr = urlData.split(','), mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+      while(n--){
+          u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new Blob([u8arr], {type:mime});
+  }
+
+  //上传成功响应
+  $scope.uploadComplete = function (evt) {
+      //服务断接收完文件返回的结果
+      $('loading').fadeOut();
+      var data = JSON.parse(evt.target.responseText);
+      console.log(data)
+      if(data.status == "ok") {
+        $scope.tips2('上传成功', 1200)
+        var imgUrlLen = data["data"].length;
+        var html= "";
+        for(var i=0;i<imgUrlLen;i++){
+            // $scope.fileArr[].unshift(e.files[i]);
+            // $scope.fileUrl.fileImgSrcArr.unshift(data["info"]["img"][i]);//用来放置要显示原图片的Src
+            // $scope.fileUrl.fileThumbSrcArr.unshift(data["info"]["thumb"][i]);//用来放置要显示缩略图片的Src
+            // html += '<div class="img">' +
+            //     '< img src="' + data["info"]["thumb"][i] + '">' +
+            //     '<span class="x1"></span>' +
+            //     '</div>';
+            
+            // $scope.fileArr[].unshift(e.files[i]);
+            $scope.fileUrl.fileImgSrcArr.unshift(data["data"][i]);
+
+            html += '<div class="img h70 w70 m_l10  p_r  bgc_d9 dis_l fl_l flex-center b_r5">'+
+                      '<div class="d_red_x b_r_b50 x1"></div>'+
+                      '<div class="w62 h62 m_t3 m0a ">'+
+                        '<img src="' + data["data"][i] + ' " alt="">'+
+                      '</div>'+
+                    '</div>'
         }
-        if(len+fileLen==3){
-          angular.element("#fileUrl").css("display",'none');
-        }
-        $scope.laoding=1;
-        $http({
-            method: 'POST',
-            url: url + "settingInterfaces.api?uploadImgs",
-            data: {},
-            headers: {
-              'Content-Type': undefined
-            },
+        console.log($scope.fileUrl.fileImgSrcArr);
 
-            //将jq对象转换成原生js对象
-            transformRequest: function (data) {
-                var formData = new FormData(formDOM[0]);
-                formData.append("img[]", e);//在数组后面添加元素
-                //实际上传
-                return formData;
-            }
-        }).success(function (d) {
-            console.log(d);
-            $scope.laoding=0;
-            if (d.status == "ok") {
-                $scope.ofImg = true;
-                var imgUrlLen = d["data"].length;
-                var html= "";
-                for(var i=0;i<imgUrlLen;i++){
-                    // $scope.fileArr[].unshift(e.files[i]);
-                    // $scope.fileUrl.fileImgSrcArr.unshift(d["info"]["img"][i]);//用来放置要显示原图片的Src
-                    // $scope.fileUrl.fileThumbSrcArr.unshift(d["info"]["thumb"][i]);//用来放置要显示缩略图片的Src
-                    // html += '<div class="img">' +
-                    //     '< img src="' + d["info"]["thumb"][i] + '">' +
-                    //     '<span class="x1"></span>' +
-                    //     '</div>';
-                    
-                    // $scope.fileArr[].unshift(e.files[i]);
-                    $scope.fileUrl.fileImgSrcArr.unshift(d["data"][i]);
+        angular.element("#ftFileImgBox").append(html);
 
-                    html += '<div class="img h70 w70 m_l10  p_r  bgc_d9 dis_l fl_l flex-center b_r5">'+
-                              '<div class="d_red_x b_r_b50 x1"></div>'+
-                              '<div class="w62 h62 m_t3 m0a ">'+
-                                '<img src="' + d["data"][i] + ' " alt="">'+
-                              '</div>'+
-                            '</div>'
-                }
-                console.log($scope.fileUrl.fileImgSrcArr);
+        angular.element(".x1").click(function(){
+            angular.element("#fileUrl").css("display",'block');
+            var $formIndex = angular.element(this).parents("form").index(),//找到元素祖先form的下标
+                 index = angular.element(this).parent().index()-1;//每个评价图片的下标
+                 // file = angular.element(this).parents().find("input[type=file]");//找到同一个form下的file
+            // file.splice(index,1)//删除files下下标为index的file(似乎没效果放弃)
+            console.log(index);
+            $scope.fileUrl.fileImgSrcArr.splice(index,1);
+            angular.element(this).parent().remove();//删除自己
+            console.log($scope.fileUrl.fileImgSrcArr);
+            // $scope.fileArr[$formIndex].splice(index,1);//删除下标下的file元素
+        })
 
-                angular.element("#ftFileImgBox").append(html);
-
-                angular.element(".x1").click(function(){
-                    angular.element("#fileUrl").css("display",'block');
-                    var $formIndex = angular.element(this).parents("form").index(),//找到元素祖先form的下标
-                         index = angular.element(this).parent().index()-1;//每个评价图片的下标
-                         // file = angular.element(this).parents().find("input[type=file]");//找到同一个form下的file
-                    // file.splice(index,1)//删除files下下标为index的file(似乎没效果放弃)
-                    console.log(index);
-                    $scope.fileUrl.fileImgSrcArr.splice(index,1);
-                    angular.element(this).parent().remove();//删除自己
-                    console.log($scope.fileUrl.fileImgSrcArr);
-                    // $scope.fileArr[$formIndex].splice(index,1);//删除下标下的file元素
-                })
-            } else {
-              $scope.diType = false;
-            }
-        }).error(function (err, status) {
-            $scope.diType = false;
-            //console.log(err);
-        });
-    }
+      }else{
+        $('loading').fadeOut();
+        var data = JSON.parse(evt.target.responseText);
+        console.log(data)
+        $scope.tips2(data['error'], 1200)
+      }
+        
+  }
+  //上传失败
+  $scope.uploadFailed = function (evt) {
+    $('loading').fadeOut();
+    $scope.tips2('上传失败', 1200)
+  }
+  $scope.ftfilefn = function (e) {
+      var formDOM = angular.element(e).parents("form"),//找到file所在form(祖先)
+         $formIndex = formDOM.index(),//file祖先form元素的下标(index)
+          ftFileImgBox = angular.element(e).parent().siblings("#ftFileImgBox");//找到同一个form下放置评价图片的盒子(元素)
+      var len = parseInt(ftFileImgBox.find(".img").length);//盒子中放置图片的数量
+      console.log(len);
+      var fileLen =parseInt(e.files.length);//每次change后file的数量
+      if(len+fileLen>3) {
+          console.log("不能超过3张");
+          return false;
+      }
+      if(len+fileLen==3){
+        angular.element("#fileUrl").css("display",'none');
+      }
+      $('loading').fadeIn();
+      var fileObj = e.files[0]; // js 获取文件对象
+      var form = new FormData(); // FormData 对象
+      // console.log(e)
+      // console.log(formDOM[0])
+      // console.log(fileObj)
+      // console.log(fileObj.size)
+      if(fileObj.size/1024 > 1025) { //大于1M，进行压缩上传
+          $scope.photoCompress(fileObj, {
+              quality: 0.2
+          }, function(base64Codes){
+              var bl = $scope.convertBase64UrlToBlob(base64Codes);
+              console.log(bl)
+              form.append("img[]", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
+              xhr = new XMLHttpRequest();  // XMLHttpRequest 对象
+              xhr.open("post", url + 'settingInterfaces.api?uploadImgs', true); //post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
+              xhr.onload = $scope.uploadComplete; //请求完成
+              xhr.onerror =  $scope.uploadFailed; //请求失败
+              xhr.send(form); //开始上传，发送form数据
+           
+          });
+      } else {
+        form.append("img[]", fileObj); // 文件对象
+        xhr = new XMLHttpRequest();  // XMLHttpRequest 对象
+        xhr.open("post", url + 'settingInterfaces.api?uploadImgs', true); //post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
+        xhr.onload = $scope.uploadComplete; //请求完成
+        xhr.onerror =  $scope.uploadFailed; //请求失败
+        xhr.send(form); //开始上传，发送form数据
+      }
+      
+  }
+   
 
   //提交预约信息
   $scope.prefun = function(type){  //type为0时保存，其他下单
@@ -2592,7 +2665,7 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
         if(type != 0) {
           $scope.payFun(1); // 打开支付定金确认弹窗
         }else {
-          $scope.tips2('保存成功，在我的预约-待付款中查看', 2500)
+          $scope.tips2('保存成功，在我的预约-待付款中查看', 3500)
         }
         // $timeout(function(){
         //   $location.path('pendingAudit');
@@ -2687,6 +2760,8 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
       $scope.tips2('请输入正确的手机号码', 1500)
     }else if (!(/(^[1-9]\d*$)/.test($scope.obj.work_area))) {
       $scope.tips2('请输入整数平方', 1500)
+    }else if (!$scope.serviceTimeFun($scope.obj.order_hope_service_time, $scope.obj.hope_complete_time)) {
+      $scope.tips2('完工时间要大于开工时间', 1500)
     }else{
       //$scope.payFun(1);
       $scope.prefun(type);
@@ -2826,16 +2901,126 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
     $scope.f=id;
   }
 
- //图片上传
+  //图片上传  
   $scope.fileUrl = {
     'fileImgSrcArr':[] //用来放置要显示原图片的Src
   }
-  // if(fileLen==3){
-  //       $scope.fFun(0);
-  //     }else{
-  //       $scope.fFun(1);
-  // }
   
+  $scope.photoCompress = function(file,w,objDiv){
+      var ready=new FileReader();
+      /*开始读取指定的Blob对象或File对象中的内容. 当读取操作完成时,readyState属性的值会成为DONE,如果设置了onloadend事件处理程序,则调用之.同时,result属性中将包含一个data: URL格式的字符串以表示所读取文件的内容.*/
+      ready.readAsDataURL(file);
+      ready.onload=function(){
+          var re=this.result;
+          $scope.canvasDataURL(re,w,objDiv)
+      }
+  }
+  $scope.canvasDataURL = function(path, obj, callback){
+      var img = new Image();
+      img.src = path;
+      img.onload = function(){
+          var that = this;
+          // 默认按比例压缩
+          var w = that.width,
+              h = that.height,
+              scale = w / h;
+          w = obj.width || w;
+          h = obj.height || (w / scale);
+          var quality = 0.7;  // 默认图片质量为0.7
+          //生成canvas
+          var canvas = document.createElement('canvas');
+          var ctx = canvas.getContext('2d');
+          // 创建属性节点
+          var anw = document.createAttribute("width");
+          anw.nodeValue = w;
+          var anh = document.createAttribute("height");
+          anh.nodeValue = h;
+          canvas.setAttributeNode(anw);
+          canvas.setAttributeNode(anh);
+          ctx.drawImage(that, 0, 0, w, h);
+          // 图像质量
+          if(obj.quality && obj.quality <= 1 && obj.quality > 0){
+              quality = obj.quality;
+          }
+          // quality值越小，所绘制出的图像越模糊
+          var base64 = canvas.toDataURL('image/jpeg', quality);
+          // 回调函数返回base64的值
+          callback(base64);
+      }
+  }
+  /**
+   * 将以base64的图片url数据转换为Blob
+   * @param urlData
+   *            用url方式表示的base64图片数据
+   */
+  $scope.convertBase64UrlToBlob = function(urlData){
+      var arr = urlData.split(','), mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+      while(n--){
+          u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new Blob([u8arr], {type:mime});
+  }
+
+  //上传成功响应
+  $scope.uploadComplete = function (evt) {
+      //服务断接收完文件返回的结果
+      $('loading').fadeOut();
+      var data = JSON.parse(evt.target.responseText);
+      console.log(data)
+      if(data.status == "ok") {
+        $scope.tips2('上传成功', 1200)
+        var imgUrlLen = data["data"].length;
+        var html= "";
+        for(var i=0;i<imgUrlLen;i++){
+            // $scope.fileArr[].unshift(e.files[i]);
+            // $scope.fileUrl.fileImgSrcArr.unshift(data["info"]["img"][i]);//用来放置要显示原图片的Src
+            // $scope.fileUrl.fileThumbSrcArr.unshift(data["info"]["thumb"][i]);//用来放置要显示缩略图片的Src
+            // html += '<div class="img">' +
+            //     '< img src="' + data["info"]["thumb"][i] + '">' +
+            //     '<span class="x1"></span>' +
+            //     '</div>';
+            
+            // $scope.fileArr[].unshift(e.files[i]);
+            $scope.fileUrl.fileImgSrcArr.unshift(data["data"][i]);
+
+            html += '<div class="img h70 w70 m_l10  p_r  bgc_d9 dis_l fl_l flex-center b_r5">'+
+                      '<div class="d_red_x b_r_b50 x1"></div>'+
+                      '<div class="w62 h62 m_t3 m0a ">'+
+                        '<img src="' + data["data"][i] + ' " alt="">'+
+                      '</div>'+
+                    '</div>'
+        }
+        console.log($scope.fileUrl.fileImgSrcArr);
+
+        angular.element("#ftFileImgBox").append(html);
+
+        angular.element(".x1").click(function(){
+            angular.element("#fileUrl").css("display",'block');
+            var $formIndex = angular.element(this).parents("form").index(),//找到元素祖先form的下标
+                 index = angular.element(this).parent().index()-1;//每个评价图片的下标
+                 // file = angular.element(this).parents().find("input[type=file]");//找到同一个form下的file
+            // file.splice(index,1)//删除files下下标为index的file(似乎没效果放弃)
+            console.log(index);
+            $scope.fileUrl.fileImgSrcArr.splice(index,1);
+            angular.element(this).parent().remove();//删除自己
+            console.log($scope.fileUrl.fileImgSrcArr);
+            // $scope.fileArr[$formIndex].splice(index,1);//删除下标下的file元素
+        })
+
+      }else{
+        $('loading').fadeOut();
+        var data = JSON.parse(evt.target.responseText);
+        console.log(data)
+        $scope.tips2(data['error'], 1200)
+      }
+        
+  }
+  //上传失败
+  $scope.uploadFailed = function (evt) {
+    $('loading').fadeOut();
+    $scope.tips2('上传失败', 1200)
+  }
   $scope.ftfilefn = function (e) {
       var formDOM = angular.element(e).parents("form"),//找到file所在form(祖先)
          $formIndex = formDOM.index(),//file祖先form元素的下标(index)
@@ -2850,76 +3035,36 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
       if(len+fileLen==3){
         angular.element("#fileUrl").css("display",'none');
       }
-      $scope.laoding=1;
-      $http({
-          method: 'POST',
-          url: url + "settingInterfaces.api?uploadImgs",
-          data: {},
-          headers: {
-            'Content-Type': undefined
-          },
-
-          //将jq对象转换成原生js对象
-          transformRequest: function (data) {
-              var formData = new FormData(formDOM[0]);
-              formData.append("img[]", e);//在数组后面添加元素
-              //实际上传
-              return formData;
-          }
-      }).success(function (d) {
-          console.log(d);
-          $scope.laoding=0;
-          if (d.status == "ok") {
-              $scope.ofImg = true;
-              var imgUrlLen = d["data"].length;
-              var html= "";
-              for(var i=0;i<imgUrlLen;i++){
-                  // $scope.fileArr[].unshift(e.files[i]);
-                  // $scope.fileUrl.fileImgSrcArr.unshift(d["info"]["img"][i]);//用来放置要显示原图片的Src
-                  // $scope.fileUrl.fileThumbSrcArr.unshift(d["info"]["thumb"][i]);//用来放置要显示缩略图片的Src
-                  // html += '<div class="img">' +
-                  //     '< img src="' + d["info"]["thumb"][i] + '">' +
-                  //     '<span class="x1"></span>' +
-                  //     '</div>';
-                  
-                  // $scope.fileArr[].unshift(e.files[i]);
-                  $scope.fileUrl.fileImgSrcArr.unshift(d["data"][i]);
-
-                  html += '<div class="img h70 w70 m_l10  p_r  bgc_d9 dis_l fl_l flex-center b_r5">'+
-                            '<div class="d_red_x b_r_b50 x1"></div>'+
-                            '<div class="w62 h62 m_t3 m0a ">'+
-                              '<img src="' + d["data"][i] + ' " alt="">'+
-                            '</div>'+
-                          '</div>'
-              }
-              console.log($scope.fileUrl.fileImgSrcArr);
-
-              angular.element("#ftFileImgBox").append(html);
-
-              angular.element(".x1").click(function(){
-                  angular.element("#fileUrl").css("display",'block');
-                  var $formIndex = angular.element(this).parents("form").index(),//找到元素祖先form的下标
-                       index = angular.element(this).parent().index()-1;//每个评价图片的下标
-                       // file = angular.element(this).parents().find("input[type=file]");//找到同一个form下的file
-                  // file.splice(index,1)//删除files下下标为index的file(似乎没效果放弃)
-                  console.log(index);
-                  $scope.fileUrl.fileImgSrcArr.splice(index,1);
-                  angular.element(this).parent().remove();//删除自己
-                  console.log($scope.fileUrl.fileImgSrcArr);
-                  // $scope.fileArr[$formIndex].splice(index,1);//删除下标下的file元素
-              })
-
-          } else {
-            $scope.laoding=0;
-            $scope.tips2('图片不能大于2M', 1200)
-            $scope.diType = false;
-          }
-      }).error(function (err, status) {
-          $scope.laoding=0;
-          $scope.tips2('图片不能大于2M', 1200)
-          $scope.diType = false;
-          //console.log(err);
-      });
+      $('loading').fadeIn();
+      var fileObj = e.files[0]; // js 获取文件对象
+      var form = new FormData(); // FormData 对象
+      // console.log(e)
+      // console.log(formDOM[0])
+      // console.log(fileObj)
+      // console.log(fileObj.size)
+      if(fileObj.size/1024 > 1025) { //大于1M，进行压缩上传
+          $scope.photoCompress(fileObj, {
+              quality: 0.2
+          }, function(base64Codes){
+              var bl = $scope.convertBase64UrlToBlob(base64Codes);
+              console.log(bl)
+              form.append("img[]", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
+              xhr = new XMLHttpRequest();  // XMLHttpRequest 对象
+              xhr.open("post", url + 'settingInterfaces.api?uploadImgs', true); //post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
+              xhr.onload = $scope.uploadComplete; //请求完成
+              xhr.onerror =  $scope.uploadFailed; //请求失败
+              xhr.send(form); //开始上传，发送form数据
+           
+          });
+      } else {
+        form.append("img[]", fileObj); // 文件对象
+        xhr = new XMLHttpRequest();  // XMLHttpRequest 对象
+        xhr.open("post", url + 'settingInterfaces.api?uploadImgs', true); //post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
+        xhr.onload = $scope.uploadComplete; //请求完成
+        xhr.onerror =  $scope.uploadFailed; //请求失败
+        xhr.send(form); //开始上传，发送form数据
+      }
+      
   }
    
   //提交预约信息
