@@ -2432,20 +2432,22 @@ app.controller("mainCtrl", ['$scope', '$rootScope', '$location', '$timeout', '$h
     }
   });
   $scope.calendar2Fun = function () {  //传入上门时间
-    var calendar2 = new datePicker();
-    calendar2.init({
-      'trigger': '#time_select2', /*按钮选择器，用于触发弹出插件*/
-      'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
-      'minDate': $scope.obj.order_hope_service_time,/*最小日期*/
-      'maxDate':'2100-12-31',/*最大日期*/
-      'onSubmit':function(){/*确认时触发事件*/
-        $scope.obj.hope_complete_time = calendar2.value;
-        return
-      },
-      'onClose':function(){/*取消时触发事件*/
-        return
-      }
-    });
+  var calendar2 = new datePicker();
+  calendar2.init({
+    'trigger': '#time_select2', /*按钮选择器，用于触发弹出插件*/
+    'type': 'date',/*模式：date日期；datetime日期时间；time时间；ym年月；*/
+    'minDate': $scope.completeTime,/*最小日期*/
+    'maxDate':'2100-12-31',/*最大日期*/
+    'onSubmit':function(){/*确认时触发事件*/
+      $scope.obj.hope_complete_time = calendar2.value;
+      return
+    },
+    'onClose':function(){/*取消时触发事件*/
+      return
+    }
+  });
+  $scope.serviceTimeFun = function (d1, d2) {   //判断完工时间不能小于期望时间
+    return ((new Date(d1.replace(/-/g,"\/"))) < (new Date(d2.replace(/-/g,"\/"))));
   }
   
 
