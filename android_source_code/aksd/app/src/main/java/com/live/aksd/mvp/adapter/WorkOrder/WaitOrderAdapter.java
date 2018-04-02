@@ -49,11 +49,17 @@ public class WaitOrderAdapter extends RecyclerArrayAdapter<WorkOrderBean> {
         @Override
         public void setData(final WorkOrderBean data) {
             tv_tittle.setText(data.getOrder_subscribe_content());
-            if (!TextUtils.isEmpty(data.getOrder_subscribe_note())) {
+			//sfsm  zhoushilei: [修改内容] remove code @{
+			/* if (!TextUtils.isEmpty(data.getOrder_subscribe_note())) {
                 tv_describe.setText(data.getOrder_subscribe_note());
             }else {
                 tv_describe.setText(R.string.no_note);
-            }
+            }*/
+			// @}
+			
+			//sfsm zhoushilei: [修改内容] add code @{
+            tv_describe.setText(getContext().getString(R.string.workorder_name)+data.getOrder_name());
+			// @}
             tv_location.setText(data.getOrder_address_province() + "-" + data.getOrder_address_city() + "-" + data.getOrder_address_district() + "-" + data.getOrder_address_detail());
             qiangdan.setOnClickListener(new View.OnClickListener() {
                 @Override

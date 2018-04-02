@@ -426,6 +426,7 @@
     
     <string name="toutal_price">总费用（元）：</string>
     <string name="Assess">用户评价</string>
+    <string name="workorder_name">姓名：</string>
 
 
 </resources>

@@ -53,11 +53,21 @@ public class NoServerAdapter extends RecyclerArrayAdapter<WorkOrderBean> {
             } else {
                 tvNow.setVisibility(View.GONE);
             }
-            tvContent.setText(data.getOrder_subscribe_content());
-            if (!TextUtils.isEmpty(data.getOrder_subscribe_note())){tvNote.setText(data.getOrder_subscribe_note());}
-            else {
+            tvContent.setText(data.getOrder_subscribe_content())
+		
+			//sfsm  zhoushilei: [修改内容] remove code @{
+        	/*  if (!TextUtils.isEmpty(data.getOrder_subscribe_note())) {
+                tvNote.setText(data.getOrder_subscribe_note());
+            } else {
                 tvNote.setText(R.string.no_note);
-            }
+            }*/
+			// @}
+			
+			//sfsm zhoushilei: [修改内容] add code @{
+    		tvNote.setText(getContext().getString(R.string.workorder_name)+data.getOrder_name());
+			// @}
+
+        
             tvAddress.setText(data.getOrder_address_province() + "-" + data.getOrder_address_city() + "-" + data.getOrder_address_district() + "-" + data.getOrder_address_detail());
 
         }
