@@ -6,8 +6,8 @@
       <p>轮播图</p>
     </div>
     <div class="slider-content">
-      <div v-for="(img,index) in goodsImgBeans" class="img-content">
-        <my-image :initValue="img.img_url" :not_hover="false" :filed="index" @change="imgChange" :options="{'width':'100px','height':'100px'}" class="slider-img" :disable="index>2" path="/images/goods"/>
+      <div v-for="(img,index) in goodsImgBeans" class="img-content" v-if="index!=3">
+        <my-image  :initValue="img.img_url" :not_hover="true" :filed="index" @change="imgChange" :options="{'width':'100px','height':'100px'}" class="slider-img" :disable="index>2" path="/images/goods"/>
         <my-button v-if="index<goodsImgBeans.length-1" name="删除" @click="removeImg(index)"/>
       </div>
     </div>
@@ -155,7 +155,7 @@
             }
           ]
         },
-        {key: 'specification_img', name: '图标', type: 'img', path: '/images/goods'},
+        {key: 'specification_img', name: '图标', type: 'img-upload', path: '/images/goods'},
       ];
       this.init();
       if (this.$route.params.goods_id != 0) {

@@ -18,6 +18,9 @@
         </select>
         <input v-else-if="base.type=='check'" type="checkbox" :name="rowId" v-model="checked" :value="source[base.key]">
         <div v-else-if="base.type=='img'" class="img">
+          <img :src="isNull(source[base.key])?homeUrl+defaultImg:source[base.key].indexOf('http')>-1?source[base.key]:(homeUrl+source[base.key])" @click="changeBig(rowId,source[base.key])" @error="imgError">
+        </div>
+        <div v-else-if="base.type=='img-upload'" class="img">
           <img :src="isNull(source[base.key])?homeUrl+defaultImg:source[base.key].indexOf('http')>-1?source[base.key]:(homeUrl+source[base.key])" @click="beginUp(rowId)" @error="imgError">
           <input type="file" accept="image/png,image/jpg,image/jpeg,image/gif" ref="fileInput" @change="uploadImage(rowId,base.key,base.path,$event)" :disabled="base.disable">
         </div>
@@ -31,6 +34,7 @@
       </div>
     </div>
     <page :total="total" :page="page" @goPage="goPage"/>
+    <img v-if="showImgRowId!=-1" :src="src.indexOf('http')>-1?src:(homeUrl+src)" @click="changeSmall" @error="imgError" class="imgClick">
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -52,8 +56,9 @@
         checked:[],
         allCheck:false,
         rowId:0,
+        showImgRowId:-1,
+        src:'',
         imgFiled:'',
-
         option: {
           type: this.isNull(this.type)?'min':this.type=='date'?'day':'min',
           week: ['一', '二', '三', '四', '五', '六', '日'],
@@ -162,6 +167,13 @@
         let initTime={};
         initTime.time=this.isNull(value)?'':value;
         return initTime;
+      },
+      changeBig(showImgRowId,src){
+        this.showImgRowId=showImgRowId;
+        this.src=src;
+      },
+      changeSmall(e){
+       this.showImgRowId=-1;
       }
     },
     watch:{
@@ -231,11 +243,6 @@
     height: 30px;
     cursor: pointer;
   }
-  .img>:hover{
-    transform: scale(15.0);
-    border: 1px #2d6da3 solid;
-    border-radius: 2px;
-  }
  select{
    text-align: center;
    border:none;
@@ -291,5 +298,15 @@
   }
   .operation_child_h1{
     font-size:14px;
+  }
+  .imgClick{
+    width:800px;
+    height:800px;
+    border:1px #2d6da3 solid;
+    border-radius: 5px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
   }
 </style>

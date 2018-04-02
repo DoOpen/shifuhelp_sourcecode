@@ -4,10 +4,11 @@
       <p>{{title}}</p>
     </div>
     <div class="image-content">
-      <img :src="src.indexOf('http')>-1?src:(homeUrl+src)" @click="beginUp" @error="imgError" :style="isNull(options)?{'width':'200px','height':'60px'}:options"
-        @mouseover="img_class='over'" @mouseleave="img_class='leave'" :class="not_hover==false?'':img_class">
+      <img class="show"  :src="src.indexOf('http')>-1?src:(homeUrl+src)" @click="changeBig" @error="imgError" :style="isNull(options)?{'width':'200px','height':'60px'}:options" title="点击放大">
       <input type="file" :accept="isNull(type)||type=='image'?'image/png,image/jpg,image/jpeg,image/gif':''" ref="fileInput" @change="uploadImage" >
+      <img :src="require('../../assets/images/common/upload_icon.png')" class="upload-icon" @click="beginUp" v-if="!disable&&!not_hover">
     </div>
+    <img v-if="isClick&&!not_hover" :src="src.indexOf('http')>-1?src:(homeUrl+src)" @click="changeSmall" @error="imgError" class="imgClick">
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -37,7 +38,8 @@
   data(){
     return{
       src:!this.isNull(this.initValue)?this.initValue:this.defaultImg,
-      img_class:'leave'
+      img_class:'leave',
+      isClick:false
     }
   },
   watch:{
@@ -67,11 +69,20 @@
       if(!this.disable){
         this.$refs.fileInput.click();
       }
+    },
+    changeBig(e){
+      if(this.not_hover){
+        this.beginUp();
+      }
+      this.isClick=!this.isClick;
+    },
+    changeSmall(e){
+      this.isClick=!this.isClick;
     }
   }
 }
 </script>
-<style scoped>
+<style scoped lang="less">
 .image-root{
   display: flex;
   align-content: center;
@@ -88,14 +99,27 @@
     cursor: pointer;
     border-radius: 5px;
   }
-  .image-content>img{
+  .image-content>.show{
     border:1px #2d6da3 solid;
     border-radius: 5px;
   }
-  .over{
-    transform: scale(8.0);
+.image-content{
+  .upload-icon{
+    width:30px;
+    height:30px;
   }
+}
   input{
     display: none;
+  }
+  .imgClick{
+    width:800px;
+    height:800px;
+    border:1px #2d6da3 solid;
+    border-radius: 5px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
   }
 </style>
