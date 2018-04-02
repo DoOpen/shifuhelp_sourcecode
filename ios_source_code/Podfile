@@ -1,0 +1,24 @@
+
+ platform :ios, '9.0'
+
+target 'LoveHealthWaterAndElectricity' do
+ 
+use_frameworks!
+
+pod 'MJRefresh'
+pod 'SnapKit','~> 3.2.0'
+pod 'Alamofire', '~> 4.3'
+pod 'Kingfisher'
+pod 'MLEmojiLabel'
+pod 'IQKeyboardManagerSwift', '~> 5.0.4'
+pod 'Pingpp/Wx'
+pod 'Pingpp/Alipay'
+pod 'JPush', '~> 3.0.7'
+# 集成微信(精简版0.2M)
+pod ‘UMengUShare/Social/ReducedWeChat'
+# 集成QQ/QZone/TIM(精简版0.5M)
+pod ‘UMengUShare/Social/ReducedQQ'
+# 集成新浪微博(精简版1M)
+pod ‘UMengUShare/Social/ReducedSina'
+
+end

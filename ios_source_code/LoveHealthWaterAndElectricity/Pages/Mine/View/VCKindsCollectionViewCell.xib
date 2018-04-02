@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="VCKindsCollectionViewCell" customModule="LoveHealthWaterAndElectricity" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingdan" translatesAutoresizingMaskIntoConstraints="NO" id="uW7-wQ-wjl">
+                        <rect key="frame" x="0.0" y="10" width="90" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="uW7-wQ-wjl" secondAttribute="height" multiplier="2:1" id="LXy-h2-cPs"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEs-0L-KI8">
+                        <rect key="frame" x="16.5" y="55" width="57.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7im-LG-KyH">
+                        <rect key="frame" x="0.0" y="89" width="90" height="1"/>
+                        <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="6ic-mR-ZQD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="uW7-wQ-wjl" secondAttribute="trailing" id="2aM-R5-hzT"/>
+                <constraint firstItem="uW7-wQ-wjl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3NQ-0E-V97"/>
+                <constraint firstItem="7im-LG-KyH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Fhx-gr-7b7"/>
+                <constraint firstItem="ZEs-0L-KI8" firstAttribute="top" secondItem="uW7-wQ-wjl" secondAttribute="bottom" id="M8f-TS-AWb"/>
+                <constraint firstAttribute="bottom" secondItem="7im-LG-KyH" secondAttribute="bottom" id="e2h-VE-v6W"/>
+                <constraint firstItem="uW7-wQ-wjl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="ged-2a-Xkv"/>
+                <constraint firstItem="ZEs-0L-KI8" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="jkv-Xf-qUQ"/>
+                <constraint firstAttribute="trailing" secondItem="7im-LG-KyH" secondAttribute="trailing" id="sLB-xA-iXo"/>
+            </constraints>
+            <connections>
+                <outlet property="itemImg" destination="uW7-wQ-wjl" id="yaq-g1-fBH"/>
+                <outlet property="line" destination="7im-LG-KyH" id="b1O-hY-geB"/>
+                <outlet property="title" destination="ZEs-0L-KI8" id="GgP-Ze-XaP"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="dingdan" width="29" height="29"/>
+    </resources>
+</document>

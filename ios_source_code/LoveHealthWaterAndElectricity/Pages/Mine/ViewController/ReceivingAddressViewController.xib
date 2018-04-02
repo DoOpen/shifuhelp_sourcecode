@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReceivingAddressViewController" customModule="LoveHealthWaterAndElectricity" customModuleProvider="target">
+            <connections>
+                <outlet property="addNewAddressBtn" destination="J9T-pw-CuJ" id="hgF-HD-igM"/>
+                <outlet property="tableView" destination="GJJ-k8-h9O" id="teK-yu-WBn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJJ-k8-h9O">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="adl-IR-byl"/>
+                        <outlet property="delegate" destination="-1" id="2y6-fW-kXS"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9T-pw-CuJ">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.69411764710000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="PiR-Ww-Ajl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="新增收货地址"/>
+                    <connections>
+                        <action selector="addNewAddressAction:" destination="-1" eventType="touchUpInside" id="KPZ-Fv-lmG"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="J9T-pw-CuJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="61T-Dk-D9e"/>
+                <constraint firstAttribute="trailing" secondItem="GJJ-k8-h9O" secondAttribute="trailing" id="IcW-pL-nC4"/>
+                <constraint firstItem="J9T-pw-CuJ" firstAttribute="top" secondItem="GJJ-k8-h9O" secondAttribute="bottom" id="Of7-mH-F5E"/>
+                <constraint firstItem="GJJ-k8-h9O" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vy6-0S-jyU"/>
+                <constraint firstAttribute="bottom" secondItem="J9T-pw-CuJ" secondAttribute="bottom" id="gh8-Yf-lOu"/>
+                <constraint firstAttribute="trailing" secondItem="J9T-pw-CuJ" secondAttribute="trailing" id="nzW-u5-edF"/>
+                <constraint firstItem="GJJ-k8-h9O" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="s3r-d2-KOk"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+</document>

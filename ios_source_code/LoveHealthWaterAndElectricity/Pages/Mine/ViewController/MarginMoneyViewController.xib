@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MarginMoneyViewController" customModule="LoveHealthWaterAndElectricity" customModuleProvider="target">
+            <connections>
+                <outlet property="marginBtn" destination="3Aq-Ju-cE0" id="Bf4-I1-UgO"/>
+                <outlet property="money" destination="GYb-YX-v1I" id="2i4-72-VBg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="flz-HR-imL" id="Ns5-ha-eKV"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_baozhengjin" translatesAutoresizingMaskIntoConstraints="NO" id="Y5f-db-IlM">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="rdK-29-df5"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYb-YX-v1I">
+                    <rect key="frame" x="111" y="65.5" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Aq-Ju-cE0">
+                    <rect key="frame" x="275" y="47.5" width="85" height="35"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.69411764710000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="HRh-c9-VB0"/>
+                        <constraint firstAttribute="height" constant="35" id="art-t1-FF1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="缴纳押金"/>
+                    <connections>
+                        <action selector="payDepositAction:" destination="-1" eventType="touchUpInside" id="ucG-UJ-ay2"/>
+                    </connections>
+                </button>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flz-HR-imL">
+                    <rect key="frame" x="0.0" y="130" width="375" height="537"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="i1x-ne-ZUr"/>
+                    </connections>
+                </webView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_bzj" translatesAutoresizingMaskIntoConstraints="NO" id="l3u-rp-Nzh">
+                    <rect key="frame" x="30" y="32" width="66" height="66"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Y5f-db-IlM" secondAttribute="trailing" id="2QT-Zt-A7o"/>
+                <constraint firstItem="l3u-rp-Nzh" firstAttribute="centerY" secondItem="Y5f-db-IlM" secondAttribute="centerY" id="BJe-uE-Nwh"/>
+                <constraint firstAttribute="trailing" secondItem="flz-HR-imL" secondAttribute="trailing" id="J9g-qe-Mea"/>
+                <constraint firstItem="flz-HR-imL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LR3-tt-kv6"/>
+                <constraint firstAttribute="bottom" secondItem="flz-HR-imL" secondAttribute="bottom" id="bJN-4g-thP"/>
+                <constraint firstItem="flz-HR-imL" firstAttribute="top" secondItem="Y5f-db-IlM" secondAttribute="bottom" id="cFv-tT-1rZ"/>
+                <constraint firstItem="GYb-YX-v1I" firstAttribute="centerY" secondItem="l3u-rp-Nzh" secondAttribute="centerY" id="dxe-Dq-tt6"/>
+                <constraint firstItem="l3u-rp-Nzh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="fG3-IW-jQ4"/>
+                <constraint firstItem="3Aq-Ju-cE0" firstAttribute="centerY" secondItem="GYb-YX-v1I" secondAttribute="centerY" id="mFz-Vp-D7I"/>
+                <constraint firstItem="Y5f-db-IlM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pIK-JL-UMm"/>
+                <constraint firstItem="Y5f-db-IlM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="reX-6V-bBv"/>
+                <constraint firstItem="GYb-YX-v1I" firstAttribute="leading" secondItem="l3u-rp-Nzh" secondAttribute="trailing" constant="15" id="sWB-0a-Veb"/>
+                <constraint firstAttribute="trailing" secondItem="3Aq-Ju-cE0" secondAttribute="trailing" constant="15" id="t53-03-vQK"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg_baozhengjin" width="375" height="130"/>
+        <image name="icon_bzj" width="66" height="66"/>
+    </resources>
+</document>

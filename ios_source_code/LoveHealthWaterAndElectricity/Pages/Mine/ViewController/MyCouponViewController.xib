@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyCouponViewController" customModule="LoveHealthWaterAndElectricity" customModuleProvider="target">
+            <connections>
+                <outlet property="outDateBtn" destination="gRn-cl-2Sd" id="PVs-Ee-8v1"/>
+                <outlet property="unuseBtn" destination="I9Q-ce-h6f" id="7Gp-RW-rYr"/>
+                <outlet property="usedBtn" destination="rzZ-YU-64C" id="MIm-Wj-VpZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9Q-ce-h6f">
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="izi-bf-FZJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="未使用">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.92156862750000001" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="xMn-eA-max"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzZ-YU-64C">
+                    <rect key="frame" x="125" y="0.0" width="125" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="E1E-ys-zAP"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="已使用">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.92156862750000001" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="F5q-F4-GRi"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRn-cl-2Sd">
+                    <rect key="frame" x="250" y="0.0" width="125" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="cAk-v7-0DC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="已过期">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.92156862750000001" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="dja-YM-avs"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rzZ-YU-64C" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1mC-2r-WHa"/>
+                <constraint firstItem="rzZ-YU-64C" firstAttribute="width" secondItem="I9Q-ce-h6f" secondAttribute="width" id="Nfd-GJ-AsG"/>
+                <constraint firstItem="gRn-cl-2Sd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Qve-Nv-IeD"/>
+                <constraint firstAttribute="trailing" secondItem="gRn-cl-2Sd" secondAttribute="trailing" id="cdR-PS-lD5"/>
+                <constraint firstItem="gRn-cl-2Sd" firstAttribute="width" secondItem="rzZ-YU-64C" secondAttribute="width" id="hV4-J7-3w3"/>
+                <constraint firstItem="I9Q-ce-h6f" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kaE-x6-Vqg"/>
+                <constraint firstItem="rzZ-YU-64C" firstAttribute="leading" secondItem="I9Q-ce-h6f" secondAttribute="trailing" id="o1I-eT-wMV"/>
+                <constraint firstItem="gRn-cl-2Sd" firstAttribute="leading" secondItem="rzZ-YU-64C" secondAttribute="trailing" id="skv-kR-k2b"/>
+                <constraint firstItem="I9Q-ce-h6f" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xhx-9q-3cc"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

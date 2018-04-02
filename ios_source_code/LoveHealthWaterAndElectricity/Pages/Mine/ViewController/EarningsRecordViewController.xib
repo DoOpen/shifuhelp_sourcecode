@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EarningsRecordViewController" customModule="LoveHealthWaterAndElectricity" customModuleProvider="target">
+            <connections>
+                <outlet property="earningsBtn" destination="48l-6x-BEK" id="P2L-jO-85P"/>
+                <outlet property="employBtn" destination="Xvi-Mg-a4c" id="oIt-uN-eRt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqQ-z3-DhU">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <subviews>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvi-Mg-a4c">
+                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="反佣记录">
+                                <color key="titleColor" red="0.14117647059999999" green="0.14117647059999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" red="0.92156862750000001" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="0uY-tE-cpO"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48l-6x-BEK">
+                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="提现记录">
+                                <color key="titleColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" red="0.92156862750000001" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="tAa-Lw-ANo"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="48l-6x-BEK" firstAttribute="top" secondItem="yqQ-z3-DhU" secondAttribute="top" id="3oj-pw-hno"/>
+                        <constraint firstItem="Xvi-Mg-a4c" firstAttribute="leading" secondItem="48l-6x-BEK" secondAttribute="trailing" id="3qd-4F-8HK"/>
+                        <constraint firstAttribute="bottom" secondItem="Xvi-Mg-a4c" secondAttribute="bottom" id="AKk-mc-zak"/>
+                        <constraint firstItem="Xvi-Mg-a4c" firstAttribute="width" secondItem="48l-6x-BEK" secondAttribute="width" id="KJd-ja-EMG"/>
+                        <constraint firstItem="Xvi-Mg-a4c" firstAttribute="top" secondItem="yqQ-z3-DhU" secondAttribute="top" id="Myg-J6-x1H"/>
+                        <constraint firstItem="48l-6x-BEK" firstAttribute="leading" secondItem="yqQ-z3-DhU" secondAttribute="leading" id="g8e-eb-w5M"/>
+                        <constraint firstAttribute="trailing" secondItem="Xvi-Mg-a4c" secondAttribute="trailing" id="hdU-Yb-cRZ"/>
+                        <constraint firstAttribute="bottom" secondItem="48l-6x-BEK" secondAttribute="bottom" id="jI5-n1-KTE"/>
+                        <constraint firstAttribute="height" constant="50" id="qzL-Lf-8Ge"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="yqQ-z3-DhU" secondAttribute="trailing" id="n36-f1-CPG"/>
+                <constraint firstItem="yqQ-z3-DhU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="quO-qY-2rC"/>
+                <constraint firstItem="yqQ-z3-DhU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rgv-ku-tFc"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="71.5"/>
+        </view>
+    </objects>
+</document>
