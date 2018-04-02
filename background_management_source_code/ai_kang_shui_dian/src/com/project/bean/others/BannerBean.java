@@ -1,21 +1,26 @@
 package com.project.bean.others;
 
+/**
+ * 轮播图广告
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class BannerBean {
 	private Integer banner_id;
-	private String banner_title;
-	private String banner_img;
-	private String banner_url;
-	private String banner_url_content;
-	private String banner_type;
+	private String banner_title;//标题
+	private String banner_img;//图片路径
+	private String banner_url;//本地富文本路径
+	private String banner_url_content;//本地富文本内容
+	private String banner_type;//common:普通 goods:商品 chain:外链
 	private String banner_type_show;
-	private String banner_desc;
-	private String create_time;
-	private Integer sort;
-	private String is_delete;
-	private String banner_position;
+	private String banner_desc;//介绍
+	private String create_time;//创建时间
+	private Integer sort;//权重
+	private String is_delete;//1删除
+	private String banner_position;//home:所有主页 wechat_home:微信首页 pc_home:PC主页 app_home:app主页
 	private String banner_position_show;
-	private Integer goods_id;
-	private String chain_url;
+	private Integer goods_id;//商品轮播图关联商品id
+	private String chain_url;//外链url
 	public Integer getBanner_id() {
 		return banner_id;
 	}

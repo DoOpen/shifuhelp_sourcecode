@@ -2,81 +2,86 @@ package com.project.bean.member;
 
 import java.util.List;
 
+/**
+ * 用户信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class MemberBean {
 	private Integer member_id;
-	private String member_account;
-	private String member_password;
-	private String member_token;
-	private String member_real_name;
-	private String member_nick_name;
-	private String member_phone;
+	private String member_account;//登录账号
+	private String member_password;//登录密码
+	private String member_token;//token令牌
+	private String member_real_name;//真实姓名
+	private String member_nick_name;//昵称
+	private String member_phone;//绑定手机号
 	private String id_number;//身份证号
 	private String special_skill;//特殊技能
 	private String recommend_phone;//推荐人手机号
 	private String custome_refuse_note;//客服审核拒绝原因
-	private String member_type;
-	private String member_create_time;
-	private String member_update_time;
-	private String member_is_delete;
-	private String member_head_image;
-	private String member_sex;
-	private String member_age;
-	private String member_work_type;
-	private String member_work_age;
-	private String member_state;
-	private Integer member_integral;
-	private String member_bank_name;
-	private String member_bank_open_name;
-	private String member_bank__user_name;
-	private String member_bank_code;
-	private String member_bank_phone;
-	private String member_certificate;
-	private String member_certificate_content;
-	private Float member_freeze_money;
-	private Float member_total_money;
-	private Float member_extract_money;
-	private Float member_deposit_money;
-	private String member_alipay;
-	private String member_alipay_real_name;
-	private String member_we_chat;
-	private String member_we_chat_real_name;
-	private String member_open_id;
-	private String member_service_name;
-	private String member_service_phone;
-	private String member_service_country;
-	private String member_service_province;
-	private String member_service_city;
-	private String member_service_district;
-	private String member_service_detail;
-	private String member_qrcode_img;
-	private String member_pay_password;
-	private Integer merchants_account_id;
-	private String member_is_star;
-	private String member_is_star_show;
-	private String month_time;
-	private String month_integral;
-	private String member_service_longitude;
-	private String member_service_latitude;
-	private Integer member_service_number;
-	private Integer member_service_good_number;
-	private String member_good_rate;
-	private String nead_deposit;
-	private String is_sign;
-	private String member_old_password;
-	private String star_worker_info;
-	private String star_worker_info_content;
-	private String member_state_show;
-	private String customer_note;
-	private String is_disable;
-	private String is_disable_show;
-	private String disable_note;
-	private String district;
+	private String member_type;//0用户 1师傅
+	private String member_create_time;//注册时间
+	private String member_update_time;//修改时间
+	private String member_is_delete;//1删除
+	private String member_head_image;//头像地址
+	private String member_sex;//性别
+	private String member_age;//年龄
+	private String member_work_type;//师傅工种
+	private String member_work_age;//师傅工龄
+	private String member_state;//1冻结
+	private Integer member_integral;//积分
+	private String member_bank_name;//银行名称
+	private String member_bank_open_name;//开户行名称
+	private String member_bank_user_name;//开户人姓名
+	private String member_bank_code;//银行卡账号
+	private String member_bank_phone;//开户人手机号
+	private String member_certificate;//师傅证书地址
+	private String member_certificate_content;//师傅证书内容
+	private Float member_freeze_money;//冻结金额
+	private Float member_total_money;//总余额
+	private Float member_extract_money;//可提现金额
+	private Float member_deposit_money;//师傅注册押金
+	private String member_alipay;//支付宝号
+	private String member_alipay_real_name;//支付宝真实姓名
+	private String member_we_chat;//微信号
+	private String member_we_chat_real_name;//微信真实姓名
+	private String member_open_id;//微信openid
+	private String member_service_name;//师傅服务地址姓名
+	private String member_service_phone;//服务地址电话
+	private String member_service_country;//服务地址-国家
+	private String member_service_province;//服务地址-省
+	private String member_service_city;//服务地址-市
+	private String member_service_district;//服务地址-区
+	private String member_service_detail;//服务地址-详细地址
+	private String member_service_longitude;//服务地址经度
+	private String member_service_latitude;//服务地址维度
+	private String member_qrcode_img;//二维码图片地址
+	private String member_pay_password;//余额支付密码
+	private Integer merchants_account_id;//商家账号id
+	private String member_is_star;//1明星师傅
+	private String member_is_star_show;//
+	private String month_time;//月服务次数
+	private String month_integral;//月获得积分
+	private Integer member_service_number;//服务次数
+	private Integer member_service_good_number;//好评次数
+	private String member_good_rate;//好评率
+	private String nead_deposit;//缴纳押金金额
+	private String is_sign;//是否今日已签到
+	private String member_old_password;//旧密码
+	private String star_worker_info;//明星师傅介绍路径
+	private String star_worker_info_content;//明星师傅介绍内容
+	private String member_state_show;//
+	private String customer_note;//客服审核备注
+	private String is_disable;//1冻结
+	private String is_disable_show;//
+	private String disable_note;//冻结原因
+	private String district;//区域
 	private String audit_pass_time;//客服审核通过时间
 	private Float assessment_star1;//服务满意度
 	private Float assessment_star2;//速度满意度
 	private Float assessment_star3;//做工满意度
-	private String process_show;//工艺展示
-	private String process_show_content;
+	private String process_show;//工艺展示路径
+	private String process_show_content;//工艺展示内容
 	private String distance;//距离
 	private String last_update_head_img_time;//上次更新头像时间
 	private List<AddressBean> addressBeans;
@@ -499,11 +504,11 @@ public class MemberBean {
 		this.member_bank_name = member_bank_name;
 		return this;
 	}
-	public String getMember_bank__user_name() {
-		return member_bank__user_name;
+	public String getMember_bank_user_name() {
+		return member_bank_user_name;
 	}
-	public MemberBean setMember_bank__user_name(String member_bank__user_name) {
-		this.member_bank__user_name = member_bank__user_name;
+	public MemberBean setMember_bank_user_name(String member_bank_user_name) {
+		this.member_bank_user_name = member_bank_user_name;
 		return this;
 	}
 	public String getMember_bank_code() {

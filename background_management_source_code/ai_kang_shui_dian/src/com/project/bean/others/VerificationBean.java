@@ -1,22 +1,24 @@
 package com.project.bean.others;
 
+/**
+ * 短信平台配置信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class VerificationBean {
 	private Integer verification_id;
-	private String verification_url;
-	private String verification_account;
-	private String verification_password;
-	private String verification_content;
-	private String verification_userid;
+	private String verification_url;//接口调用地址
+	private String verification_account;//账号
+	private String verification_password;//密码
+	private String verification_content;//验证码内容
+	private String verification_userid;//用户id
+	private String key_account;//私钥账号
+	private String key_mobile;//私钥手机号
+	private String key_content;//私钥内容
+	private String key_password;//私钥密码
+	private String key_userid;//私钥用户id
+	private Integer effective_time;//到期时间
 	
-	private String key_account;
-	private String key_mobile;
-	private String key_content;
-	private String key_password;
-	private String key_userid;
-	
-	private Integer effective_time;
-	
-
 	public String getVerification_userid() {
 		return verification_userid==null?"":verification_userid;
 	}

@@ -2,14 +2,19 @@ package com.project.bean.goods;
 
 import java.util.List;
 
+/**
+ * 商品规格总表
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class SpecificationBean {
 	private Integer specification_id;
-	private String specification_name;
-	private String is_delete;
-	private String sort;
-	private String create_time;
-	private String update_time;
-	private Integer parent_id;
+	private String specification_name;//规格名称
+	private String is_delete;//1删除
+	private String sort;//权重
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private Integer parent_id;//父规格id
 	private List<SpecificationBean> specificationBeans;
 	private SpecificationBean specificationBean;
 	

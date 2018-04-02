@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 import com.project.bean.member.MemberBean;
 import com.project.bean.member.MemberIntegralBean;
 import com.project.bean.others.LocationBean;
-import com.project.bean.system.SettingBean;
 import com.project.bean.workOrder.ServiceClassBean;
 import com.project.bean.workOrder.WorkOrderBean;
 import com.project.dao.interfaces.SettingDaoI;

@@ -2,22 +2,27 @@ package com.project.bean.information;
 
 import java.util.List;
 
+/**
+ * 资讯详情
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class InformationBean {
 	private Integer information_id;
-	private String information_title;
-	private String information_desc;
-	private String information_img;
-	private String information_url;
-	private String information_type;
-	private String create_time;
-	private Integer parent_id;
-	private Integer is_delete;
-	private Integer is_recommend;
+	private String information_title;//资讯标题
+	private String information_desc;//资讯详情
+	private String information_img;//资讯缩略图
+	private String information_url;//富文本地址
+	private String information_type;//类型
+	private String create_time;//创建时间
+	private Integer parent_id;//父节点id
+	private Integer is_delete;//1删除
+	private Integer is_recommend;//1推荐
 	private String is_recommend_show;
-	private Integer see_num;
-	private String information_author;
-	private Integer sort;
-	private String infotmation_tag;
+	private Integer see_num;//浏览次数
+	private String information_author;//作者
+	private Integer sort;//权重
+	private String infotmation_tag;//资讯标签
 	private List<InformationImgBean> informationImgBeans;
 	
 	public String getInfotmation_tag() {

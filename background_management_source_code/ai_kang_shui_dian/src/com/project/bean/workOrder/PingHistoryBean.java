@@ -2,22 +2,27 @@ package com.project.bean.workOrder;
 
 import com.project.bean.member.MemberBean;
 
+/**
+ * ping++支付记录
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class PingHistoryBean {
 	private Integer ping_id;
-	private String order_no;
-	private Integer order_id;
-	private String ping_type;
+	private String order_no;//订单号
+	private Integer order_id;//订单id
+	private String ping_type;//workerDeposit:师傅押金workOrderDeposit:预约工单押金workOrderComplete：工单结算金额
 	private String ping_type_show;
-	private String create_time;
-	private Float price;
-	private Integer member_id;
-	private String member_real_name;
-	private String member_account;
-	private String member_nick_name;
-	private String channel;
+	private String create_time;//创建时间
+	private Float price;//支付价格
+	private Integer member_id;//用户id
+	private String member_real_name;//用户真实姓名
+	private String member_account;//用户账号
+	private String member_nick_name;//用户昵称
+	private String channel;//支付凭据
 	private MemberBean memberBean;
-	private String start_time;
-	private String end_time;
+	private String start_time;//搜索开始时间
+	private String end_time;//搜索结束时间
 	public String getStart_time() {
 		return start_time;
 	}

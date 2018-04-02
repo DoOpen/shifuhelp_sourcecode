@@ -1,16 +1,21 @@
 package com.project.bean.training;
 
+/**
+ * 培训课堂
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class TrainingBean {
 	private Integer training_id;
-	private String training_title;
-	private String training_profile;
-	private String training_content_url;
-	private String training_video_url;
-	private String is_delete;
-	private String create_time;
-	private Integer class_id;
-	private String type;
-	private String training_img;
+	private String training_title;//培训标题
+	private String training_profile;//配置文件
+	private String training_content_url;//内容链接
+	private String training_video_url;//视频链接
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private Integer class_id;//分类id
+	private String type;//类型
+	private String training_img;//缩略图
 	public String getTraining_img() {
 		return training_img;
 	}

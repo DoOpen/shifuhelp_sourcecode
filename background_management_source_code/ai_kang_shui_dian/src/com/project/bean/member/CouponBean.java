@@ -1,28 +1,33 @@
 package com.project.bean.member;
 
+/**
+ * 优惠券
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class CouponBean {
 	private Integer coupon_id;
-	private Integer member_coupon_id;
-	private String coupon_name;
-	private Integer coupon_price;
-	private Integer coupon_full_price;
-	private String coupon_desc;
-	private String start_time;
-	private String end_time;
-	private String coupon_type;
-	private String coupon_type_show;
-	private String is_delete;
-	private String create_time;
-	private String coupon_img;
-	private String coupon_way;
-	private String coupon_postion;
-	private String coupon_postion_show;
-	private Integer goods_id;
-	private Integer class_id;
-	private String class_uuid;
-	private Integer member_id;
-	private Integer valid_day;
-	private String coupon_state;
+	private Integer member_coupon_id;//用户领取优惠券id
+	private String coupon_name;//优惠卷名称
+	private Integer coupon_price;//优惠卷价格
+	private Integer coupon_full_price;//优惠卷满减价格
+	private String coupon_desc;//优惠卷介绍
+	private String start_time;//开始时间
+	private String end_time;//结束时间
+	private String coupon_type;//优惠卷类型      goods:商品  merchants:商家 class:分类   platform:平台
+	private String coupon_type_show;//
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String coupon_img;//展示图片
+	private String coupon_way;//领取方式
+	private String coupon_postion;//展示位置  coupon:领卷中心
+	private String coupon_postion_show;//
+	private Integer goods_id;//可使用商品id
+	private Integer class_id;//可使用分类id
+	private String class_uuid;//可使用分类uuid
+	private Integer member_id;//用户id
+	private Integer valid_day;//有效天数
+	private String coupon_state;//状态      not_used:未使用  already_used:已使用  expired:过期
 	private String is_save_take;//是否保存已领取 1保留0不保留
 	private String is_repeat_take;//是否允许重复领取 1允许 0不允许
 	public String getIs_save_take() {

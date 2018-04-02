@@ -1,28 +1,33 @@
 package com.project.bean.member;
 
+/**
+ * 用户提现
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class WithdrawalBean {
 	private Integer withdrawal_id;
-	private Integer member_id;
-	private String member_account;
-	private String member_real_name;
-	private Float withdrawal_price;
-	private String withdrawal_state;
+	private Integer member_id;//用户id
+	private String member_account;//用户账号
+	private String member_real_name;//用户真实姓名
+	private Float withdrawal_price;//提现金额
+	private String withdrawal_state;//提现状态     wait_review:等待审核  accept:接受  refuse:拒绝 end:已打款
 	private String withdrawal_state_show;
-	private String withdrawal_no;
-	private String withdrawal_way;
+	private String withdrawal_no;//提现账号
+	private String withdrawal_way;//提现方式  bank：银行卡提现   we_chat微信  alipay:支付宝
 	private String withdrawal_way_show;
-	private String is_delete;
-	private String pay_time;
-	private String create_time;
-	private String update_time;
-	private String start_time;
-	private String end_time;
-	private String bank_name;
-	private String bank_open_name;
-	private String bank_user_name;
-	private String bank_open_mobile;
-	private String refuse_note;
-	private String order_no;
+	private String is_delete;//1删除
+	private String pay_time;//打款时间
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String start_time;//搜索开始时间
+	private String end_time;//搜索结束时间
+	private String bank_name;//银行名称
+	private String bank_open_name;//开户行名称
+	private String bank_user_name;//开户人姓名
+	private String bank_open_mobile;//开户人手机号
+	private String refuse_note;//拒绝原因
+	private String order_no;//提现流水号
 	private String member_extract_money;//用户可提现余额
 	
 	public String getMember_extract_money() {

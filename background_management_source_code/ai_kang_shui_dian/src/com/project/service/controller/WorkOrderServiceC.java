@@ -90,7 +90,27 @@ public class WorkOrderServiceC {
 			}
 		}
 		workOrderBean.setOrder_update_time(TimeUtils.getCurrentTime()).setIs_lock("0");
-		return workOrderDao.updateOrder(workOrderBean);
+		int num= workOrderDao.updateOrder(workOrderBean);
+		if(num>0&&type.equals("pass")&&"0".equals(workOrderBean2.getOrder_state())) {
+			//群发抢单信息
+			this.massRobberyWorkOrder(workOrderBean2);
+		}
+		return num;
+	}
+
+	/**
+	 * 群发抢单信息
+	 * @param workOrderBean
+	 */
+	private void massRobberyWorkOrder(WorkOrderBean workOrderBean) {
+		WorkOrderBean workOrderBean2=workOrderDao.getWorkOrderDetail(workOrderBean);
+		List<MemberBean> memberBeans=memberDao.getWorkerListByOrderAddress(workOrderBean2);
+		if(memberBeans!=null) {
+			for(MemberBean memberBean:memberBeans) {
+				System.out.println("抢单推送成功，推送用户id"+memberBean.getMember_id());
+				JPushUtils.myJPushClient("你附近有新工单来了，赶紧去抢单吧!", memberBean.getMember_id()+"", "grab_work_order");
+			}
+		}
 	}
 
 	/**
@@ -107,16 +127,16 @@ public class WorkOrderServiceC {
 			sb.append("2,11,");
 		} else if ("complete_accept".equals(type)) {
 			// 已接单
-			sb.append("3,5,");
+			sb.append("3,5,8,");
 		} else if ("cancel".equals(type)) {
 			//已退单
 			return workOrderDao.getRefundOrderList(pageBean);
 		} else if ("wait_audit".equals(type)) {
 			// 待审核
-			sb.append("0,7,4,6,12,");
+			sb.append("0,4,6,12,");
 		} else if ("complete".equals(type)) {
 			// 已完成
-			sb.append("8,9,");
+			sb.append("7,9,");
 		} else if ("loss".equals(type)) {
 			// 超时
 			sb.append("10,");
@@ -163,6 +183,12 @@ public class WorkOrderServiceC {
 		}else{
 			workOrderBean.setOrder_address_longitude(locationBean.getLongitude()).setOrder_address_latitude(locationBean.getLatitude());
 		}
+		ServiceClassBean serviceClassBean=workOrderDao.getServiceClassDetail(new ServiceClassBean().setClass_id(workOrderBean.getOrder_class_id()));
+		if(serviceClassBean==null) {
+			throw new Exception("服务分类不存在");
+		}else {
+			workOrderBean.setService_class_price(Float.valueOf(serviceClassBean.getClass_price()));
+		}
 		return workOrderDao.updateOrder(workOrderBean);
 	}
 
@@ -177,7 +203,7 @@ public class WorkOrderServiceC {
 				.setOrder_state("11").setOrder_audit_pass_time(TimeUtils.getCurrentTime());
 		int num=workOrderDao.updateOrder(workOrderBean);
 		if(num>0) {
-			JPushUtils.myJPushClient("收到新得派单，请及时接受!", workOrderBean.getOrder_accept_id()+"", "0");
+			JPushUtils.myJPushClient("收到新得派单，请及时接受!", workOrderBean.getOrder_accept_id()+"", "send_work_order");
 		}
 		return num;
 	}

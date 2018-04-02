@@ -3,28 +3,33 @@ package com.project.bean.order;
 import com.project.bean.goods.GoodsBean;
 import com.project.bean.goods.GoodsSpecificationBean;
 
+/**
+ * 订单(购物车)关联商品信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class OrderGoodsBean {
 	private Integer order_goods_id;
-	private Integer order_id;
-	private Integer goods_id;
-	private Integer goods_num;
-	private String goods_name;
-	private String goods_img;
-	private Integer specification_id;
-	private String specification_ids;
-	private String specification_names;
-	private String specification_img;
-	private Float specification_price;
-	private Float group_price;
-	private Integer goods_group_id;
-	private Integer give_integral_value;
-	private String total_price;
-	private String is_delete;
-	private String create_time;
-	private String update_time;
-	private String is_refund;
-	private String show_type;
-	private String buy_type;
+	private Integer order_id;//订单id
+	private Integer goods_id;//商品id
+	private Integer goods_num;//购买数量
+	private String goods_name;//商品名称
+	private String goods_img;//商品图片
+	private Integer specification_id;//规格id
+	private String specification_ids;//规格id组合
+	private String specification_names;//规格名称组合
+	private String specification_img;//规格图片
+	private Float specification_price;//规格价格
+	private Float group_price;//团购价格
+	private Integer goods_group_id;//团购id
+	private Integer give_integral_value;//赠送积分值
+	private String total_price;//总价格
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String is_refund;//是否已申请退款
+	private String show_type;//商品展示类型   app:师傅端   wx:微信端
+	private String buy_type;//商品购买类型  money:余额 integral:积分
 	private GoodsBean goodsBean;
 	private GoodsSpecificationBean goodsSpecificationBean;
 	

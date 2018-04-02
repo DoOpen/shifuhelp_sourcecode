@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.dao.interfaces.CollectionDaoI">
 	<select id="getCollectionList" parameterType="collectionBean" resultType="collectionBean">
-		select * from member_collection where is_delete=0 and member_id=#{member_id}
+		select a.* from member_collection as a inner join goods as b on a.goods_id=b.goods_id and a.is_delete=0 and b.is_delete=0 where a.member_id=#{member_id}
 		order by create_time desc	
 	</select>
 	<insert id="insertCollection" parameterType="collectionBean" useGeneratedKeys="true" keyProperty="collection_id">

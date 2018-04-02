@@ -1,12 +1,17 @@
 package com.project.bean.goods;
 
+/**
+ * 商品轮播图片
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class GoodsImgBean {
 	private Integer img_id;
 	private Integer goods_id;//商品id
 	private String img_url;//图片路径
 	private String sort;//权重
-	private String create_time;//
-	private String update_time;//
+	private String create_time;//创建时间
+	private String update_time;//修改时间
 	private String is_delete;//是否删除
 	public Integer getImg_id() {
 		return img_id;

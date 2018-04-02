@@ -66,12 +66,12 @@
 		AND a.order_service_quality=5 AND a.order_is_delete=0 AND a.order_member_id=#{member_id})/(SELECT COUNT(b.order_id) 
 		FROM work_order AS b WHERE b.order_is_delete=0 AND b.order_service_attitude IS NOT NULL and b.order_member_id=#{member_id}) AS member_good_rate
 	</select>
-	<update id="deleteMemberMsg" parameterType="messageBean" >
+	<update id="deleteMemberMsg" parameterType="memberMsgBean" >
 		update member_msg
 		set is_delete='1'
 		where msg_id=#{msg_id}
 	</update>
-	<select id="getMemberMsgList" parameterType="messageBean" resultType="messageBean">
+	<select id="getMemberMsgList" parameterType="memberMsgBean" resultType="memberMsgBean">
 		select * from member_msg
 		where member_id=#{member_id} and is_delete='0'
 		<if test="msg_type !=null and msg_type !='' ">
@@ -255,8 +255,8 @@
 			<if test=' member_bank_open_name != null and member_bank_open_name != "" '>
 				member_bank_open_name=#{member_bank_open_name},
 			</if>
-			<if test=' member_bank__user_name != null and member_bank__user_name != "" '>
-				member_bank__user_name=#{member_bank__user_name},
+			<if test=' member_bank_user_name != null and member_bank_user_name != "" '>
+				member_bank_user_name=#{member_bank_user_name},
 			</if>
 			<if test=' member_bank_code != null and member_bank_code != "" '>
 				member_bank_code=#{member_bank_code},

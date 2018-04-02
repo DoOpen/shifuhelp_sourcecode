@@ -249,22 +249,22 @@
 	</select>
 	<select id="getWorkOrderStateCount" resultType="map" parameterType="systemAccountBean">
 		SELECT (CASE
-		WHEN SUM(CASE WHEN order_state IN (0,7,4,6,12) THEN
+		WHEN SUM(CASE WHEN order_state IN (0,4,6,12) THEN
 		1 ELSE 0 END) IS
 		NULL THEN 0 ELSE SUM(CASE WHEN
-		order_state IN (0,7,4,6,12) THEN 1 ELSE
+		order_state IN (0,4,6,12) THEN 1 ELSE
 		0 END) END )AS
 		wait_audit,
 		(CASE WHEN SUM(CASE WHEN
-		order_state IN (3,5) THEN 1
+		order_state IN (3,5,8) THEN 1
 		ELSE 0 END) IS NULL THEN 0 ELSE SUM(CASE
-		WHEN order_state IN (3,5)
+		WHEN order_state IN (3,5,8)
 		THEN 1 ELSE 0 END) END )AS complete_accept,
 		(CASE WHEN
 		SUM(CASE WHEN
-		order_state IN (8,9) THEN 1 ELSE 0 END) IS
+		order_state IN (7,9) THEN 1 ELSE 0 END) IS
 		NULL THEN 0 ELSE SUM(CASE
-		WHEN order_state IN (8,9) THEN 1 ELSE
+		WHEN order_state IN (7,9) THEN 1 ELSE
 		0
 		END) END )AS complete,
 		(CASE WHEN SUM(CASE WHEN

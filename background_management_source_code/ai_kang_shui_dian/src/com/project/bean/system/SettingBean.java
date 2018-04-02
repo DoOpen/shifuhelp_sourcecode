@@ -1,13 +1,18 @@
 package com.project.bean.system;
 
+/**
+ * 系统设置
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class SettingBean {
 	private Integer setting_id;
-	private String setting_name;
-	private String setting_value;
-	private String setting_desc;
-	private String is_delete;
-	private String create_time;
-	private String update_time;
+	private String setting_name;//名称
+	private String setting_value;//参数值
+	private String setting_desc;//介绍
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String update_time;//修改时间
 	private String setting_unit;//设置单位
 	public String getSetting_unit() {
 		return setting_unit;

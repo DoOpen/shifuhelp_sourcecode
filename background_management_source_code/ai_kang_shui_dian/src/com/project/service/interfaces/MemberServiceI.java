@@ -9,12 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.gson.Gson;
 
 import com.project.bean.member.BalanceHistoryBean;
-import com.project.bean.member.IntegralBean;
 import com.project.bean.member.MemberBean;
 import com.project.bean.member.MemberIntegralBean;
 import com.project.bean.member.MemberMsgBean;
 import com.project.bean.member.MemberReportedBean;
-import com.project.bean.member.MessageBean;
 import com.project.bean.member.SignBean;
 import com.project.bean.member.WithdrawalBean;
 import com.project.bean.member.WorkTypeBean;
@@ -50,7 +48,7 @@ public class MemberServiceI {
 	/**
 	 * 添加用户消息
 	 * 
-	 * @param messageBean
+	 * @param memberMsgBean
 	 * @return
 	 */
 	public int insertMemberMsg(MemberMsgBean memberMsgBean) {
@@ -62,8 +60,8 @@ public class MemberServiceI {
 	 * 
 	 * @return
 	 */
-	public int deleteMemberMsg(MessageBean messageBase) {
-		return memberDao.deleteMemberMsg(messageBase);
+	public int deleteMemberMsg(MemberMsgBean memberMsgBean) {
+		return memberDao.deleteMemberMsg(memberMsgBean);
 	}
 
 	/**
@@ -72,8 +70,8 @@ public class MemberServiceI {
 	 * @param memberBean
 	 * @return
 	 */
-	public List<MessageBean> getMemberMsgList(MessageBean messageBean, PageBean pageBean) {
-		List<MessageBean> messageBeans = memberDao.getMemberMsgList(messageBean, pageBean);
+	public List<MemberMsgBean> getMemberMsgList(MemberMsgBean memberMsgBean, PageBean pageBean) {
+		List<MemberMsgBean> memberMsgBeans = memberDao.getMemberMsgList(memberMsgBean, pageBean);
 //		if (messageBeans != null) {
 //			for (MessageBean messageBean1 : messageBeans) {
 //				if ("order".equals(messageBean1.getMsg_type())) {
@@ -95,7 +93,7 @@ public class MemberServiceI {
 //				}
 //			}
 //		}
-		return messageBeans;
+		return memberMsgBeans;
 	}
 
 	/**
@@ -400,7 +398,7 @@ public class MemberServiceI {
 			withdrawalBean.setMember_id(memberBean.getMember_id()).setWithdrawal_way("bank")
 			.setWithdrawal_no(memberBean.getMember_bank_code()).setBank_name(memberBean.getMember_bank_name())
 			.setBank_open_mobile(memberBean.getMember_bank_phone())
-			.setBank_user_name(memberBean.getMember_bank__user_name())
+			.setBank_user_name(memberBean.getMember_bank_user_name())
 			.setBank_open_name(memberBean.getMember_bank_open_name());
 		}else if ("alipay".equals(withdrawalBean.getWithdrawal_way())){
 			if (memberBean.getMember_alipay() == null||"".equals(memberBean.getMember_alipay())) {
@@ -503,7 +501,7 @@ public class MemberServiceI {
 	 * @param memberBean
 	 * @return
 	 */
-	public List<IntegralBean> getIntegralGetRecord(MemberBean memberBean, PageBean pageBean) {
+	public List<MemberIntegralBean> getIntegralGetRecord(MemberBean memberBean, PageBean pageBean) {
 		return memberDao.getIntegralGetRecord(memberBean, pageBean);
 	}
 

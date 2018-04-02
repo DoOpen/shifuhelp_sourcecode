@@ -10,8 +10,6 @@ import com.project.bean.others.CodeBean;
 import com.project.bean.others.HtmlBean;
 import com.project.bean.others.HtmlStyleBean;
 import com.project.bean.others.MsgTypeBean;
-import com.project.bean.others.PercentBean;
-import com.project.bean.others.PlatformBean;
 import com.project.bean.others.VerificationBean;
 import com.project.bean.system.AppVersionBean;
 import com.project.bean.system.SettingBean;
@@ -55,23 +53,11 @@ public interface SettingDaoI {
 	public PingSettingBean getPingSetting();
 	
 	/**
-	 * 平台比例设置
-	 * @param wxSetingBean
-	 * @return
-	 */
-	public PercentBean getPercentDetail(PercentBean percentBean);
-	
-	/**
 	 * 微信配置
 	 * @param wxSetingBean
 	 * @return
 	 */
 	public WXSettingBean getWXSetting(WXSettingBean wxSetingBean);
-	
-	/**
-	 * 平台基本信息
-	 */
-	public PlatformBean getSystemPlatform(PlatformBean platformBean);
 	
 	/**
 	 * 获得所有广告列表

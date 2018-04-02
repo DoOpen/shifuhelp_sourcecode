@@ -1,6 +1,10 @@
 package com.project.bean.goods;
 
-
+/**
+ * 商品规格组合
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class GoodsSpecificationBean {
 	private Integer specification_id;
 	private Integer goods_id;//商品id
@@ -12,9 +16,9 @@ public class GoodsSpecificationBean {
 	private Integer specification_stock;//库存
 	private String specification_img;//图片
 	private Float specification_price;//价格
-	private Integer parent_id;
-	private String create_time;
-	private String update_time;
+	private Integer parent_id;//父规格id
+	private String create_time;//创建时间
+	private String update_time;//修改时间
 	public Integer getSpecification_id() {
 		return specification_id;
 	}

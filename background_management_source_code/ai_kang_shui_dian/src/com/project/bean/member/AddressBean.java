@@ -1,22 +1,27 @@
 package com.project.bean.member;
 
+/**
+ * 收货地址
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class AddressBean {
 	private Integer address_id;
-	private Integer member_id;
-	private String address_flag;
-	private String address_mobile;
-	private String address_name;
-	private String address_province;
-	private String address_city;
-	private String address_district;
-	private String address_detail;
-	private String address_zip_code;
-	private String address_longitude;
-	private String address_latitude;
-	private String create_time;
-	private String update_time;
-	private String is_default;
-	private String is_delete;
+	private Integer member_id;//用户id
+	private String address_flag;//地址标签
+	private String address_mobile;//收货人手机号
+	private String address_name;//收货人姓名
+	private String address_province;//省
+	private String address_city;//市
+	private String address_district;//区
+	private String address_detail;//详细地址
+	private String address_zip_code;//邮编
+	private String address_longitude;//经度
+	private String address_latitude;//维度
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String is_default;//1默认地址
+	private String is_delete;//1删除
 	public Integer getAddress_id() {
 		return address_id;
 	}

@@ -1,11 +1,16 @@
 package com.project.bean.member;
 
+/**
+ * 师傅工种
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class WorkTypeBean {
 	private Integer type_id;
-	private String type_name;
-	private String is_delete;
-	private String create_time;
-	private String sort;
+	private String type_name;//工种名称
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String sort;//权重
 	public Integer getType_id() {
 		return type_id;
 	}

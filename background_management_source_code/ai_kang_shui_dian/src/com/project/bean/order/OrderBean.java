@@ -4,11 +4,16 @@ import java.util.List;
 
 import com.project.bean.member.AddressBean;
 
+/**
+ * 订单
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class OrderBean {
 	private Integer order_id;//订单id
 	private String order_ids;//订单id列表
 	private Integer member_id;//用户id
-	private Integer member_group_id;
+	private Integer member_group_id;//用户团购id
 	private String order_no;//订单号
 	private Integer address_id;//收货地址id
 	private String address_mobile;//收货人手机号
@@ -70,13 +75,13 @@ public class OrderBean {
 	private String invoice_time;//申请时间
 	private String start_time;//订单搜索开始时间
 	private String end_time;//订单搜索结束时间
-	private String search_type;
+	private String search_type;//搜索类型
 	private String buy_type;//购买类型
-	private String goods_name;
-	private String cancel_end_time;
-	private Integer member_coupon_id;
-	private String coupon_full_price;
-	private String coupon_price;
+	private String goods_name;//商品名称
+	private String cancel_end_time;//取消订单结束时间
+	private Integer member_coupon_id;//用户领取的优惠券id
+	private String coupon_full_price;//优惠券满减价格
+	private String coupon_price;//优惠券价格
 	private List<OrderGoodsBean> orderGoodsBeans;//订单商品列表
 	private List<OrderLogisticsBean> orderLogisticsBeans;
 	private AddressBean addressBean;

@@ -63,7 +63,7 @@ public class MemberServiceC {
 	 */
 	public int updateMember(MemberBean memberBean) {
 		MemberBean memberBean2=memberDao.getMemberDetail(memberBean);
-		if(memberBean.getMember_state().equals("1")&&!memberBean2.getMember_state().equals(1)) {
+		if(memberBean.getMember_state().equals("1")&&!memberBean2.getMember_state().equals("1")) {
 			memberBean.setAudit_pass_time(TimeUtils.getCurrentTime());
 		}
 		LocationBean locationBean=GaoDeUtils.addressToLocation(memberBean.getMember_service_province()+memberBean.getMember_service_city()+memberBean.getMember_service_district()+memberBean.getMember_service_detail());

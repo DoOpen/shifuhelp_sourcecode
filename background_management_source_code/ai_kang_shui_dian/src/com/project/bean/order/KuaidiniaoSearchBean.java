@@ -2,14 +2,19 @@ package com.project.bean.order;
 
 import java.util.List;
 
+/**
+ * 快递鸟快递查询信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class KuaidiniaoSearchBean {
-	private String StateEx;
-	private String LogisticCode;
-	private String ShipperCode;
-	private String State;
-	private String EBusinessID;
-	private String Success;
-	private String Location;
+	private String StateEx;//增值物流状态： 1-已揽收， 2-在途中， 201-到达派件城市， 202-派件中， 211-已放入快递柜或驿站， 3-已签收， 311-已取出快递柜或驿站， 4-问题件， 401-发货无信息， 402-超时未签收， 403-超时未更新， 404-拒收（退件）， 412-快递柜或驿站超时未取
+	private String LogisticCode;//物流单号
+	private String ShipperCode;//快递公司编码
+	private String State;//成功与否
+	private String EBusinessID;//商户ID
+	private String Success;//成功与否
+	private String Location;//增值所在城市
 	private List<TracesBean> Traces;
 
 	public String getStateEx() {

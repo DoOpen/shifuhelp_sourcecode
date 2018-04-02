@@ -1,35 +1,40 @@
 package com.project.bean.order;
 
+/**
+ * 售后信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class RefundBean {
 	private Integer refund_id;
-	private Integer member_id;
-	private Integer order_id;
-	private String member_nick_name;
-	private String goods_name;
-	private String order_no;
-	private Integer order_goods_id;
-	private String refund_type;
+	private Integer member_id;//用户id
+	private Integer order_id;//订单id
+	private String member_nick_name;//用户昵称
+	private String goods_name;//商品名称
+	private String order_no;//订单单号
+	private Integer order_goods_id;//订单关联商品id
+	private String refund_type;//only_money:仅退款 refund_goods:退货退款
 	private String refund_type_show;
-	private String refund_no;
-	private String refund_ping_no;
-	private Integer refund_count;
-	private String refund_desc;
-	private String refund_state;
+	private String refund_no;//售后订单号
+	private String refund_ping_no;//ping++支付单号
+	private Integer refund_count;//退款数量
+	private String refund_desc;//退款简介
+	private String refund_state;//wait_review：等待审核  accept:接受 refuse：拒绝  end:退款成功
 	private String refund_state_show;
-	private Float refund_price;
-	private Integer refund_reason_id;
-	private String reason_name;
-	private String refuse_note;
-	private String create_time;
-	private String update_time;
-	private String is_delete;
-	private String logistics_no;
-	private String logistics_name;
-	private String start_time;
-	private String end_time;
-	private String refund_img1;
-	private String refund_img2;
-	private String refund_img3;
+	private Float refund_price;//退款金额
+	private Integer refund_reason_id;//退款原因id
+	private String reason_name;//退款原因
+	private String refuse_note;//客服拒绝备注
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String is_delete;//1删除
+	private String logistics_no;//物流单号
+	private String logistics_name;//物流公司名称
+	private String start_time;//搜索开始时间
+	private String end_time;//搜索结束时间
+	private String refund_img1;//退款图片1
+	private String refund_img2;//退款图片2
+	private String refund_img3;//退款图片3
 	private OrderBean orderBean;
 	private OrderGoodsBean orderGoodsBean;
 	public String getMember_nick_name() {

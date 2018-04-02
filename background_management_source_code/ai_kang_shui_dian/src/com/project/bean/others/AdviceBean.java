@@ -2,14 +2,19 @@ package com.project.bean.others;
 
 import java.util.List;
 
+/**
+ * 意见反馈
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class AdviceBean {
 	private Integer advice_id;
-	private String advice_content;
-	private Integer member_id;
-	private String create_time;
-	private String update_time;
-	private Integer is_delete;
-	private String member_nick_name;
+	private String advice_content;//建议内容
+	private Integer member_id;//用户id
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private Integer is_delete;//1删除
+	private String member_nick_name;//用户昵称
 	private List<AdviceImgBean> adviceImgBeans;
 	
 	public String getMember_nick_name() {

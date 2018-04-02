@@ -2,9 +2,6 @@ package com.project.webservice.interfaces;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +11,6 @@ import com.project.bean.others.AdviceBean;
 import com.project.bean.others.BannerBean;
 import com.project.bean.others.CodeBean;
 import com.project.bean.others.HtmlBean;
-import com.project.bean.others.PercentBean;
-import com.project.bean.others.PlatformBean;
 import com.project.bean.others.VerificationBean;
 import com.project.bean.system.AppVersionBean;
 import com.project.bean.system.SettingBean;
@@ -48,16 +43,6 @@ public class SettingInterfaces extends BaseController{
 	@RequestMapping(params = "getAppVersionDetail")
 	public void getAppVersionDetail(AppVersionBean appVersionBean) {
 		WriteObject(settingService.getAppVersionDetail(appVersionBean));
-	}
-	/**
-	 * 获取平台各种配置信息
-	 * @param request
-	 * @param response
-	 */
-	@NotToken
-	@RequestMapping(params = "getSystemPlatform")
-	public void getSystemPlatform(PlatformBean platformBean) {
-		WriteObject(settingService.getSystemPlatform(platformBean));
 	}
 	
 	/**
@@ -105,30 +90,28 @@ public class SettingInterfaces extends BaseController{
 	/**
 	 * 获得微信分享权限
 	 * 
-	 * @param percentBean
+	 * @param 
 	 * @param request
 	 * @param response
 	 * @throws Exception
 	 */
 	@NotToken
 	@RequestMapping(params = "getWxAccessToken", method = RequestMethod.POST)
-	public void getWxAccessToken(PercentBean percentBean)
-			throws Exception {
+	public void getWxAccessToken()throws Exception {
 		WXSettingBean wxSetingBean = settingService.getWXSetting(new WXSettingBean().setWeixin_type("3"));
 		WriteObject(WXUtils.getAccess_token(wxSetingBean.getWeixin_appid(), wxSetingBean.getWeixin_secret()));
 	}
 	/**
 	 * 获得微信分享权限
 	 * 
-	 * @param percentBean
+	 * @param
 	 * @param request
 	 * @param response
 	 * @throws Exception
 	 */
 	@NotToken
 	@RequestMapping(params = "getWxAutho", method = RequestMethod.POST)
-	public void getWxAutho(PercentBean percentBean, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public void getWxAutho()throws Exception {
 		WXSettingBean wxSetingBean = settingService.getWXSetting(new WXSettingBean().setWeixin_type("2"));
 		String url = request.getParameter("url");
 		String access_token = WXUtils.getAccess_token(wxSetingBean.getWeixin_appid(), wxSetingBean.getWeixin_secret());
@@ -140,12 +123,7 @@ public class SettingInterfaces extends BaseController{
 		wxBean.setAppId(wxSetingBean.getWeixin_appid());
 		wxBean.setNonceStr(nonceStr);
 		wxBean.setTimestamp(timestamp + "");
-		String sign = "jsapi_ticket=" + jsapi_ticket + "&noncestr=" + nonceStr + "&timestamp=" + timestamp + "&url="
-				+ url;
-		// Map<String, Object> map = new HashMap<String, Object>();
-		// map.put("jsapi_ticket", jsapi_ticket);
-		// map.put("timestamp", timestamp);
-		// map.put("url", url);
+		String sign = "jsapi_ticket=" + jsapi_ticket + "&noncestr=" + nonceStr + "&timestamp=" + timestamp + "&url="+ url;
 		wxBean.setSignature(EncodeUtils.sha1(sign));
 		WriteObject(wxBean);
 	}

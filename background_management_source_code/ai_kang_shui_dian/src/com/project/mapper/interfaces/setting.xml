@@ -41,23 +41,10 @@
 		select * from ping_setting
 	</select>
 
-	<select id="getPercentDetail" parameterType="percentBean" resultType="percentBean">
-		select * from percent
-		where percent_type=#{percent_type} and is_delete='0'
-	</select>
 	<select id="getWXSetting" parameterType="wxSettingBean" resultType="wxSettingBean">
 		select * from system_weixin limit 1
 	</select>
 	
-	<select id="getSystemPlatform" parameterType="platformBean" resultType="platformBean">
-		select * from system_platform
-		where 1=1
-		<if test=" platform_type !=null and platform_type !=''">
-			and platform_type=#{platform_type}
-		</if>
-		limit 1
-	</select>
-
 	<select id="getBannerList" parameterType="bannerBean" resultType="bannerBean">
 		select a.* from banner as a
 		where a.is_delete='0' 

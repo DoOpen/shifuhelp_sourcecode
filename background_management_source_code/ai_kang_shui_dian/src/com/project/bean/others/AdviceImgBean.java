@@ -1,11 +1,16 @@
 package com.project.bean.others;
 
+/**
+ * 意见反馈图片
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class AdviceImgBean {
 	private Integer advice_img_id;
-	private Integer advice_id;
-	private String advice_img;
-	private String create_time;
-	private String is_delete;
+	private Integer advice_id;//意见id
+	private String advice_img;//图片路径
+	private String create_time;//创建时间
+	private String is_delete;//1删除
 	public Integer getAdvice_img_id() {
 		return advice_img_id;
 	}

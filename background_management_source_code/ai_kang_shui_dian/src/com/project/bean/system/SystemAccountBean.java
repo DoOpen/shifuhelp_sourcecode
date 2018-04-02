@@ -1,25 +1,30 @@
 package com.project.bean.system;
 
+/***
+ * 管理平台账号
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class SystemAccountBean {
 	private Integer account_id;
-	private Integer account_login_id;
-	private String system_name;
-	private String system_account;
-	private String system_img;
-	private String system_password;
-	private String system_old_password;
-	private String system_token;
-	private String system_type;
+	private Integer account_login_id;//登录者id
+	private String system_name;//名称
+	private String system_account;//账号
+	private String system_img;//头像图片
+	private String system_password;//密码
+	private String system_old_password;//旧密码
+	private String system_token;//token令牌
+	private String system_type;//system:系统  merchants:商家
 	private String system_type_show;
-	private Integer role_id;
-	private String role_name;
-	private String is_delete;
-	private String create_time;
-	private String update_time;
-	private String is_disable;
+	private Integer role_id;//角色id
+	private String role_name;//角色名称
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String is_disable;//1禁用
 	private String is_disable_show;
-	private Integer relation_id;
-	private String district;
+	private Integer relation_id;//关联商家id
+	private String district;//区域
 	
 	public String getDistrict() {
 		return district;

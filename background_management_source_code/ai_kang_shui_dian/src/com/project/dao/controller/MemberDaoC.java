@@ -11,6 +11,7 @@ import com.project.bean.member.MemberMsgBean;
 import com.project.bean.member.MemberReportedBean;
 import com.project.bean.member.WithdrawalBean;
 import com.project.bean.member.WorkTypeBean;
+import com.project.bean.workOrder.WorkOrderBean;
 import com.project.page.PageBean;
 
 public interface MemberDaoC {
@@ -192,4 +193,10 @@ public interface MemberDaoC {
 	 * @return
 	 */
 	int insertMemberIntegral(MemberIntegralBean memberIntegralBean);
+	/**
+	 * 获取工单附近区域的师傅列表
+	 * @param workOrderBean2
+	 * @return
+	 */
+	List<MemberBean> getWorkerListByOrderAddress(WorkOrderBean workOrderBean2);
 }

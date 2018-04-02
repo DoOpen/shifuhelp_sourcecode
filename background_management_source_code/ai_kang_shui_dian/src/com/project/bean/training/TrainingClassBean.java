@@ -1,11 +1,16 @@
 package com.project.bean.training;
 
+/**
+ * 培训分类
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class TrainingClassBean {
 	private Integer class_id;
-	private String class_name;
-	private String is_delete;
-	private String create_time;
-	private String sort;
+	private String class_name;//分类名称
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String sort;//权重
 	public String getSort() {
 		return sort;
 	}

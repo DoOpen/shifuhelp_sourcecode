@@ -1,25 +1,30 @@
 package com.project.bean.member;
 
+/**
+ * 信息报备
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class MemberReportedBean {
 	private Integer reported_id;
-	private Integer member_id;
-	private String member_account;
-	private String member_real_name;
-	private String reported_name;
-	private String reported_phone;
-	private String province;
-	private String city;
-	private String district;
-	private String detail;
-	private Integer is_delete;
-	private String reported_img1;
-	private String reported_img2;
-	private String reported_img3;
-	private String create_time;
-	private String update_time;
-	private String reported_state;
-	private String refuse_note;
-	private String reported_note;
+	private Integer member_id;//用户id
+	private String member_account;//用户账号
+	private String member_real_name;//用户真实姓名
+	private String reported_name;//报备人姓名
+	private String reported_phone;//报备人手机号
+	private String province;//报备地址-省
+	private String city;//报备地址-市
+	private String district;//报备地址-区
+	private String detail;//报备地址-详细地址
+	private Integer is_delete;//1删除
+	private String reported_img1;//报备图片1
+	private String reported_img2;//报备图片2
+	private String reported_img3;//报备图片3
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String reported_state;//报备状态  wait_audit：待审核 accept：受理  success：成功  refuse:拒绝
+	private String refuse_note;//拒绝原因
+	private String reported_note;//报备备注
 	private String reported_state_show;
 	public String getReported_note() {
 		return reported_note;

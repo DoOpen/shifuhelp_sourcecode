@@ -1,10 +1,15 @@
 package com.project.bean.order;
 
+/**
+ * 订单评价
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class AssessmentBean {
 	private Integer assessment_id;
 	private Integer member_id;//用户id
-	private String member_head_image;
-	private String member_nick_name;
+	private String member_head_image;//用户头像
+	private String member_nick_name;//昵称
 	private Integer order_id;//订单id
 	private String order_no;//订单号
 	private String assessment_desc;//评价内容
@@ -12,12 +17,12 @@ public class AssessmentBean {
 	private Float assessment_star2;//星级2
 	private Float assessment_star3;//星级3
 	private Integer goods_id;//商品id
-	private String assessment_img1;
-	private String assessment_img2;
-	private String assessment_img3;
-	private String create_time;//
-	private String update_time;//
-	private String is_delete;//
+	private String assessment_img1;//评价图片1
+	private String assessment_img2;//评价图片2
+	private String assessment_img3;//评价图片3
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String is_delete;//1删除
 	
 	public String getMember_head_image() {
 		return member_head_image;

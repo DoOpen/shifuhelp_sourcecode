@@ -1,17 +1,22 @@
 package com.project.bean.member;
 
+/**
+ * 用户消息记录
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class MemberMsgBean {
 	private Integer msg_id;
-	private Integer member_id;
-	private String msg_title;
-	private String msg_desc;
-	private String msg_type;
-	private Integer order_id;
-	private String order_no;
-	private String create_time;
-	private String update_time;
-	private String is_delete;
-	private String is_read;
+	private Integer member_id;//用户id
+	private String msg_title;//消息标题
+	private String msg_desc;//消息内容
+	private String msg_type;//消息类型   order:订单消息  system:系统消息
+	private Integer order_id;////订单id
+	private String order_no;//订单单号
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String is_delete;//1删除
+	private String is_read;//1已读
 	public Integer getMsg_id() {
 		return msg_id;
 	}

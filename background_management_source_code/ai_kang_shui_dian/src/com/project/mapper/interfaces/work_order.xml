@@ -88,7 +88,7 @@
 		FROM work_order AS a 
 		HAVING a.order_state=2 
 		AND distance IS NOT NULL
-		AND distance &lt; 100000
+		AND distance &lt; 20000
 		ORDER BY a.order_update_time DESC LIMIT 0,1
 	</select>
 	<insert id="createWorkOrder" parameterType="workOrderBean" keyProperty="order_id" useGeneratedKeys="true">

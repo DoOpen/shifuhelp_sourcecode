@@ -1,10 +1,15 @@
 package com.project.bean.goods;
 
+/**
+ * 热搜
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class HotSearchBean {
 	private Integer search_id;
-	private String search_name;
-	private String search_num;
-	private String create_time;
+	private String search_name;//搜索关键字
+	private String search_num;//搜索次数
+	private String create_time;//创建时间
 	public Integer getSearch_id() {
 		return search_id;
 	}

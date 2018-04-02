@@ -1,13 +1,18 @@
 package com.project.bean.information;
 
+/**
+ * 资讯图片
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class InformationImgBean {
 	private Integer information_img_id;
-	private Integer information_id;
-	private Integer goods_id;
-	private String goods_name;
-	private Integer is_delete;
-	private String create_time;
-	private String information_img;
+	private Integer information_id;//资讯id
+	private Integer goods_id;//商品id
+	private String goods_name;//商品名称
+	private Integer is_delete;//1删除
+	private String create_time;//创建时间
+	private String information_img;//图片url
 
 	
 	public String getGoods_name() {

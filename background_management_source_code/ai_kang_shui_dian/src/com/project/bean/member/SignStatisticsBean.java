@@ -1,12 +1,16 @@
 package com.project.bean.member;
 
 import com.project.utils.TimeUtils;
-
+/**
+ * 签到状态
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class SignStatisticsBean {
-	private Integer sign_continuity_count_month;
-	private Integer sign_total_count_month;
-	private Integer sign_integral;
-	private Integer sign_leak_count;
+	private Integer sign_continuity_count_month;//月连续签到次数
+	private Integer sign_total_count_month;//当月签到次数
+	private Integer sign_integral;//签到获取积分
+	private Integer sign_leak_count;//当月漏签次数
 	
 	public Integer getSign_leak_count() {
 		return sign_leak_count;

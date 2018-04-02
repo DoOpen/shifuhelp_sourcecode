@@ -1,13 +1,18 @@
 package com.project.bean.order;
 
+/**
+ * 快递鸟发件信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class KuaidiSenderBean {
-	private String Name;
-	private String Mobile;
-	private String ProvinceName;
-	private String CityName;
-	private String ExpAreaName;
-	private String Address;
-	private String PostCode;
+	private String Name;//Name
+	private String Mobile;//手机
+	private String ProvinceName;//发件省（如广东省，不要缺少“省”）
+	private String CityName;//发件市（如深圳市，不要缺少“市”）
+	private String ExpAreaName;//发件区（如福田区，不要缺少“区”或“县”）
+	private String Address;//发件人详细地址
+	private String PostCode;//发件人邮编
 
 	public String getPostCode() {
 		return PostCode;

@@ -1,13 +1,18 @@
 package com.project.bean.order;
 
+/**
+ * 物流公司
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class LogisticsBean {
 	private Integer logistics_id;
-	private String logistics_name;
-	private String logistics_code;
-	private String is_delete;
-	private Integer sort;
-	private String create_time;
-	private String update_time;
+	private String logistics_name;//物流公司名称
+	private String logistics_code;//物流公司编码
+	private String is_delete;//1删除
+	private Integer sort;//权重
+	private String create_time;//创建时间
+	private String update_time;//修改时间
 	public Integer getLogistics_id() {
 		return logistics_id;
 	}

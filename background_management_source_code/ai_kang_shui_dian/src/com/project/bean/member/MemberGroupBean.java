@@ -3,7 +3,11 @@ package com.project.bean.member;
 import java.util.List;
 
 import com.project.bean.order.OrderBean;
-
+/**
+ * 团购信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class MemberGroupBean {
 	private Integer member_group_id;
 	private Integer member_id;//用户id
@@ -16,9 +20,9 @@ public class MemberGroupBean {
 	private String end_time;//团购等待结束时间
 	private String end_time_mill;//团购等待结束时间 毫秒数
 	private String qrcode_img;//二维码
-	private String is_delete;
-	private String create_time;
-	private String update_time;
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String update_time;//修改时间
 	private MemberBean memberBean;
 	private OrderBean orderBean;
 	private List<MemberBean> memberBeans;

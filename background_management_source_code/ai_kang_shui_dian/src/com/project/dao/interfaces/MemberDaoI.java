@@ -3,12 +3,10 @@ package com.project.dao.interfaces;
 import java.util.List;
 
 import com.project.bean.member.BalanceHistoryBean;
-import com.project.bean.member.IntegralBean;
 import com.project.bean.member.MemberBean;
 import com.project.bean.member.MemberIntegralBean;
 import com.project.bean.member.MemberMsgBean;
 import com.project.bean.member.MemberReportedBean;
-import com.project.bean.member.MessageBean;
 import com.project.bean.member.WithdrawalBean;
 import com.project.bean.member.WorkTypeBean;
 import com.project.bean.others.AdviceBean;
@@ -27,13 +25,13 @@ public interface MemberDaoI {
 	 * 删除用户消息
 	 * @return
 	 */
-	public int deleteMemberMsg(MessageBean messageBase);
+	public int deleteMemberMsg(MemberMsgBean memberMsgBean);
 	/**
 	 * 用户消息
 	 * @param memberBean
 	 * @return
 	 */
-	public List<MessageBean> getMemberMsgList(MessageBean messageBean,PageBean pageBean);
+	public List<MemberMsgBean> getMemberMsgList(MemberMsgBean messageBean,PageBean pageBean);
 	/**
 	 * 申请提现列表
 	 * @return
@@ -155,7 +153,7 @@ public interface MemberDaoI {
 	 * @param memberBean
 	 * @return
 	 */
-	public List<IntegralBean> getIntegralGetRecord(MemberBean memberBean,PageBean pageBean);
+	public List<MemberIntegralBean> getIntegralGetRecord(MemberBean memberBean,PageBean pageBean);
 	/**
 	 * 用户报备信息修改
 	 * @param memberReportedBean
@@ -170,7 +168,7 @@ public interface MemberDaoI {
 	public int deleteReported(MemberReportedBean memberReportedBean);
 	/**
 	 * 添加用户消息
-	 * @param messageBean
+	 * @param memberMsgBean
 	 * @return
 	 */
 	public int insertMemberMsg(MemberMsgBean memberMsgBean);

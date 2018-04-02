@@ -1,11 +1,15 @@
 package com.project.bean.others;
-
+/**
+ * 二维码
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class QrcodeBean {
 	private Integer qrcode_id;
-	private String qrcode_desc;
-	private String qrcode_type;
-	private String is_delete;
-	private String create_time;
+	private String qrcode_desc;//二维码路径
+	private String qrcode_type;//二维码类型
+	private String is_delete;//1删除
+	private String create_time;//创建时间
 	public Integer getQrcode_id() {
 		return qrcode_id;
 	}

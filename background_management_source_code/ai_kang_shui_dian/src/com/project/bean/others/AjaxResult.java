@@ -1,10 +1,15 @@
 package com.project.bean.others;
 
+/**
+ * ajax返回结果
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class AjaxResult {
-	private String status;
-	private String error;
-	private Object data;
-	private Integer total=0;
+	private String status;//状态码  ok:成功   error:失败   pending:等待
+	private String error;//错误信息
+	private Object data;//结果集
+	private Integer total=0;//分页总条数
 	public String getStatus() {
 		return status;
 	}

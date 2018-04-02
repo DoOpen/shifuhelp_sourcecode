@@ -1,14 +1,19 @@
 package com.project.bean.member;
 
+/**
+ * 余额增减记录
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class BalanceHistoryBean {
 	private Integer history_id;
-	private Integer member_id;
-	private String title;
-	private String order_no;
-	private Float price;
-	private String create_time;
-	private String type;
-	private String ping;
+	private Integer member_id;//用户id
+	private String title;//标题
+	private String order_no;//订单no
+	private Float price;//余额增减价格
+	private String create_time;//创建时间
+	private String type;//use：使用  add：增加
+	private String ping;//余额重置的ping++凭据
 	public String getPing() {
 		return ping;
 	}

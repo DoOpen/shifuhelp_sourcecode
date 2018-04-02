@@ -1,11 +1,16 @@
 package com.project.bean.order;
 
+/**
+ * 快递鸟
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class KuaidiniaoBean {
-	private String EBusinessID;
-	private String UpdateTime;
-	private boolean Success;
-	private String Reason;
-	private String EstimatedDeliveryTime;
+	private String EBusinessID;//商户ID，请在快递鸟我的服务页面查看
+	private String UpdateTime;//更新时间 YYYY-MM-DD HH:MM:SS
+	private boolean Success;//成功与否
+	private String Reason;//失败原因
+	private String EstimatedDeliveryTime;//订单预计到货时间yyyy-mm-dd（即将上线）
 	public String getEBusinessID() {
 		return EBusinessID;
 	}

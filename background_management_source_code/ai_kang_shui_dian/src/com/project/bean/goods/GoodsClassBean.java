@@ -1,7 +1,11 @@
 package com.project.bean.goods;
 
 import java.util.List;
-
+/**
+ * 商品分类
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class GoodsClassBean {
 	private Integer class_id;
 	private String class_name;//分类名称
@@ -9,11 +13,11 @@ public class GoodsClassBean {
 	private String class_img;//分类图标
 	private String class_url;//类别url
 	private Integer parent_id;//父节点id
-	private String class_uuid;//
-	private String parent_uuid;//
+	private String class_uuid;//分类的uuid
+	private String parent_uuid;//所有父节点的uuid组合
 	private String sort;//权重
-	private String create_time;//
-	private String update_time;//
+	private String create_time;//创建时间
+	private String update_time;//修改时间
 	private String is_delete;//是否删除
 	private String is_recommend;//是否首页推荐
 	private String send_range;//派送区域

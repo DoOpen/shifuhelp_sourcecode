@@ -2,14 +2,19 @@ package com.project.bean.order;
 
 import java.util.List;
 
+/**
+ * 下单信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class CreateOrderInfoBean {
-	private Integer member_id;
-	private Integer address_id;
-	private String car_ids;
-	private Integer is_deduct_integral;
-	private Integer member_coupon_id;
-	private String order_type;
-	private String buy_type;
+	private Integer member_id;//用户id
+	private Integer address_id;//收货地址id
+	private String car_ids;//购物车id列表，逗号分隔
+	private Integer is_deduct_integral;//1抵扣积分
+	private Integer member_coupon_id;//使用优惠券id
+	private String order_type;//订单类型
+	private String buy_type;//购买类型    integral:积分    money:余额
 	private List<OrderBean> orderBeans;
 	public String getBuy_type() {
 		return buy_type;

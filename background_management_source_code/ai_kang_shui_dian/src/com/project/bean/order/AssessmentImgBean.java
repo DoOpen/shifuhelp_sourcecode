@@ -1,12 +1,17 @@
 package com.project.bean.order;
 
+/**
+ * 评价图片
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class AssessmentImgBean {
 	private Integer assessment_img_id;
-	private Integer assessment_id;
-	private String assessment_img;
-	private String create_time;
-	private String update_time;
-	private String is_delete;
+	private Integer assessment_id;//评价id
+	private String assessment_img;//评价图片
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String is_delete;//1删除
 	public Integer getAssessment_img_id() {
 		return assessment_img_id;
 	}

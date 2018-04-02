@@ -2,16 +2,17 @@ package com.project.bean.others;
 
 /**
  * 验证码
- *
+ * @author 彭方林
+ * @date 2018年4月2日
  */
 public class CodeBean {
 	private Integer code_id;
-	private String mobile;
-	private String code;
-	private String code_type;
-	private String code_desc;
-	private String create_time;
-	private String effective_time;
+	private String mobile;//手机号
+	private String code;//验证码
+	private String code_type;//注册：register 忘记密码: forget_password  修改密码:update_password 绑定手机:bind_mobile 修改手机：update_mobile 发单:send_order 支付余额密码：balance_passwrod 余额支付： balance_pay 信用支付： trust_pay 提现申请：apply_cash 修改密码：update_password 绑定支付宝：bind_alipay 绑定银行卡：bind_bank 绑定微信号：bind_we_chat
+	private String code_desc;//内容
+	private String create_time;//创建时间
+	private String effective_time;//到期时间
 	public Integer getCode_id() {
 		return code_id;
 	}

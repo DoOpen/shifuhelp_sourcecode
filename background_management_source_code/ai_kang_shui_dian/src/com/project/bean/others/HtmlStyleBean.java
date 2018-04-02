@@ -1,15 +1,15 @@
 package com.project.bean.others;
 /**
  * html模板
- * @author 方林
- *
+ * @author 彭方林
+ * @date 2018年4月2日
  */
 public class HtmlStyleBean {
 	private Integer style_id;
-	private String style_type;
-	private String style_desc;
-	private String is_delete;
-	private String create_time;
+	private String style_type;//风格类型
+	private String style_desc;//内容
+	private String is_delete;//1删除
+	private String create_time;//创建时间
 	public Integer getStyle_id() {
 		return style_id;
 	}

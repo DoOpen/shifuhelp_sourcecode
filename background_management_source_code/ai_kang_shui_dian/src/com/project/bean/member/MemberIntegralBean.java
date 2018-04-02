@@ -1,16 +1,21 @@
 package com.project.bean.member;
 
+/**
+ * 积分增减记录
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class MemberIntegralBean {
 	private Integer integral_id;
-	private Integer member_id;//
-	private Integer integral_value;//
+	private Integer member_id;//用户id
+	private Integer integral_value;//积分增减数值
 	private String integral_type;//register_recommend:注册推荐人 work_order_recommend:工单预约推荐  reported:报备 register:注册 sign:签到
 	private String integral_type_show;
-	private Integer relation_id;
+	private Integer relation_id;//获取方式关联id
 	private String state;//add获取 use使用
-	private String is_delete;//
-	private String create_time;//
-	private String update_time;//
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String update_time;//修改时间
 	public String getState() {
 		return state;
 	}

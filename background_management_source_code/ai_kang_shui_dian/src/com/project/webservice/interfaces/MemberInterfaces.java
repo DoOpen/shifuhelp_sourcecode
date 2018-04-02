@@ -16,8 +16,8 @@ import com.pingplusplus.Pingpp;
 import com.pingplusplus.model.Charge;
 
 import com.project.bean.member.MemberBean;
+import com.project.bean.member.MemberMsgBean;
 import com.project.bean.member.MemberReportedBean;
-import com.project.bean.member.MessageBean;
 import com.project.bean.member.WithdrawalBean;
 import com.project.bean.others.PingSettingBean;
 import com.project.bean.others.CodeBean;
@@ -77,7 +77,7 @@ public class MemberInterfaces extends BaseController {
 	 * 师傅缴纳押金
 	 * 
 	 * @param memberBean
-	 * @param messageBean
+	 * @param memberMsgBean
 	 * @param pageBean
 	 * @param request
 	 * @param response
@@ -235,8 +235,8 @@ public class MemberInterfaces extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(params = "deleteMemberMsg", method = RequestMethod.POST)
-	public void deleteMemberMsg(MessageBean messageBean, PageBean pageBean) throws Exception {
-		int num = memberService.deleteMemberMsg(messageBean);
+	public void deleteMemberMsg(MemberMsgBean memberMsgBean, PageBean pageBean) throws Exception {
+		int num = memberService.deleteMemberMsg(memberMsgBean);
 		if (num > 0) {
 			WriteMsg("删除成功");
 		} else {
@@ -252,8 +252,8 @@ public class MemberInterfaces extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(params = "getMemberMsgList", method = RequestMethod.POST)
-	public void getMemberMsgList(MessageBean messageBean, PageBean pageBean) throws Exception {
-		WriteObject(memberService.getMemberMsgList(messageBean, pageBean), pageBean.getTotal());
+	public void getMemberMsgList(MemberMsgBean memberMsgBean, PageBean pageBean) throws Exception {
+		WriteObject(memberService.getMemberMsgList(memberMsgBean, pageBean), pageBean.getTotal());
 	}
 
 	/**

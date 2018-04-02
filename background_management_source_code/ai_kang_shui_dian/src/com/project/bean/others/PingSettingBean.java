@@ -1,10 +1,15 @@
 package com.project.bean.others;
 
+/**
+ * ping++配置
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class PingSettingBean {
 	private Integer ping_id;
-	private String app_id;
-	private String app_key;
-	private String public_key;
+	private String app_id;//appID
+	private String app_key;//支付的正式key
+	private String public_key;//公钥
 	public Integer getPing_id() {
 		return ping_id;
 	}

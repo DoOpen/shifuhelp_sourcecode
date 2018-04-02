@@ -1,5 +1,10 @@
 package com.project.bean.goods;
 
+/**
+ * 购物车
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class ShopCarBean {
 	private Integer car_id;//购物车id
 	private Integer member_id;//用户id
@@ -17,7 +22,7 @@ public class ShopCarBean {
 	private Float specification_price;//规格价格
 	private Integer specification_stock;//规格库存
 	private String car_ids;
-	private String buy_type;
+	private String buy_type;//购买类型  integral:积分购买  money:现金购买
 	public String getBuy_type() {
 		return buy_type;
 	}

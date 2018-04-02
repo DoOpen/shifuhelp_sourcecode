@@ -1,11 +1,16 @@
 package com.project.bean.system;
 
+/**
+ * 系统角色
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class SystemRoleBean {
 	private Integer role_id;
-	private String role_name;
-	private String create_time;
-	private String is_delete;
-	private String module_ids;
+	private String role_name;//角色名称
+	private String create_time;//创建时间
+	private String is_delete;//1删除
+	private String module_ids;//角色包含的模块id组合
 	public Integer getRole_id() {
 		return role_id;
 	}

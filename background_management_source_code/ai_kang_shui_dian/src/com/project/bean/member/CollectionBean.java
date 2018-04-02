@@ -1,14 +1,19 @@
 package com.project.bean.member;
 
 import com.project.bean.goods.GoodsBean;
+/**
+ * 收藏记录
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class CollectionBean {
 	private Integer collection_id;
 	private Integer member_id;//用户id
 	private String collection_ids;
-	private Integer goods_id;
-	private String create_time;//
-	private String update_time;//
-	private String is_delete;//
+	private Integer goods_id;//商品id
+	private String create_time;//创建时间
+	private String update_time;//修改时间
+	private String is_delete;//1删除
 	private GoodsBean goodsBean;
 	private MemberBean memberBean;
 	public Integer getGoods_id() {

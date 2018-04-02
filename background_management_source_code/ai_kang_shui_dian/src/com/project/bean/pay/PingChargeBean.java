@@ -15,7 +15,7 @@ public class PingChargeBean {
 	private String type;//类型
 	private String object;
 	private String request;
-	private String pending_webhooks;
+	private String pending_webhooks;//推送未成功的 webhooks 数量
 	private DataBean data;
 	public String getId() {
 		return id;

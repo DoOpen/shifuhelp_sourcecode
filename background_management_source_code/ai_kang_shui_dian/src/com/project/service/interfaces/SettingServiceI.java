@@ -14,8 +14,6 @@ import com.project.bean.others.CodeBean;
 import com.project.bean.others.HtmlBean;
 import com.project.bean.others.HtmlStyleBean;
 import com.project.bean.others.MsgTypeBean;
-import com.project.bean.others.PercentBean;
-import com.project.bean.others.PlatformBean;
 import com.project.bean.others.VerificationBean;
 import com.project.bean.system.AppVersionBean;
 import com.project.bean.system.SettingBean;
@@ -81,15 +79,6 @@ public class SettingServiceI {
 	}
 	
 	/**
-	 * 平台比例设置
-	 * @param wxSetingBean
-	 * @return
-	 */
-	public PercentBean getPercentDetail(PercentBean percentBean){
-		return settingDao.getPercentDetail(percentBean);
-	}
-	
-	/**
 	 * 微信配置
 	 * @param wxSetingBean
 	 * @return
@@ -98,13 +87,6 @@ public class SettingServiceI {
 		return settingDao.getWXSetting(wxSetingBean);
 	}
 	
-	
-	/**
-	 * 平台基本信息
-	 */
-	public PlatformBean getSystemPlatform(PlatformBean platformBean){
-		return settingDao.getSystemPlatform(platformBean);
-	}
 	
 	/**
 	 * 获得所有广告列表

@@ -1,10 +1,15 @@
 package com.project.bean.order;
 
+/**
+ * 快递物流
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class KuaidiBean {
-	private String ShipperCode;
-	private String LogisticCode;
-	private KuaidiSenderBean Sender;
-	private KuaidiReceiverBean Receiver;
+	private String ShipperCode;//
+	private String LogisticCode;//
+	private KuaidiSenderBean Sender;//
+	private KuaidiReceiverBean Receiver;//
 	
 	public KuaidiSenderBean getSender() {
 		return Sender;

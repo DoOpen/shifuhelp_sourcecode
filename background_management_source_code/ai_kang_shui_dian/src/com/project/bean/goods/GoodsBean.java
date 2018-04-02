@@ -1,7 +1,11 @@
 package com.project.bean.goods;
 
 import java.util.List;
-
+/**
+ * 商品信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class GoodsBean {
 	private Integer goods_id;//商品id
 	private String goods_num;//商品编码
@@ -26,7 +30,7 @@ public class GoodsBean {
 	private String start_time;//生产开始日期
 	private String end_time;//生产结束时间
 	private String goods_state;//状态 1上架 0下架
-	private String goods_state_show;//
+	private String goods_state_show;
 	private Float express_price;//邮费
 	private Float free_express_price;//满多少包邮
 	private String is_delete;//是否删除
@@ -45,9 +49,9 @@ public class GoodsBean {
 	private String buy_type_show;
 	private String send_range;//派送区域
 	private List<GoodsImgBean> goodsImgBeans;//商品图片列表
-	private List<GoodsSpecificationBean> goodsSpecificationBeans;
-	private List<SpecificationBean> specificationBeans;
-	private GoodsClassBean goodsClassBean;
+	private List<GoodsSpecificationBean> goodsSpecificationBeans;//商品规格组合列表
+	private List<SpecificationBean> specificationBeans;//规格列表
+	private GoodsClassBean goodsClassBean;//商品分类
 	
 	public String getClass_name() {
 		return class_name;

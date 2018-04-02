@@ -2,10 +2,15 @@ package com.project.bean.order;
 
 import java.util.List;
 
+/**
+ * 快递鸟返回结果
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class KuaidiniaoResultBean {
-	private Integer Count;
-	private String EBusinessID;
-	private String PushTime;
+	private Integer Count;//推送物流单号轨迹个数
+	private String EBusinessID;//用户电商ID
+	private String PushTime;//推送时间
 	private List<DataBean> Data;
 	public Integer getCount() {
 		return Count;
@@ -37,14 +42,14 @@ public class KuaidiniaoResultBean {
 		return this;
 	}
 	public class DataBean{
-		private String CallBack;
-		private String EBusinessID;
-		private String LogisticCode;
-		private String OrderCode;
-		private String Reason;
-		private String ShipperCode;
-		private String State;
-		private boolean Success;
+		private String CallBack;//订阅接口的Bk值
+		private String EBusinessID;//商户ID
+		private String LogisticCode;//快递单号
+		private String OrderCode;//订单编号
+		private String Reason;//失败原因
+		private String ShipperCode;//快递公司编码
+		private String State;//物流状态: 0-无轨迹，1-已揽收，2-在途中 201-到达派件城市，3-签收,4-问题件
+		private boolean Success;//成功与否：true,false
 		private List<TracesBean> Traces;
 		public String getCallBack() {
 			return CallBack;
@@ -111,8 +116,8 @@ public class KuaidiniaoResultBean {
 			return this;
 		}
 		public class TracesBean{
-			private String AcceptStation;
-			private String AcceptTime;
+			private String AcceptStation;//描述
+			private String AcceptTime;//时间
 			public String getAcceptStation() {
 				return AcceptStation;
 			}

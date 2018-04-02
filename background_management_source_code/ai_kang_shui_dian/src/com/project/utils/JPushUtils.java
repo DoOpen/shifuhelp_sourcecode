@@ -44,30 +44,23 @@ public class JPushUtils {
 	}
 
 	public static void myJPushClient(String content, String registrationId, String type) {
-
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
 		JPushClient jPushClient = new JPushClient(masterSecret, appKey);
-
 		PushPayload payload = PushPayload.newBuilder().setPlatform(Platform.android_ios())
 				.setAudience(Audience.alias(registrationId))
-				.setMessage(Message.newBuilder().setMsgContent(content).addExtra("from", "JPush").build())
+				.setMessage(Message.newBuilder().setMsgContent(content).addExtra("from", "JPush").addExtra("type", type).build())
 				.setNotification(Notification.newBuilder().addPlatformNotification(IosNotification.newBuilder()
-						.setAlert(content).setBadge(5).setSound("default").addExtra("from", "JPush").build()).build())
+						.setAlert(content).setBadge(5).setSound("default").addExtra("from", "JPush").addExtra("type", type).build()).build())
 				.setOptions(Options.newBuilder()
                         .setApnsProduction(true)
                         .build())
 				.build();
 		try {
-			PushResult result = jPushClient.sendPush(payload);
+			jPushClient.sendPush(payload);
 			System.out.println("success");
-			System.out.println(result.msg_id);
-			System.out.println(result.sendno);
 		} catch (APIConnectionException e) {
-			System.out.println("connection error");
-			e.printStackTrace();
+			System.out.println("连接极光服务器失败");
 		} catch (APIRequestException e) {
-			System.out.println("request error");
-			e.printStackTrace();
+			System.out.println(e.getStatus()+" "+e.getErrorCode()+" "+e.getErrorMessage());
 		}
 	}
 }

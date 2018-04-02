@@ -1,11 +1,16 @@
 package com.project.bean.order;
 
+/**
+ * 退款原因
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class RefundReasonBean {
 	private Integer reason_id;
-	private String reason_name;
-	private String create_time;
-	private String is_delete;
-	private Integer sort;
+	private String reason_name;//退款原因
+	private String create_time;//创建时间
+	private String is_delete;//1删除
+	private Integer sort;//权重
 	public Integer getReason_id() {
 		return reason_id;
 	}

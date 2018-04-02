@@ -1,15 +1,19 @@
 package com.project.bean.others;
 
+/**
+ * 消息类型
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class MsgTypeBean {
 	private Integer type_id;
-	private String msg_type;
-	private String msg_name;
-	private String msg_desc;
-	private String msg_state;
-	private String is_delete;
-	private String create_time;
-	private String update_time;
-	
+	private String msg_type;//消息类型    cancel_order：取消订单  wait_send：付款成功   refund：退款成功  wait_receive：已发货  register：注册成功  receive：已签收  group_success：拼团成功  member_binding：绑定信息变更
+	private String msg_name;//消息名称
+	private String msg_desc;//内容
+	private String msg_state;//1启用
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String update_time;//修改时间
 	public Integer getType_id() {
 		return type_id;
 	}

@@ -1,16 +1,21 @@
 package com.project.bean.system;
 
+/**
+ * app版本信息
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class AppVersionBean {
 	private Integer version_id;
-	private String version_name;
-	private String version_type;
-	private String version_no;
-	private String update_content;
-	private String download_address;
-	private String server_address;
-	private String must_update;
-	private String update_time;
-	private String server_update;
+	private String version_name;//版本名称
+	private String version_type;//版本类型   android：安卓  ios:ios
+	private String version_no;//版本号
+	private String update_content;//更新内容
+	private String download_address;//第三方下载地址
+	private String server_address;//服务器下载地址
+	private String must_update;//1强制更新
+	private String update_time;//修改时间
+	private String server_update;//1从服务器下载本次更新的版本
 	public String getServer_update() {
 		return server_update;
 	}

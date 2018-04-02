@@ -2,19 +2,24 @@ package com.project.bean.workOrder;
 
 import java.util.List;
 
+/**
+ * 工单服务分类
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class ServiceClassBean {
 	private Integer class_id;
-	private String class_name;
-	private String class_state;
-	private String class_img;
-	private Integer class_parent_id;
-	private String class_create_time;
-	private String class_is_delete;
-	private String class_sort;
-	private String class_update_time;
-	private String class_price;
-	private String class_desc;
-	private String class_unit;
+	private String class_name;//分类名称
+	private String class_state;//分类状态
+	private String class_img;//分类图片
+	private Integer class_parent_id;//父节点id
+	private String class_create_time;//创建时间
+	private String class_is_delete;//1删除
+	private String class_sort;//权重
+	private String class_update_time;//修改时间
+	private String class_price;//分类单价
+	private String class_desc;//介绍
+	private String class_unit;//单位
 	public String getClass_unit() {
 		return class_unit;
 	}

@@ -7,68 +7,73 @@ import java.util.List;
 
 import com.project.bean.member.MemberBean;
 
+/**
+ * 工单
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class WorkOrderBean {
 	private Integer order_id;
-	private Integer order_member_id;
-	private String order_name;
-	private String order_phone;
-	private String order_address_country;
-	private String order_address_province;
-	private String order_address_city;
-	private String order_address_district;
-	private String order_address_detail;
-	private String order_subscribe_content;
-	private String order_subscribe_note;
-	private String order_subscribe_img1;
-	private String order_subscribe_img2;
-	private String order_subscribe_img3;
-	private List<String> orderSubscribeImgBeans;
-	private String order_hope_service_time;
-	private String order_create_time;
-	private String order_update_time;
-	private String order_audit_pass_time;
-	private String order_state;
-	private Integer order_accept_id;
-	private String order_accept_time;
-	private String order_cancle_why;
-	private String order_cancle_time;
-	private String order_cancle_pass_time;
-	private String order_reality_content;
-	private List<String> orderCompleteImgBeans;
-	private String order_complete_img1;
-	private String order_complete_img2;
-	private String order_complete_img3;
-	private String order_complete_note;
-	private String order_service_time;
-	private String order_complete_time;
-	private String order_complete_pass_time;
-	private String order_is_delete;
-	private Integer order_class_id;
+	private Integer order_member_id;//用户id
+	private String order_name;//预约姓名
+	private String order_phone;//预约电话
+	private String order_address_country;//工单地址-国家
+	private String order_address_province;//工单地址-省
+	private String order_address_city;//工单地址-市
+	private String order_address_district;//工单地址-区
+	private String order_address_detail;//工单地址-详细地址
+	private String order_subscribe_content;//预约服务内容
+	private String order_subscribe_note;//预约备注
+	private String order_subscribe_img1;//预约现场图片
+	private String order_subscribe_img2;//预约现场图片
+	private String order_subscribe_img3;//预约现场图片
+	private List<String> orderSubscribeImgBeans;//预约现场图片集合
+	private String order_hope_service_time;//期望上门服务时间
+	private String order_create_time;//创建时间
+	private String order_update_time;//上次修改时间
+	private String order_audit_pass_time;//预约审核通过时间
+	private String order_state;//工单装填
+	private Integer order_accept_id;//接单师傅id
+	private String order_accept_time;//师傅接单时间
+	private String order_cancle_why;//取消工单原因
+	private String order_cancle_time;//取消工单时间
+	private String order_cancle_pass_time;//取消工单审核通过时间
+	private String order_reality_content;//实际服务内容
+	private List<String> orderCompleteImgBeans;//完工图片集合
+	private String order_complete_img1;//完工图片
+	private String order_complete_img2;//完工图片
+	private String order_complete_img3;//完工图片
+	private String order_complete_note;//完工备注
+	private String order_service_time;//实际服务时间
+	private String order_complete_time;//完工时间
+	private String order_complete_pass_time;//完工审核通过时间
+	private String order_is_delete;//1删除
+	private Integer order_class_id;//分类id
 	private MemberBean order_accept;
-	private Integer order_is_cancle;
-	private Integer order_service_attitude;
-	private Integer order_service_aging;
-	private Integer order_service_quality;
-	private String order_evaluate_content;
+	private Integer order_is_cancle;//1已退单
+	private Integer order_service_attitude;//服务态度
+	private Integer order_service_aging;//服务时效
+	private Integer order_service_quality;//服务质量
+	private String order_evaluate_content;//评价内容
 	private String stateList;
-	private String order_address_longitude;
-	private String order_address_latitude;
-	private String distance;
-	private Float order_price;
+	private String order_address_longitude;//工单地址-经度
+	private String order_address_latitude;//工单地址-维度
+	private String distance;//距离
+	private Float order_price;//工单价格
 	private String order_state_show;
-	private String is_today_order;
-	private String complaints_content;
-	private String complaints_time;
-	private String is_complaints;
-	private String district;
-	private Float deposit_price;
-	private String is_lock;
-	private Integer lock_id;
-	private String worker_name;
-	private Float work_area;
-	private String hope_complete_time;
-	private String work_requirements;
-	private String recommend_phone;
+	private String is_today_order;//1今日订单
+	private String complaints_content;//投诉内容
+	private String complaints_time;//投诉时间
+	private String is_complaints;//是否投诉
+	private String district;//区域
+	private Float deposit_price;//押金金额
+	private String is_lock;//1被客服锁住
+	private Integer lock_id;//锁单客服id
+	private String worker_name;//服务师傅姓名
+	private Float work_area;//施工面积
+	private String hope_complete_time;//期望完工时间
+	private String work_requirements;//施工要求
+	private String recommend_phone;//推荐人账号
 	private String work_way;//施工方式
 	private Float others_price;//其他价格
 	private Float service_class_price;//服务分类单价

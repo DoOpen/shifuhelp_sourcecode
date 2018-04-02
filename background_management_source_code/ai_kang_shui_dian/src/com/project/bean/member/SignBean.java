@@ -1,9 +1,14 @@
 package com.project.bean.member;
 
+/**
+ * 签到记录
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class SignBean {
 	private Integer sign_id;
-	private Integer member_id;
-	private String create_time;
+	private Integer member_id;//用户id
+	private String create_time;//创建时间
 	private Integer sign_integral;//签到赠送积分
 	private Integer sign_continuity_count_month;//一个月内 连续签到次数
 	private Integer sign_total_count_month;//一个月内 总共签到次数

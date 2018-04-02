@@ -17,7 +17,6 @@ import com.project.bean.member.WithdrawalBean;
 import com.project.bean.member.WorkTypeBean;
 import com.project.bean.others.ExcelBean;
 import com.project.bean.others.HtmlStyleBean;
-import com.project.bean.workOrder.PingHistoryBean;
 import com.project.service.controller.MemberServiceC;
 import com.project.service.controller.SystemServiceC;
 import com.project.service.interfaces.SettingServiceI;

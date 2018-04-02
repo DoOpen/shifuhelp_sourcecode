@@ -1,14 +1,19 @@
 package com.project.bean.others;
 
+/**
+ * html
+ * @author 彭方林
+ * @date 2018年4月2日
+ */
 public class HtmlBean {
 	private Integer html_id;
-	private String html_name;
-	private String html_url;
-	private String html_url_content;
-	private Integer sort;
-	private String is_delete;
-	private String create_time;
-	private String update_time;
+	private String html_name;//名称
+	private String html_url;//路径
+	private String html_url_content;//内容
+	private Integer sort;//权重
+	private String is_delete;//1删除
+	private String create_time;//创建时间
+	private String update_time;//修改时间
 	public Integer getHtml_id() {
 		return html_id;
 	}
