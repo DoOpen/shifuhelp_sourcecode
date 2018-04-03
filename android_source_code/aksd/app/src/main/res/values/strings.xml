@@ -295,6 +295,7 @@
     <string name="improve_information">完善基本资料</string>
     <string name="load_success">上传成功</string>
     <string name="img_loading">图片上传中...</string>
+    <string name="reported_loading">信息报备中...</string>
     <string name="no_register">该手机号未注册，请先注册</string>
     <string name="information_reported">信息报备</string>
     <!-- 首页 -->
@@ -427,6 +428,7 @@
     <string name="toutal_price">总费用（元）：</string>
     <string name="Assess">用户评价</string>
     <string name="workorder_name">姓名：</string>
+    <string name="order_voice">新工单提示音</string>
 
 
 </resources>

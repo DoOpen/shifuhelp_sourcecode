@@ -1,8 +1,14 @@
 package com.live.aksd.mvp.fragment.Mine;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.live.aksd.Constants;
@@ -21,8 +27,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.live.aksd.R.id.btnExit;
 
 /**
@@ -37,6 +46,15 @@ public class SettingFragment extends BaseFragment<ISettingView, SettingPresenter
     TextView tvTitle;
     @BindView(R.id.cache_size)
     TextView cachesize;
+    @BindView(R.id.tvVoid)
+    TextView tvVoid;
+    Unbinder unbinder;
+    @BindView(R.id.rl_changepwd)
+    TextView rlChangepwd;
+    @BindView(R.id.rl_clean)
+    TextView rlClean;
+    @BindView(R.id.swVoid)
+    Switch swVoid;
     private Map<String, String> map1 = new HashMap<>();
     private Map<String, String> map2 = new HashMap<>();
     private String htmlPathOne;
@@ -58,7 +76,34 @@ public class SettingFragment extends BaseFragment<ISettingView, SettingPresenter
     @Override
     public void initUI() throws Exception {
         tvTitle.setText(R.string.setting);
-        cachesize.setText(DataCleanManager.getTotalCacheSize(context));
+		//sfsm zhoushilei: add code @{
+		cachesize.setText(DataCleanManager.getTotalCacheSize(context));
+        SharedPreferences sharedPre = context.getSharedPreferences("config", MODE_PRIVATE);
+        String voice = sharedPre.getString("voice", "");
+        if ("on".equals(voice)) {
+            swVoid.setChecked(true);
+            swVoid.setText(R.string.already_no);
+        } else {
+            swVoid.setChecked(false);
+            swVoid.setText(R.string.already_off);
+        }
+     
+        swVoid.setTextColor(getResources().getColor(R.color.gray_20));
+        swVoid.setTextSize(12);
+        swVoid.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    swVoid.setText(R.string.already_no);
+                    saveVoid(context, "on");
+
+                } else {
+                    swVoid.setText(R.string.already_off);
+                    saveVoid(context, "off");
+                }
+            }
+        });
+		// @}
     }
 
     @Override
@@ -151,5 +196,36 @@ public class SettingFragment extends BaseFragment<ISettingView, SettingPresenter
         }
     }
 
+	//sfsm zhoushilei: add code @{
+    /**
+     * ??SharedPreferences?????????
+     *
+     * @param context
+     * @param state
+     */
+    public static void saveVoid(Context context, String state) {
+        //??SharedPreferences??
+        SharedPreferences sharedPre = context.getSharedPreferences("config", MODE_PRIVATE);
+        //??Editor??
+        SharedPreferences.Editor editor = sharedPre.edit();
+        //????
+        editor.putString("voice", state);
+        //??
+        editor.commit();
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+	// @}
 }

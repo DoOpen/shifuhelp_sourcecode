@@ -116,7 +116,7 @@
         android:id="@+id/rl_agreement"
         android:layout_width="0dp"
         android:layout_height="49dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="1dp"
         android:background="@color/white_80"
         android:drawableLeft="@drawable/xgxy"
         android:drawablePadding="5dp"
@@ -131,6 +131,36 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rl_aboutUs" />
+
+    <TextView
+        android:id="@+id/tvVoid"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white_80"
+        android:drawableLeft="@drawable/ruanjian"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/order_voice"
+        android:textColor="@color/gray_30"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_agreement" />
+
+    <Switch
+        android:id="@+id/swVoid"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:paddingRight="16dp"
+        app:layout_constraintRight_toRightOf="@+id/tvVoid"
+        app:layout_constraintTop_toTopOf="@+id/tvVoid"
+        android:switchMinWidth="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvVoid"
+       />
+
 
 
     <Button

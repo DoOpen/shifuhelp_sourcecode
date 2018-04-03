@@ -3,6 +3,7 @@ package com.live.aksd;
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.support.multidex.MultiDex;
 
@@ -97,9 +98,14 @@ public class App extends Application {
         SDKInitializer.setCoordType(CoordType.BD09LL);
         //初始化Leak内存泄露检测工具
         // LeakCanary.install(this);
-
+		//sfsm zhoushilei: add code @{
+        // 使用SharedPreferences保存提示音开关状态
+        SharedPreferences sharedPre = getApplicationContext().getSharedPreferences("config", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPre.edit();
+        editor.putString("voice", "on");
+        editor.commit();
+		// @}
     }
-
     public void initDatabase() {
         mHelper = new DaoMaster.DevOpenHelper(this, "tv-db", null);
 
