@@ -198,19 +198,18 @@ public class SettingFragment extends BaseFragment<ISettingView, SettingPresenter
 
 	//sfsm zhoushilei: add code @{
     /**
-     * ??SharedPreferences?????????
+
      *
      * @param context
      * @param state
      */
     public static void saveVoid(Context context, String state) {
-        //??SharedPreferences??
+      
         SharedPreferences sharedPre = context.getSharedPreferences("config", MODE_PRIVATE);
-        //??Editor??
+      
         SharedPreferences.Editor editor = sharedPre.edit();
-        //????
+    
         editor.putString("voice", state);
-        //??
         editor.commit();
     }
 

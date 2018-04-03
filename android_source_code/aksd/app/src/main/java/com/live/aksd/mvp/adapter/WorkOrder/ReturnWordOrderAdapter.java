@@ -44,7 +44,7 @@ public class ReturnWordOrderAdapter extends RecyclerArrayAdapter<WorkOrderBean> 
         @Override
         public void setData(final WorkOrderBean data) {
             tvContent.setText(data.getOrder_subscribe_content());
-     		//sfsm  zhoushilei: [修改内容] remove code @{
+     		//sfsm  zhoushilei: remove code @{
         	/*  if (!TextUtils.isEmpty(data.getOrder_subscribe_note())) {
                 tvNote.setText(data.getOrder_subscribe_note());
             } else {
@@ -52,7 +52,7 @@ public class ReturnWordOrderAdapter extends RecyclerArrayAdapter<WorkOrderBean> 
             }*/
 			// @}
 			
-			//sfsm zhoushilei: [修改内容] add code @{
+			//sfsm zhoushilei: add code @{
     		tvNote.setText(getContext().getString(R.string.workorder_name)+data.getOrder_name());
 			// @}
             

@@ -429,6 +429,8 @@
     <string name="Assess">用户评价</string>
     <string name="workorder_name">姓名：</string>
     <string name="order_voice">新工单提示音</string>
+    <string name="already_no">已开启</string>
+    <string name="already_off">已关闭</string>
 
 
 </resources>

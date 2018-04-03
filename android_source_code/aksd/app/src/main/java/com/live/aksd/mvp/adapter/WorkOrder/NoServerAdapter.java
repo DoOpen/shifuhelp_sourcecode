@@ -53,9 +53,9 @@ public class NoServerAdapter extends RecyclerArrayAdapter<WorkOrderBean> {
             } else {
                 tvNow.setVisibility(View.GONE);
             }
-            tvContent.setText(data.getOrder_subscribe_content())
+            tvContent.setText(data.getOrder_subscribe_content());
 		
-			//sfsm  zhoushilei: [修改内容] remove code @{
+			//sfsm  zhoushilei:remove code @{
         	/*  if (!TextUtils.isEmpty(data.getOrder_subscribe_note())) {
                 tvNote.setText(data.getOrder_subscribe_note());
             } else {
@@ -63,7 +63,7 @@ public class NoServerAdapter extends RecyclerArrayAdapter<WorkOrderBean> {
             }*/
 			// @}
 			
-			//sfsm zhoushilei: [修改内容] add code @{
+			//sfsm zhoushilei: add code @{
     		tvNote.setText(getContext().getString(R.string.workorder_name)+data.getOrder_name());
 			// @}
 

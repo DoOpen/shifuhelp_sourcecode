@@ -2,14 +2,12 @@ package com.live.aksd.mvp.fragment.Home;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,19 +26,16 @@ import com.live.aksd.Constants;
 import com.live.aksd.R;
 import com.live.aksd.bean.HtmlBean;
 import com.live.aksd.bean.UserBean;
-import com.live.aksd.mvp.adapter.Home.ImageAdapter;
 import com.live.aksd.mvp.adapter.ImageMediaAdapter;
 import com.live.aksd.mvp.base.BaseFragment;
 import com.live.aksd.mvp.presenter.Home.InformationreportedPresenter;
 import com.live.aksd.mvp.view.Home.IInformationreportedView;
 import com.live.aksd.util.CustomDialog;
-import com.live.aksd.util.ImageFactory;
 import com.live.aksd.util.LoadingUtil;
 import com.live.aksd.util.SpSingleInstance;
 import com.lljjcoder.citypickerview.widget.CityPicker;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -131,7 +126,6 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
         userBean = SpSingleInstance.getSpSingleInstance().getUserBean();
         map.put("member_id", userBean.getMember_id());
         map.put("member_token", userBean.getMember_token());
-
         htmlMap.put("html_name", "报备相关");
         getPresenter().getHtmlDetail(htmlMap);
 
@@ -151,12 +145,12 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
             map.put("reported_img" + (i + 1), data[i]);
         }
         LoadingUtil.hideLoading();
-        ToastUtils.showToast(context.getApplicationContext(), R.string.load_success);
+        //ToastUtils.showToast(context.getApplicationContext(), R.string.load_success);
+        getPresenter().addReported(map);
     }
 
     @Override
     public void onGetHtmlDetail(HtmlBean data) {
-
         htmlPath = data.getHtml_url();
     }
 
@@ -174,8 +168,10 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
                 .appendPath(cachePath)
                 .appendPath(String.format(Locale.US, "%s.jpg", System.currentTimeMillis()))
                 .build();
-        BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.MULTI_IMG).withMaxCount(3).withCropOption(new BoxingCropOption(destUri))
+        BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.MULTI_IMG).withMaxCount(4-adapter.getAllData().size()).withCropOption(new BoxingCropOption(destUri))
                 .withMediaPlaceHolderRes(R.drawable.ic_boxing_default_image);
+
+
         Boxing.of(singleCropImgConfig).withIntent(context, BoxingActivity.class).start(this, requestcode);
     }
 
@@ -186,7 +182,8 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
         switch (requestCode) {
             case IMAGE:
                 if (resultCode == RESULT_OK) {
-                    adapter.clear();
+                    //adapter.clear();
+                    adapter.remove(adapter.getAllData().size()-1);
                     final ArrayList<BaseMedia> medias = Boxing.getResult(data);
 
                     for (BaseMedia media : medias) {
@@ -197,7 +194,6 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
                         }
                     }
                     if (adapter.getAllData().size() > 0) {
-                        upImage();
 
                     }
                     if (adapter.getAllData().size() < 3) {
@@ -228,7 +224,7 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
                         files.add(b_cover);
                         if (files.size() == allData.size()) {
                             getPresenter().uploadImgs(files);
-                            LoadingUtil.showLoading(getActivity(), getResources().getString(R.string.img_loading));
+
                         }
                     }
 
@@ -334,7 +330,7 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
                 startWeb("报备相关", "", Constants.BASE_URL + htmlPath, "");
                 break;
             case R.id.tvAddress:
-               // hideInputMethod(etName);
+                // hideInputMethod(etName);
                 cityPicker();
                 break;
             case R.id.btnReported:
@@ -366,7 +362,8 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
                 builder.setMessage(getString(R.string.is_reproted));
                 builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        getPresenter().addReported(map);
+                        upImage();
+                        LoadingUtil.showLoading(getActivity(), getResources().getString(R.string.img_loading));
                         dialog.dismiss();
                     }
                 });
