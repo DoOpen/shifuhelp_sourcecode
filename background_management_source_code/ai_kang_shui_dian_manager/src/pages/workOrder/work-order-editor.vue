@@ -153,6 +153,9 @@
         }
         this.$set(this.toolData[3],'hide',flag);
         this.$set(this.toolData[4],'hide',flag);
+        this.$set(this.baseData[7],'disable',true);
+        this.$set(this.baseData[8],'disable',true);
+        this.$set(this.baseData[10],'disable',true);
       },
       change(key, value) {
         this.orderBean[key] = value;
