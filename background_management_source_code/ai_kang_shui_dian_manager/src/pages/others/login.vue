@@ -28,12 +28,12 @@ export default {
   },
   methods:{
     login(){
-      if(!/^[a-z0-9]{1,50}$/.test(this.system_account)){
+      if(!/^[a-z0-9]{1,20}$/.test(this.system_account)){
         this.showTip('账号格式出错','waring');
         this.focusIndex=1;
         return;
       }
-      if(!/^[a-z0-9]{1,50}$/.test(this.system_password)){
+      if(!/^[a-z0-9]{1,20}$/.test(this.system_password)){
         this.showTip('密码格式出错','waring');
         this.focusIndex=2;
         return;

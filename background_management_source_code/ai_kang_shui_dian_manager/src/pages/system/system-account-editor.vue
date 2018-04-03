@@ -101,6 +101,12 @@
       toolClick(index) {
         switch (index){
           case 0:
+            if(!this.isNull(this.systemAccountBean.system_password)){
+              if(!/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{1,50}$/.test(this.systemAccountBean.system_password)){
+                this.showTip('新密码必须字母加数字组合');
+                return;
+              }
+            }
             if (this.isNull(this.systemAccountBean.account_id)) {
               this.post(2, 'systemController.api?insertSystemAccount', this.systemAccountBean);
             } else {
