@@ -52,7 +52,7 @@
       let formData = new FormData();
       formData.append(e.target.value, e.target.files[0]);
       formData.append("path", this.isNull(this.path)?'':this.path);
-      this.ajaxFileUpload(1, this.uploadPath, formData);
+      this.ajaxFileUpload(1, formData);
     },
     doSuccess(index, data) {
       this.showTip("上传成功");

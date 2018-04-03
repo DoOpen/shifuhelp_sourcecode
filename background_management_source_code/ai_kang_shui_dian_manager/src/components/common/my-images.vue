@@ -59,7 +59,7 @@
         formData.append('file', e.target.files[i]);
       }
       formData.append("path", this.isNull(this.path)?'':this.path);
-      this.ajaxFileUpload(1, this.uploadPath, formData);
+      this.ajaxFileUpload(1, formData);
     },
     doSuccess(index, data) {
       this.showTip("上传成功");

@@ -50,9 +50,19 @@
   methods:{
     uploadImage(e) {
       let formData = new FormData();
-      formData.append(e.target.value, e.target.files[0]);
       formData.append("path", this.isNull(this.path)?'':this.path);
-      this.ajaxFileUpload(1, this.uploadPath, formData);
+      if(e.target.value.indexOf('.jpg')>-1||e.target.value.indexOf('.jpeg')>-1||e.target.value.indexOf('.png')>-1||e.target.value.indexOf('.gif')>-1){
+        this.photoCompress(e.target.files[0], {
+            quality: 0.2
+          },(base64Codes)=>{
+            formData.append(e.target.value, base64Codes,e.target.value);
+            this.ajaxFileUpload(1, formData);
+          }
+        )
+      }else{
+        formData.append(e.target.value, e.target.files[0],e.target.value);
+        this.ajaxFileUpload(1, formData);
+      }
     },
     doSuccess(index, data) {
       this.showTip("上传成功");

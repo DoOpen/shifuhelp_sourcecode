@@ -38,6 +38,8 @@ const Common = {
     Vue.prototype.getCurrentDate=getCurrentDate;
     //表单验证
     Vue.prototype.validate=validate;
+    //图片压缩
+    Vue.prototype.photoCompress=photoCompress;
 
     //配置Axios的参数
     //响应时间
@@ -192,7 +194,7 @@ const Common = {
      * @param url
      * @param params
      */
-    function ajaxFileUpload(index, url, params) {
+    function ajaxFileUpload(index,params) {
       if (!isNull(sessionStorage.systemAccountBean)) {
         let systemAccountBean = JSON.parse(sessionStorage.systemAccountBean);
         params.append('account_login_id', systemAccountBean.account_login_id);
@@ -201,7 +203,7 @@ const Common = {
       let config = {
         headers:{'Content-Type':'multipart/form-data; boundary=----WebKitFormBoundaryA6FNOAaDnOdIigs4'}
       };
-      Axios.post(url, params,config).then((response) => {
+      Axios.post(this.uploadPath, params,config).then((response) => {
         let data = response.data;
         if (data.status === 'ok') {
           this.doSuccess(index, data.data);
@@ -210,8 +212,8 @@ const Common = {
         } else {
           this.doFiled(index, data.error);
         }
-      }, (response) => {
-        doFiled(0,'请求异常!');
+      }).catch((error) => {
+        this.showTip('上传失败','danger');
       });
     }
 
@@ -376,6 +378,76 @@ const Common = {
         return false;
       }
       return true;
+    }
+
+    /**
+     * 图片压缩
+     * @param file
+     * @param w
+     * @param objDiv
+     */
+    function photoCompress(file,w,objDiv){
+      var ready=new FileReader();
+      /*开始读取指定的Blob对象或File对象中的内容. 当读取操作完成时,readyState属性的值会成为DONE,如果设置了onloadend事件处理程序,则调用之.同时,result属性中将包含一个data: URL格式的字符串以表示所读取文件的内容.*/
+      ready.readAsDataURL(file);
+      ready.onload=function(){
+        var re=this.result;
+        canvasDataURL(re,w,objDiv)
+      }
+    }
+
+    /**
+     * 将图片绘制成convas进行压缩
+     * @param path
+     * @param obj
+     * @param callback
+     */
+    function canvasDataURL(path, obj, callback){
+      var img = new Image();
+      img.src = path;
+      img.onload = function(){
+        var that = this;
+        // 默认按比例压缩
+        var w = that.width,
+          h = that.height,
+          scale = w / h;
+        w = obj.width || w;
+        h = obj.height || (w / scale);
+        var quality = 0.7;  // 默认图片质量为0.7
+        //生成canvas
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        // 创建属性节点
+        var anw = document.createAttribute("width");
+        anw.nodeValue = w;
+        var anh = document.createAttribute("height");
+        anh.nodeValue = h;
+        canvas.setAttributeNode(anw);
+        canvas.setAttributeNode(anh);
+        ctx.drawImage(that, 0, 0, w, h);
+        // 图像质量
+        if(obj.quality && obj.quality <= 1 && obj.quality > 0){
+          quality = obj.quality;
+        }
+        // quality值越小，所绘制出的图像越模糊
+        var base64 = canvas.toDataURL('image/jpeg', quality);
+        // 回调函数返回base64的值
+        callback(convertBase64UrlToBlob(base64));
+      }
+    }
+
+    /**
+     * 将convas图像转成blob对象
+     * @param urlData
+     * @returns {Blob}
+     */
+    function convertBase64UrlToBlob(urlData){
+      var arr = urlData.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+      while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new Blob([u8arr], {type:mime});
     }
   }
 
