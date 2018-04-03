@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -26,6 +27,7 @@ import com.live.aksd.Constants;
 import com.live.aksd.R;
 import com.live.aksd.bean.HtmlBean;
 import com.live.aksd.bean.UserBean;
+import com.live.aksd.mvp.adapter.Home.RepotredImageAdapter;
 import com.live.aksd.mvp.adapter.ImageMediaAdapter;
 import com.live.aksd.mvp.base.BaseFragment;
 import com.live.aksd.mvp.presenter.Home.InformationreportedPresenter;
@@ -82,10 +84,10 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
     private Map<String, String> htmlMap = new HashMap<>();
 
     private List<String> list;
-    private ImageMediaAdapter adapter;
+    private RepotredImageAdapter adapter;
     private static final int IMAGE = 0X02;
 
-    private String[] imgArray= {};
+    private List<String> imgArray = new ArrayList();
     private String htmlPath;
 
     public static ReportedFragment newIntance() {
@@ -106,17 +108,30 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
         tvTitle.setText(R.string.information_reported);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
+		// sfsm  zhoushilei:  modified code @{
+        recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
         list = new ArrayList<>();
         list.add("");
-        adapter = new ImageMediaAdapter(context, list);
+        adapter = new RepotredImageAdapter(context, list);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                show_img(IMAGE);
+                if (adapter.getAllData().size() <= 3) {
+                    show_img(IMAGE);
+                } else {
+                    ToastUtils.showToast(context.getApplicationContext(), getString(R.string.max_three));
+                }
             }
         });
+        adapter.setOnDeleteClick(new RepotredImageAdapter.OnDeleteClick() {
+            @Override
+            public void onDeleteClick(int data) {
+                adapter.remove(data);
+            }
+        });
+		// @}
 
     }
 
@@ -134,18 +149,16 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
     @Override
     public void onAddReported(String data) {
         ToastUtils.showToast(context.getApplicationContext(), data);
+        LoadingUtil.hideLoading();
         finish();
     }
 
 
     @Override
     public void onUploadImgs(String[] data) {
-        imgArray = data;
         for (int i = 0; i < data.length; i++) {
             map.put("reported_img" + (i + 1), data[i]);
         }
-        LoadingUtil.hideLoading();
-        //ToastUtils.showToast(context.getApplicationContext(), R.string.load_success);
         getPresenter().addReported(map);
     }
 
@@ -168,7 +181,7 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
                 .appendPath(cachePath)
                 .appendPath(String.format(Locale.US, "%s.jpg", System.currentTimeMillis()))
                 .build();
-        BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.MULTI_IMG).withMaxCount(4-adapter.getAllData().size()).withCropOption(new BoxingCropOption(destUri))
+        BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.MULTI_IMG).withMaxCount(4 - adapter.getAllData().size()).withCropOption(new BoxingCropOption(destUri))
                 .withMediaPlaceHolderRes(R.drawable.ic_boxing_default_image);
 
 
@@ -183,20 +196,22 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
             case IMAGE:
                 if (resultCode == RESULT_OK) {
                     //adapter.clear();
-                    adapter.remove(adapter.getAllData().size()-1);
+                    adapter.remove(adapter.getAllData().size() - 1);
                     final ArrayList<BaseMedia> medias = Boxing.getResult(data);
 
                     for (BaseMedia media : medias) {
                         if (media instanceof ImageMedia) {
                             adapter.add(((ImageMedia) media).getThumbnailPath());
+
                         } else {
                             adapter.add(media.getPath());
+                            imgArray.add(media.getPath());
                         }
                     }
                     if (adapter.getAllData().size() > 0) {
 
                     }
-                    if (adapter.getAllData().size() < 3) {
+                    if (adapter.getAllData().size() <= 3) {
                         adapter.add("");
                     }
                     adapter.notifyDataSetChanged();
@@ -209,6 +224,7 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
     //上传图片
     private void upImage() {
         final List<MultipartBody.Part> files = new ArrayList<>();
+        adapter.remove(adapter.getAllData().size() - 1);
         final List<String> allData = adapter.getAllData();
         Luban.with(getActivity())
                 .load(allData)                                   // 传人要压缩的图片列表
@@ -344,7 +360,7 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
                     ToastUtils.showToast(context.getApplicationContext(), "请输入电话号码");
                     return;
                 }
-                String address = tvAddress.getText().toString().trim();
+                final String address = tvAddress.getText().toString().trim();
                 if (TextUtils.isEmpty(address)) {
                     ToastUtils.showToast(context.getApplicationContext(), "请选择地址");
                     return;
@@ -357,13 +373,18 @@ public class ReportedFragment extends BaseFragment<IInformationreportedView, Inf
                 map.put("reported_name", name);
                 map.put("reported_phone", phone);
                 map.put("detail", detailsAddress);
-                map.put("reported_note",etNoteDetail.getText().toString());
+                map.put("reported_note", etNoteDetail.getText().toString());
                 final CustomDialog.Builder builder = new CustomDialog.Builder(context);
                 builder.setMessage(getString(R.string.is_reproted));
                 builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        upImage();
-                        LoadingUtil.showLoading(getActivity(), getResources().getString(R.string.img_loading));
+                        if (adapter.getAllData().size() > 1) {
+                            upImage();
+                        } else {
+                            getPresenter().addReported(map);
+                        }
+
+                        LoadingUtil.showLoading(context, getResources().getString(R.string.reported_loading));
                         dialog.dismiss();
                     }
                 });

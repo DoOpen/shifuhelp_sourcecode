@@ -431,6 +431,8 @@
     <string name="order_voice">新工单提示音</string>
     <string name="already_no">已开启</string>
     <string name="already_off">已关闭</string>
+    <string name="single_price">单价（元）：</string>
+    <string name="max_three">最多上传三张图片</string>
 
 
 </resources>
