@@ -197,7 +197,7 @@
 			and a.goods_name like concat('%',#{goods_name},'%')
 		</if>
 		<if test=' show_type != null and show_type != "" '>
-			and find_in_set(a.show_type,#{show_type})
+			and find_in_set(#{show_type},a.show_type)
 		</if>
 		<if test=' buy_type != null and buy_type != "" '>
 			and a.buy_type=#{buy_type}
