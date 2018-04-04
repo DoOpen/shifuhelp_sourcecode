@@ -1,8 +1,8 @@
 package com.project.bean.pay;
 
 import java.security.Timestamp;
+import java.util.Map;
 
-import com.sun.javafx.collections.MappingChange.Map;
 /**
  * ping++退款对象
  * @author 方林
