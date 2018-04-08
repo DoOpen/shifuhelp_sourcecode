@@ -171,12 +171,12 @@ public class WorkOrderServiceI {
 			//师傅-已接单（待审核）
 			stateList.add(6);
 			stateList.add(4);
-			stateList.add(7);
 			stateList.add(12);
 			workOrderBean.setOrder_member_id(null);
 			workOrderBean.setOrder_accept_id(memberBean.getMember_id());
 		}else if(type.equals("worker_accept_complete")){
 			//师傅-已接单（已完成
+			stateList.add(7);
 			stateList.add(8);
 			stateList.add(9);
 			workOrderBean.setOrder_member_id(null);
