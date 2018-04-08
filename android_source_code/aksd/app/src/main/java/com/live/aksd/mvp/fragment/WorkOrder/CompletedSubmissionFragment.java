@@ -292,7 +292,6 @@ public class CompletedSubmissionFragment extends DialogFragment {
                 dismiss();
                 break;
             case R.id.tvCommit:
-                upImage();
                 String markInformation = etNote.getText().toString();
                 workOrderDetailBean.setOrder_price(etTotalPrice.getText().toString());
                 workOrderDetailBean.setOrder_complete_note(markInformation);
@@ -316,7 +315,7 @@ public class CompletedSubmissionFragment extends DialogFragment {
                 .appendPath(cachePath)
                 .appendPath(String.format(Locale.US, "%s.jpg", System.currentTimeMillis()))
                 .build();
-        BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.MULTI_IMG).withMaxCount(4-adapter.getAllData().size()).withCropOption(new BoxingCropOption(destUri))
+        BoxingConfig singleCropImgConfig = new BoxingConfig(BoxingConfig.Mode.MULTI_IMG).withMaxCount(3).withCropOption(new BoxingCropOption(destUri))
                 .withMediaPlaceHolderRes(R.drawable.ic_boxing_default_image);
         Boxing.of(singleCropImgConfig).withIntent(getContext(), BoxingActivity.class).start(this, requestcode);
     }
@@ -328,8 +327,9 @@ public class CompletedSubmissionFragment extends DialogFragment {
         switch (requestCode) {
             case IMAGE:
                 if (resultCode == RESULT_OK) {
-                    adapter.remove(adapter.getAllData().size()-1);
+                    adapter.clear();
                     final ArrayList<BaseMedia> medias = Boxing.getResult(data);
+
                     for (BaseMedia media : medias) {
                         if (media instanceof ImageMedia) {
                             adapter.add(((ImageMedia) media).getThumbnailPath());
@@ -338,7 +338,7 @@ public class CompletedSubmissionFragment extends DialogFragment {
                         }
                     }
                     if (adapter.getAllData().size() > 0) {
-
+                        upImage();
                     }
                     if (adapter.getAllData().size() < 3) {
                         adapter.add("");

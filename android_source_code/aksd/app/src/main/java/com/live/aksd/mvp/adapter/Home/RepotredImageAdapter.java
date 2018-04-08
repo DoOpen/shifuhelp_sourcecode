@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.live.aksd.R;
+import com.live.aksd.util.GlideRoundTransform;
 
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class RepotredImageAdapter extends RecyclerArrayAdapter<String> {
             }
             Glide.with(getContext())
                     .load(data)
-                    .error(R.mipmap.upload)
+                    .error(R.mipmap.upload).transform(new CenterCrop(getContext()),new GlideRoundTransform(getContext(),12))
                     .into(img);
 
             delete.setOnClickListener(new View.OnClickListener() {

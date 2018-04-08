@@ -3,6 +3,7 @@ package com.live.aksd.mvp.fragment.Mine;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -102,9 +103,7 @@ public class ReportedDetailFragment extends BaseFragment<IReportedDetailView, Re
     @Override
     public void initUI() {
         tvTitle.setText("报备详情");
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(context,3));
         list = new ArrayList<>();
         adapter = new ImageAdapter(getContext(), list);
         recyclerView.setAdapter(adapter);

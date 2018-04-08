@@ -362,14 +362,16 @@ public class MyWalletFragment extends BaseFragment<IMyWalletView, MyWalletPresen
                     ToastUtils.showToast(context.getApplicationContext(), "提现金额不少于100");
                     return;
                 }
-                if (TextUtils.isEmpty(extract)) {
+				// sfsm  zhoushilei:  modified code @{
+                if (TextUtils.isEmpty(userBean.getMember_extract_money())) {
                     ToastUtils.showToast(context.getApplicationContext(), "可提现金额不足");
                     return;
                 }
-                if (Integer.parseInt(edit_money.getText().toString()) > extractMoney) {
+                if (Float.parseFloat(edit_money.getText().toString()) > Float.parseFloat(userBean.getMember_extract_money())) {
                     ToastUtils.showToast(context.getApplicationContext(), "可提现金额不足");
                     return;
                 }
+				// @}
                 map.clear();
                 map.put("member_id", userBean.getMember_id());
                 map.put("member_token", userBean.getMember_token());
