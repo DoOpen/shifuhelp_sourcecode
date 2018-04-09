@@ -40,7 +40,7 @@
 			and send_range=#{send_range}
 		</if>
 		<if test=' show_type != null and show_type != "" '>
-			and show_type=#{show_type}
+			and find_in_set(#{show_type},show_type)
 		</if>
 		<if test=' buy_type != null and buy_type != "" '>
 			and buy_type=#{buy_type}
